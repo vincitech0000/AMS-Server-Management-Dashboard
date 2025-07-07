@@ -1,3 +1,5 @@
+import { MarkupMaestro } from '@/components/markup-maestro';
+
 export default function Home() {
-  return <></>;
+  return <MarkupMaestro />;
 }
