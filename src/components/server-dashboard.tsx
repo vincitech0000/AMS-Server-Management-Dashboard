@@ -51,7 +51,7 @@ const servers = [
       { name: 'Login', url: 'https://box78.amsserver.com/' },
     ],
   },
-  { name: 'FusionPBX Server', type: 'FusionPBX', icon: <Server className="w-8 h-8" />, accessPoints: [{ name: 'Access Server', url: '#' }] },
+  { name: 'FusionPBX Server', type: 'FusionPBX', icon: <Server className="w-8 h-8" />, accessPoints: [{ name: 'Login', url: 'https://173.208.249.122/' }] },
   { name: 'VOS3000 Server', type: 'VOS3000', icon: <Database className="w-8 h-8" />, accessPoints: [{ name: 'CDR Login', url: 'https://voip.amsserver.com:8443/' }] },
   { name: 'Bulk SMS Server', type: 'Bulk SMS', icon: <MessageSquare className="w-8 h-8" />, accessPoints: [{ name: 'Access Server', url: '#' }] },
 ];
