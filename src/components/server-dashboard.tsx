@@ -7,6 +7,18 @@ import { Server, Phone, Database, MessageSquare, ArrowUpRight } from 'lucide-rea
 
 const defaultDescription = <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>;
 
+const viciboxFeatures = (
+    <>
+      <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+        <li>Predictive dialing</li>
+        <li>Inbound/outbound calling</li>
+        <li>Call recording</li>
+        <li>Agent scripting</li>
+      </ul>
+    </>
+  );
+
 const servers = [
   {
     name: 'VICIBOX124',
@@ -16,7 +28,7 @@ const servers = [
       { name: 'Firewall', url: 'http://107.150.36.124:7887/valid8.php' },
       { name: 'Login', url: 'http://107.150.36.124/vicidial/welcome.php' },
     ],
-    description: defaultDescription,
+    description: viciboxFeatures,
   },
   {
     name: 'VICIBOX123',
@@ -26,7 +38,7 @@ const servers = [
       { name: 'Firewall', url: 'https://box123.amsserver.com:446/valid8.php' },
       { name: 'Login', url: 'https://box123.amsserver.com/' },
     ],
-    description: defaultDescription,
+    description: viciboxFeatures,
   },
   {
     name: 'VICIBOX126',
@@ -36,7 +48,7 @@ const servers = [
       { name: 'Firewall', url: 'https://box126.amsserver.com:446/valid8.php' },
       { name: 'Login', url: 'https://box126.amsserver.com/' },
     ],
-    description: defaultDescription,
+    description: viciboxFeatures,
   },
   {
     name: 'VICIBOX75',
@@ -46,7 +58,7 @@ const servers = [
       { name: 'Firewall', url: 'https://box75.amsserver.com:446/valid8.php' },
       { name: 'Login', url: 'https://box75.amsserver.com/' },
     ],
-    description: defaultDescription,
+    description: viciboxFeatures,
   },
   {
     name: 'VICIBOX78',
@@ -56,7 +68,7 @@ const servers = [
       { name: 'Firewall', url: 'https://box78.amsserver.com:446/valid8.php' },
       { name: 'Login', url: 'https://box78.amsserver.com/' },
     ],
-    description: defaultDescription,
+    description: viciboxFeatures,
   },
   {
     name: 'FusionPBX Server',
