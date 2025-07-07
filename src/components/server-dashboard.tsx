@@ -78,10 +78,10 @@ export function ServerDashboard() {
               <CardContent className="flex-grow p-4">
                 <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>
               </CardContent>
-              <CardFooter className="flex flex-col gap-2 p-4 bg-muted/50">
+              <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
                 {server.accessPoints.map((accessPoint, i) => (
-                  <a key={i} href={accessPoint.url} target="_blank" rel="noopener noreferrer" className="w-full">
-                    <Button className="w-full">
+                  <a key={i} href={accessPoint.url} target="_blank" rel="noopener noreferrer">
+                    <Button size="sm">
                       {accessPoint.name}
                       <ArrowUpRight className="w-4 h-4 ml-2" />
                     </Button>
