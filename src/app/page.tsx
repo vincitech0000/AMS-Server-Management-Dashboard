@@ -1,5 +1,5 @@
-import { MarkupMaestro } from '@/components/markup-maestro';
+import { ServerDashboard } from '@/components/server-dashboard';
 
 export default function Home() {
-  return <MarkupMaestro />;
+  return <ServerDashboard />;
 }
