@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
@@ -6,30 +7,30 @@ import { Server, Phone, Database, MessageSquare, ArrowUpRight } from 'lucide-rea
 
 const servers = [
   {
-    name: 'VICIBOX Server 1',
+    name: 'VICIBOX124',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Firewall', url: '#' },
-      { name: 'Login', url: '#' },
+      { name: 'Firewall', url: 'http://107.150.36.124:7887/valid8.php' },
+      { name: 'Login', url: 'http://107.150.36.124/vicidial/welcome.php' },
     ],
   },
   {
-    name: 'VICIBOX Server 2',
+    name: 'VICIBOX123',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Firewall', url: '#' },
-      { name: 'Login', url: '#' },
+      { name: 'Firewall', url: 'https://box123.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://box123.amsserver.com/' },
     ],
   },
   {
-    name: 'VICIBOX Server 3',
+    name: 'VICIBOX126',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Firewall', url: '#' },
-      { name: 'Login', url: '#' },
+      { name: 'Firewall', url: 'https://box126.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://box126.amsserver.com/' },
     ],
   },
   {
