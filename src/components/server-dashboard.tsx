@@ -111,8 +111,8 @@ const servers = [
     type: 'Bulk SMS',
     icon: <MessageSquare className="w-8 h-8" />,
     accessPoints: [
-        { name: 'LOGIN', url: '#' },
-        { name: 'Signup', url: '#' },
+        { name: 'LOGIN', url: 'https://bulksms.amsserver.com/login' },
+        { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
     ],
     description: smsFeatures,
   },
