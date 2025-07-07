@@ -34,21 +34,21 @@ const servers = [
     ],
   },
   {
-    name: 'VICIBOX Server 4',
+    name: 'VICIBOX75',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Firewall', url: '#' },
-      { name: 'Login', url: '#' },
+      { name: 'Firewall', url: 'https://box75.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://box75.amsserver.com/' },
     ],
   },
   {
-    name: 'VICIBOX Server 5',
+    name: 'VICIBOX78',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Firewall', url: '#' },
-      { name: 'Login', url: '#' },
+      { name: 'Firewall', url: 'https://box78.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://box78.amsserver.com/' },
     ],
   },
   { name: 'FusionPBX Server', type: 'FusionPBX', icon: <Server className="w-8 h-8" />, accessPoints: [{ name: 'Access Server', url: '#' }] },
