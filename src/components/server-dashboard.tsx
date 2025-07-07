@@ -5,6 +5,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/components/ui/button';
 import { Server, Phone, Database, MessageSquare, ArrowUpRight } from 'lucide-react';
 
+const defaultDescription = <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>;
+
 const servers = [
   {
     name: 'VICIBOX124',
@@ -14,6 +16,7 @@ const servers = [
       { name: 'Firewall', url: 'http://107.150.36.124:7887/valid8.php' },
       { name: 'Login', url: 'http://107.150.36.124/vicidial/welcome.php' },
     ],
+    description: defaultDescription,
   },
   {
     name: 'VICIBOX123',
@@ -23,6 +26,7 @@ const servers = [
       { name: 'Firewall', url: 'https://box123.amsserver.com:446/valid8.php' },
       { name: 'Login', url: 'https://box123.amsserver.com/' },
     ],
+    description: defaultDescription,
   },
   {
     name: 'VICIBOX126',
@@ -32,6 +36,7 @@ const servers = [
       { name: 'Firewall', url: 'https://box126.amsserver.com:446/valid8.php' },
       { name: 'Login', url: 'https://box126.amsserver.com/' },
     ],
+    description: defaultDescription,
   },
   {
     name: 'VICIBOX75',
@@ -41,6 +46,7 @@ const servers = [
       { name: 'Firewall', url: 'https://box75.amsserver.com:446/valid8.php' },
       { name: 'Login', url: 'https://box75.amsserver.com/' },
     ],
+    description: defaultDescription,
   },
   {
     name: 'VICIBOX78',
@@ -50,10 +56,39 @@ const servers = [
       { name: 'Firewall', url: 'https://box78.amsserver.com:446/valid8.php' },
       { name: 'Login', url: 'https://box78.amsserver.com/' },
     ],
+    description: defaultDescription,
   },
-  { name: 'FusionPBX Server', type: 'FusionPBX', icon: <Server className="w-8 h-8" />, accessPoints: [{ name: 'Login', url: 'https://173.208.249.122/' }] },
-  { name: 'VOS3000 Server', type: 'VOS3000', icon: <Database className="w-8 h-8" />, accessPoints: [{ name: 'CDR Login', url: 'https://voip.amsserver.com:8443/' }] },
-  { name: 'Bulk SMS Server', type: 'Bulk SMS', icon: <MessageSquare className="w-8 h-8" />, accessPoints: [{ name: 'Access Server', url: '#' }] },
+  {
+    name: 'FusionPBX Server',
+    type: 'FusionPBX',
+    icon: <Server className="w-8 h-8" />,
+    accessPoints: [{ name: 'Login', url: 'https://173.208.249.122/' }],
+    description: (
+      <>
+        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+          <li>Multi-tenant</li>
+          <li>Voicemail-to-email</li>
+          <li>Call recording</li>
+          <li>Ring groups</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    name: 'VOS3000 Server',
+    type: 'VOS3000',
+    icon: <Database className="w-8 h-8" />,
+    accessPoints: [{ name: 'CDR Login', url: 'https://voip.amsserver.com:8443/' }],
+    description: defaultDescription,
+  },
+  {
+    name: 'Bulk SMS Server',
+    type: 'Bulk SMS',
+    icon: <MessageSquare className="w-8 h-8" />,
+    accessPoints: [{ name: 'Access Server', url: '#' }],
+    description: defaultDescription,
+  },
 ];
 
 export function ServerDashboard() {
@@ -77,7 +112,7 @@ export function ServerDashboard() {
                 </div>
               </CardHeader>
               <CardContent className="flex-grow p-4">
-                <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>
+                {server.description}
               </CardContent>
               <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
                 {server.accessPoints.map((accessPoint, i) => (
