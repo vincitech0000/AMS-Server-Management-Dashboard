@@ -5,14 +5,54 @@ import { Button } from '@/components/ui/button';
 import { Server, Phone, Database, MessageSquare, ArrowUpRight } from 'lucide-react';
 
 const servers = [
-  { name: 'VICIBOX Server 1', type: 'VICIBOX', url: '#', icon: <Phone className="w-8 h-8" /> },
-  { name: 'VICIBOX Server 2', type: 'VICIBOX', url: '#', icon: <Phone className="w-8 h-8" /> },
-  { name: 'VICIBOX Server 3', type: 'VICIBOX', url: '#', icon: <Phone className="w-8 h-8" /> },
-  { name: 'VICIBOX Server 4', type: 'VICIBOX', url: '#', icon: <Phone className="w-8 h-8" /> },
-  { name: 'VICIBOX Server 5', type: 'VICIBOX', url: '#', icon: <Phone className="w-8 h-8" /> },
-  { name: 'FusionPBX Server', type: 'FusionPBX', url: '#', icon: <Server className="w-8 h-8" /> },
-  { name: 'VOS3000 Server', type: 'VOS3000', url: '#', icon: <Database className="w-8 h-8" /> },
-  { name: 'Bulk SMS Server', type: 'Bulk SMS', url: '#', icon: <MessageSquare className="w-8 h-8" /> },
+  {
+    name: 'VICIBOX Server 1',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: '#' },
+      { name: 'Login', url: '#' },
+    ],
+  },
+  {
+    name: 'VICIBOX Server 2',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: '#' },
+      { name: 'Login', url: '#' },
+    ],
+  },
+  {
+    name: 'VICIBOX Server 3',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: '#' },
+      { name: 'Login', url: '#' },
+    ],
+  },
+  {
+    name: 'VICIBOX Server 4',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: '#' },
+      { name: 'Login', url: '#' },
+    ],
+  },
+  {
+    name: 'VICIBOX Server 5',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: '#' },
+      { name: 'Login', url: '#' },
+    ],
+  },
+  { name: 'FusionPBX Server', type: 'FusionPBX', icon: <Server className="w-8 h-8" />, accessPoints: [{ name: 'Access Server', url: '#' }] },
+  { name: 'VOS3000 Server', type: 'VOS3000', icon: <Database className="w-8 h-8" />, accessPoints: [{ name: 'Access Server', url: '#' }] },
+  { name: 'Bulk SMS Server', type: 'Bulk SMS', icon: <MessageSquare className="w-8 h-8" />, accessPoints: [{ name: 'Access Server', url: '#' }] },
 ];
 
 export function ServerDashboard() {
@@ -36,15 +76,17 @@ export function ServerDashboard() {
                 </div>
               </CardHeader>
               <CardContent className="flex-grow p-4">
-                <p className="text-sm text-muted-foreground">Click the button below to open the server's admin interface. You can update the URL in the code.</p>
+                <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>
               </CardContent>
-              <CardFooter className="p-4 bg-muted/50">
-                <a href={server.url} target="_blank" rel="noopener noreferrer" className="w-full">
-                  <Button className="w-full">
-                    Access Server
-                    <ArrowUpRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </a>
+              <CardFooter className="flex flex-col gap-2 p-4 bg-muted/50">
+                {server.accessPoints.map((accessPoint, i) => (
+                  <a key={i} href={accessPoint.url} target="_blank" rel="noopener noreferrer" className="w-full">
+                    <Button className="w-full">
+                      {accessPoint.name}
+                      <ArrowUpRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </a>
+                ))}
               </CardFooter>
             </Card>
           ))}
