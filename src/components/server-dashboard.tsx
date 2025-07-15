@@ -404,15 +404,25 @@ export function ServerDashboard() {
       <header className="p-6 border-b">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <svg
+             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               className="w-12 h-12 text-primary"
-              fill="currentColor"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zM17.99 9.21c-.24-3.11-2.56-5.43-5.66-5.66A8.013 8.013 0 0 1 18 12c0 1.4-.36 2.71-.98 3.82l-1.43-1.43c.23-.55.35-1.15.35-1.78 0-1.66-1.34-3-3-3h-1V7c0-1.11-.9-2-2-2H7.07c.58-.94 1.54-1.63 2.7-1.95.1.01.19.02.28.02 1.93 0 3.5 1.57 3.5 3.5v1.44c1.23.46 2.18 1.59 2.42 2.99.01.07.02.13.02.2z"
-              />
+              <circle cx="12" cy="12" r="2" />
+              <path d="M4.93 4.93l1.41 1.41" />
+              <path d="M17.66 17.66l1.41 1.41" />
+              <path d="M2 12h2" />
+              <path d="M20 12h2" />
+              <path d="M4.93 19.07l1.41-1.41" />
+              <path d="M17.66 6.34l1.41-1.41" />
+              <path d="M12 2v2" />
+              <path d="M12 20v2" />
             </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
