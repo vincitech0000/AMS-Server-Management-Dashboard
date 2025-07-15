@@ -14,6 +14,8 @@ import { useToast } from '@/hooks/use-toast';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Image from 'next/image';
 import { Input } from '@/components/ui/input';
+import { pingAllServers, type ServerWithStatus } from '@/app/actions';
+import { cn } from '@/lib/utils';
 
 const defaultDescription = <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>;
 
@@ -218,6 +220,17 @@ const servers = [
   },
 ];
 
+const serversToCheck = [
+  { name: 'FusionPBX Server', ip: '173.208.249.122' },
+  { name: 'VOS3000 Server', ip: 'voip.amsserver.com' },
+  { name: 'Bulk SMS Server', ip: 'bulksms.amsserver.com' },
+  { name: 'VICIBOX124', ip: '107.150.36.124' },
+  { name: 'VICIBOX123', ip: 'box123.amsserver.com' },
+  { name: 'VICIBOX126', ip: 'box126.amsserver.com' },
+  { name: 'VICIBOX75', ip: 'box75.amsserver.com' },
+  { name: 'VICIBOX78', ip: 'box78.amsserver.com' },
+];
+
 const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
 
 const fusionPbxCapacities = [
@@ -277,6 +290,18 @@ export function ServerDashboard() {
   
   const [captchaText, setCaptchaText] = useState('');
   const [captchaInput, setCaptchaInput] = useState('');
+  
+  const [serverStatus, setServerStatus] = useState<'checking' | 'online' | 'offline'>('checking');
+
+  useEffect(() => {
+    async function checkStatuses() {
+        setServerStatus('checking');
+        const results = await pingAllServers(serversToCheck);
+        const anyOffline = results.some(s => s.status === 'Offline' || s.status === 'Error');
+        setServerStatus(anyOffline ? 'offline' : 'online');
+    }
+    checkStatuses();
+  }, []);
 
   useEffect(() => {
     if (isOrderDialogOpen && orderStep === 'form') {
@@ -419,9 +444,15 @@ export function ServerDashboard() {
             </div>
           </div>
           <div>
-            <Button asChild variant="outline">
+            <Button asChild 
+              className={cn({
+                'bg-green-500 hover:bg-green-500/90 text-white': serverStatus === 'online',
+                'bg-red-500 hover:bg-red-500/90 text-white': serverStatus === 'offline',
+              })}
+            >
               <Link href="/server-status">
-                <Wifi className="mr-2 h-4 w-4" />
+                {serverStatus === 'checking' && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {serverStatus !== 'checking' && <Wifi className="mr-2 h-4 w-4" />}
                 Server Status
               </Link>
             </Button>
@@ -748,5 +779,3 @@ export function ServerDashboard() {
     </div>
   );
 }
-
-    
