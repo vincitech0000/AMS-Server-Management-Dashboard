@@ -215,7 +215,7 @@ const servers = [
 
 const serversToCheck = [
   { name: 'FusionPBX Server', ip: '173.208.249.122' },
-  { name: 'Bulk SMS Server', ip: 'bulksms.amsserver.com' },
+  { name: 'Bulk SMS Server (bulksms.amsserver.com)', ip: '142.54.188.154' },
   { name: 'VICIBOX124', ip: '107.150.36.124' },
   { name: 'VICIBOX123', ip: 'box123.amsserver.com' },
   { name: 'VICIBOX126', ip: 'box126.amsserver.com' },
