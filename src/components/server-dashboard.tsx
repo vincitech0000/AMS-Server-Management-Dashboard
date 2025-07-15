@@ -170,13 +170,6 @@ const servers = [
     ),
   },
   {
-    name: 'VOS3000 Server',
-    type: 'VOS3000',
-    icon: <Database className="w-8 h-8" />,
-    accessPoints: [{ name: 'CDR Login', url: 'https://voip.amsserver.com:8443/' }],
-    description: vos3000Features,
-  },
-  {
     name: 'Bulk SMS Server',
     type: 'Bulk SMS',
     icon: <MessageSquare className="w-8 h-8" />,
@@ -222,7 +215,6 @@ const servers = [
 
 const serversToCheck = [
   { name: 'FusionPBX Server', ip: '173.208.249.122' },
-  { name: 'VOS3000 Server', ip: 'voip.amsserver.com' },
   { name: 'Bulk SMS Server', ip: 'bulksms.amsserver.com' },
   { name: 'VICIBOX124', ip: '107.150.36.124' },
   { name: 'VICIBOX123', ip: 'box123.amsserver.com' },
@@ -431,12 +423,23 @@ export function ServerDashboard() {
           <div className="flex items-center gap-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 256 256"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="w-12 h-12 text-primary"
-              fill="currentColor"
             >
-              <path d="M128 32C79.5 32 40 71.5 40 120c0 24.3 10.3 46.5 27.2 62.4a8 8 0 0 0 11.2-1.6L96 156.4c-1.3-3.9-1.9-8-1.9-12.1 0-22.1 17.9-40 40-40s40 17.9 40 40c0 4.1-.6 8.2-1.9 12.1l17.6 24.3a8 8 0 0 0 11.2 1.6C205.7 166.5 216 144.3 216 120c0-48.5-39.5-88-88-88Z" opacity="0.2"/>
-              <path d="M128 24a104.2 104.2 0 0 0-96.2 128H32a8 8 0 0 0-6.4 12.8L56 211.2a16.1 16.1 0 0 0 14.4 8.8h115.2a16.1 16.1 0 0 0 14.4-8.8l30.4-46.4A8 8 0 0 0 224 152h-.2A104.2 104.2 0 0 0 128 24ZM73.6 196.8l-16-24.6-9.6 14.8ZM128 40c44.1 0 80 35.9 80 80 0 21.2-8.3 40.5-22 54.8l-20.8-28.7a8.1 8.1 0 0 0-10.8-2.5 56.7 56.7 0 0 1-52.8 0 8.1 8.1 0 0 0-10.8 2.5L22 174.8C8.3 160.5 0 141.2 0 120c0-44.1 35.9-80 80-80Zm86.4 156.8-16 24.6-9.6-14.8Z" transform="translate(0 2) scale(0.9)"/>
+              <path d="M12 2L12 6" />
+              <path d="M12 18L12 22" />
+              <path d="M17 7L15 9" />
+              <path d="M9 15L7 17" />
+              <path d="M7 7L9 9" />
+              <path d="M15 15L17 17" />
+              <circle cx="12" cy="12" r="3" />
             </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
