@@ -1,10 +1,10 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, Upload, CheckCircle } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, Upload, CheckCircle, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -179,6 +179,16 @@ const magnusBillingCapacities = [
 
 const walletAddress = "TPK8o1z4sgZWdshmGfh5v1oYftYNU9EpWH";
 
+const generateCaptcha = () => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let captcha = '';
+    for (let i = 0; i < 6; i++) {
+        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return captcha;
+};
+
+
 export function ServerDashboard() {
   const [isOrderDialogOpen, setOrderDialogOpen] = useState(false);
   const [selectedServer, setSelectedServer] = useState('');
@@ -194,6 +204,15 @@ export function ServerDashboard() {
   const [orderStep, setOrderStep] = useState('form'); // 'form', 'payment', 'contact'
   const [paymentHash, setPaymentHash] = useState('');
   const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
+  
+  const [captchaText, setCaptchaText] = useState('');
+  const [captchaInput, setCaptchaInput] = useState('');
+
+  useEffect(() => {
+    if (isOrderDialogOpen && orderStep === 'form') {
+      setCaptchaText(generateCaptcha());
+    }
+  }, [isOrderDialogOpen, orderStep]);
 
   const resetForm = () => {
     setSelectedServer('');
@@ -206,6 +225,8 @@ export function ServerDashboard() {
     setPaymentHash('');
     setPaymentScreenshot(null);
     setOrderStep('form');
+    setCaptchaInput('');
+    setCaptchaText(generateCaptcha());
   }
 
   const handleServerTypeChange = (value: string) => {
@@ -245,6 +266,17 @@ export function ServerDashboard() {
   }
 
   const handleSubmitOrder = async () => {
+    if (captchaInput.toLowerCase() !== captchaText.toLowerCase()) {
+        toast({
+            title: 'Invalid CAPTCHA',
+            description: 'Please try again.',
+            variant: 'destructive',
+        });
+        setCaptchaText(generateCaptcha());
+        setCaptchaInput('');
+        return;
+    }
+  
     if (!selectedServer) {
         toast({
             title: 'Incomplete Order',
@@ -560,6 +592,31 @@ export function ServerDashboard() {
                                     placeholder="e.g., specific software, configuration, user accounts..."
                                     value={requirements}
                                     onChange={(e) => setRequirements(e.target.value)}
+                                />
+                            </div>
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                 <Label htmlFor="captcha" className="text-right">
+                                    Verify
+                                </Label>
+                                <div className="col-span-3 flex items-center gap-2">
+                                    <div className="px-4 py-2 rounded-md bg-muted text-lg font-bold tracking-widest select-none font-mono" style={{ textDecoration: 'line-through' }}>
+                                        {captchaText}
+                                    </div>
+                                    <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())}>
+                                        <RefreshCw className="w-4 h-4" />
+                                    </Button>
+                                </div>
+                            </div>
+                             <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="captcha-input" className="text-right">
+                                    Enter Code
+                                </Label>
+                                <Input
+                                    id="captcha-input"
+                                    className="col-span-3"
+                                    placeholder="Enter the code above"
+                                    value={captchaInput}
+                                    onChange={(e) => setCaptchaInput(e.target.value)}
                                 />
                             </div>
                         </div>
