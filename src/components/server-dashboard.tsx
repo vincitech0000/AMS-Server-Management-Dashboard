@@ -165,6 +165,15 @@ const viciboxUserTiers = [
     { value: 'cluster', label: 'Cluster Server', price: 'Contact for Pricing' },
 ];
 
+const astppCapacities = [
+    { value: '1000', label: 'Up to 1000 CC', price: '100$/month' },
+    { value: '5000', label: 'Up to 5000 CC', price: '145$/month' },
+];
+
+const magnusBillingCapacities = [
+    { value: '1000', label: 'Up to 1000 CC', price: '100$/month' },
+    { value: '5000', label: 'Up to 5000 CC', price: '145$/month' },
+];
 
 export function ServerDashboard() {
   const [isOrderDialogOpen, setOrderDialogOpen] = useState(false);
@@ -172,6 +181,8 @@ export function ServerDashboard() {
   const [selectedFusionCapacity, setSelectedFusionCapacity] = useState('');
   const [selectedVosCapacity, setSelectedVosCapacity] = useState('');
   const [selectedViciboxTier, setSelectedViciboxTier] = useState('');
+  const [selectedAstppCapacity, setSelectedAstppCapacity] = useState('');
+  const [selectedMagnusCapacity, setSelectedMagnusCapacity] = useState('');
   const [requirements, setRequirements] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
@@ -181,6 +192,8 @@ export function ServerDashboard() {
     setSelectedFusionCapacity('');
     setSelectedVosCapacity('');
     setSelectedViciboxTier('');
+    setSelectedAstppCapacity('');
+    setSelectedMagnusCapacity('');
   };
 
   const handleSubmitOrder = async () => {
@@ -207,6 +220,16 @@ export function ServerDashboard() {
         toast({ title: 'Incomplete Order', description: 'Please select a user tier for the VICIBOX server.', variant: 'destructive'});
         return;
     }
+    
+    if (selectedServer === 'ASTPP' && !selectedAstppCapacity) {
+        toast({ title: 'Incomplete Order', description: 'Please select a capacity for the ASTPP server.', variant: 'destructive'});
+        return;
+    }
+
+    if (selectedServer === 'Magnus Billing' && !selectedMagnusCapacity) {
+        toast({ title: 'Incomplete Order', description: 'Please select a capacity for the Magnus Billing server.', variant: 'destructive'});
+        return;
+    }
 
     setSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 1500));
@@ -224,6 +247,12 @@ export function ServerDashboard() {
         toastDescription = `Your order for a ${selectedServer} server for ${tierDetails?.label} has been received.`;
     } else if (selectedServer === 'Bulk SMS') {
         toastDescription = `Your order for a Bulk SMS server has been received. We will contact you regarding payment.`;
+    } else if (selectedServer === 'ASTPP') {
+        const capacityDetails = astppCapacities.find(c => c.value === selectedAstppCapacity);
+        toastDescription = `Your order for an ${selectedServer} server with ${capacityDetails?.label} capacity has been received.`;
+    } else if (selectedServer === 'Magnus Billing') {
+        const capacityDetails = magnusBillingCapacities.find(c => c.value === selectedMagnusCapacity);
+        toastDescription = `Your order for a ${selectedServer} server with ${capacityDetails?.label} capacity has been received.`;
     }
 
     toast({
@@ -235,6 +264,8 @@ export function ServerDashboard() {
     setSelectedFusionCapacity('');
     setSelectedVosCapacity('');
     setSelectedViciboxTier('');
+    setSelectedAstppCapacity('');
+    setSelectedMagnusCapacity('');
     setRequirements('');
     setOrderDialogOpen(false);
   };
@@ -414,6 +445,66 @@ export function ServerDashboard() {
                                 <p className="text-foreground"><span className="font-semibold">Monthly Fee:</span> $199/month</p>
                             </div>
                         </div>
+                    )}
+                    
+                    {selectedServer === 'ASTPP' && (
+                        <>
+                            <div className="grid items-center grid-cols-4 gap-4">
+                                <Label htmlFor="astpp-capacity" className="text-right">
+                                    Capacity
+                                </Label>
+                                <Select value={selectedAstppCapacity} onValueChange={setSelectedAstppCapacity}>
+                                    <SelectTrigger id="astpp-capacity" className="col-span-3">
+                                        <SelectValue placeholder="Select capacity" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {astppCapacities.map(capacity => (
+                                            <SelectItem key={capacity.value} value={capacity.value}>
+                                                {capacity.label} ({capacity.price})
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="grid grid-cols-4 items-start gap-4">
+                                <Label className="text-right pt-2">
+                                    Setup Fee
+                                </Label>
+                                <div className="col-span-3 text-sm pt-2">
+                                    <p className="text-foreground">$50 (One Time Only)</p>
+                                </div>
+                            </div>
+                        </>
+                    )}
+
+                    {selectedServer === 'Magnus Billing' && (
+                         <>
+                            <div className="grid items-center grid-cols-4 gap-4">
+                                <Label htmlFor="magnus-capacity" className="text-right">
+                                    Capacity
+                                </Label>
+                                <Select value={selectedMagnusCapacity} onValueChange={setSelectedMagnusCapacity}>
+                                    <SelectTrigger id="magnus-capacity" className="col-span-3">
+                                        <SelectValue placeholder="Select capacity" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {magnusBillingCapacities.map(capacity => (
+                                            <SelectItem key={capacity.value} value={capacity.value}>
+                                                {capacity.label} ({capacity.price})
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="grid grid-cols-4 items-start gap-4">
+                                <Label className="text-right pt-2">
+                                    Setup Fee
+                                </Label>
+                                <div className="col-span-3 text-sm pt-2">
+                                    <p className="text-foreground">$50 (One Time Only)</p>
+                                </div>
+                            </div>
+                        </>
                     )}
 
                     <div className="grid items-center grid-cols-4 gap-4">
