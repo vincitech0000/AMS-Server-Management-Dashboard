@@ -202,19 +202,23 @@ const servers = [
     name: 'Low Risk DID/ TFN',
     type: 'US DIDs & US TFNs',
     icon: <Phone className="w-8 h-8" />,
-    accessPoints: [],
+    accessPoints: [
+      { name: 'Connect', url: 'http://wa.me/19208156022?text=I%27m%20interested%20in%20Low%20Risk%20DID/%20TFN' },
+    ],
     description: usDidFeatures,
   },
   {
     name: 'High Risk US Toll-free',
     type: 'DIDs & TFN available',
     icon: <Phone className="w-8 h-8" />,
-    accessPoints: [],
+    accessPoints: [
+      { name: 'Connect', url: 'http://wa.me/19208156022?text=I%27m%20interested%20in%20High%20Risk%20US%20Toll-free' },
+    ],
     description: usTollFreeFeatures,
   },
 ];
 
-const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'TFN', 'Other'];
+const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
 
 const fusionPbxCapacities = [
     { value: '50', label: 'Up to 50 channels', price: '50$/month' },
@@ -247,11 +251,6 @@ const magnusBillingCapacities = [
     { value: '5000', label: 'Up to 5000 CC', price: '145$/month' },
 ];
 
-const tfnChannels = [
-    { value: '2', label: '2 Channels', price: '30$/month' },
-    { value: '10', label: '10 Channels', price: '120$/month' },
-];
-
 const generateCaptcha = () => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let captcha = '';
@@ -270,7 +269,6 @@ export function ServerDashboard() {
   const [selectedViciboxTier, setSelectedViciboxTier] = useState('');
   const [selectedAstppCapacity, setSelectedAstppCapacity] = useState('');
   const [selectedMagnusCapacity, setSelectedMagnusCapacity] = useState('');
-  const [selectedTfnChannels, setSelectedTfnChannels] = useState('');
   const [requirements, setRequirements] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
@@ -293,7 +291,6 @@ export function ServerDashboard() {
     setSelectedViciboxTier('');
     setSelectedAstppCapacity('');
     setSelectedMagnusCapacity('');
-    setSelectedTfnChannels('');
     setRequirements('');
     setOrderStep('form');
     setCaptchaInput('');
@@ -307,7 +304,6 @@ export function ServerDashboard() {
     setSelectedViciboxTier('');
     setSelectedAstppCapacity('');
     setSelectedMagnusCapacity('');
-    setSelectedTfnChannels('');
   };
 
   const handleDialogChange = (open: boolean) => {
@@ -338,9 +334,6 @@ export function ServerDashboard() {
         const capacityDetails = magnusBillingCapacities.find(c => c.value === selectedMagnusCapacity);
         details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
         details += `\n- Setup: $50 (One Time)`;
-    } else if (selectedServer === 'TFN') {
-        const channelDetails = tfnChannels.find(c => c.value === selectedTfnChannels);
-        details += `\n- Channels: ${channelDetails?.label} (${channelDetails?.price})`;
     }
     if (requirements) {
         details += `\n- Requirements: ${requirements}`;
@@ -391,11 +384,6 @@ export function ServerDashboard() {
 
     if (selectedServer === 'Magnus Billing' && !selectedMagnusCapacity) {
         toast({ title: 'Incomplete Order', description: 'Please select a capacity for the Magnus Billing server.', variant: 'destructive'});
-        return;
-    }
-
-    if (selectedServer === 'TFN' && !selectedTfnChannels) {
-        toast({ title: 'Incomplete Order', description: 'Please select channels for TFNs.', variant: 'destructive'});
         return;
     }
 
@@ -477,7 +465,7 @@ export function ServerDashboard() {
                   <a key={i} href={accessPoint.url} target="_blank" rel="noopener noreferrer">
                     <Button size="sm">
                       {accessPoint.name}
-                      <ArrowUpRight className="w-4 h-4 ml-2" />
+                      {accessPoint.name !== 'Connect' && <ArrowUpRight className="w-4 h-4 ml-2" />}
                     </Button>
                   </a>
                 ))}
@@ -666,26 +654,6 @@ export function ServerDashboard() {
                                 </>
                             )}
                             
-                            {selectedServer === 'TFN' && (
-                                <div className="grid items-center grid-cols-4 gap-4">
-                                    <Label htmlFor="tfn-channels" className="text-right">
-                                        Channels
-                                    </Label>
-                                    <Select value={selectedTfnChannels} onValueChange={setSelectedTfnChannels}>
-                                        <SelectTrigger id="tfn-channels" className="col-span-3">
-                                            <SelectValue placeholder="Select channels" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {tfnChannels.map(channel => (
-                                                <SelectItem key={channel.value} value={channel.value}>
-                                                    {channel.label} ({channel.price})
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            )}
-
                             <div className="grid items-start grid-cols-4 gap-4">
                                 <Label htmlFor="requirements" className="text-right pt-2">
                                     Requirements
@@ -773,9 +741,3 @@ export function ServerDashboard() {
     </div>
   );
 }
-
-    
-
-    
-
-
