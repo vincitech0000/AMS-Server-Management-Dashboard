@@ -47,7 +47,7 @@ async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
       clearTimeout(timeoutId);
 
       // Any 2xx or 3xx status code is considered 'Online'
-      if (response.ok || response.status >= 300 && response.status < 400) {
+      if (response.ok || (response.status >= 300 && response.status < 400)) {
         return { ...server, status: 'Online' };
       }
     } catch (error: any) {
