@@ -27,6 +27,18 @@ const smsFeatures = (
     </>
 );
 
+const vos3000Features = (
+    <>
+      <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+        <li>Wholesale VoIP</li>
+        <li>Call routing</li>
+        <li>Billing & rating</li>
+        <li>Reporting</li>
+      </ul>
+    </>
+);
+
 const hardwareRequirements = (
   <Accordion type="single" collapsible className="w-full mt-4">
       <AccordionItem value="item-1">
@@ -102,7 +114,7 @@ const servers = [
     type: 'VOS3000',
     icon: <Database className="w-8 h-8" />,
     accessPoints: [{ name: 'CDR Login', url: 'https://voip.amsserver.com:8443/' }],
-    description: defaultDescription,
+    description: vos3000Features,
   },
   {
     name: 'Bulk SMS Server',
