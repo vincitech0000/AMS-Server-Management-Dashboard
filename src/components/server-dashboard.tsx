@@ -166,7 +166,7 @@ const servers = [
     description: magnusBillingFeatures,
   },
   {
-    name: 'Low Risk',
+    name: 'Low Risk DID/ TFN',
     type: 'DIDs',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [],
@@ -181,7 +181,7 @@ const servers = [
   },
 ];
 
-const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Low Risk DIDs', 'High Risk DIDs', 'TFN', 'Other'];
+const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Low Risk DID/ TFN', 'High Risk DIDs', 'TFN', 'Other'];
 
 const fusionPbxCapacities = [
     { value: '50', label: 'Up to 50 channels', price: '50$/month' },
@@ -321,7 +321,7 @@ export function ServerDashboard() {
         const capacityDetails = magnusBillingCapacities.find(c => c.value === selectedMagnusCapacity);
         details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
         details += `\n- Setup: $50 (One Time)`;
-    } else if (selectedServer === 'Low Risk DIDs') {
+    } else if (selectedServer === 'Low Risk DID/ TFN') {
         const channelDetails = lowRiskDidChannels.find(c => c.value === selectedLowRiskDidChannels);
         details += `\n- Channels: ${channelDetails?.label} (${channelDetails?.price})`;
     } else if (selectedServer === 'High Risk DIDs') {
@@ -383,7 +383,7 @@ export function ServerDashboard() {
         return;
     }
 
-    if (selectedServer === 'Low Risk DIDs' && !selectedLowRiskDidChannels) {
+    if (selectedServer === 'Low Risk DID/ TFN' && !selectedLowRiskDidChannels) {
         toast({ title: 'Incomplete Order', description: 'Please select channels for Low Risk DIDs.', variant: 'destructive'});
         return;
     }
@@ -649,7 +649,7 @@ export function ServerDashboard() {
                                 </>
                             )}
                             
-                            {selectedServer === 'Low Risk DIDs' && (
+                            {selectedServer === 'Low Risk DID/ TFN' && (
                                 <div className="grid items-center grid-cols-4 gap-4">
                                     <Label htmlFor="low-risk-did-channels" className="text-right">
                                         Channels
