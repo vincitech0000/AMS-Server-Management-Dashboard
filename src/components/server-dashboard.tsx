@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, Upload, CheckCircle, RefreshCw } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, Upload, CheckCircle, RefreshCw, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -201,9 +201,8 @@ export function ServerDashboard() {
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const [orderStep, setOrderStep] = useState('form'); // 'form', 'payment', 'contact'
+  const [orderStep, setOrderStep] = useState('form'); // 'form', 'payment'
   const [paymentHash, setPaymentHash] = useState('');
-  const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
   
   const [captchaText, setCaptchaText] = useState('');
   const [captchaInput, setCaptchaInput] = useState('');
@@ -223,7 +222,6 @@ export function ServerDashboard() {
     setSelectedMagnusCapacity('');
     setRequirements('');
     setPaymentHash('');
-    setPaymentScreenshot(null);
     setOrderStep('form');
     setCaptchaInput('');
     setCaptchaText(generateCaptcha());
@@ -253,17 +251,36 @@ export function ServerDashboard() {
     });
   }
 
-  const handleProofUpload = () => {
-    if (!paymentHash && !paymentScreenshot) {
-      toast({
-        title: 'Payment Proof Required',
-        description: 'Please provide a transaction hash or a screenshot.',
-        variant: 'destructive',
-      });
-      return;
+  const getOrderDetails = () => {
+    let details = `Order Details:\n- Server Type: ${selectedServer}`;
+    if (selectedServer === 'FusionPBX') {
+        const capacityDetails = fusionPbxCapacities.find(c => c.value === selectedFusionCapacity);
+        details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
+    } else if (selectedServer === 'VOS3000') {
+        const capacityDetails = vos3000Capacities.find(c => c.value === selectedVosCapacity);
+        details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
+    } else if (selectedServer === 'VICIBOX') {
+        const tierDetails = viciboxUserTiers.find(t => t.value === selectedViciboxTier);
+        details += `\n- Users: ${tierDetails?.label} (${tierDetails?.price})`;
+    } else if (selectedServer === 'Bulk SMS') {
+        details += `\n- Setup: $499 (One Time)\n- Monthly: $199/month`;
+    } else if (selectedServer === 'ASTPP') {
+        const capacityDetails = astppCapacities.find(c => c.value === selectedAstppCapacity);
+        details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
+        details += `\n- Setup: $50 (One Time)`;
+    } else if (selectedServer === 'Magnus Billing') {
+        const capacityDetails = magnusBillingCapacities.find(c => c.value === selectedMagnusCapacity);
+        details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
+        details += `\n- Setup: $50 (One Time)`;
     }
-    setOrderStep('contact');
-  }
+    if (requirements) {
+        details += `\n- Requirements: ${requirements}`;
+    }
+    if (paymentHash) {
+        details += `\n- Transaction Hash: ${paymentHash}`;
+    }
+    return encodeURIComponent(details);
+  };
 
   const handleSubmitOrder = async () => {
     if (captchaInput.toLowerCase() !== captchaText.toLowerCase()) {
@@ -315,29 +332,9 @@ export function ServerDashboard() {
     await new Promise(resolve => setTimeout(resolve, 1500));
     setSubmitting(false);
 
-    let toastDescription = `Your order for a ${selectedServer} server has been received.`;
-    if (selectedServer === 'FusionPBX') {
-        const capacityDetails = fusionPbxCapacities.find(c => c.value === selectedFusionCapacity);
-        toastDescription = `Your order for a ${selectedServer} server with ${capacityDetails?.label} has been received.`;
-    } else if (selectedServer === 'VOS3000') {
-        const capacityDetails = vos3000Capacities.find(c => c.value === selectedVosCapacity);
-        toastDescription = `Your order for a ${selectedServer} server with ${capacityDetails?.label} has been received.`;
-    } else if (selectedServer === 'VICIBOX') {
-        const tierDetails = viciboxUserTiers.find(t => t.value === selectedViciboxTier);
-        toastDescription = `Your order for a ${selectedServer} server for ${tierDetails?.label} has been received.`;
-    } else if (selectedServer === 'Bulk SMS') {
-        toastDescription = `Your order for a Bulk SMS server has been received.`;
-    } else if (selectedServer === 'ASTPP') {
-        const capacityDetails = astppCapacities.find(c => c.value === selectedAstppCapacity);
-        toastDescription = `Your order for an ${selectedServer} server with ${capacityDetails?.label} capacity has been received.`;
-    } else if (selectedServer === 'Magnus Billing') {
-        const capacityDetails = magnusBillingCapacities.find(c => c.value === selectedMagnusCapacity);
-        toastDescription = `Your order for a ${selectedServer} server with ${capacityDetails?.label} capacity has been received.`;
-    }
-
     toast({
-        title: 'Order Placed!',
-        description: toastDescription,
+        title: 'Order Details Confirmed!',
+        description: 'Please proceed with the payment.',
     });
     
     setOrderStep('payment');
@@ -633,7 +630,7 @@ export function ServerDashboard() {
                         <DialogHeader>
                             <DialogTitle>Payment Information</DialogTitle>
                             <DialogDescription>
-                                Please send your payment to the wallet address below and provide proof.
+                                Send your payment to the wallet below, then enter the Transaction Hash to proceed.
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
@@ -645,41 +642,27 @@ export function ServerDashboard() {
                                 </Button>
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="payment-hash">Transaction Hash</Label>
+                                <Label htmlFor="payment-hash">Transaction Hash (TxID)</Label>
                                 <Input id="payment-hash" placeholder="Enter transaction hash" value={paymentHash} onChange={(e) => setPaymentHash(e.target.value)} />
                             </div>
-                            <div className="text-center text-sm text-muted-foreground my-2">OR</div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="payment-ss">Upload Screenshot</Label>
-                                <Input id="payment-ss" type="file" accept="image/*" onChange={(e) => setPaymentScreenshot(e.target.files?.[0] || null)} />
+                            <div className="flex flex-col items-center gap-4 mt-4">
+                                <Image src="/whatsapp-qr.png" alt="WhatsApp QR Code" width={150} height={150} data-ai-hint="QR code" />
+                                <a 
+                                  href={`http://wa.me/19208156022?text=${getOrderDetails()}`} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className={!paymentHash ? 'pointer-events-none' : ''}
+                                >
+                                    <Button disabled={!paymentHash}>
+                                        <MessageCircle className="w-4 h-4 mr-2" />
+                                        Contact on WhatsApp to Finalize
+                                    </Button>
+                                </a>
+                                {!paymentHash && <p className="text-xs text-center text-muted-foreground">Please enter a transaction hash to enable the WhatsApp button.</p>}
                             </div>
                         </div>
                         <DialogFooter>
-                            <Button onClick={handleProofUpload}>
-                                <Upload className="w-4 h-4 mr-2" />
-                                Upload Proof
-                            </Button>
-                        </DialogFooter>
-                    </>
-                )}
-                {orderStep === 'contact' && (
-                    <>
-                        <DialogHeader>
-                            <DialogTitle>Payment Received!</DialogTitle>
-                            <DialogDescription>
-                                Your payment proof has been submitted. Please contact us on WhatsApp to finalize your order.
-                            </DialogDescription>
-                        </DialogHeader>
-                        <div className="flex flex-col items-center gap-4 py-4">
-                            <Image src="/whatsapp-qr.png" alt="WhatsApp QR Code" width={200} height={200} data-ai-hint="QR code" />
-                             <a href="http://wa.me/19208156022" target="_blank" rel="noopener noreferrer">
-                                <Button>
-                                    Contact on WhatsApp
-                                </Button>
-                            </a>
-                        </div>
-                        <DialogFooter>
-                            <Button variant="secondary" onClick={() => handleDialogChange(false)}>
+                             <Button variant="secondary" onClick={() => handleDialogChange(false)}>
                                 <CheckCircle className="w-4 h-4 mr-2" />
                                 Done
                             </Button>
