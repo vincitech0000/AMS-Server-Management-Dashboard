@@ -64,13 +64,27 @@ const servers = [
 ];
 
 const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'Other'];
+const fusionPbxCapacities = [
+    { value: '50', label: 'Up to 50 channels', price: '50$/month' },
+    { value: '100', label: 'Up to 100 channels', price: '80$/month' },
+    { value: '500', label: 'Up to 500 channels', price: '125$/month' },
+];
+
 
 export function ServerDashboard() {
   const [isOrderDialogOpen, setOrderDialogOpen] = useState(false);
   const [selectedServer, setSelectedServer] = useState('');
+  const [selectedCapacity, setSelectedCapacity] = useState('');
   const [requirements, setRequirements] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
+
+  const handleServerTypeChange = (value: string) => {
+    setSelectedServer(value);
+    if (value !== 'FusionPBX') {
+      setSelectedCapacity('');
+    }
+  };
 
   const handleSubmitOrder = async () => {
     if (!selectedServer || !requirements) {
@@ -81,19 +95,35 @@ export function ServerDashboard() {
         });
         return;
     }
+    
+    if (selectedServer === 'FusionPBX' && !selectedCapacity) {
+        toast({
+            title: 'Incomplete Order',
+            description: 'Please select a capacity for the FusionPBX server.',
+            variant: 'destructive',
+        });
+        return;
+    }
 
     setSubmitting(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     setSubmitting(false);
 
+    let toastDescription = `Your order for a ${selectedServer} server has been received.`;
+    if (selectedServer === 'FusionPBX') {
+        const capacityDetails = fusionPbxCapacities.find(c => c.value === selectedCapacity);
+        toastDescription = `Your order for a ${selectedServer} server with ${capacityDetails?.label} has been received.`;
+    }
+
     toast({
         title: 'Order Placed!',
-        description: `Your order for a ${selectedServer} server has been received.`,
+        description: toastDescription,
     });
 
     // Reset form and close dialog
     setSelectedServer('');
+    setSelectedCapacity('');
     setRequirements('');
     setOrderDialogOpen(false);
   };
@@ -191,7 +221,7 @@ export function ServerDashboard() {
                         <Label htmlFor="server-type" className="text-right">
                             Server Type
                         </Label>
-                        <Select value={selectedServer} onValueChange={setSelectedServer}>
+                        <Select value={selectedServer} onValueChange={handleServerTypeChange}>
                             <SelectTrigger id="server-type" className="col-span-3">
                                 <SelectValue placeholder="Select a server" />
                             </SelectTrigger>
@@ -202,6 +232,25 @@ export function ServerDashboard() {
                             </SelectContent>
                         </Select>
                     </div>
+                    {selectedServer === 'FusionPBX' && (
+                        <div className="grid items-center grid-cols-4 gap-4">
+                            <Label htmlFor="capacity" className="text-right">
+                                Capacity
+                            </Label>
+                            <Select value={selectedCapacity} onValueChange={setSelectedCapacity}>
+                                <SelectTrigger id="capacity" className="col-span-3">
+                                    <SelectValue placeholder="Select capacity" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {fusionPbxCapacities.map(capacity => (
+                                        <SelectItem key={capacity.value} value={capacity.value}>
+                                            {capacity.label} ({capacity.price})
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    )}
                     <div className="grid items-center grid-cols-4 gap-4">
                         <Label htmlFor="requirements" className="text-right">
                             Requirements
