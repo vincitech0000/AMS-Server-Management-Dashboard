@@ -177,8 +177,6 @@ const magnusBillingCapacities = [
     { value: '5000', label: 'Up to 5000 CC', price: '145$/month' },
 ];
 
-const walletAddress = "TPK8o1z4sgZWdshmGfh5v1oYftYNU9EpWH";
-
 const generateCaptcha = () => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let captcha = '';
@@ -202,7 +200,6 @@ export function ServerDashboard() {
   const { toast } = useToast();
 
   const [orderStep, setOrderStep] = useState('form'); // 'form', 'payment'
-  const [paymentHash, setPaymentHash] = useState('');
   
   const [captchaText, setCaptchaText] = useState('');
   const [captchaInput, setCaptchaInput] = useState('');
@@ -221,7 +218,6 @@ export function ServerDashboard() {
     setSelectedAstppCapacity('');
     setSelectedMagnusCapacity('');
     setRequirements('');
-    setPaymentHash('');
     setOrderStep('form');
     setCaptchaInput('');
     setCaptchaText(generateCaptcha());
@@ -241,14 +237,6 @@ export function ServerDashboard() {
       resetForm();
     }
     setOrderDialogOpen(open);
-  }
-
-  const handleCopyAddress = () => {
-    navigator.clipboard.writeText(walletAddress);
-    toast({
-      title: 'Copied!',
-      description: 'Wallet address copied to clipboard.',
-    });
   }
 
   const getOrderDetails = () => {
@@ -275,9 +263,6 @@ export function ServerDashboard() {
     }
     if (requirements) {
         details += `\n- Requirements: ${requirements}`;
-    }
-    if (paymentHash) {
-        details += `\n- Transaction Hash: ${paymentHash}`;
     }
     return encodeURIComponent(details);
   };
@@ -334,7 +319,7 @@ export function ServerDashboard() {
 
     toast({
         title: 'Order Details Confirmed!',
-        description: 'Please proceed with the payment.',
+        description: 'Please contact us on WhatsApp to finalize your order.',
     });
     
     setOrderStep('payment');
@@ -628,37 +613,24 @@ export function ServerDashboard() {
                 {orderStep === 'payment' && (
                     <>
                         <DialogHeader>
-                            <DialogTitle>Payment Information</DialogTitle>
+                            <DialogTitle>Finalize Your Order</DialogTitle>
                             <DialogDescription>
-                                Send your payment to the wallet below, then enter the Transaction Hash to proceed.
+                                Please contact us on WhatsApp to arrange payment and finalize your server setup.
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                            <Label>USDT TRC20 Wallet Address</Label>
-                            <div className="flex items-center gap-2">
-                                <Input readOnly value={walletAddress} className="font-mono text-sm" />
-                                <Button size="icon" variant="outline" onClick={handleCopyAddress}>
-                                    <Copy className="w-4 h-4" />
-                                </Button>
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="payment-hash">Transaction Hash (TxID)</Label>
-                                <Input id="payment-hash" placeholder="Enter transaction hash" value={paymentHash} onChange={(e) => setPaymentHash(e.target.value)} />
-                            </div>
                             <div className="flex flex-col items-center gap-4 mt-4">
-                                <Image src="/whatsapp-qr.png" alt="WhatsApp QR Code" width={150} height={150} data-ai-hint="QR code" />
                                 <a 
                                   href={`http://wa.me/19208156022?text=${getOrderDetails()}`} 
                                   target="_blank" 
                                   rel="noopener noreferrer"
-                                  className={!paymentHash ? 'pointer-events-none' : ''}
                                 >
-                                    <Button disabled={!paymentHash}>
+                                    <Button>
                                         <MessageCircle className="w-4 h-4 mr-2" />
-                                        Contact on WhatsApp to Finalize
+                                        Pay Later & Contact on WhatsApp
                                     </Button>
                                 </a>
-                                {!paymentHash && <p className="text-xs text-center text-muted-foreground">Please enter a transaction hash to enable the WhatsApp button.</p>}
+                                <p className="text-xs text-center text-muted-foreground">Click the button to send your order details to our team.</p>
                             </div>
                         </div>
                         <DialogFooter>
