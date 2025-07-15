@@ -15,7 +15,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import type { ServerStatus, ServerWithStatus } from '@/app/actions';
 import { pingAllServers } from '@/app/actions';
 
-type ServerWithChecking = ServerWithStatus | { status: 'Checking'; name: string; ip: string };
+type ServerWithChecking = ServerWithStatus | { status: 'Checking'; name: string; ip: string; resolvedIp?: string };
 
 const initialServers: ServerWithChecking[] = [
   { name: 'FusionPBX Server', ip: '173.208.249.122', status: 'Checking' },
@@ -38,12 +38,12 @@ export function ServerStatusPage() {
     if (isPending) return;
 
     startTransition(async () => {
-      setServers(currentServers => currentServers.map(s => ({ ...s, status: 'Checking' })));
+      setServers(currentServers => currentServers.map(s => ({ ...s, status: 'Checking', resolvedIp: s.resolvedIp || '...' })));
       
       const serversToPing = servers.map(({name, ip}) => ({name, ip}));
       const results = await pingAllServers(serversToPing);
 
-      setServers(results.map(r => ({ ...r, status: r.status } as ServerWithChecking)));
+      setServers(results);
     });
   };
 
@@ -129,7 +129,8 @@ export function ServerStatusPage() {
                               <TableRow>
                                   <TableHead className="w-[100px]">Icon</TableHead>
                                   <TableHead>Server Name</TableHead>
-                                  <TableHead>IP Address / Domain</TableHead>
+                                  <TableHead>Domain / IP</TableHead>
+                                  <TableHead>Resolved IP</TableHead>
                                   <TableHead className="text-right">Status</TableHead>
                               </TableRow>
                           </TableHeader>
@@ -141,6 +142,9 @@ export function ServerStatusPage() {
                                       </TableCell>
                                       <TableCell className="font-medium">{server.name}</TableCell>
                                       <TableCell>{server.ip}</TableCell>
+                                      <TableCell>
+                                        {server.status === 'Checking' && !server.resolvedIp ? '...' : server.resolvedIp}
+                                      </TableCell>
                                       <TableCell className="text-right">
                                           {getStatusComponent(server.status)}
                                       </TableCell>
