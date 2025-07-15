@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2 } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -60,6 +60,20 @@ const servers = [
         { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
     ],
     description: smsFeatures,
+  },
+  {
+    name: 'ASTPP',
+    type: 'Billing',
+    icon: <DollarSign className="w-8 h-8" />,
+    accessPoints: [{ name: 'Login', url: '#' }],
+    description: defaultDescription,
+  },
+  {
+    name: 'Magnus Billing',
+    type: 'Billing',
+    icon: <DollarSign className="w-8 h-8" />,
+    accessPoints: [{ name: 'Login', url: '#' }],
+    description: defaultDescription,
   },
 ];
 
