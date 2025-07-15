@@ -18,4 +18,6 @@ declare module 'lucide-react' {
     export const ShoppingCart: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Sparkles: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Upload: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Wifi: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const XCircle: React.FC<React.SVGProps<SVGSVGElement>>;
 }

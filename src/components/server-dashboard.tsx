@@ -399,14 +399,6 @@ export function ServerDashboard() {
     setOrderStep('payment');
   };
 
-  const handleServerStatusClick = () => {
-    // We will add server pinging logic here in the future
-    toast({
-      title: 'Checking Servers...',
-      description: 'This feature is coming soon!',
-    });
-  };
-
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="p-6 border-b">
@@ -418,11 +410,8 @@ export function ServerDashboard() {
               className="w-12 h-12 text-primary"
               fill="currentColor"
             >
-              <path d="M144,32a16,16,0,0,0-16-16H88A16,16,0,0,0,72,32V72H32a16,16,0,0,0-16,16V224a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V88a16,16,0,0,0-16-16H176V32A16,16,0,0,0,160,16H112a16,16,0,0,0-16,16v8a8,8,0,0,0,16,0V40a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8V72h24a8,8,0,0,1,8,8v40a8,8,0,0,0,16,0V88a8,8,0,0,1,8,8V224a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V88a8,8,0,0,1,8-8H72v24a8,8,0,0,0,16,0V80a8,8,0,0,0-8-8H40a8,8,0,0,1-8-8V80a8,8,0,0,0,0-16Zm16-8a8,8,0,0,1-8,8H112a8,8,0,0,1-8-8V32a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8Z" opacity="0.2"/>
-              <path d="M232,80H176V40a24,24,0,0,0-24-24H112A24,24,0,0,0,88,40V80H32A24,24,0,0,0,8,104V224a24,24,0,0,0,24,24H224a24,24,0,0,0,24-24V104A24,24,0,0,0,232,80ZM104,40a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8V80H104ZM224,232H32a8,8,0,0,1-8-8V104a8,8,0,0,1,8-8H224a8,8,0,0,1,8,8V224A8,8,0,0,1,224,232Z"/>
-              <path d="M128,128a12,12,0,1,0,12,12A12,12,0,0,0,128,128Zm0,16a4,4,0,1,1,4-4A4,4,0,0,1,128,144Z"/>
-              <path d="M128,168a44,44,0,0,0,39.3-24.9,8,8,0,1,0-14-6.2,28,28,0,0,1-50.6,0,8,8,0,0,0-14,6.2A44,44,0,0,0,128,168Z"/>
-              <path d="M128,208a72,72,0,0,0,65-38.3,8,8,0,1,0-13.8-7.4,56,56,0,0,1-102.4,0,8,8,0,0,0-13.8,7.4A72,72,0,0,0,128,208Z"/>
+              <path d="M128 32C79.5 32 40 71.5 40 120c0 24.3 10.3 46.5 27.2 62.4a8 8 0 0 0 11.2-1.6L96 156.4c-1.3-3.9-1.9-8-1.9-12.1 0-22.1 17.9-40 40-40s40 17.9 40 40c0 4.1-.6 8.2-1.9 12.1l17.6 24.3a8 8 0 0 0 11.2 1.6C205.7 166.5 216 144.3 216 120c0-48.5-39.5-88-88-88Z" opacity="0.2"/>
+              <path d="M128 24a104.2 104.2 0 0 0-96.2 128H32a8 8 0 0 0-6.4 12.8L56 211.2a16.1 16.1 0 0 0 14.4 8.8h115.2a16.1 16.1 0 0 0 14.4-8.8l30.4-46.4A8 8 0 0 0 224 152h-.2A104.2 104.2 0 0 0 128 24ZM73.6 196.8l-16-24.6-9.6 14.8ZM128 40c44.1 0 80 35.9 80 80 0 21.2-8.3 40.5-22 54.8l-20.8-28.7a8.1 8.1 0 0 0-10.8-2.5 56.7 56.7 0 0 1-52.8 0 8.1 8.1 0 0 0-10.8 2.5L22 174.8C8.3 160.5 0 141.2 0 120c0-44.1 35.9-80 80-80Zm86.4 156.8-16 24.6-9.6-14.8Z" transform="translate(0 2) scale(0.9)"/>
             </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
@@ -430,9 +419,11 @@ export function ServerDashboard() {
             </div>
           </div>
           <div>
-            <Button variant="outline" onClick={handleServerStatusClick}>
-              <Wifi className="mr-2 h-4 w-4" />
-              Server Status
+            <Button asChild variant="outline">
+              <Link href="/server-status">
+                <Wifi className="mr-2 h-4 w-4" />
+                Server Status
+              </Link>
             </Button>
           </div>
         </div>
