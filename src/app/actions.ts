@@ -38,13 +38,22 @@ const httpsAgent = new https.Agent({
   rejectUnauthorized: false,
 });
 
+const viciboxFirewallUrls: { [key: string]: string } = {
+    'VICIBOX124': 'http://107.150.36.124:7887/valid8.php',
+    'VICIBOX123': 'https://box123.amsserver.com:446/valid8.php',
+    'VICIBOX126': 'https://box126.amsserver.com:446/valid8.php',
+    'VICIBOX75': 'https://box75.amsserver.com:446/valid8.php',
+    'VICIBOX78': 'https://box78.amsserver.com:446/valid8.php',
+};
+
 async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
-  // Special check for VICIBOX124
-  if (server.name === 'VICIBOX124') {
+  // Special check for VICIBOX servers via their firewall page
+  if (viciboxFirewallUrls[server.name]) {
       try {
-          const response = await fetch('http://107.150.36.124:7887/valid8.php', {
+          const response = await fetch(viciboxFirewallUrls[server.name], {
               method: 'GET',
               timeout: 5000,
+              agent: (new URL(viciboxFirewallUrls[server.name]).protocol === 'https:') ? httpsAgent : undefined,
           });
           if (response) {
               return { ...server, status: 'Online', resolvedIp: server.ip };
