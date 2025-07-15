@@ -9,6 +9,7 @@ declare module 'lucide-react' {
     export const Database: React.FC<React.SVGProps<SVGSVGElement>>;
     export const DollarSign: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Download: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Github: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Loader2: React.FC<React.SVGProps<SVGSVGElement>>;
     export const MessageCircle: React.FC<React.SVGProps<SVGSVGElement>>;
     export const MessageSquare: React.FC<React.SVGProps<SVGSVGElement>>;
