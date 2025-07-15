@@ -99,7 +99,6 @@ const usDidFeatures = (
         <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
             <li>Low-cost local numbers</li>
             <li>Wide coverage across the US</li>
-            <li className="font-semibold text-foreground/80">Minimum buy: 10 DIDs at $350 ($35/each with 2 channels)</li>
             <li>All DIDs and TFNs will be routed to FusionPBX</li>
             <li>Separate domain login & access to control your DID/TFN</li>
         </ul>
@@ -813,5 +812,7 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
 
     
