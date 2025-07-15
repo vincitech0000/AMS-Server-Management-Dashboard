@@ -131,14 +131,14 @@ const servers = [
   {
     name: 'ASTPP',
     type: 'Billing',
-    icon: <DollarSign className="w-8 h-8" />,
+    icon: <Server className="w-8 h-8" />,
     accessPoints: [],
     description: astppFeatures,
   },
   {
     name: 'Magnus Billing',
     type: 'Billing',
-    icon: <DollarSign className="w-8 h-8" />,
+    icon: <Server className="w-8 h-8" />,
     accessPoints: [],
     description: magnusBillingFeatures,
   },
