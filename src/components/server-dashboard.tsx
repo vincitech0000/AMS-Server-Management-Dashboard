@@ -61,7 +61,7 @@ export function ServerDashboard() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="p-6 border-b">
-        <h1 className="text-3xl font-bold text-center">Server Management Dashboard</h1>
+        <h1 className="text-3xl font-bold text-center">AMS Server Management Dashboard</h1>
         <p className="text-center text-muted-foreground">One-click access to all your servers.</p>
       </header>
       <main className="flex-grow p-4 md:p-8">
