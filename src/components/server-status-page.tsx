@@ -20,7 +20,7 @@ type ServerWithChecking = ServerWithStatus | { status: 'Checking'; name: string;
 const initialServers: ServerWithChecking[] = [
   { name: 'FusionPBX Server', ip: '173.208.249.122', status: 'Checking' },
   { name: 'VOS3000 Server', ip: 'voip.amsserver.com', status: 'Checking' },
-  { name: 'Bulk SMS Server', ip: 'bulksms.amsserver.com', status: 'Checking' },
+  { name: 'Bulk SMS Server', ip: 'did.tollx.eu', status: 'Checking' },
   { name: 'VICIBOX124', ip: '107.150.36.124', status: 'Checking' },
   { name: 'VICIBOX123', ip: 'box123.amsserver.com', status: 'Checking' },
   { name: 'VICIBOX126', ip: 'box126.amsserver.com', status: 'Checking' },
