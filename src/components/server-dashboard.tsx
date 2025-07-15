@@ -216,7 +216,6 @@ const magnusBillingCapacities = [
 
 const lowRiskDidChannels = [
     { value: '2', label: '2 Channels', price: '20$/month' },
-    { value: '10', label: '10 Channels', price: '80$/month' },
 ];
 
 const highRiskDidChannels = [
