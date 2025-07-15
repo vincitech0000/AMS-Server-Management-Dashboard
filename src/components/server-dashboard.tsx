@@ -131,6 +131,21 @@ const usTollFreeFeatures = (
             <li>All DIDs and TFNs will be routed to FusionPBX</li>
             <li>Separate domain login & access to control your DID/TFN</li>
         </ul>
+        <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
+        <div className="text-sm text-muted-foreground space-y-2">
+            <div>
+                <p className="font-semibold">HIGH Risk DID:</p>
+                <ul className="list-disc list-inside pl-4">
+                    <li>$225/DID (Includes 10 Channels)</li>
+                </ul>
+            </div>
+            <div>
+                <p className="font-semibold">HIGH Risk TFN:</p>
+                <ul className="list-disc list-inside pl-4">
+                    <li>$275/TFN (Includes 10 channels)</li>
+                </ul>
+            </div>
+        </div>
     </>
 );
 
@@ -833,3 +848,4 @@ export function ServerDashboard() {
     
 
     
+
