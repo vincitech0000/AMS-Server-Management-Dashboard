@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, CheckCircle, RefreshCw, MessageCircle } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -410,8 +410,20 @@ export function ServerDashboard() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="p-6 border-b">
-        <h1 className="text-3xl font-bold text-center">AMS Server Management Dashboard</h1>
-        <p className="text-center text-muted-foreground">One-click access to all your servers.</p>
+        <div className="flex items-center justify-center gap-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+            className="w-12 h-12 text-primary"
+            fill="currentColor"
+          >
+            <path d="M152,32H104a8,8,0,0,0-8,8V88H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H216a8,8,0,0,0,8-8V96a8,8,0,0,0-8-8H160V40A8,8,0,0,0,152,32ZM112,48h32V88H112ZM208,208H48V104H208Z" />
+          </svg>
+          <div>
+            <h1 className="text-3xl font-bold text-center">AMS Server Management Dashboard</h1>
+            <p className="text-center text-muted-foreground">One-click access to all your servers.</p>
+          </div>
+        </div>
       </header>
       <main className="flex-grow p-4 md:p-8">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
