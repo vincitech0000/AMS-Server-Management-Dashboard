@@ -1,10 +1,16 @@
 
 'use client';
 
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 
 const defaultDescription = <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>;
 
@@ -57,7 +63,41 @@ const servers = [
   },
 ];
 
+const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'Other'];
+
 export function ServerDashboard() {
+  const [isOrderDialogOpen, setOrderDialogOpen] = useState(false);
+  const [selectedServer, setSelectedServer] = useState('');
+  const [requirements, setRequirements] = useState('');
+  const [isSubmitting, setSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmitOrder = async () => {
+    if (!selectedServer || !requirements) {
+        toast({
+            title: 'Incomplete Order',
+            description: 'Please select a server and fill out your requirements.',
+            variant: 'destructive',
+        });
+        return;
+    }
+
+    setSubmitting(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setSubmitting(false);
+
+    toast({
+        title: 'Order Placed!',
+        description: `Your order for a ${selectedServer} server has been received.`,
+    });
+
+    // Reset form and close dialog
+    setSelectedServer('');
+    setRequirements('');
+    setOrderDialogOpen(false);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="p-6 border-b">
@@ -115,6 +155,75 @@ export function ServerDashboard() {
               </CardFooter>
             </Card>
           ))}
+          
+          <Dialog open={isOrderDialogOpen} onOpenChange={setOrderDialogOpen}>
+            <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
+                <CardHeader className="flex flex-row items-center gap-4 p-4">
+                    <div className="p-3 rounded-full bg-accent/10 text-accent-foreground">
+                        <ShoppingCart className="w-8 h-8" />
+                    </div>
+                    <div>
+                        <CardTitle className="text-lg">Place New Order</CardTitle>
+                        <CardDescription>Request a new server setup.</CardDescription>
+                    </div>
+                </CardHeader>
+                <CardContent className="flex-grow p-4">
+                    <p className="text-sm text-muted-foreground">Need a new server? Place your order here and we'll get it set up for you.</p>
+                </CardContent>
+                <CardFooter className="p-4 bg-muted/50">
+                    <DialogTrigger asChild>
+                        <Button size="sm" variant="secondary">
+                            Place Order
+                            <ArrowUpRight className="w-4 h-4 ml-2" />
+                        </Button>
+                    </DialogTrigger>
+                </CardFooter>
+            </Card>
+            <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                    <DialogTitle>Place a New Server Order</DialogTitle>
+                    <DialogDescription>
+                        Select your desired server type and specify your requirements below.
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                    <div className="grid items-center grid-cols-4 gap-4">
+                        <Label htmlFor="server-type" className="text-right">
+                            Server Type
+                        </Label>
+                        <Select value={selectedServer} onValueChange={setSelectedServer}>
+                            <SelectTrigger id="server-type" className="col-span-3">
+                                <SelectValue placeholder="Select a server" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {serverTypes.map(type => (
+                                    <SelectItem key={type} value={type}>{type}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <div className="grid items-center grid-cols-4 gap-4">
+                        <Label htmlFor="requirements" className="text-right">
+                            Requirements
+                        </Label>
+                        <Textarea
+                            id="requirements"
+                            className="col-span-3"
+                            placeholder="e.g., specific software, configuration, user accounts..."
+                            value={requirements}
+                            onChange={(e) => setRequirements(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <DialogFooter>
+                    <Button onClick={handleSubmitOrder} disabled={isSubmitting}>
+                        {isSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                        Submit Order
+                    </Button>
+                </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
         </div>
       </main>
       <footer className="p-6 text-sm text-center border-t text-muted-foreground">
