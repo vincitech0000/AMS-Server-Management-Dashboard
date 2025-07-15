@@ -39,9 +39,6 @@ const httpsAgent = new https.Agent({
 });
 
 async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
-  // Use HTTPS only for VICIBOX servers, otherwise try both
-  const protocols = server.name.includes('VICIBOX') ? ['https'] : ['https', 'http'];
-  
   let resolvedIp: string | undefined;
   const isIpAddress = /^\d{1,3}(\.\d{1,3}){3}$/.test(server.ip);
 
@@ -53,9 +50,12 @@ async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
       resolvedIp = server.ip;
     }
   } catch (error) {
+    console.error(`DNS Error for ${server.ip}:`, error);
     return { ...server, status: 'Error', resolvedIp: 'DNS Error' };
   }
   
+  const protocols = ['https', 'http'];
+
   for (const protocol of protocols) {
     try {
       const url = `${protocol}://${resolvedIp}`;
@@ -66,13 +66,12 @@ async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
         timeout: 5000,
         agent: (new URL(url).protocol === 'https:') ? httpsAgent : undefined,
       });
-
-      // Any response from the server is considered Online
+      
       if (response) {
         return { ...server, status: 'Online', resolvedIp };
       }
     } catch (error) {
-      // Ignore errors (like connection refused) and try the next protocol
+      // Ignore errors (like connection refused, cert errors) and try the next protocol
     }
   }
 
