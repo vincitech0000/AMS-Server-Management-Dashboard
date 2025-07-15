@@ -222,6 +222,8 @@ export function ServerDashboard() {
     } else if (selectedServer === 'VICIBOX') {
         const tierDetails = viciboxUserTiers.find(t => t.value === selectedViciboxTier);
         toastDescription = `Your order for a ${selectedServer} server for ${tierDetails?.label} has been received.`;
+    } else if (selectedServer === 'Bulk SMS') {
+        toastDescription = `Your order for a Bulk SMS server has been received. We will contact you regarding payment.`;
     }
 
     toast({
@@ -399,6 +401,18 @@ export function ServerDashboard() {
                                     ))}
                                 </SelectContent>
                             </Select>
+                        </div>
+                    )}
+
+                    {selectedServer === 'Bulk SMS' && (
+                        <div className="grid grid-cols-4 items-start gap-4">
+                            <Label className="text-right pt-2">
+                                Pricing
+                            </Label>
+                            <div className="col-span-3 text-sm">
+                                <p className="text-foreground"><span className="font-semibold">Setup Fee:</span> $499 (One Time)</p>
+                                <p className="text-foreground"><span className="font-semibold">Monthly Fee:</span> $199/month</p>
+                            </div>
                         </div>
                     )}
 
