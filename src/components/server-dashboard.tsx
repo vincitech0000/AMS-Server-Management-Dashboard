@@ -174,7 +174,7 @@ const servers = [
   },
   {
     name: 'High Risk US Toll-free',
-    type: 'TFN',
+    type: 'DIDs & TFN available',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [],
     description: usTollFreeFeatures,
