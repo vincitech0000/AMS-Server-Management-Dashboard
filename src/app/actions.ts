@@ -39,7 +39,9 @@ const httpsAgent = new https.Agent({
 });
 
 async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
-  const protocols = ['https', 'http'];
+  // Use HTTPS only for VICIBOX servers, otherwise try both
+  const protocols = server.name.includes('VICIBOX') ? ['https'] : ['https', 'http'];
+  
   let resolvedIp: string | undefined;
   const isIpAddress = /^\d{1,3}(\.\d{1,3}){3}$/.test(server.ip);
 
@@ -56,24 +58,13 @@ async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
   
   for (const protocol of protocols) {
     try {
-      // Use the original hostname for the fetch URL if it's not an IP
-      // This helps with servers that require the correct Host header (e.g. virtual hosts)
-      const targetHost = isIpAddress ? resolvedIp : server.ip;
-      const url = `${protocol}://${targetHost}`;
-
-      // We send the request to the resolved IP but tell the server which host we're looking for
-      const agent = (parsedUrl: URL) => {
-        if (parsedUrl.protocol === 'https:') {
-            return httpsAgent;
-        }
-        return undefined;
-      }
+      const url = `${protocol}://${resolvedIp}`;
       
       const response = await fetch(url, {
         method: 'GET',
         redirect: 'follow',
         timeout: 5000,
-        agent: agent(new URL(url)),
+        agent: (new URL(url).protocol === 'https:') ? httpsAgent : undefined,
       });
 
       // Any response from the server is considered Online
