@@ -56,20 +56,32 @@ async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
   
   for (const protocol of protocols) {
     try {
-      const url = `${protocol}://${resolvedIp}`;
+      // Use the original hostname for the fetch URL if it's not an IP
+      // This helps with servers that require the correct Host header (e.g. virtual hosts)
+      const targetHost = isIpAddress ? resolvedIp : server.ip;
+      const url = `${protocol}://${targetHost}`;
 
+      // We send the request to the resolved IP but tell the server which host we're looking for
+      const agent = (parsedUrl: URL) => {
+        if (parsedUrl.protocol === 'https:') {
+            return httpsAgent;
+        }
+        return undefined;
+      }
+      
       const response = await fetch(url, {
         method: 'GET',
         redirect: 'follow',
         timeout: 5000,
-        agent: protocol === 'https' ? httpsAgent : undefined,
+        agent: agent(new URL(url)),
       });
 
+      // Any response from the server is considered Online
       if (response) {
         return { ...server, status: 'Online', resolvedIp };
       }
     } catch (error) {
-      // Continue to the next protocol
+      // Ignore errors (like connection refused) and try the next protocol
     }
   }
 
