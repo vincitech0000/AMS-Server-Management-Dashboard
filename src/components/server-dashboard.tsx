@@ -102,6 +102,23 @@ const usDidFeatures = (
             <li>All DIDs and TFNs will be routed to FusionPBX</li>
             <li>Separate domain login & access to control your DID/TFN</li>
         </ul>
+        <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
+        <div className="text-sm text-muted-foreground space-y-2">
+            <div>
+                <p className="font-semibold">Low Risk DID:</p>
+                <ul className="list-disc list-inside pl-4">
+                    <li>$65/DID (for a single DID)</li>
+                    <li>$35/DID (for orders of 10+)</li>
+                </ul>
+            </div>
+            <div>
+                <p className="font-semibold">Low Risk TFN:</p>
+                <ul className="list-disc list-inside pl-4">
+                    <li>$85/TFN (for a single TFN)</li>
+                    <li>$55/TFN (for orders of 10+)</li>
+                </ul>
+            </div>
+        </div>
     </>
 );
 
