@@ -26,6 +26,30 @@ const smsFeatures = (
     </>
 );
 
+const astppFeatures = (
+    <>
+      <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+        <li>Multi-level Reseller Management</li>
+        <li>Calling Cards</li>
+        <li>Wholesale & Retail VoIP Billing</li>
+        <li>Class 4 & 5 Softswitch Features</li>
+      </ul>
+    </>
+);
+
+const magnusBillingFeatures = (
+    <>
+      <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+        <li>Prepaid & Postpaid Billing</li>
+        <li>Call Detail Records (CDR) Analysis</li>
+        <li>Rate Management</li>
+        <li>Customer Portal</li>
+      </ul>
+    </>
+);
+
 const servers = [
   {
     name: 'FusionPBX Server',
@@ -66,14 +90,14 @@ const servers = [
     type: 'Billing',
     icon: <DollarSign className="w-8 h-8" />,
     accessPoints: [{ name: 'Login', url: '#' }],
-    description: defaultDescription,
+    description: astppFeatures,
   },
   {
     name: 'Magnus Billing',
     type: 'Billing',
     icon: <DollarSign className="w-8 h-8" />,
     accessPoints: [{ name: 'Login', url: '#' }],
-    description: defaultDescription,
+    description: magnusBillingFeatures,
   },
 ];
 
