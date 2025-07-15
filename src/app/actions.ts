@@ -41,46 +41,43 @@ const httpsAgent = new https.Agent({
 async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
   const protocols = ['https', 'http'];
   let resolvedIp: string | undefined;
+  const isIpAddress = /^\d{1,3}(\.\d{1,3}){3}$/.test(server.ip);
 
   try {
-    // Resolve domain to IP if it's not already an IP
-    if (!/^\d{1,3}(\.\d{1,3}){3}$/.test(server.ip)) {
+    if (!isIpAddress) {
       const result = await dns.lookup(server.ip);
       resolvedIp = result.address;
     } else {
       resolvedIp = server.ip;
     }
   } catch (error) {
-    // If DNS lookup fails, we can't ping it.
     return { ...server, status: 'Error', resolvedIp: 'DNS Error' };
   }
   
-  const target = resolvedIp || server.ip;
+  const targetIp = resolvedIp;
+  const hostName = isIpAddress ? server.ip : new URL(`http://${server.ip}`).hostname;
+
 
   for (const protocol of protocols) {
     try {
-      const url = new URL(`${protocol}://${server.ip}`);
-      const host = url.hostname;
+      // We ping the IP directly but tell the server which host we want
+      const url = `${protocol}://${targetIp}`;
 
-      const response = await fetch(url.toString(), {
+      const response = await fetch(url, {
         method: 'GET',
         redirect: 'follow',
-        timeout: 5000, // 5-second timeout
+        timeout: 5000,
         agent: protocol === 'https' ? httpsAgent : undefined,
         headers: {
-            'Host': host
+            'Host': hostName
         },
-        // Using `resolve` to force a specific IP for the domain
-        // This is a more robust way to handle the check
       });
 
-      // Any response (even errors) means the server is reachable
       if (response) {
         return { ...server, status: 'Online', resolvedIp };
       }
     } catch (error) {
-      // Errors like timeouts or connection refused will be caught here
-      // We continue to the next protocol
+      // Continue to the next protocol
     }
   }
 
@@ -92,7 +89,6 @@ export async function pingAllServers(servers: Server[]): Promise<ServerWithStatu
   try {
     const validatedServers = serverListSchema.safeParse(servers);
     if (!validatedServers.success) {
-      // This is a developer error, should not happen in production
       throw new Error('Invalid server list format.');
     }
     
@@ -103,7 +99,6 @@ export async function pingAllServers(servers: Server[]): Promise<ServerWithStatu
 
   } catch (error) {
     console.error('Error pinging servers:', error);
-    // Return all as Error status if the whole process fails
     return servers.map(s => ({ ...s, status: 'Error', resolvedIp: 'N/A' }));
   }
 }
