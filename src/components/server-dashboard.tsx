@@ -99,7 +99,6 @@ const usDidFeatures = (
         <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
             <li>Low-cost local numbers</li>
             <li>Wide coverage across the US</li>
-            <li>Set custom Caller ID (CNAM)</li>
             <li className="font-semibold text-foreground/80">Minimum buy: 10 DIDs at $350 ($35/each with 2 channels)</li>
         </ul>
     </>
@@ -110,7 +109,6 @@ const usTollFreeFeatures = (
         <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
         <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
             <li>1-800 series numbers (888, 877, etc.)</li>
-            <li>Enhance brand credibility</li>
             <li>Nationwide reach with a single number</li>
         </ul>
     </>
