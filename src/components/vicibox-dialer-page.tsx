@@ -25,7 +25,7 @@ const viciboxServers = [
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
       { name: 'Firewall', url: 'http://107.150.36.124:7887/valid8.php' },
-      { name: 'Login', url: 'http://107.150.36.124:80/vicidial/welcome.php' },
+      { name: 'Login', url: 'http://107.150.36.124/vicidial/welcome.php' },
     ],
     description: viciboxFeatures,
   },
@@ -74,20 +74,22 @@ const viciboxServers = [
 export function ViciboxDialerPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <header className="p-6 border-b flex items-center justify-between">
-        <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold">VICIBOX Dialers</h1>
-            <p className="text-muted-foreground">Access all your VICIBOX servers.</p>
+      <header className="p-6 border-b">
+        <div className="container mx-auto flex items-center justify-between">
+            <div className="text-left">
+                <h1 className="text-xl md:text-3xl font-bold">VICIBOX Dialers</h1>
+                <p className="text-xs md:text-sm text-muted-foreground">Access all your VICIBOX servers.</p>
+            </div>
+            <Button asChild variant="outline">
+                <Link href="/">
+                    <ArrowLeft className="w-4 h-4 md:mr-2" />
+                    <span className="hidden md:inline">Back to Dashboard</span>
+                </Link>
+            </Button>
         </div>
-        <Button asChild variant="outline">
-            <Link href="/">
-                <ArrowLeft className="w-4 h-4 md:mr-2" />
-                <span className="hidden md:inline">Back to Dashboard</span>
-            </Link>
-        </Button>
       </header>
       <main className="flex-grow p-4 md:p-8">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="container mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {viciboxServers.map((server, index) => (
             <Card key={index} className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
               <CardHeader className="flex flex-row items-center gap-4 p-4">
