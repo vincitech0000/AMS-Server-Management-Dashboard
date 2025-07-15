@@ -34,29 +34,34 @@ export function ServerStatusPage() {
   const { toast } = useToast();
   
   const handleRefreshAll = () => {
+    // Prevent multiple refreshes from running at the same time
+    if (isPending) return;
+
     startTransition(async () => {
       setServers(currentServers => currentServers.map(s => ({ ...s, status: 'Checking' })));
       
-      toast({
-        title: 'Refreshing Statuses...',
-        description: 'Pinging all servers. This may take a moment.',
-      });
-
       const serversToPing = servers.map(({name, ip}) => ({name, ip}));
       const results = await pingAllServers(serversToPing);
 
       setServers(results.map(r => ({ ...r, status: r.status } as ServerWithChecking)));
-
-      toast({
-          title: 'Statuses Refreshed',
-          description: 'All server statuses have been updated.',
-      });
     });
   };
 
   useEffect(() => {
     // Perform an initial check when the component mounts
     handleRefreshAll();
+    
+    // Set up an interval to refresh every 30 seconds
+    const intervalId = setInterval(() => {
+      toast({
+        title: 'Auto-refreshing Statuses...',
+        description: 'Pinging all servers.',
+      });
+      handleRefreshAll();
+    }, 30000); // 30000ms = 30 seconds
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,6 +79,14 @@ export function ServerStatusPage() {
         return <Badge variant="outline">Unknown</Badge>;
     }
   };
+  
+  const handleManualRefresh = () => {
+    toast({
+      title: 'Refreshing Statuses...',
+      description: 'Pinging all servers. This may take a moment.',
+    });
+    handleRefreshAll();
+  }
 
   return (
     <TooltipProvider>
@@ -104,7 +117,7 @@ export function ServerStatusPage() {
                       </CardTitle>
                       <Tooltip>
                           <TooltipTrigger asChild>
-                              <Button variant="ghost" size="icon" onClick={handleRefreshAll} disabled={isPending}>
+                              <Button variant="ghost" size="icon" onClick={handleManualRefresh} disabled={isPending}>
                                   {isPending ? <Loader2 className="w-5 h-5 animate-spin" /> : <RefreshCw className="w-5 h-5" />}
                                   <span className="sr-only">Refresh Status</span>
                               </Button>
