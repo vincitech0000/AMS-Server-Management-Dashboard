@@ -1,9 +1,9 @@
 
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle, Loader2, RefreshCw, Server, Wifi, XCircle } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Loader2, RefreshCw, Server, Wifi, XCircle, AlertTriangle } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,52 +12,55 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import type { ServerStatus, ServerWithStatus } from '@/app/actions';
+import { pingAllServers } from '@/app/actions';
 
-type ServerStatus = 'Online' | 'Offline' | 'Checking';
+type ServerWithChecking = ServerWithStatus | { status: 'Checking'; name: string; ip: string };
 
-const initialServers = [
-  { name: 'FusionPBX Server', ip: '173.208.249.122', status: 'Online' as ServerStatus },
-  { name: 'VOS3000 Server', ip: 'voip.amsserver.com', status: 'Online' as ServerStatus },
-  { name: 'Bulk SMS Server', ip: 'bulksms.amsserver.com', status: 'Offline' as ServerStatus },
-  { name: 'VICIBOX124', ip: '107.150.36.124', status: 'Online' as ServerStatus },
-  { name: 'VICIBOX123', ip: 'box123.amsserver.com', status: 'Online' as ServerStatus },
-  { name: 'VICIBOX126', ip: 'box126.amsserver.com', status: 'Checking' as ServerStatus },
-  { name: 'VICIBOX75', ip: 'box75.amsserver.com', status: 'Online' as ServerStatus },
-  { name: 'VICIBOX78', ip: 'box78.amsserver.com', status: 'Offline' as ServerStatus },
+const initialServers: ServerWithChecking[] = [
+  { name: 'FusionPBX Server', ip: '173.208.249.122', status: 'Checking' },
+  { name: 'VOS3000 Server', ip: 'voip.amsserver.com', status: 'Checking' },
+  { name: 'Bulk SMS Server', ip: 'bulksms.amsserver.com', status: 'Checking' },
+  { name: 'VICIBOX124', ip: '107.150.36.124', status: 'Checking' },
+  { name: 'VICIBOX123', ip: 'box123.amsserver.com', status: 'Checking' },
+  { name: 'VICIBOX126', ip: 'box126.amsserver.com', status: 'Checking' },
+  { name: 'VICIBOX75', ip: 'box75.amsserver.com', status: 'Checking' },
+  { name: 'VICIBOX78', ip: 'box78.amsserver.com', status: 'Checking' },
 ];
 
 export function ServerStatusPage() {
-  const [servers, setServers] = useState(initialServers);
+  const [servers, setServers] = useState<ServerWithChecking[]>(initialServers);
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
-
+  
   const handleRefreshAll = () => {
-    startTransition(() => {
-      setServers(servers.map(s => ({ ...s, status: 'Checking' })));
+    startTransition(async () => {
+      setServers(currentServers => currentServers.map(s => ({ ...s, status: 'Checking' })));
       
       toast({
         title: 'Refreshing Statuses...',
         description: 'Pinging all servers. This may take a moment.',
       });
 
-      // Simulate network delay and random status updates
-      setTimeout(() => {
-        const updatedServers = servers.map(server => {
-          const randomStatus = Math.random();
-          if (randomStatus < 0.7) return { ...server, status: 'Online' as ServerStatus };
-          if (randomStatus < 0.9) return { ...server, status: 'Offline' as ServerStatus };
-          return { ...server, status: 'Checking' as ServerStatus };
-        });
-        setServers(updatedServers);
-        toast({
-            title: 'Statuses Refreshed',
-            description: 'All server statuses have been updated.',
-        });
-      }, 2000);
+      const serversToPing = servers.map(({name, ip}) => ({name, ip}));
+      const results = await pingAllServers(serversToPing);
+
+      setServers(results.map(r => ({ ...r, status: r.status } as ServerWithChecking)));
+
+      toast({
+          title: 'Statuses Refreshed',
+          description: 'All server statuses have been updated.',
+      });
     });
   };
 
-  const getStatusComponent = (status: ServerStatus) => {
+  useEffect(() => {
+    // Perform an initial check when the component mounts
+    handleRefreshAll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getStatusComponent = (status: ServerStatus | 'Checking') => {
     switch (status) {
       case 'Online':
         return <Badge variant="default" className="bg-green-500 hover:bg-green-500/90"><CheckCircle className="mr-1 h-3 w-3" />Online</Badge>;
@@ -65,6 +68,8 @@ export function ServerStatusPage() {
         return <Badge variant="destructive"><XCircle className="mr-1 h-3 w-3" />Offline</Badge>;
       case 'Checking':
         return <Badge variant="secondary"><Loader2 className="mr-1 h-3 w-3 animate-spin" />Checking</Badge>;
+      case 'Error':
+        return <Badge variant="destructive"><AlertTriangle className="mr-1 h-3 w-3" />Error</Badge>;
       default:
         return <Badge variant="outline">Unknown</Badge>;
     }
