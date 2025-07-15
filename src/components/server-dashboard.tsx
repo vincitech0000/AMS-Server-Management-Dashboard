@@ -197,10 +197,10 @@ export function ServerDashboard() {
   };
 
   const handleSubmitOrder = async () => {
-    if (!selectedServer || !requirements) {
+    if (!selectedServer) {
         toast({
             title: 'Incomplete Order',
-            description: 'Please select a server and fill out your requirements.',
+            description: 'Please select a server type.',
             variant: 'destructive',
         });
         return;
@@ -507,8 +507,8 @@ export function ServerDashboard() {
                         </>
                     )}
 
-                    <div className="grid items-center grid-cols-4 gap-4">
-                        <Label htmlFor="requirements" className="text-right">
+                    <div className="grid items-start grid-cols-4 gap-4">
+                        <Label htmlFor="requirements" className="text-right pt-2">
                             Requirements
                         </Label>
                         <Textarea
