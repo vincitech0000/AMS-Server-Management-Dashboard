@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, Upload, CheckCircle, RefreshCw, MessageCircle, Github, Download } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, Upload, CheckCircle, RefreshCw, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -383,31 +383,6 @@ export function ServerDashboard() {
             </Card>
           ))}
           
-           <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
-              <CardHeader className="flex flex-row items-center gap-4 p-4">
-                  <div className="p-3 rounded-full bg-green-500/10 text-green-500">
-                      <Download className="w-8 h-8" />
-                  </div>
-                  <div>
-                      <CardTitle className="text-lg">Download Source</CardTitle>
-                      <CardDescription>Get the complete project code.</CardDescription>
-                  </div>
-              </CardHeader>
-              <CardContent className="flex-grow p-4">
-                  <p className="text-sm text-muted-foreground">
-                      To download the project, you should clone it from a version control system like GitHub. This ensures you have the complete, up-to-date code.
-                  </p>
-              </CardContent>
-              <CardFooter className="p-4 bg-muted/50">
-                   <a href="#" target="_blank" rel="noopener noreferrer" className="w-full">
-                      <Button size="sm" className="w-full bg-green-500 hover:bg-green-600 text-white">
-                           <Github className="w-4 h-4 mr-2" />
-                           View on GitHub
-                      </Button>
-                  </a>
-              </CardFooter>
-          </Card>
-
           <Dialog open={isOrderDialogOpen} onOpenChange={handleDialogChange}>
             <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
                 <CardHeader className="flex flex-row items-center gap-4 p-4">
