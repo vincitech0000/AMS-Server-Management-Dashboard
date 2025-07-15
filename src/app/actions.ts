@@ -39,6 +39,22 @@ const httpsAgent = new https.Agent({
 });
 
 async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
+  // Special check for VICIBOX124
+  if (server.name === 'VICIBOX124') {
+      try {
+          const response = await fetch('http://107.150.36.124:7887/valid8.php', {
+              method: 'GET',
+              timeout: 5000,
+          });
+          if (response) {
+              return { ...server, status: 'Online', resolvedIp: server.ip };
+          }
+      } catch (error) {
+          // Fall through to offline if the specific check fails
+      }
+      return { ...server, status: 'Offline', resolvedIp: server.ip };
+  }
+
   let resolvedIp: string | undefined;
   const isIpAddress = /^\d{1,3}(\.\d{1,3}){3}$/.test(server.ip);
 
