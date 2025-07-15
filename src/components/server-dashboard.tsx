@@ -167,7 +167,7 @@ const servers = [
   },
   {
     name: 'Low Risk DID/ TFN',
-    type: 'DIDs',
+    type: 'US DIDs & US TFNs',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [],
     description: usDidFeatures,
