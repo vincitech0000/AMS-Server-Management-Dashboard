@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Wifi } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -399,35 +399,41 @@ export function ServerDashboard() {
     setOrderStep('payment');
   };
 
+  const handleServerStatusClick = () => {
+    // We will add server pinging logic here in the future
+    toast({
+      title: 'Checking Servers...',
+      description: 'This feature is coming soon!',
+    });
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="p-6 border-b">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-             <svg
+            <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
+              viewBox="0 0 256 256"
               className="w-12 h-12 text-primary"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              fill="currentColor"
             >
-              <circle cx="12" cy="12" r="2" />
-              <path d="M4.93 4.93l1.41 1.41" />
-              <path d="M17.66 17.66l1.41 1.41" />
-              <path d="M2 12h2" />
-              <path d="M20 12h2" />
-              <path d="M4.93 19.07l1.41-1.41" />
-              <path d="M17.66 6.34l1.41-1.41" />
-              <path d="M12 2v2" />
-              <path d="M12 20v2" />
+              <path d="M144,32a16,16,0,0,0-16-16H88A16,16,0,0,0,72,32V72H32a16,16,0,0,0-16,16V224a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V88a16,16,0,0,0-16-16H176V32A16,16,0,0,0,160,16H112a16,16,0,0,0-16,16v8a8,8,0,0,0,16,0V40a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8V72h24a8,8,0,0,1,8,8v40a8,8,0,0,0,16,0V88a8,8,0,0,1,8,8V224a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V88a8,8,0,0,1,8-8H72v24a8,8,0,0,0,16,0V80a8,8,0,0,0-8-8H40a8,8,0,0,1-8-8V80a8,8,0,0,0,0-16Zm16-8a8,8,0,0,1-8,8H112a8,8,0,0,1-8-8V32a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8Z" opacity="0.2"/>
+              <path d="M232,80H176V40a24,24,0,0,0-24-24H112A24,24,0,0,0,88,40V80H32A24,24,0,0,0,8,104V224a24,24,0,0,0,24,24H224a24,24,0,0,0,24-24V104A24,24,0,0,0,232,80ZM104,40a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8V80H104ZM224,232H32a8,8,0,0,1-8-8V104a8,8,0,0,1,8-8H224a8,8,0,0,1,8,8V224A8,8,0,0,1,224,232Z"/>
+              <path d="M128,128a12,12,0,1,0,12,12A12,12,0,0,0,128,128Zm0,16a4,4,0,1,1,4-4A4,4,0,0,1,128,144Z"/>
+              <path d="M128,168a44,44,0,0,0,39.3-24.9,8,8,0,1,0-14-6.2,28,28,0,0,1-50.6,0,8,8,0,0,0-14,6.2A44,44,0,0,0,128,168Z"/>
+              <path d="M128,208a72,72,0,0,0,65-38.3,8,8,0,1,0-13.8-7.4,56,56,0,0,1-102.4,0,8,8,0,0,0-13.8,7.4A72,72,0,0,0,128,208Z"/>
             </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
               <p className="text-xs md:text-sm text-muted-foreground">One-click access to all your servers.</p>
             </div>
+          </div>
+          <div>
+            <Button variant="outline" onClick={handleServerStatusClick}>
+              <Wifi className="mr-2 h-4 w-4" />
+              Server Status
+            </Button>
           </div>
         </div>
       </header>
@@ -751,3 +757,5 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
