@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, Upload, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -12,6 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import Image from 'next/image';
+import { Input } from '@/components/ui/input';
 
 const defaultDescription = <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>;
 
@@ -175,6 +177,8 @@ const magnusBillingCapacities = [
     { value: '5000', label: 'Up to 5000 CC', price: '145$/month' },
 ];
 
+const walletAddress = "TPK8o1z4sgZWdshmGfh5v1oYftYNU9EpWH";
+
 export function ServerDashboard() {
   const [isOrderDialogOpen, setOrderDialogOpen] = useState(false);
   const [selectedServer, setSelectedServer] = useState('');
@@ -187,6 +191,23 @@ export function ServerDashboard() {
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
+  const [orderStep, setOrderStep] = useState('form'); // 'form', 'payment', 'contact'
+  const [paymentHash, setPaymentHash] = useState('');
+  const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
+
+  const resetForm = () => {
+    setSelectedServer('');
+    setSelectedFusionCapacity('');
+    setSelectedVosCapacity('');
+    setSelectedViciboxTier('');
+    setSelectedAstppCapacity('');
+    setSelectedMagnusCapacity('');
+    setRequirements('');
+    setPaymentHash('');
+    setPaymentScreenshot(null);
+    setOrderStep('form');
+  }
+
   const handleServerTypeChange = (value: string) => {
     setSelectedServer(value);
     setSelectedFusionCapacity('');
@@ -195,6 +216,33 @@ export function ServerDashboard() {
     setSelectedAstppCapacity('');
     setSelectedMagnusCapacity('');
   };
+
+  const handleDialogChange = (open: boolean) => {
+    if (!open) {
+      resetForm();
+    }
+    setOrderDialogOpen(open);
+  }
+
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText(walletAddress);
+    toast({
+      title: 'Copied!',
+      description: 'Wallet address copied to clipboard.',
+    });
+  }
+
+  const handleProofUpload = () => {
+    if (!paymentHash && !paymentScreenshot) {
+      toast({
+        title: 'Payment Proof Required',
+        description: 'Please provide a transaction hash or a screenshot.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    setOrderStep('contact');
+  }
 
   const handleSubmitOrder = async () => {
     if (!selectedServer) {
@@ -246,7 +294,7 @@ export function ServerDashboard() {
         const tierDetails = viciboxUserTiers.find(t => t.value === selectedViciboxTier);
         toastDescription = `Your order for a ${selectedServer} server for ${tierDetails?.label} has been received.`;
     } else if (selectedServer === 'Bulk SMS') {
-        toastDescription = `Your order for a Bulk SMS server has been received. We will contact you regarding payment.`;
+        toastDescription = `Your order for a Bulk SMS server has been received.`;
     } else if (selectedServer === 'ASTPP') {
         const capacityDetails = astppCapacities.find(c => c.value === selectedAstppCapacity);
         toastDescription = `Your order for an ${selectedServer} server with ${capacityDetails?.label} capacity has been received.`;
@@ -259,15 +307,8 @@ export function ServerDashboard() {
         title: 'Order Placed!',
         description: toastDescription,
     });
-
-    setSelectedServer('');
-    setSelectedFusionCapacity('');
-    setSelectedVosCapacity('');
-    setSelectedViciboxTier('');
-    setSelectedAstppCapacity('');
-    setSelectedMagnusCapacity('');
-    setRequirements('');
-    setOrderDialogOpen(false);
+    
+    setOrderStep('payment');
   };
 
   return (
@@ -328,7 +369,7 @@ export function ServerDashboard() {
             </Card>
           ))}
           
-          <Dialog open={isOrderDialogOpen} onOpenChange={setOrderDialogOpen}>
+          <Dialog open={isOrderDialogOpen} onOpenChange={handleDialogChange}>
             <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
                 <CardHeader className="flex flex-row items-center gap-4 p-4">
                     <div className="p-3 rounded-full bg-accent/10 text-accent-foreground">
@@ -344,7 +385,7 @@ export function ServerDashboard() {
                 </CardContent>
                 <CardFooter className="p-4 bg-muted/50">
                     <DialogTrigger asChild>
-                        <Button size="sm" variant="secondary">
+                        <Button size="sm" variant="secondary" onClick={() => setOrderDialogOpen(true)}>
                             Place Order
                             <ArrowUpRight className="w-4 h-4 ml-2" />
                         </Button>
@@ -352,183 +393,244 @@ export function ServerDashboard() {
                 </CardFooter>
             </Card>
             <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle>Place a New Server Order</DialogTitle>
-                    <DialogDescription>
-                        Select your desired server type and specify your requirements below.
-                    </DialogDescription>
-                </DialogHeader>
-                <div className="grid gap-4 py-4">
-                    <div className="grid items-center grid-cols-4 gap-4">
-                        <Label htmlFor="server-type" className="text-right">
-                            Server Type
-                        </Label>
-                        <Select value={selectedServer} onValueChange={handleServerTypeChange}>
-                            <SelectTrigger id="server-type" className="col-span-3">
-                                <SelectValue placeholder="Select a server" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {serverTypes.map(type => (
-                                    <SelectItem key={type} value={type}>{type}</SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                    </div>
-
-                    {selectedServer === 'FusionPBX' && (
-                        <div className="grid items-center grid-cols-4 gap-4">
-                            <Label htmlFor="fusion-capacity" className="text-right">
-                                Capacity
-                            </Label>
-                            <Select value={selectedFusionCapacity} onValueChange={setSelectedFusionCapacity}>
-                                <SelectTrigger id="fusion-capacity" className="col-span-3">
-                                    <SelectValue placeholder="Select capacity" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {fusionPbxCapacities.map(capacity => (
-                                        <SelectItem key={capacity.value} value={capacity.value}>
-                                            {capacity.label} ({capacity.price})
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    )}
-
-                    {selectedServer === 'VOS3000' && (
-                        <div className="grid items-center grid-cols-4 gap-4">
-                            <Label htmlFor="vos-capacity" className="text-right">
-                                Capacity
-                            </Label>
-                            <Select value={selectedVosCapacity} onValueChange={setSelectedVosCapacity}>
-                                <SelectTrigger id="vos-capacity" className="col-span-3">
-                                    <SelectValue placeholder="Select capacity" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {vos3000Capacities.map(capacity => (
-                                        <SelectItem key={capacity.value} value={capacity.value}>
-                                            {capacity.label} ({capacity.price})
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    )}
-                    
-                    {selectedServer === 'VICIBOX' && (
-                        <div className="grid items-center grid-cols-4 gap-4">
-                            <Label htmlFor="vicibox-tier" className="text-right">
-                                Users
-                            </Label>
-                            <Select value={selectedViciboxTier} onValueChange={setSelectedViciboxTier}>
-                                <SelectTrigger id="vicibox-tier" className="col-span-3">
-                                    <SelectValue placeholder="Select agents tier" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {viciboxUserTiers.map(tier => (
-                                        <SelectItem key={tier.value} value={tier.value}>
-                                            {tier.label} ({tier.price})
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    )}
-
-                    {selectedServer === 'Bulk SMS' && (
-                        <div className="grid grid-cols-4 items-start gap-4">
-                            <Label className="text-right pt-2">
-                                Pricing
-                            </Label>
-                            <div className="col-span-3 text-sm">
-                                <p className="text-foreground"><span className="font-semibold">Setup Fee:</span> $499 (One Time)</p>
-                                <p className="text-foreground"><span className="font-semibold">Monthly Fee:</span> $199/month</p>
-                            </div>
-                        </div>
-                    )}
-                    
-                    {selectedServer === 'ASTPP' && (
-                        <>
+                {orderStep === 'form' && (
+                    <>
+                        <DialogHeader>
+                            <DialogTitle>Place a New Server Order</DialogTitle>
+                            <DialogDescription>
+                                Select your desired server type and specify your requirements below.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
                             <div className="grid items-center grid-cols-4 gap-4">
-                                <Label htmlFor="astpp-capacity" className="text-right">
-                                    Capacity
+                                <Label htmlFor="server-type" className="text-right">
+                                    Server Type
                                 </Label>
-                                <Select value={selectedAstppCapacity} onValueChange={setSelectedAstppCapacity}>
-                                    <SelectTrigger id="astpp-capacity" className="col-span-3">
-                                        <SelectValue placeholder="Select capacity" />
+                                <Select value={selectedServer} onValueChange={handleServerTypeChange}>
+                                    <SelectTrigger id="server-type" className="col-span-3">
+                                        <SelectValue placeholder="Select a server" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {astppCapacities.map(capacity => (
-                                            <SelectItem key={capacity.value} value={capacity.value}>
-                                                {capacity.label} ({capacity.price})
-                                            </SelectItem>
+                                        {serverTypes.map(type => (
+                                            <SelectItem key={type} value={type}>{type}</SelectItem>
                                         ))}
                                     </SelectContent>
                                 </Select>
                             </div>
-                            <div className="grid grid-cols-4 items-start gap-4">
-                                <Label className="text-right pt-2">
-                                    Setup Fee
-                                </Label>
-                                <div className="col-span-3 text-sm pt-2">
-                                    <p className="text-foreground">$50 (One Time Only)</p>
-                                </div>
-                            </div>
-                        </>
-                    )}
 
-                    {selectedServer === 'Magnus Billing' && (
-                         <>
-                            <div className="grid items-center grid-cols-4 gap-4">
-                                <Label htmlFor="magnus-capacity" className="text-right">
-                                    Capacity
-                                </Label>
-                                <Select value={selectedMagnusCapacity} onValueChange={setSelectedMagnusCapacity}>
-                                    <SelectTrigger id="magnus-capacity" className="col-span-3">
-                                        <SelectValue placeholder="Select capacity" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {magnusBillingCapacities.map(capacity => (
-                                            <SelectItem key={capacity.value} value={capacity.value}>
-                                                {capacity.label} ({capacity.price})
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <div className="grid grid-cols-4 items-start gap-4">
-                                <Label className="text-right pt-2">
-                                    Setup Fee
-                                </Label>
-                                <div className="col-span-3 text-sm pt-2">
-                                    <p className="text-foreground">$50 (One Time Only)</p>
+                            {selectedServer === 'FusionPBX' && (
+                                <div className="grid items-center grid-cols-4 gap-4">
+                                    <Label htmlFor="fusion-capacity" className="text-right">
+                                        Capacity
+                                    </Label>
+                                    <Select value={selectedFusionCapacity} onValueChange={setSelectedFusionCapacity}>
+                                        <SelectTrigger id="fusion-capacity" className="col-span-3">
+                                            <SelectValue placeholder="Select capacity" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {fusionPbxCapacities.map(capacity => (
+                                                <SelectItem key={capacity.value} value={capacity.value}>
+                                                    {capacity.label} ({capacity.price})
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
                                 </div>
-                            </div>
-                        </>
-                    )}
+                            )}
 
-                    <div className="grid items-start grid-cols-4 gap-4">
-                        <Label htmlFor="requirements" className="text-right pt-2">
-                            Requirements
-                        </Label>
-                        <Textarea
-                            id="requirements"
-                            className="col-span-3"
-                            placeholder="e.g., specific software, configuration, user accounts..."
-                            value={requirements}
-                            onChange={(e) => setRequirements(e.target.value)}
-                        />
-                    </div>
-                </div>
-                <DialogFooter>
-                    <Button onClick={handleSubmitOrder} disabled={isSubmitting}>
-                        {isSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                        Submit Order
-                    </Button>
-                </DialogFooter>
+                            {selectedServer === 'VOS3000' && (
+                                <div className="grid items-center grid-cols-4 gap-4">
+                                    <Label htmlFor="vos-capacity" className="text-right">
+                                        Capacity
+                                    </Label>
+                                    <Select value={selectedVosCapacity} onValueChange={setSelectedVosCapacity}>
+                                        <SelectTrigger id="vos-capacity" className="col-span-3">
+                                            <SelectValue placeholder="Select capacity" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {vos3000Capacities.map(capacity => (
+                                                <SelectItem key={capacity.value} value={capacity.value}>
+                                                    {capacity.label} ({capacity.price})
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            )}
+                            
+                            {selectedServer === 'VICIBOX' && (
+                                <div className="grid items-center grid-cols-4 gap-4">
+                                    <Label htmlFor="vicibox-tier" className="text-right">
+                                        Users
+                                    </Label>
+                                    <Select value={selectedViciboxTier} onValueChange={setSelectedViciboxTier}>
+                                        <SelectTrigger id="vicibox-tier" className="col-span-3">
+                                            <SelectValue placeholder="Select agents tier" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {viciboxUserTiers.map(tier => (
+                                                <SelectItem key={tier.value} value={tier.value}>
+                                                    {tier.label} ({tier.price})
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            )}
+
+                            {selectedServer === 'Bulk SMS' && (
+                                <div className="grid grid-cols-4 items-start gap-4">
+                                    <Label className="text-right pt-2">
+                                        Pricing
+                                    </Label>
+                                    <div className="col-span-3 text-sm">
+                                        <p className="text-foreground"><span className="font-semibold">Setup Fee:</span> $499 (One Time)</p>
+                                        <p className="text-foreground"><span className="font-semibold">Monthly Fee:</span> $199/month</p>
+                                    </div>
+                                </div>
+                            )}
+                            
+                            {selectedServer === 'ASTPP' && (
+                                <>
+                                    <div className="grid items-center grid-cols-4 gap-4">
+                                        <Label htmlFor="astpp-capacity" className="text-right">
+                                            Capacity
+                                        </Label>
+                                        <Select value={selectedAstppCapacity} onValueChange={setSelectedAstppCapacity}>
+                                            <SelectTrigger id="astpp-capacity" className="col-span-3">
+                                                <SelectValue placeholder="Select capacity" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {astppCapacities.map(capacity => (
+                                                    <SelectItem key={capacity.value} value={capacity.value}>
+                                                        {capacity.label} ({capacity.price})
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className="grid grid-cols-4 items-start gap-4">
+                                        <Label className="text-right pt-2">
+                                            Setup Fee
+                                        </Label>
+                                        <div className="col-span-3 text-sm pt-2">
+                                            <p className="text-foreground">$50 (One Time Only)</p>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+
+                            {selectedServer === 'Magnus Billing' && (
+                                <>
+                                    <div className="grid items-center grid-cols-4 gap-4">
+                                        <Label htmlFor="magnus-capacity" className="text-right">
+                                            Capacity
+                                        </Label>
+                                        <Select value={selectedMagnusCapacity} onValueChange={setSelectedMagnusCapacity}>
+                                            <SelectTrigger id="magnus-capacity" className="col-span-3">
+                                                <SelectValue placeholder="Select capacity" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {magnusBillingCapacities.map(capacity => (
+                                                    <SelectItem key={capacity.value} value={capacity.value}>
+                                                        {capacity.label} ({capacity.price})
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className="grid grid-cols-4 items-start gap-4">
+                                        <Label className="text-right pt-2">
+                                            Setup Fee
+                                        </Label>
+                                        <div className="col-span-3 text-sm pt-2">
+                                            <p className="text-foreground">$50 (One Time Only)</p>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+
+                            <div className="grid items-start grid-cols-4 gap-4">
+                                <Label htmlFor="requirements" className="text-right pt-2">
+                                    Requirements
+                                </Label>
+                                <Textarea
+                                    id="requirements"
+                                    className="col-span-3"
+                                    placeholder="e.g., specific software, configuration, user accounts..."
+                                    value={requirements}
+                                    onChange={(e) => setRequirements(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <DialogFooter>
+                            <Button onClick={handleSubmitOrder} disabled={isSubmitting}>
+                                {isSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                                Submit Order
+                            </Button>
+                        </DialogFooter>
+                    </>
+                )}
+                {orderStep === 'payment' && (
+                    <>
+                        <DialogHeader>
+                            <DialogTitle>Payment Information</DialogTitle>
+                            <DialogDescription>
+                                Please send your payment to the wallet address below and provide proof.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                            <Label>USDT TRC20 Wallet Address</Label>
+                            <div className="flex items-center gap-2">
+                                <Input readOnly value={walletAddress} className="font-mono text-sm" />
+                                <Button size="icon" variant="outline" onClick={handleCopyAddress}>
+                                    <Copy className="w-4 h-4" />
+                                </Button>
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="payment-hash">Transaction Hash</Label>
+                                <Input id="payment-hash" placeholder="Enter transaction hash" value={paymentHash} onChange={(e) => setPaymentHash(e.target.value)} />
+                            </div>
+                            <div className="text-center text-sm text-muted-foreground my-2">OR</div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="payment-ss">Upload Screenshot</Label>
+                                <Input id="payment-ss" type="file" accept="image/*" onChange={(e) => setPaymentScreenshot(e.target.files?.[0] || null)} />
+                            </div>
+                        </div>
+                        <DialogFooter>
+                            <Button onClick={handleProofUpload}>
+                                <Upload className="w-4 h-4 mr-2" />
+                                Upload Proof
+                            </Button>
+                        </DialogFooter>
+                    </>
+                )}
+                {orderStep === 'contact' && (
+                    <>
+                        <DialogHeader>
+                            <DialogTitle>Payment Received!</DialogTitle>
+                            <DialogDescription>
+                                Your payment proof has been submitted. Please contact us on WhatsApp to finalize your order.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex flex-col items-center gap-4 py-4">
+                            <Image src="/whatsapp-qr.png" alt="WhatsApp QR Code" width={200} height={200} data-ai-hint="QR code" />
+                             <a href="http://wa.me/19208156022" target="_blank" rel="noopener noreferrer">
+                                <Button>
+                                    Contact on WhatsApp
+                                </Button>
+                            </a>
+                        </div>
+                        <DialogFooter>
+                            <Button variant="secondary" onClick={() => handleDialogChange(false)}>
+                                <CheckCircle className="w-4 h-4 mr-2" />
+                                Done
+                            </Button>
+                        </DialogFooter>
+                    </>
+                )}
             </DialogContent>
           </Dialog>
-
         </div>
       </main>
       <footer className="p-6 text-sm text-center border-t text-muted-foreground">
