@@ -422,25 +422,41 @@ export function ServerDashboard() {
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
               width="48"
               height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-12 h-12 text-primary"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-12 h-12"
             >
-              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-              <line x1="12" y1="18" x2="12" y2="18"></line>
-              <path d="M8 6h.01"></path>
-              <path d="M16 6h.01"></path>
-              <path d="M8 10h.01"></path>
-              <path d="M16 10h.01"></path>
-              <path d="M8 14h.01"></path>
-              <path d="M16 14h.01"></path>
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#2DD4BF" />
+                  <stop offset="100%" stopColor="#3B82F6" />
+                </linearGradient>
+              </defs>
+              <g fill="url(#logoGradient)">
+                <path
+                  d="M50 10 a 40 40 0 0 1 0 80 a 40 40 0 0 1 0 -80 M 50 22 a 28 28 0 0 1 0 56 a 28 28 0 0 1 0 -56 M 50 34 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"
+                  fill="none"
+                  stroke="url(#logoGradient)"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                />
+                <circle cx="50" cy="62" r="6" />
+                <path
+                  d="M50 62 L 30 75 M50 62 L 70 75 M50 62 L 25 90 M50 62 L 75 90 M50 62 L 40 95 M50 62 L 60 95"
+                  stroke="url(#logoGradient)"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                <circle cx="30" cy="75" r="5" />
+                <circle cx="70" cy="75" r="5" />
+                <circle cx="25" cy="90" r="5" />
+                <circle cx="75" cy="90" r="5" />
+                <circle cx="40" cy="95" r="5" />
+                <circle cx="60" cy="95" r="5" />
+              </g>
             </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
