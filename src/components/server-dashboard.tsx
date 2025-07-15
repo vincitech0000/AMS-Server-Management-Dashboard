@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const defaultDescription = <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>;
 
@@ -26,6 +27,32 @@ const smsFeatures = (
     </>
 );
 
+const hardwareRequirements = (
+  <Accordion type="single" collapsible className="w-full mt-4">
+      <AccordionItem value="item-1">
+          <AccordionTrigger className="text-sm font-semibold text-foreground/90 py-2 hover:no-underline">Hardware Estimates (1k-5k CC)</AccordionTrigger>
+          <AccordionContent>
+              <div className="text-xs text-muted-foreground space-y-2 pt-2">
+                  <p className="font-bold">For ~1000 Concurrent Calls:</p>
+                  <ul className="list-disc list-inside pl-2 space-y-1">
+                      <li><span className="font-semibold">CPU:</span> 16+ Cores (e.g., Intel Xeon Silver/Gold)</li>
+                      <li><span className="font-semibold">RAM:</span> 64GB - 128GB DDR4 ECC</li>
+                      <li><span className="font-semibold">Storage:</span> High-speed NVMe SSDs (RAID)</li>
+                  </ul>
+                   <p className="font-bold mt-2">For 1k-5k+ Concurrent Calls (Distributed):</p>
+                  <ul className="list-disc list-inside pl-2 space-y-1">
+                      <li><span className="font-semibold">Voice Switch:</span> Multiple servers, 32+ core CPU, 64-128GB RAM each</li>
+                      <li><span className="font-semibold">App Server:</span> 8-16 core CPU, 32-64GB RAM</li>
+                      <li><span className="font-semibold">Database Server:</span> 16+ core CPU, 128GB+ RAM, High-perf NVMe SSDs</li>
+                  </ul>
+                  <p className="text-xs italic mt-2">Note: These are estimates. For production, consult a certified expert.</p>
+              </div>
+          </AccordionContent>
+      </AccordionItem>
+  </Accordion>
+);
+
+
 const astppFeatures = (
     <>
       <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
@@ -35,6 +62,7 @@ const astppFeatures = (
         <li>Wholesale & Retail VoIP Billing</li>
         <li>Class 4 & 5 Softswitch Features</li>
       </ul>
+      {hardwareRequirements}
     </>
 );
 
@@ -47,6 +75,7 @@ const magnusBillingFeatures = (
         <li>Rate Management</li>
         <li>Customer Portal</li>
       </ul>
+      {hardwareRequirements}
     </>
 );
 
