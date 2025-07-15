@@ -142,7 +142,7 @@ const servers = [
   },
 ];
 
-const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'Other'];
+const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
 
 const fusionPbxCapacities = [
     { value: '50', label: 'Up to 50 channels', price: '50$/month' },
