@@ -3,6 +3,8 @@
 
 import { generateHtml } from '@/ai/flows/generate-html-from-prompt';
 import { z } from 'zod';
+import fetch from 'node-fetch';
+import https from 'https';
 
 const promptSchema = z.string().min(1, 'Prompt cannot be empty.');
 
@@ -30,35 +32,32 @@ type Server = z.infer<typeof serverListSchema>[0];
 export type ServerStatus = 'Online' | 'Offline' | 'Error';
 export type ServerWithStatus = Server & { status: ServerStatus };
 
+// This agent will ignore SSL certificate errors, common in dev environments
+const httpsAgent = new https.Agent({
+  rejectUnauthorized: false,
+});
+
 async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
-  // Try HTTPS first, then fall back to HTTP
   const protocols = ['https', 'http'];
   for (const protocol of protocols) {
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5-second timeout
-      
       const response = await fetch(`${protocol}://${server.ip}`, {
         method: 'GET',
-        signal: controller.signal,
-        redirect: 'follow'
+        redirect: 'follow',
+        timeout: 5000, // 5-second timeout
+        agent: protocol === 'https' ? httpsAgent : undefined,
       });
-      
-      clearTimeout(timeoutId);
 
-      // Any 2xx or 3xx status code is considered 'Online'
-      if (response.ok || (response.status >= 300 && response.status < 400)) {
+      // Any response (even errors) means the server is reachable
+      if (response) {
         return { ...server, status: 'Online' };
       }
-    } catch (error: any) {
-        if (error.name === 'AbortError') {
-            // This was a timeout
-            continue; // Try next protocol or fail
-        }
-        // Other errors, continue to next protocol
+    } catch (error) {
+      // Errors like timeouts or connection refused will be caught here
+      // We continue to the next protocol
     }
   }
-  
+
   // If all attempts fail
   return { ...server, status: 'Offline' };
 }
