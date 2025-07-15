@@ -413,11 +413,13 @@ export function ServerDashboard() {
         <div className="flex items-center justify-center gap-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 256 256"
+            viewBox="0 0 24 24"
             className="w-12 h-12 text-primary"
             fill="currentColor"
           >
-            <path d="M152,32H104a8,8,0,0,0-8,8V88H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H216a8,8,0,0,0,8-8V96a8,8,0,0,0-8-8H160V40A8,8,0,0,0,152,32ZM112,48h32V88H112ZM208,208H48V104H208Z" />
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zM17.99 9.21c-.24-3.11-2.56-5.43-5.66-5.66A8.013 8.013 0 0 1 18 12c0 1.4-.36 2.71-.98 3.82l-1.43-1.43c.23-.55.35-1.15.35-1.78 0-1.66-1.34-3-3-3h-1V7c0-1.11-.9-2-2-2H7.07c.58-.94 1.54-1.63 2.7-1.95.1.01.19.02.28.02 1.93 0 3.5 1.57 3.5 3.5v1.44c1.23.46 2.18 1.59 2.42 2.99.01.07.02.13.02.2z"
+            />
           </svg>
           <div>
             <h1 className="text-3xl font-bold text-center">AMS Server Management Dashboard</h1>
