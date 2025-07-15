@@ -433,9 +433,14 @@ export function ServerDashboard() {
               strokeLinejoin="round"
               className="w-12 h-12 text-primary"
             >
-              <circle cx="12" cy="12" r="2"></circle>
-              <path d="M8.5 15.5a4 4 0 0 1 7 0"></path>
-              <path d="M5 19a8 8 0 0 1 14 0"></path>
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12" y2="18"></line>
+              <path d="M8 6h.01"></path>
+              <path d="M16 6h.01"></path>
+              <path d="M8 10h.01"></path>
+              <path d="M16 10h.01"></path>
+              <path d="M8 14h.01"></path>
+              <path d="M16 14h.01"></path>
             </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
