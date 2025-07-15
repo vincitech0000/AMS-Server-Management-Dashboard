@@ -11,6 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 type ServerStatus = 'Online' | 'Offline' | 'Checking';
 
@@ -70,68 +71,77 @@ export function ServerStatusPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <header className="p-6 border-b">
-        <div className="container mx-auto flex items-center justify-between">
-            <div className="text-left">
-                <h1 className="text-xl md:text-3xl font-bold">Server Status</h1>
-                <p className="text-xs md:text-sm text-muted-foreground">Monitor the health of all your servers.</p>
-            </div>
-            <div className="flex items-center gap-2">
-                <Button onClick={handleRefreshAll} disabled={isPending}>
-                    {isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <RefreshCw className="w-4 h-4 mr-2" />}
-                    Refresh All
-                </Button>
-                <Button asChild variant="outline">
-                    <Link href="/">
-                        <ArrowLeft className="w-4 h-4 md:mr-2" />
-                        <span className="hidden md:inline">Back to Dashboard</span>
-                    </Link>
-                </Button>
-            </div>
-        </div>
-      </header>
-      <main className="flex-grow p-4 md:p-8">
-        <div className="container mx-auto">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Wifi />
-                        Live Server Status
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="w-[100px]">Icon</TableHead>
-                                <TableHead>Server Name</TableHead>
-                                <TableHead>IP Address / Domain</TableHead>
-                                <TableHead className="text-right">Status</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {servers.map((server, index) => (
-                                <TableRow key={index}>
-                                    <TableCell className="text-primary">
-                                        <Server className="w-6 h-6" />
-                                    </TableCell>
-                                    <TableCell className="font-medium">{server.name}</TableCell>
-                                    <TableCell>{server.ip}</TableCell>
-                                    <TableCell className="text-right">
-                                        {getStatusComponent(server.status)}
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
-        </div>
-      </main>
-      <footer className="p-6 text-sm text-center border-t text-muted-foreground">
-        <p>&copy; {new Date().getFullYear()} Server Dashboard. All rights reserved.</p>
-      </footer>
-    </div>
+    <TooltipProvider>
+      <div className="flex flex-col min-h-screen bg-background text-foreground">
+        <header className="p-6 border-b">
+          <div className="container mx-auto flex items-center justify-between">
+              <div className="text-left">
+                  <h1 className="text-xl md:text-3xl font-bold">Server Status</h1>
+                  <p className="text-xs md:text-sm text-muted-foreground">Monitor the health of all your servers.</p>
+              </div>
+              <div className="flex items-center gap-2">
+                  <Button asChild variant="outline">
+                      <Link href="/">
+                          <ArrowLeft className="w-4 h-4 md:mr-2" />
+                          <span className="hidden md:inline">Back to Dashboard</span>
+                      </Link>
+                  </Button>
+              </div>
+          </div>
+        </header>
+        <main className="flex-grow p-4 md:p-8">
+          <div className="container mx-auto">
+              <Card>
+                  <CardHeader className="flex flex-row items-center justify-between">
+                      <CardTitle className="flex items-center gap-2">
+                          <Wifi />
+                          Live Server Status
+                      </CardTitle>
+                      <Tooltip>
+                          <TooltipTrigger asChild>
+                              <Button variant="ghost" size="icon" onClick={handleRefreshAll} disabled={isPending}>
+                                  {isPending ? <Loader2 className="w-5 h-5 animate-spin" /> : <RefreshCw className="w-5 h-5" />}
+                                  <span className="sr-only">Refresh Status</span>
+                              </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Refresh All</p>
+                          </TooltipContent>
+                      </Tooltip>
+                  </CardHeader>
+                  <CardContent>
+                      <Table>
+                          <TableHeader>
+                              <TableRow>
+                                  <TableHead className="w-[100px]">Icon</TableHead>
+                                  <TableHead>Server Name</TableHead>
+                                  <TableHead>IP Address / Domain</TableHead>
+                                  <TableHead className="text-right">Status</TableHead>
+                              </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                              {servers.map((server, index) => (
+                                  <TableRow key={index}>
+                                      <TableCell className="text-primary">
+                                          <Server className="w-6 h-6" />
+                                      </TableCell>
+                                      <TableCell className="font-medium">{server.name}</TableCell>
+                                      <TableCell>{server.ip}</TableCell>
+                                      <TableCell className="text-right">
+                                          {getStatusComponent(server.status)}
+                                      </TableCell>
+                                  </TableRow>
+                              ))}
+                          </TableBody>
+                      </Table>
+                  </CardContent>
+              </Card>
+          </div>
+        </main>
+        <footer className="p-6 text-sm text-center border-t text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} Server Dashboard. All rights reserved.</p>
+        </footer>
+      </div>
+    </TooltipProvider>
   );
 }
