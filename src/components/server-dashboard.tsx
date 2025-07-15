@@ -181,8 +181,8 @@ const servers = [
     type: 'Bulk SMS',
     icon: <MessageSquare className="w-8 h-8" />,
     accessPoints: [
-        { name: 'LOGIN', url: 'https://did.tollx.eu/login' },
-        { name: 'Signup', url: 'https://did.tollx.eu/register' },
+        { name: 'LOGIN', url: 'https://bulksms.amsserver.com/login' },
+        { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
     ],
     description: smsFeatures,
   },
@@ -223,7 +223,7 @@ const servers = [
 const serversToCheck = [
   { name: 'FusionPBX Server', ip: '173.208.249.122' },
   { name: 'VOS3000 Server', ip: 'voip.amsserver.com' },
-  { name: 'Bulk SMS Server', ip: 'did.tollx.eu' },
+  { name: 'Bulk SMS Server', ip: 'bulksms.amsserver.com' },
   { name: 'VICIBOX124', ip: '107.150.36.124' },
   { name: 'VICIBOX123', ip: 'box123.amsserver.com' },
   { name: 'VICIBOX126', ip: 'box126.amsserver.com' },
