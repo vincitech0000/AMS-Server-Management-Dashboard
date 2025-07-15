@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, Upload, CheckCircle, RefreshCw, MessageCircle } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, Copy, CheckCircle, RefreshCw, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -144,7 +144,7 @@ const servers = [
   },
 ];
 
-const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
+const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Low Risk DIDs', 'High Risk DIDs', 'TFN', 'Other'];
 
 const fusionPbxCapacities = [
     { value: '50', label: 'Up to 50 channels', price: '50$/month' },
@@ -177,6 +177,21 @@ const magnusBillingCapacities = [
     { value: '5000', label: 'Up to 5000 CC', price: '145$/month' },
 ];
 
+const lowRiskDidChannels = [
+    { value: '2', label: '2 Channels', price: '20$/month' },
+    { value: '10', label: '10 Channels', price: '80$/month' },
+];
+
+const highRiskDidChannels = [
+    { value: '2', label: '2 Channels', price: '40$/month' },
+    { value: '10', label: '10 Channels', price: '150$/month' },
+];
+
+const tfnChannels = [
+    { value: '2', label: '2 Channels', price: '30$/month' },
+    { value: '10', label: '10 Channels', price: '120$/month' },
+];
+
 const generateCaptcha = () => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let captcha = '';
@@ -195,6 +210,9 @@ export function ServerDashboard() {
   const [selectedViciboxTier, setSelectedViciboxTier] = useState('');
   const [selectedAstppCapacity, setSelectedAstppCapacity] = useState('');
   const [selectedMagnusCapacity, setSelectedMagnusCapacity] = useState('');
+  const [selectedLowRiskDidChannels, setSelectedLowRiskDidChannels] = useState('');
+  const [selectedHighRiskDidChannels, setSelectedHighRiskDidChannels] = useState('');
+  const [selectedTfnChannels, setSelectedTfnChannels] = useState('');
   const [requirements, setRequirements] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
@@ -217,6 +235,9 @@ export function ServerDashboard() {
     setSelectedViciboxTier('');
     setSelectedAstppCapacity('');
     setSelectedMagnusCapacity('');
+    setSelectedLowRiskDidChannels('');
+    setSelectedHighRiskDidChannels('');
+    setSelectedTfnChannels('');
     setRequirements('');
     setOrderStep('form');
     setCaptchaInput('');
@@ -230,6 +251,9 @@ export function ServerDashboard() {
     setSelectedViciboxTier('');
     setSelectedAstppCapacity('');
     setSelectedMagnusCapacity('');
+    setSelectedLowRiskDidChannels('');
+    setSelectedHighRiskDidChannels('');
+    setSelectedTfnChannels('');
   };
 
   const handleDialogChange = (open: boolean) => {
@@ -260,6 +284,15 @@ export function ServerDashboard() {
         const capacityDetails = magnusBillingCapacities.find(c => c.value === selectedMagnusCapacity);
         details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
         details += `\n- Setup: $50 (One Time)`;
+    } else if (selectedServer === 'Low Risk DIDs') {
+        const channelDetails = lowRiskDidChannels.find(c => c.value === selectedLowRiskDidChannels);
+        details += `\n- Channels: ${channelDetails?.label} (${channelDetails?.price})`;
+    } else if (selectedServer === 'High Risk DIDs') {
+        const channelDetails = highRiskDidChannels.find(c => c.value === selectedHighRiskDidChannels);
+        details += `\n- Channels: ${channelDetails?.label} (${channelDetails?.price})`;
+    } else if (selectedServer === 'TFN') {
+        const channelDetails = tfnChannels.find(c => c.value === selectedTfnChannels);
+        details += `\n- Channels: ${channelDetails?.label} (${channelDetails?.price})`;
     }
     if (requirements) {
         details += `\n- Requirements: ${requirements}`;
@@ -310,6 +343,21 @@ export function ServerDashboard() {
 
     if (selectedServer === 'Magnus Billing' && !selectedMagnusCapacity) {
         toast({ title: 'Incomplete Order', description: 'Please select a capacity for the Magnus Billing server.', variant: 'destructive'});
+        return;
+    }
+
+    if (selectedServer === 'Low Risk DIDs' && !selectedLowRiskDidChannels) {
+        toast({ title: 'Incomplete Order', description: 'Please select channels for Low Risk DIDs.', variant: 'destructive'});
+        return;
+    }
+
+    if (selectedServer === 'High Risk DIDs' && !selectedHighRiskDidChannels) {
+        toast({ title: 'Incomplete Order', description: 'Please select channels for High Risk DIDs.', variant: 'destructive'});
+        return;
+    }
+
+    if (selectedServer === 'TFN' && !selectedTfnChannels) {
+        toast({ title: 'Incomplete Order', description: 'Please select channels for TFNs.', variant: 'destructive'});
         return;
     }
 
@@ -562,6 +610,66 @@ export function ServerDashboard() {
                                         </div>
                                     </div>
                                 </>
+                            )}
+                            
+                            {selectedServer === 'Low Risk DIDs' && (
+                                <div className="grid items-center grid-cols-4 gap-4">
+                                    <Label htmlFor="low-risk-did-channels" className="text-right">
+                                        Channels
+                                    </Label>
+                                    <Select value={selectedLowRiskDidChannels} onValueChange={setSelectedLowRiskDidChannels}>
+                                        <SelectTrigger id="low-risk-did-channels" className="col-span-3">
+                                            <SelectValue placeholder="Select channels" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {lowRiskDidChannels.map(channel => (
+                                                <SelectItem key={channel.value} value={channel.value}>
+                                                    {channel.label} ({channel.price})
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            )}
+
+                            {selectedServer === 'High Risk DIDs' && (
+                                <div className="grid items-center grid-cols-4 gap-4">
+                                    <Label htmlFor="high-risk-did-channels" className="text-right">
+                                        Channels
+                                    </Label>
+                                    <Select value={selectedHighRiskDidChannels} onValueChange={setSelectedHighRiskDidChannels}>
+                                        <SelectTrigger id="high-risk-did-channels" className="col-span-3">
+                                            <SelectValue placeholder="Select channels" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {highRiskDidChannels.map(channel => (
+                                                <SelectItem key={channel.value} value={channel.value}>
+                                                    {channel.label} ({channel.price})
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            )}
+
+                            {selectedServer === 'TFN' && (
+                                <div className="grid items-center grid-cols-4 gap-4">
+                                    <Label htmlFor="tfn-channels" className="text-right">
+                                        Channels
+                                    </Label>
+                                    <Select value={selectedTfnChannels} onValueChange={setSelectedTfnChannels}>
+                                        <SelectTrigger id="tfn-channels" className="col-span-3">
+                                            <SelectValue placeholder="Select channels" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {tfnChannels.map(channel => (
+                                                <SelectItem key={channel.value} value={channel.value}>
+                                                    {channel.label} ({channel.price})
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
                             )}
 
                             <div className="grid items-start grid-cols-4 gap-4">
