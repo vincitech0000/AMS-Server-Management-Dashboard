@@ -93,6 +93,30 @@ const magnusBillingFeatures = (
     </>
 );
 
+const usDidFeatures = (
+    <>
+        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+            <li>Low-cost local numbers</li>
+            <li>Wide coverage across the US</li>
+            <li>Voice and SMS/MMS enabled</li>
+            <li>Set custom Caller ID (CNAM)</li>
+        </ul>
+    </>
+);
+
+const usTollFreeFeatures = (
+    <>
+        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+            <li>1-800 series numbers (888, 877, etc.)</li>
+            <li>Enhance brand credibility</li>
+            <li>Nationwide reach with a single number</li>
+            <li>Voice and SMS/MMS enabled</li>
+        </ul>
+    </>
+);
+
 const servers = [
   {
     name: 'FusionPBX Server',
@@ -141,6 +165,20 @@ const servers = [
     icon: <Server className="w-8 h-8" />,
     accessPoints: [],
     description: magnusBillingFeatures,
+  },
+  {
+    name: 'US DID',
+    type: 'DIDs',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [],
+    description: usDidFeatures,
+  },
+  {
+    name: 'US Toll-free',
+    type: 'TFN',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [],
+    description: usTollFreeFeatures,
   },
 ];
 
