@@ -64,26 +64,44 @@ const servers = [
 ];
 
 const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'Other'];
+
 const fusionPbxCapacities = [
     { value: '50', label: 'Up to 50 channels', price: '50$/month' },
     { value: '100', label: 'Up to 100 channels', price: '80$/month' },
     { value: '500', label: 'Up to 500 channels', price: '125$/month' },
 ];
 
+const vos3000Capacities = [
+    { value: '500', label: 'Up to 500 channels', price: '100$/month' },
+    { value: '1000', label: 'Up to 1000 channels', price: '125$/month' },
+    { value: '5000', label: 'Up to 5000 channels', price: '145$/month' },
+];
+
+const viciboxUserTiers = [
+    { value: '5', label: 'Up to 5 agents', price: '50$/month' },
+    { value: '10', label: 'Up to 10 agents', price: '100$/month' },
+    { value: '15', label: 'Up to 15 agents', price: '145$/month' },
+    { value: '20', label: 'Up to 20 agents', price: '185$/month' },
+    { value: '25', label: 'Up to 25 agents', price: '225$/month' },
+    { value: 'cluster', label: 'Cluster Server', price: 'Contact for Pricing' },
+];
+
 
 export function ServerDashboard() {
   const [isOrderDialogOpen, setOrderDialogOpen] = useState(false);
   const [selectedServer, setSelectedServer] = useState('');
-  const [selectedCapacity, setSelectedCapacity] = useState('');
+  const [selectedFusionCapacity, setSelectedFusionCapacity] = useState('');
+  const [selectedVosCapacity, setSelectedVosCapacity] = useState('');
+  const [selectedViciboxTier, setSelectedViciboxTier] = useState('');
   const [requirements, setRequirements] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleServerTypeChange = (value: string) => {
     setSelectedServer(value);
-    if (value !== 'FusionPBX') {
-      setSelectedCapacity('');
-    }
+    setSelectedFusionCapacity('');
+    setSelectedVosCapacity('');
+    setSelectedViciboxTier('');
   };
 
   const handleSubmitOrder = async () => {
@@ -96,24 +114,35 @@ export function ServerDashboard() {
         return;
     }
     
-    if (selectedServer === 'FusionPBX' && !selectedCapacity) {
-        toast({
-            title: 'Incomplete Order',
-            description: 'Please select a capacity for the FusionPBX server.',
-            variant: 'destructive',
-        });
+    if (selectedServer === 'FusionPBX' && !selectedFusionCapacity) {
+        toast({ title: 'Incomplete Order', description: 'Please select a capacity for the FusionPBX server.', variant: 'destructive'});
+        return;
+    }
+
+    if (selectedServer === 'VOS3000' && !selectedVosCapacity) {
+        toast({ title: 'Incomplete Order', description: 'Please select a capacity for the VOS3000 server.', variant: 'destructive'});
+        return;
+    }
+
+    if (selectedServer === 'VICIBOX' && !selectedViciboxTier) {
+        toast({ title: 'Incomplete Order', description: 'Please select a user tier for the VICIBOX server.', variant: 'destructive'});
         return;
     }
 
     setSubmitting(true);
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     setSubmitting(false);
 
     let toastDescription = `Your order for a ${selectedServer} server has been received.`;
     if (selectedServer === 'FusionPBX') {
-        const capacityDetails = fusionPbxCapacities.find(c => c.value === selectedCapacity);
+        const capacityDetails = fusionPbxCapacities.find(c => c.value === selectedFusionCapacity);
         toastDescription = `Your order for a ${selectedServer} server with ${capacityDetails?.label} has been received.`;
+    } else if (selectedServer === 'VOS3000') {
+        const capacityDetails = vos3000Capacities.find(c => c.value === selectedVosCapacity);
+        toastDescription = `Your order for a ${selectedServer} server with ${capacityDetails?.label} has been received.`;
+    } else if (selectedServer === 'VICIBOX') {
+        const tierDetails = viciboxUserTiers.find(t => t.value === selectedViciboxTier);
+        toastDescription = `Your order for a ${selectedServer} server for ${tierDetails?.label} has been received.`;
     }
 
     toast({
@@ -121,9 +150,10 @@ export function ServerDashboard() {
         description: toastDescription,
     });
 
-    // Reset form and close dialog
     setSelectedServer('');
-    setSelectedCapacity('');
+    setSelectedFusionCapacity('');
+    setSelectedVosCapacity('');
+    setSelectedViciboxTier('');
     setRequirements('');
     setOrderDialogOpen(false);
   };
@@ -232,13 +262,14 @@ export function ServerDashboard() {
                             </SelectContent>
                         </Select>
                     </div>
+
                     {selectedServer === 'FusionPBX' && (
                         <div className="grid items-center grid-cols-4 gap-4">
-                            <Label htmlFor="capacity" className="text-right">
+                            <Label htmlFor="fusion-capacity" className="text-right">
                                 Capacity
                             </Label>
-                            <Select value={selectedCapacity} onValueChange={setSelectedCapacity}>
-                                <SelectTrigger id="capacity" className="col-span-3">
+                            <Select value={selectedFusionCapacity} onValueChange={setSelectedFusionCapacity}>
+                                <SelectTrigger id="fusion-capacity" className="col-span-3">
                                     <SelectValue placeholder="Select capacity" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -251,6 +282,47 @@ export function ServerDashboard() {
                             </Select>
                         </div>
                     )}
+
+                    {selectedServer === 'VOS3000' && (
+                        <div className="grid items-center grid-cols-4 gap-4">
+                            <Label htmlFor="vos-capacity" className="text-right">
+                                Capacity
+                            </Label>
+                            <Select value={selectedVosCapacity} onValueChange={setSelectedVosCapacity}>
+                                <SelectTrigger id="vos-capacity" className="col-span-3">
+                                    <SelectValue placeholder="Select capacity" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {vos3000Capacities.map(capacity => (
+                                        <SelectItem key={capacity.value} value={capacity.value}>
+                                            {capacity.label} ({capacity.price})
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    )}
+                    
+                    {selectedServer === 'VICIBOX' && (
+                        <div className="grid items-center grid-cols-4 gap-4">
+                            <Label htmlFor="vicibox-tier" className="text-right">
+                                Users
+                            </Label>
+                            <Select value={selectedViciboxTier} onValueChange={setSelectedViciboxTier}>
+                                <SelectTrigger id="vicibox-tier" className="col-span-3">
+                                    <SelectValue placeholder="Select agents tier" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {viciboxUserTiers.map(tier => (
+                                        <SelectItem key={tier.value} value={tier.value}>
+                                            {tier.label} ({tier.price})
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    )}
+
                     <div className="grid items-center grid-cols-4 gap-4">
                         <Label htmlFor="requirements" className="text-right">
                             Requirements
