@@ -50,10 +50,10 @@ export function ServerStatusPage() {
     // Perform an initial check when the component mounts
     handleRefreshAll();
     
-    // Set up an interval to refresh every 3 seconds
+    // Set up an interval to refresh every 30 seconds
     const intervalId = setInterval(() => {
       handleRefreshAll();
-    }, 3000); // 3000ms = 3 seconds
+    }, 30000); // 30000ms = 30 seconds
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
