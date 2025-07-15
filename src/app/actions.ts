@@ -54,23 +54,15 @@ async function checkServerStatus(server: Server): Promise<ServerWithStatus> {
     return { ...server, status: 'Error', resolvedIp: 'DNS Error' };
   }
   
-  const targetIp = resolvedIp;
-  const hostName = isIpAddress ? server.ip : new URL(`http://${server.ip}`).hostname;
-
-
   for (const protocol of protocols) {
     try {
-      // We ping the IP directly but tell the server which host we want
-      const url = `${protocol}://${targetIp}`;
+      const url = `${protocol}://${resolvedIp}`;
 
       const response = await fetch(url, {
         method: 'GET',
         redirect: 'follow',
         timeout: 5000,
         agent: protocol === 'https' ? httpsAgent : undefined,
-        headers: {
-            'Host': hostName
-        },
       });
 
       if (response) {
