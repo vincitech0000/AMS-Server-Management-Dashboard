@@ -173,7 +173,7 @@ const servers = [
     description: usDidFeatures,
   },
   {
-    name: 'US Toll-free',
+    name: 'High Risk US Toll-free',
     type: 'TFN',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [],
