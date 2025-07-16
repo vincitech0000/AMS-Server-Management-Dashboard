@@ -4,20 +4,14 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Wifi } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import Image from 'next/image';
 import { Input } from '@/components/ui/input';
-import { pingAllServers, type ServerWithStatus } from '@/app/actions';
-import { cn } from '@/lib/utils';
-
-const defaultDescription = <p className="text-sm text-muted-foreground">Select an access point below. You can update the URLs in the code.</p>;
 
 const smsFeatures = (
     <>
@@ -31,44 +25,6 @@ const smsFeatures = (
     </>
 );
 
-const vos3000Features = (
-    <>
-      <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-        <li>Wholesale VoIP</li>
-        <li>Call routing</li>
-        <li>Billing & rating</li>
-        <li>Reporting</li>
-      </ul>
-    </>
-);
-
-const hardwareRequirements = (
-  <Accordion type="single" collapsible className="w-full mt-4">
-      <AccordionItem value="item-1">
-          <AccordionTrigger className="text-sm font-semibold text-foreground/90 py-2 hover:no-underline">Hardware Estimates (1k-5k CC)</AccordionTrigger>
-          <AccordionContent>
-              <div className="text-xs text-muted-foreground space-y-2 pt-2">
-                  <p className="font-bold">For ~1000 Concurrent Calls:</p>
-                  <ul className="list-disc list-inside pl-2 space-y-1">
-                      <li><span className="font-semibold">CPU:</span> 16+ Cores (e.g., Intel Xeon Silver/Gold)</li>
-                      <li><span className="font-semibold">RAM:</span> 64GB - 128GB DDR4 ECC</li>
-                      <li><span className="font-semibold">Storage:</span> High-speed NVMe SSDs (RAID)</li>
-                  </ul>
-                   <p className="font-bold mt-2">For 1k-5k+ Concurrent Calls (Distributed):</p>
-                  <ul className="list-disc list-inside pl-2 space-y-1">
-                      <li><span className="font-semibold">Voice Switch:</span> Multiple servers, 32+ core CPU, 64-128GB RAM each</li>
-                      <li><span className="font-semibold">App Server:</span> 8-16 core CPU, 32-64GB RAM</li>
-                      <li><span className="font-semibold">Database Server:</span> 16+ core CPU, 128GB+ RAM, High-perf NVMe SSDs</li>
-                  </ul>
-                  <p className="text-xs italic mt-2">Note: These are estimates. For production, consult a certified expert.</p>
-              </div>
-          </AccordionContent>
-      </AccordionItem>
-  </Accordion>
-);
-
-
 const astppFeatures = (
     <>
       <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
@@ -78,7 +34,6 @@ const astppFeatures = (
         <li>Wholesale & Retail VoIP Billing</li>
         <li>Class 4 & 5 Softswitch Features</li>
       </ul>
-      {hardwareRequirements}
     </>
 );
 
@@ -91,7 +46,6 @@ const magnusBillingFeatures = (
         <li>Rate Management</li>
         <li>Customer Portal</li>
       </ul>
-      {hardwareRequirements}
     </>
 );
 
@@ -213,16 +167,6 @@ const servers = [
   },
 ];
 
-const serversToCheck = [
-  { name: 'FusionPBX Server', ip: '173.208.249.122' },
-  { name: 'Bulk SMS Server (bulksms.amsserver.com)', ip: '142.54.188.154' },
-  { name: 'VICIBOX124', ip: '107.150.36.124' },
-  { name: 'VICIBOX123', ip: 'box123.amsserver.com' },
-  { name: 'VICIBOX126', ip: 'box126.amsserver.com' },
-  { name: 'VICIBOX75', ip: 'box75.amsserver.com' },
-  { name: 'VICIBOX78', ip: 'box78.amsserver.com' },
-];
-
 const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
 
 const fusionPbxCapacities = [
@@ -283,18 +227,6 @@ export function ServerDashboard() {
   const [captchaText, setCaptchaText] = useState('');
   const [captchaInput, setCaptchaInput] = useState('');
   
-  const [serverStatus, setServerStatus] = useState<'checking' | 'online' | 'offline'>('checking');
-
-  useEffect(() => {
-    async function checkStatuses() {
-        setServerStatus('checking');
-        const results = await pingAllServers(serversToCheck);
-        const anyOffline = results.some(s => s.status === 'Offline' || s.status === 'Error');
-        setServerStatus(anyOffline ? 'offline' : 'online');
-    }
-    checkStatuses();
-  }, []);
-
   useEffect(() => {
     if (isOrderDialogOpen && orderStep === 'form') {
       setCaptchaText(generateCaptcha());
@@ -434,48 +366,19 @@ export function ServerDashboard() {
                   <stop offset="100%" stopColor="#3B82F6" />
                 </linearGradient>
               </defs>
-              <g fill="url(#logoGradient)">
-                <path
-                  d="M50 10 a 40 40 0 0 1 0 80 a 40 40 0 0 1 0 -80 M 50 22 a 28 28 0 0 1 0 56 a 28 28 0 0 1 0 -56 M 50 34 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"
-                  fill="none"
-                  stroke="url(#logoGradient)"
-                  strokeWidth="8"
-                  strokeLinecap="round"
-                />
-                <circle cx="50" cy="62" r="6" />
-                <path
-                  d="M50 62 L 30 75 M50 62 L 70 75 M50 62 L 25 90 M50 62 L 75 90 M50 62 L 40 95 M50 62 L 60 95"
-                  stroke="url(#logoGradient)"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  fill="none"
-                />
-                <circle cx="30" cy="75" r="5" />
-                <circle cx="70" cy="75" r="5" />
-                <circle cx="25" cy="90" r="5" />
-                <circle cx="75" cy="90" r="5" />
-                <circle cx="40" cy="95" r="5" />
-                <circle cx="60" cy="95" r="5" />
-              </g>
+              <path
+                d="M50 10 a 40 40 0 0 1 0 80 a 40 40 0 0 1 0 -80 M 50 22 a 28 28 0 0 1 0 56 a 28 28 0 0 1 0 -56 M 50 34 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"
+                fill="none"
+                stroke="url(#logoGradient)"
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+              <circle cx="50" cy="50" r="6" />
             </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
               <p className="text-xs md:text-sm text-muted-foreground">One-click access to all your servers.</p>
             </div>
-          </div>
-          <div>
-            <Button asChild 
-              className={cn({
-                'bg-green-500 hover:bg-green-500/90 text-white': serverStatus === 'online',
-                'bg-red-500 hover:bg-red-500/90 text-white': serverStatus === 'offline',
-              })}
-            >
-              <Link href="/server-status">
-                {serverStatus === 'checking' && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                {serverStatus !== 'checking' && <Wifi className="mr-2 h-4 w-4" />}
-                Server Status
-              </Link>
-            </Button>
           </div>
         </div>
       </header>
@@ -519,14 +422,14 @@ export function ServerDashboard() {
                 {server.description}
               </CardContent>
               <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
-                {server.accessPoints.map((accessPoint, i) => (
+                {server.accessPoints.length > 0 ? server.accessPoints.map((accessPoint, i) => (
                   <a key={i} href={accessPoint.url} target="_blank" rel="noopener noreferrer">
                     <Button size="sm">
                       {accessPoint.name}
                       {accessPoint.name !== 'Connect' && <ArrowUpRight className="w-4 h-4 ml-2" />}
                     </Button>
                   </a>
-                ))}
+                )) :  <p className="text-sm text-muted-foreground">Contact us for access.</p>}
               </CardFooter>
             </Card>
           ))}
