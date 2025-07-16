@@ -33,6 +33,10 @@ const astppFeatures = (
         <li>Calling Cards</li>
         <li>Wholesale & Retail VoIP Billing</li>
         <li>Class 4 & 5 Softswitch Features</li>
+        <li>IVR (Interactive Voice Response)</li>
+        <li>Auto Provisioning</li>
+        <li>DID Management</li>
+        <li>Payment Gateway Integration</li>
       </ul>
     </>
 );
@@ -45,6 +49,10 @@ const magnusBillingFeatures = (
         <li>Call Detail Records (CDR) Analysis</li>
         <li>Rate Management</li>
         <li>Customer Portal</li>
+        <li>Agent Management</li>
+        <li>Invoicing and Payments</li>
+        <li>LCR (Least Cost Routing)</li>
+        <li>Advanced Reporting</li>
       </ul>
     </>
 );
