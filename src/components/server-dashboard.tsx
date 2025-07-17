@@ -474,7 +474,7 @@ export function ServerDashboard() {
                                     Portsip
                                 </Button>
                             </a>
-                            <a href="https://www.zoiper.com/en/voip-softphone/download/current" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.zoiper.com/en/voip-softphone/download/zoiper5/for/windows" target="_blank" rel="noopener noreferrer">
                                 <Button size="sm" variant="outline">
                                     <Download className="w-4 h-4 mr-2" />
                                     Zoiper
@@ -729,5 +729,3 @@ export function ServerDashboard() {
     </div>
   );
 }
-
-    
