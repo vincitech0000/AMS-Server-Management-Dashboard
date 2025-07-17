@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
 
 const smsFeatures = (
     <>
@@ -381,7 +382,7 @@ export function ServerDashboard() {
                 strokeWidth="8"
                 strokeLinecap="round"
               />
-              <circle cx="50" cy="50" r="6" />
+              <circle cx="50" cy="50" r="6" fill="url(#logoGradient)" />
             </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
@@ -450,19 +451,37 @@ export function ServerDashboard() {
                     </div>
                     <div>
                         <CardTitle className="text-lg">Place New Order</CardTitle>
-                        <CardDescription>Request a new server setup.</CardDescription>
+                        <CardDescription>Request a server or download tools.</CardDescription>
                     </div>
                 </CardHeader>
                 <CardContent className="flex-grow p-4">
-                    <p className="text-sm text-muted-foreground">Need a new server? Place your order here and we'll get it set up for you.</p>
+                    <p className="text-sm text-muted-foreground">Need a new server? Place an order here. You can also download useful softphones.</p>
                 </CardContent>
-                <CardFooter className="p-4 bg-muted/50">
+                <CardFooter className="flex flex-col items-start gap-4 p-4 bg-muted/50">
                     <DialogTrigger asChild>
                         <Button size="sm" variant="secondary" onClick={() => setOrderDialogOpen(true)}>
                             Place Order
                             <ArrowUpRight className="w-4 h-4 ml-2" />
                         </Button>
                     </DialogTrigger>
+                    <Separator />
+                    <div className="w-full">
+                        <p className="text-xs font-semibold text-muted-foreground mb-2">SOFTPHONE DOWNLOADS</p>
+                        <div className="flex flex-wrap gap-2">
+                            <a href="https://www.portsip.com/download-portsip-softphone/" target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" variant="outline">
+                                    <Download className="w-4 h-4 mr-2" />
+                                    Portsip
+                                </Button>
+                            </a>
+                            <a href="https://www.zoiper.com/en/voip-softphone/download/current" target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" variant="outline">
+                                    <Download className="w-4 h-4 mr-2" />
+                                    Zoiper
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
                 </CardFooter>
             </Card>
             <DialogContent className="sm:max-w-[425px]">
@@ -710,3 +729,5 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
