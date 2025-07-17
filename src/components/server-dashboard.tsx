@@ -468,7 +468,7 @@ export function ServerDashboard() {
                     <div className="w-full">
                         <p className="text-xs font-semibold text-muted-foreground mb-2">SOFTPHONE DOWNLOADS</p>
                         <div className="flex flex-wrap gap-2">
-                            <a href="https://www.portsip.com/download-portsip-softphone/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.portsip.com/downloads/pbx/v22/portsip-pbx-22.2.15.438.exe" target="_blank" rel="noopener noreferrer">
                                 <Button size="sm" variant="outline">
                                     <Download className="w-4 h-4 mr-2" />
                                     Portsip
