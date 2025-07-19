@@ -21,9 +21,9 @@ const PresentationOutputSchema = z.object({
   title: z.string().describe('The title of the presentation.'),
   slides: z.array(SlideSchema).describe('An array of presentation slides.'),
 });
-export type PresentationOutput = z.infer<typeof PresentationOutputSchema>;
+type PresentationOutput = z.infer<typeof PresentationOutputSchema>;
 
-export const PresentationInputSchema = z.object({
+const PresentationInputSchema = z.object({
   topic: z.string().describe('The topic for the presentation.'),
 });
 export type PresentationInput = z.infer<typeof PresentationInputSchema>;

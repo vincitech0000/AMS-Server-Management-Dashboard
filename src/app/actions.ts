@@ -23,8 +23,9 @@ export async function generateHtmlAction(prompt: string) {
 }
 
 export async function generatePresentationAction(topic: string) {
+  const presentationInputSchema = z.string().min(1, 'Topic cannot be empty.');
   try {
-    const validatedTopic = promptSchema.safeParse(topic);
+    const validatedTopic = presentationInputSchema.safeParse(topic);
     if (!validatedTopic.success) {
       return { error: 'Invalid topic.', details: validatedTopic.error.format() };
     }
