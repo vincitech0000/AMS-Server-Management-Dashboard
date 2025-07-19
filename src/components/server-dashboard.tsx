@@ -452,12 +452,7 @@ export function ServerDashboard() {
                 {webAppFeatures}
             </CardContent>
             <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
-                <Button asChild size="sm">
-                    <Link href="/markup-maestro">
-                        Markup Maestro
-                        <ArrowUpRight className="w-4 h-4 ml-2" />
-                    </Link>
-                </Button>
+                <p className="text-sm text-muted-foreground">Contact us for custom web app development.</p>
             </CardFooter>
           </Card>
 
