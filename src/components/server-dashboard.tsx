@@ -373,7 +373,7 @@ export function ServerDashboard() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <header className="p-6 border-b">
+      <header className="p-6 border-b bg-card">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
             <svg
@@ -385,8 +385,8 @@ export function ServerDashboard() {
             >
               <defs>
                 <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(var(--accent))" />
-                  <stop offset="100%" stopColor="hsl(var(--primary))" />
+                  <stop offset="0%" stopColor="hsl(var(--primary))" />
+                  <stop offset="100%" stopColor="hsl(var(--accent))" />
                 </linearGradient>
               </defs>
               <path
@@ -774,7 +774,7 @@ export function ServerDashboard() {
           </Dialog>
         </div>
       </main>
-      <footer className="p-6 text-sm text-center border-t text-muted-foreground">
+      <footer className="p-6 text-sm text-center border-t text-muted-foreground bg-card">
         <p>&copy; {new Date().getFullYear()} Server Dashboard. All rights reserved.</p>
       </footer>
     </div>
