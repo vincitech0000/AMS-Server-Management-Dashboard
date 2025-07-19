@@ -147,7 +147,27 @@ export function ServerDashboard() {
         </>
       ),
     },
-      {
+    {
+      name: 'Bulk SMS Server',
+      type: 'Bulk SMS',
+      icon: <MessageSquare className="w-8 h-8" />,
+      accessPoints: [
+          { name: 'LOGIN', url: 'https://bulksms.amsserver.com/login' },
+          { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
+      ],
+      description: (
+        <>
+            <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                <li>High-volume messaging</li>
+                <li>API integration</li>
+                <li>Message scheduling</li>
+                <li>Reporting & analytics</li>
+            </ul>
+        </>
+      ),
+    },
+    {
       name: 'ASTPP',
       type: 'Billing',
       icon: <Server className="w-8 h-8" />,
@@ -277,26 +297,6 @@ export function ServerDashboard() {
                 </div>
             </>
         )
-    },
-    {
-      name: 'Bulk SMS Server',
-      type: 'Bulk SMS',
-      icon: <MessageSquare className="w-8 h-8" />,
-      accessPoints: [
-          { name: 'LOGIN', url: 'https://bulksms.amsserver.com/login' },
-          { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
-      ],
-      description: (
-        <>
-            <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                <li>High-volume messaging</li>
-                <li>API integration</li>
-                <li>Message scheduling</li>
-                <li>Reporting & analytics</li>
-            </ul>
-        </>
-      ),
     },
   ];
 
@@ -790,5 +790,7 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
 
     
