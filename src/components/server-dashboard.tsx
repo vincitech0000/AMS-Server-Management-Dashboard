@@ -14,212 +14,6 @@ import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 
-const smsFeatures = (
-    <>
-      <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-        <li>High-volume messaging</li>
-        <li>API integration</li>
-        <li>Message scheduling</li>
-        <li>Reporting & analytics</li>
-      </ul>
-    </>
-);
-
-const vos3000Features = (
-    <>
-        <p className="text-sm text-muted-foreground mb-4">
-            About VOS3000: VOS3000 is a carrier-grade softswitch designed for wholesale VoIP operations. It provides a stable and efficient platform for managing large volumes of VoIP traffic.
-        </p>
-        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-            <li>Wholesale VoIP Billing</li>
-            <li>Rate and Routing Management</li>
-            <li>Real-time Call Monitoring</li>
-            <li>Least Cost Routing (LCR)</li>
-            <li>SIP/H.323 Protocol Support</li>
-        </ul>
-    </>
-);
-
-
-const astppFeatures = (
-    <>
-      <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-        <li>Multi-level Reseller Management</li>
-        <li>Calling Cards</li>
-        <li>Wholesale & Retail VoIP Billing</li>
-        <li>Class 4 & 5 Softswitch Features</li>
-        <li>IVR (Interactive Voice Response)</li>
-        <li>Auto Provisioning</li>
-        <li>DID Management</li>
-        <li>Payment Gateway Integration</li>
-      </ul>
-    </>
-);
-
-const magnusBillingFeatures = (
-    <>
-      <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-        <li>Prepaid & Postpaid Billing</li>
-        <li>Call Detail Records (CDR) Analysis</li>
-        <li>Rate Management</li>
-        <li>Customer Portal</li>
-        <li>Agent Management</li>
-        <li>Invoicing and Payments</li>
-        <li>LCR (Least Cost Routing)</li>
-        <li>Advanced Reporting</li>
-      </ul>
-    </>
-);
-
-const usDidFeatures = (
-    <>
-        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-            <li>Low-cost local numbers</li>
-            <li>Wide coverage across the US</li>
-            <li>All DIDs and TFNs will be routed to FusionPBX</li>
-            <li>Separate domain login & access to control your DID/TFN</li>
-        </ul>
-        <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
-        <div className="text-sm text-muted-foreground space-y-2">
-            <div>
-                <p className="font-semibold">Low Risk DID:</p>
-                <ul className="list-disc list-inside pl-4">
-                    <li>$65/DID (for a single DID)</li>
-                    <li>$35/DID (for orders of 10+)</li>
-                </ul>
-            </div>
-            <div>
-                <p className="font-semibold">Low Risk TFN:</p>
-                <ul className="list-disc list-inside pl-4">
-                    <li>$85/TFN (for a single TFN)</li>
-                    <li>$55/TFN (for orders of 10+)</li>
-                </ul>
-            </div>
-        </div>
-    </>
-);
-
-const usTollFreeFeatures = (
-    <>
-        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-            <li>1-800 series numbers (888, 877, etc.)</li>
-            <li>Nationwide reach with a single number</li>
-            <li>All DIDs and TFNs will be routed to FusionPBX</li>
-            <li>Separate domain login & access to control your DID/TFN</li>
-        </ul>
-        <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
-        <div className="text-sm text-muted-foreground space-y-2">
-            <div>
-                <p className="font-semibold">HIGH Risk DID:</p>
-                <ul className="list-disc list-inside pl-4">
-                    <li>$225/DID (Includes 10 Channels)</li>
-                </ul>
-            </div>
-            <div>
-                <p className="font-semibold">HIGH Risk TFN:</p>
-                <ul className="list-disc list-inside pl-4">
-                    <li>$275/TFN (Includes 10 channels)</li>
-                </ul>
-            </div>
-        </div>
-    </>
-);
-
-const webAppFeatures = (
-    <>
-        <p className="text-sm text-muted-foreground">
-            Our web applications are built with a modern stack for a robust and scalable experience.
-        </p>
-        <div className="mt-4 space-y-3">
-            <div>
-                <p className="text-sm font-semibold text-foreground/90 mb-1">Technology Stack:</p>
-                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                    <li><span className="font-semibold">Frontend:</span> Next.js, React, Tailwind CSS</li>
-                    <li><span className="font-semibold">Backend:</span> Next.js, Express.js</li>
-                    <li><span className="font-semibold">Database:</span> MYsql , Mango DB, Firebase</li>
-                </ul>
-            </div>
-        </div>
-    </>
-);
-
-const servers = [
-    {
-    name: 'VOS3000',
-    type: 'VoIP Softswitch',
-    icon: <Server className="w-8 h-8" />,
-    accessPoints: [
-        { name: 'CDR Login', url: 'https://138.201.18.22:8443/login' },
-    ],
-    description: vos3000Features,
-  },
-  {
-    name: 'FusionPBX Server',
-    type: 'FusionPBX',
-    icon: <Server className="w-8 h-8" />,
-    accessPoints: [{ name: 'Login', url: 'https://173.208.249.122/' }],
-    description: (
-      <>
-        <p className="text-sm text-muted-foreground mb-4">
-            About FusionPBX Server: FusionPBX is a powerful, open-source multi-tenant PBX platform built on FreeSWITCH. It provides a robust and scalable solution for businesses of all sizes, offering a rich feature set for VoIP communications.
-        </p>
-        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-          <li>Multi-tenant</li>
-          <li>Voicemail-to-email</li>
-          <li>Call recording</li>
-          <li>Ring groups</li>
-          <li>etc</li>
-        </ul>
-      </>
-    ),
-  },
-    {
-    name: 'ASTPP',
-    type: 'Billing',
-    icon: <Server className="w-8 h-8" />,
-    accessPoints: [],
-    description: astppFeatures,
-  },
-  {
-    name: 'Magnus Billing',
-    type: 'Billing',
-    icon: <Server className="w-8 h-8" />,
-    accessPoints: [],
-    description: magnusBillingFeatures,
-  },
-  {
-    name: 'High Risk US Toll-free',
-    type: 'DIDs & TFN available',
-    icon: <Phone className="w-8 h-8" />,
-    accessPoints: [],
-    description: usTollFreeFeatures,
-  },
-  {
-    name: 'Low Risk DID/ TFN',
-    type: 'US DIDs & US TFNs',
-    icon: <Phone className="w-8 h-8" />,
-    accessPoints: [],
-    description: usDidFeatures,
-  },
-  {
-    name: 'Bulk SMS Server',
-    type: 'Bulk SMS',
-    icon: <MessageSquare className="w-8 h-8" />,
-    accessPoints: [
-        { name: 'LOGIN', url: 'https://bulksms.amsserver.com/login' },
-        { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
-    ],
-    description: smsFeatures,
-  },
-];
-
 const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
 
 const fusionPbxCapacities = [
@@ -285,6 +79,226 @@ export function ServerDashboard() {
       setCaptchaText(generateCaptcha());
     }
   }, [isOrderDialogOpen, orderStep]);
+
+  const servers = [
+    {
+        name: 'VICIBOX Dialers',
+        type: '5 Servers',
+        icon: <Phone className="w-8 h-8" />,
+        isSpecial: true,
+        href: '/vicibox',
+        description: (
+            <>
+                <p className="text-sm text-muted-foreground mb-4">
+                    VICIBOX is a comprehensive, contact center suite. It offers a wide range of features for both inbound and outbound call handling, making it a powerful tool for call centers of all sizes.
+                </p>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>Outbound Campaing</li>
+                    <li>Inbound Campaign</li>
+                    <li>Press One Campaing</li>
+                    <li>Avator Campaing</li>
+                    <li>Call Menu Campaing</li>
+                    <li>Broadcast Campaing</li>
+                </ul>
+            </>
+        ),
+    },
+    {
+      name: 'VOS3000',
+      type: 'VoIP Softswitch',
+      icon: <Server className="w-8 h-8" />,
+      accessPoints: [
+          { name: 'CDR Login', url: 'https://138.201.18.22:8443/login' },
+      ],
+      description: (
+          <>
+              <p className="text-sm text-muted-foreground mb-4">
+                  About VOS3000: VOS3000 is a carrier-grade softswitch designed for wholesale VoIP operations. It provides a stable and efficient platform for managing large volumes of VoIP traffic.
+              </p>
+              <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <li>Wholesale VoIP Billing</li>
+                  <li>Rate and Routing Management</li>
+                  <li>Real-time Call Monitoring</li>
+                  <li>Least Cost Routing (LCR)</li>
+                  <li>SIP/H.323 Protocol Support</li>
+              </ul>
+          </>
+      ),
+    },
+    {
+      name: 'FusionPBX Server',
+      type: 'FusionPBX',
+      icon: <Server className="w-8 h-8" />,
+      accessPoints: [{ name: 'Login', url: 'https://173.208.249.122/' }],
+      description: (
+        <>
+          <p className="text-sm text-muted-foreground mb-4">
+              About FusionPBX Server: FusionPBX is a powerful, open-source multi-tenant PBX platform built on FreeSWITCH. It provides a robust and scalable solution for businesses of all sizes, offering a rich feature set for VoIP communications.
+          </p>
+          <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+          <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+            <li>Multi-tenant</li>
+            <li>Voicemail-to-email</li>
+            <li>Call recording</li>
+            <li>Ring groups</li>
+            <li>etc</li>
+          </ul>
+        </>
+      ),
+    },
+      {
+      name: 'ASTPP',
+      type: 'Billing',
+      icon: <Server className="w-8 h-8" />,
+      accessPoints: [],
+      description: (
+        <>
+        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+          <li>Multi-level Reseller Management</li>
+          <li>Calling Cards</li>
+          <li>Wholesale & Retail VoIP Billing</li>
+          <li>Class 4 & 5 Softswitch Features</li>
+          <li>IVR (Interactive Voice Response)</li>
+          <li>Auto Provisioning</li>
+          <li>DID Management</li>
+          <li>Payment Gateway Integration</li>
+        </ul>
+      </>
+      ),
+    },
+    {
+      name: 'Magnus Billing',
+      type: 'Billing',
+      icon: <Server className="w-8 h-8" />,
+      accessPoints: [],
+      description: (
+        <>
+        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+          <li>Prepaid & Postpaid Billing</li>
+          <li>Call Detail Records (CDR) Analysis</li>
+          <li>Rate Management</li>
+          <li>Customer Portal</li>
+          <li>Agent Management</li>
+          <li>Invoicing and Payments</li>
+          <li>LCR (Least Cost Routing)</li>
+          <li>Advanced Reporting</li>
+        </ul>
+      </>
+      ),
+    },
+    {
+      name: 'High Risk US Toll-free',
+      type: 'DIDs & TFN available',
+      icon: <Phone className="w-8 h-8" />,
+      accessPoints: [],
+      description: (
+        <>
+          <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+          <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+              <li>1-800 series numbers (888, 877, etc.)</li>
+              <li>Nationwide reach with a single number</li>
+              <li>All DIDs and TFNs will be routed to FusionPBX</li>
+              <li>Separate domain login & access to control your DID/TFN</li>
+          </ul>
+          <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
+          <div className="text-sm text-muted-foreground space-y-2">
+              <div>
+                  <p className="font-semibold">HIGH Risk DID:</p>
+                  <ul className="list-disc list-inside pl-4">
+                      <li>$225/DID (Includes 10 Channels)</li>
+                  </ul>
+              </div>
+              <div>
+                  <p className="font-semibold">HIGH Risk TFN:</p>
+                  <ul className="list-disc list-inside pl-4">
+                      <li>$275/TFN (Includes 10 channels)</li>
+                  </ul>
+              </div>
+          </div>
+      </>
+      ),
+    },
+    {
+      name: 'Low Risk DID/ TFN',
+      type: 'US DIDs & US TFNs',
+      icon: <Phone className="w-8 h-8" />,
+      accessPoints: [],
+      description: (
+        <>
+          <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+          <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+              <li>Low-cost local numbers</li>
+              <li>Wide coverage across the US</li>
+              <li>All DIDs and TFNs will be routed to FusionPBX</li>
+              <li>Separate domain login & access to control your DID/TFN</li>
+          </ul>
+          <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
+          <div className="text-sm text-muted-foreground space-y-2">
+              <div>
+                  <p className="font-semibold">Low Risk DID:</p>
+                  <ul className="list-disc list-inside pl-4">
+                      <li>$65/DID (for a single DID)</li>
+                      <li>$35/DID (for orders of 10+)</li>
+                  </ul>
+              </div>
+              <div>
+                  <p className="font-semibold">Low Risk TFN:</p>
+                  <ul className="list-disc list-inside pl-4">
+                      <li>$85/TFN (for a single TFN)</li>
+                      <li>$55/TFN (for orders of 10+)</li>
+                  </ul>
+              </div>
+          </div>
+      </>
+      ),
+    },
+    {
+        name: 'Web Apps',
+        type: 'Tools & Utilities',
+        icon: <AppWindow className="w-8 h-8" />,
+        accessPoints: [],
+        description: (
+            <>
+                <p className="text-sm text-muted-foreground">
+                    Our web applications are built with a modern stack for a robust and scalable experience.
+                </p>
+                <div className="mt-4 space-y-3">
+                    <div>
+                        <p className="text-sm font-semibold text-foreground/90 mb-1">Technology Stack:</p>
+                        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                            <li><span className="font-semibold">Frontend:</span> Next.js, React, Tailwind CSS</li>
+                            <li><span className="font-semibold">Backend:</span> Next.js, Express.js</li>
+                            <li><span className="font-semibold">Database:</span> MYsql , Mango DB, Firebase</li>
+                        </ul>
+                    </div>
+                </div>
+            </>
+        )
+    },
+    {
+      name: 'Bulk SMS Server',
+      type: 'Bulk SMS',
+      icon: <MessageSquare className="w-8 h-8" />,
+      accessPoints: [
+          { name: 'LOGIN', url: 'https://bulksms.amsserver.com/login' },
+          { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
+      ],
+      description: (
+        <>
+            <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                <li>High-volume messaging</li>
+                <li>API integration</li>
+                <li>Message scheduling</li>
+                <li>Reporting & analytics</li>
+            </ul>
+        </>
+      ),
+    },
+  ];
 
   const resetForm = () => {
     setSelectedServer('');
@@ -437,38 +451,6 @@ export function ServerDashboard() {
       </header>
       <main className="flex-grow p-4 md:p-8">
         <div className="container mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
-            <CardHeader className="flex flex-row items-center gap-4 p-4">
-              <div className="p-3 rounded-full bg-primary/10 text-primary">
-                <Phone className="w-8 h-8" />
-              </div>
-              <div>
-                <CardTitle className="text-lg">VICIBOX Dialers</CardTitle>
-                <CardDescription>5 Servers</CardDescription>
-              </div>
-            </CardHeader>
-            <CardContent className="flex-grow p-4">
-                <p className="text-sm text-muted-foreground mb-4">
-                    VICIBOX is a comprehensive, contact center suite. It offers a wide range of features for both inbound and outbound call handling, making it a powerful tool for call centers of all sizes.
-                </p>
-                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                    <li>Outbound Campaing</li>
-                    <li>Inbound Campaign</li>
-                    <li>Press One Campaing</li>
-                    <li>Avator Campaing</li>
-                    <li>Call Menu Campaing</li>
-                    <li>Broadcast Campaing</li>
-                </ul>
-            </CardContent>
-            <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
-                <Button asChild size="sm">
-                    <Link href="/vicibox">
-                        View All
-                        <ArrowUpRight className="w-4 h-4 ml-2" />
-                    </Link>
-                </Button>
-            </CardFooter>
-          </Card>
           
           {servers.map((server, index) => (
             <Card key={index} className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
@@ -485,12 +467,18 @@ export function ServerDashboard() {
                 {server.description}
               </CardContent>
               <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
-                {server.accessPoints.length > 0 ? server.accessPoints.map((accessPoint, i) => (
+                {server.isSpecial ? (
+                     <Button asChild size="sm">
+                        <Link href={server.href!}>
+                            View All
+                            <ArrowUpRight className="w-4 h-4 ml-2" />
+                        </Link>
+                    </Button>
+                ) : server.accessPoints && server.accessPoints.length > 0 ? server.accessPoints.map((accessPoint, i) => (
                   <a key={i} href={accessPoint.url} target="_blank" rel="noopener noreferrer">
                     <Button size="sm">
-                      {accessPoint.icon}
                       {accessPoint.name}
-                      {accessPoint.name !== 'Whatsapp' && accessPoint.name !== 'Teams ID' && <ArrowUpRight className="w-4 h-4 ml-2" />}
+                      <ArrowUpRight className="w-4 h-4 ml-2" />
                     </Button>
                   </a>
                 )) :  <p className="text-sm text-muted-foreground">Contact us for access.</p>}
@@ -498,24 +486,6 @@ export function ServerDashboard() {
             </Card>
           ))}
 
-          <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
-            <CardHeader className="flex flex-row items-center gap-4 p-4">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                    <AppWindow className="w-8 h-8" />
-                </div>
-                <div>
-                    <CardTitle className="text-lg">Web Apps</CardTitle>
-                    <CardDescription>Tools & Utilities</CardDescription>
-                </div>
-            </CardHeader>
-            <CardContent className="flex-grow p-4">
-                {webAppFeatures}
-            </CardContent>
-            <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
-                <p className="text-sm text-muted-foreground">Contact us for custom web app development.</p>
-            </CardFooter>
-          </Card>
-          
           <Dialog open={isOrderDialogOpen} onOpenChange={handleDialogChange}>
             <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
                 <CardHeader className="flex flex-row items-center gap-4 p-4">
@@ -820,3 +790,5 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
