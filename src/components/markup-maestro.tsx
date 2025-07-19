@@ -186,7 +186,7 @@ export function MarkupMaestro() {
           </div>
         </header>
         <main className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-4 p-4 overflow-hidden">
-          <Card className="flex flex-col h-full overflow-hidden">
+          <Card className="flex flex-col h-full overflow-hidden bg-transparent">
             <CardHeader>
               <CardTitle>HTML Editor</CardTitle>
             </CardHeader>
@@ -200,7 +200,7 @@ export function MarkupMaestro() {
               />
             </CardContent>
           </Card>
-          <Card className="flex flex-col h-full overflow-hidden">
+          <Card className="flex flex-col h-full overflow-hidden bg-transparent">
             <CardHeader>
               <CardTitle>Real-time Preview</CardTitle>
             </CardHeader>
