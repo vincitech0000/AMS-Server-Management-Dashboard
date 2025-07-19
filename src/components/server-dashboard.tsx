@@ -385,8 +385,8 @@ export function ServerDashboard() {
             >
               <defs>
                 <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#2DD4BF" />
-                  <stop offset="100%" stopColor="#3B82F6" />
+                  <stop offset="0%" stopColor="hsl(var(--accent))" />
+                  <stop offset="100%" stopColor="hsl(var(--primary))" />
                 </linearGradient>
               </defs>
               <path
@@ -479,7 +479,7 @@ export function ServerDashboard() {
           <Dialog open={isOrderDialogOpen} onOpenChange={handleDialogChange}>
             <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
                 <CardHeader className="flex flex-row items-center gap-4 p-4">
-                    <div className="p-3 rounded-full bg-accent/10 text-accent-foreground">
+                    <div className="p-3 rounded-full bg-accent/10 text-accent">
                         <ShoppingCart className="w-8 h-8" />
                     </div>
                     <div>
