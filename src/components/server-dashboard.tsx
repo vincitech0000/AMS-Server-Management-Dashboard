@@ -150,6 +150,15 @@ const webAppFeatures = (
 );
 
 const servers = [
+    {
+    name: 'VOS3000',
+    type: 'VoIP Softswitch',
+    icon: <Server className="w-8 h-8" />,
+    accessPoints: [
+        { name: 'CDR Login', url: 'https://138.201.18.22:8443/login' },
+    ],
+    description: vos3000Features,
+  },
   {
     name: 'FusionPBX Server',
     type: 'FusionPBX',
@@ -171,26 +180,7 @@ const servers = [
       </>
     ),
   },
-  {
-    name: 'Bulk SMS Server',
-    type: 'Bulk SMS',
-    icon: <MessageSquare className="w-8 h-8" />,
-    accessPoints: [
-        { name: 'LOGIN', url: 'https://bulksms.amsserver.com/login' },
-        { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
-    ],
-    description: smsFeatures,
-  },
     {
-    name: 'VOS3000',
-    type: 'VoIP Softswitch',
-    icon: <Server className="w-8 h-8" />,
-    accessPoints: [
-        { name: 'CDR Login', url: 'https://138.201.18.22:8443/login' },
-    ],
-    description: vos3000Features,
-  },
-  {
     name: 'ASTPP',
     type: 'Billing',
     icon: <Server className="w-8 h-8" />,
@@ -205,6 +195,13 @@ const servers = [
     description: magnusBillingFeatures,
   },
   {
+    name: 'High Risk US Toll-free',
+    type: 'DIDs & TFN available',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [],
+    description: usTollFreeFeatures,
+  },
+  {
     name: 'Low Risk DID/ TFN',
     type: 'US DIDs & US TFNs',
     icon: <Phone className="w-8 h-8" />,
@@ -212,11 +209,14 @@ const servers = [
     description: usDidFeatures,
   },
   {
-    name: 'High Risk US Toll-free',
-    type: 'DIDs & TFN available',
-    icon: <Phone className="w-8 h-8" />,
-    accessPoints: [],
-    description: usTollFreeFeatures,
+    name: 'Bulk SMS Server',
+    type: 'Bulk SMS',
+    icon: <MessageSquare className="w-8 h-8" />,
+    accessPoints: [
+        { name: 'LOGIN', url: 'https://bulksms.amsserver.com/login' },
+        { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
+    ],
+    description: smsFeatures,
   },
 ];
 
@@ -469,25 +469,7 @@ export function ServerDashboard() {
                 </Button>
             </CardFooter>
           </Card>
-
-          <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
-            <CardHeader className="flex flex-row items-center gap-4 p-4">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                    <AppWindow className="w-8 h-8" />
-                </div>
-                <div>
-                    <CardTitle className="text-lg">Web Apps</CardTitle>
-                    <CardDescription>Tools & Utilities</CardDescription>
-                </div>
-            </CardHeader>
-            <CardContent className="flex-grow p-4">
-                {webAppFeatures}
-            </CardContent>
-            <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
-                <p className="text-sm text-muted-foreground">Contact us for custom web app development.</p>
-            </CardFooter>
-          </Card>
-
+          
           {servers.map((server, index) => (
             <Card key={index} className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
               <CardHeader className="flex flex-row items-center gap-4 p-4">
@@ -515,6 +497,24 @@ export function ServerDashboard() {
               </CardFooter>
             </Card>
           ))}
+
+          <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
+            <CardHeader className="flex flex-row items-center gap-4 p-4">
+                <div className="p-3 rounded-full bg-primary/10 text-primary">
+                    <AppWindow className="w-8 h-8" />
+                </div>
+                <div>
+                    <CardTitle className="text-lg">Web Apps</CardTitle>
+                    <CardDescription>Tools & Utilities</CardDescription>
+                </div>
+            </CardHeader>
+            <CardContent className="flex-grow p-4">
+                {webAppFeatures}
+            </CardContent>
+            <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
+                <p className="text-sm text-muted-foreground">Contact us for custom web app development.</p>
+            </CardFooter>
+          </Card>
           
           <Dialog open={isOrderDialogOpen} onOpenChange={handleDialogChange}>
             <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
