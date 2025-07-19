@@ -112,9 +112,6 @@ export function ServerDashboard() {
       ],
       description: (
           <>
-              <p className="text-sm text-muted-foreground mb-4">
-                  About VOS3000: VOS3000 is a carrier-grade softswitch designed for wholesale VoIP operations. It provides a stable and efficient platform for managing large volumes of VoIP traffic.
-              </p>
               <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
               <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
                   <li>Wholesale VoIP Billing</li>
