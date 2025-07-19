@@ -114,6 +114,32 @@ const usTollFreeFeatures = (
     </>
 );
 
+const webAppFeatures = (
+    <>
+        <p className="text-sm text-muted-foreground">
+            Our web applications are built with a modern stack for a robust and scalable experience.
+        </p>
+        <div className="mt-4 space-y-3">
+            <div>
+                <p className="text-sm font-semibold text-foreground/90 mb-1">Technology Stack:</p>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li><span className="font-semibold">Frontend:</span> Next.js, React, Tailwind CSS</li>
+                    <li><span className="font-semibold">Backend:</span> Next.js, Genkit (for AI)</li>
+                    <li><span className="font-semibold">Database:</span> None required (stateless architecture)</li>
+                </ul>
+            </div>
+            <div>
+                <p className="text-sm font-semibold text-foreground/90 mb-1">Features:</p>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>AI-powered code generation</li>
+                    <li>Real-time HTML preview</li>
+                    <li>Code formatting and download</li>
+                </ul>
+            </div>
+        </div>
+    </>
+);
+
 const servers = [
   {
     name: 'FusionPBX Server',
@@ -423,9 +449,7 @@ export function ServerDashboard() {
                 </div>
             </CardHeader>
             <CardContent className="flex-grow p-4">
-                <p className="text-sm text-muted-foreground">
-                    Access powerful web applications like Markup Maestro, an AI-powered HTML editor.
-                </p>
+                {webAppFeatures}
             </CardContent>
             <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
                 <Button asChild size="sm">
