@@ -26,6 +26,23 @@ const smsFeatures = (
     </>
 );
 
+const vos3000Features = (
+    <>
+        <p className="text-sm text-muted-foreground mb-4">
+            About VOS3000: VOS3000 is a carrier-grade softswitch designed for wholesale VoIP operations. It provides a stable and efficient platform for managing large volumes of VoIP traffic.
+        </p>
+        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
+        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+            <li>Wholesale VoIP Billing</li>
+            <li>Rate and Routing Management</li>
+            <li>Real-time Call Monitoring</li>
+            <li>Least Cost Routing (LCR)</li>
+            <li>SIP/H.323 Protocol Support</li>
+        </ul>
+    </>
+);
+
+
 const astppFeatures = (
     <>
       <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
@@ -163,6 +180,13 @@ const servers = [
         { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
     ],
     description: smsFeatures,
+  },
+    {
+    name: 'VOS3000',
+    type: 'VoIP Softswitch',
+    icon: <Server className="w-8 h-8" />,
+    accessPoints: [],
+    description: vos3000Features,
   },
   {
     name: 'ASTPP',
