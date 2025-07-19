@@ -185,7 +185,9 @@ const servers = [
     name: 'VOS3000',
     type: 'VoIP Softswitch',
     icon: <Server className="w-8 h-8" />,
-    accessPoints: [],
+    accessPoints: [
+        { name: 'CDR Login', url: 'https://138.201.18.22:8443/login' },
+    ],
     description: vos3000Features,
   },
   {
