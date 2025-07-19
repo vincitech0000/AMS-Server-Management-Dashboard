@@ -1,5 +1,6 @@
 
 declare module 'lucide-react' {
+    export const AppWindow: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ArrowUpRight: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ArrowLeft: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Bot: React.FC<React.SVGProps<SVGSVGElement>>;

@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users, AppWindow } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -160,20 +160,14 @@ const servers = [
     name: 'Low Risk DID/ TFN',
     type: 'US DIDs & US TFNs',
     icon: <Phone className="w-8 h-8" />,
-    accessPoints: [
-      { name: 'Whatsapp', icon: <MessageCircle />, url: 'http://wa.me/19208156022?text=I%27m%20interested%20in%20Low%20Risk%20DID/%20TFN' },
-      { name: 'Teams ID', icon: <Users />, url: 'https://teams.live.com/l/invite/FEA2XRY-PelOorENgc' },
-    ],
+    accessPoints: [],
     description: usDidFeatures,
   },
   {
     name: 'High Risk US Toll-free',
     type: 'DIDs & TFN available',
     icon: <Phone className="w-8 h-8" />,
-    accessPoints: [
-      { name: 'Whatsapp', icon: <MessageCircle />, url: 'http://wa.me/19208156022?text=I%27m%20interested%20in%20High%20Risk%20US%20Toll-free' },
-      { name: 'Teams ID', icon: <Users />, url: 'https://teams.live.com/l/invite/FEA2XRY-PelOorENgc' },
-    ],
+    accessPoints: [],
     description: usTollFreeFeatures,
   },
 ];
@@ -418,6 +412,31 @@ export function ServerDashboard() {
             </CardFooter>
           </Card>
 
+          <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
+            <CardHeader className="flex flex-row items-center gap-4 p-4">
+                <div className="p-3 rounded-full bg-primary/10 text-primary">
+                    <AppWindow className="w-8 h-8" />
+                </div>
+                <div>
+                    <CardTitle className="text-lg">Web Apps</CardTitle>
+                    <CardDescription>Tools & Utilities</CardDescription>
+                </div>
+            </CardHeader>
+            <CardContent className="flex-grow p-4">
+                <p className="text-sm text-muted-foreground">
+                    Access powerful web applications like Markup Maestro, an AI-powered HTML editor.
+                </p>
+            </CardContent>
+            <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
+                <Button asChild size="sm">
+                    <Link href="/markup-maestro">
+                        Markup Maestro
+                        <ArrowUpRight className="w-4 h-4 ml-2" />
+                    </Link>
+                </Button>
+            </CardFooter>
+          </Card>
+
           {servers.map((server, index) => (
             <Card key={index} className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
               <CardHeader className="flex flex-row items-center gap-4 p-4">
@@ -458,7 +477,7 @@ export function ServerDashboard() {
                     </div>
                 </CardHeader>
                 <CardContent className="flex-grow p-4">
-                    <p className="text-sm text-muted-foreground">Need a new server? Place an order here. You can also download useful softphones.</p>
+                    <p className="text-sm text-muted-foreground">Need a new server? Place an order here. You can also download useful softphones or contact us for support.</p>
                 </CardContent>
                 <CardFooter className="flex flex-col items-start gap-4 p-4 bg-muted/50">
                     <DialogTrigger asChild>
@@ -481,6 +500,24 @@ export function ServerDashboard() {
                                 <Button size="sm" variant="outline">
                                     <Download className="w-4 h-4 mr-2" />
                                     Zoiper
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
+                     <Separator />
+                    <div className="w-full">
+                        <p className="text-xs font-semibold text-muted-foreground mb-2">GET SUPPORT</p>
+                        <div className="flex flex-wrap gap-2">
+                            <a href="http://wa.me/19208156022?text=I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" variant="outline">
+                                    <MessageCircle className="w-4 h-4 mr-2" />
+                                    Whatsapp
+                                </Button>
+                            </a>
+                            <a href="https://teams.live.com/l/invite/FEA2XRY-PelOorENgc" target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" variant="outline">
+                                    <Users className="w-4 h-4 mr-2" />
+                                    Teams ID
                                 </Button>
                             </a>
                         </div>
