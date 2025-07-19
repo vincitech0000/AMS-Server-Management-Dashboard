@@ -422,7 +422,17 @@ export function ServerDashboard() {
               </div>
             </CardHeader>
             <CardContent className="flex-grow p-4">
-                <p className="text-sm text-muted-foreground">About Vicibox: VICIBOX is a comprehensive, open-source contact center suite. It offers a wide range of features for both inbound and outbound call handling, making it a powerful tool for call centers of all sizes.</p>
+                <p className="text-sm text-muted-foreground mb-4">
+                    VICIBOX is a comprehensive, contact center suite. It offers a wide range of features for both inbound and outbound call handling, making it a powerful tool for call centers of all sizes.
+                </p>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>Outbound Campaing</li>
+                    <li>Inbound Campaign</li>
+                    <li>Press One Campaing</li>
+                    <li>Avator Campaing</li>
+                    <li>Call Menu Campaing</li>
+                    <li>Broadcast Campaing</li>
+                </ul>
             </CardContent>
             <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
                 <Button asChild size="sm">
