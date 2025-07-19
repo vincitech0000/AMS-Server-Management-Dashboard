@@ -124,16 +124,8 @@ const webAppFeatures = (
                 <p className="text-sm font-semibold text-foreground/90 mb-1">Technology Stack:</p>
                 <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
                     <li><span className="font-semibold">Frontend:</span> Next.js, React, Tailwind CSS</li>
-                    <li><span className="font-semibold">Backend:</span> Next.js, Genkit (for AI)</li>
+                    <li><span className="font-semibold">Backend:</span> Next.js, Express.js</li>
                     <li><span className="font-semibold">Database:</span> MYsql , Mango DB, Firebase</li>
-                </ul>
-            </div>
-            <div>
-                <p className="text-sm font-semibold text-foreground/90 mb-1">Features:</p>
-                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                    <li>AI-powered code generation</li>
-                    <li>Real-time HTML preview</li>
-                    <li>Code formatting and download</li>
                 </ul>
             </div>
         </div>
