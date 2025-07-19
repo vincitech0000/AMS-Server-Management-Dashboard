@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -161,7 +161,8 @@ const servers = [
     type: 'US DIDs & US TFNs',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Connect', url: 'http://wa.me/19208156022?text=I%27m%20interested%20in%20Low%20Risk%20DID/%20TFN' },
+      { name: 'Whatsapp', icon: <MessageCircle />, url: 'http://wa.me/19208156022?text=I%27m%20interested%20in%20Low%20Risk%20DID/%20TFN' },
+      { name: 'Teams ID', icon: <Users />, url: 'https://teams.live.com/l/invite/FEA2XRY-PelOorENgc' },
     ],
     description: usDidFeatures,
   },
@@ -170,7 +171,8 @@ const servers = [
     type: 'DIDs & TFN available',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Connect', url: 'http://wa.me/19208156022?text=I%27m%20interested%20in%20High%20Risk%20US%20Toll-free' },
+      { name: 'Whatsapp', icon: <MessageCircle />, url: 'http://wa.me/19208156022?text=I%27m%20interested%20in%20High%20Risk%20US%20Toll-free' },
+      { name: 'Teams ID', icon: <Users />, url: 'https://teams.live.com/l/invite/FEA2XRY-PelOorENgc' },
     ],
     description: usTollFreeFeatures,
   },
@@ -434,8 +436,9 @@ export function ServerDashboard() {
                 {server.accessPoints.length > 0 ? server.accessPoints.map((accessPoint, i) => (
                   <a key={i} href={accessPoint.url} target="_blank" rel="noopener noreferrer">
                     <Button size="sm">
+                      {accessPoint.icon}
                       {accessPoint.name}
-                      {accessPoint.name !== 'Connect' && <ArrowUpRight className="w-4 h-4 ml-2" />}
+                      {accessPoint.name !== 'Whatsapp' && accessPoint.name !== 'Teams ID' && <ArrowUpRight className="w-4 h-4 ml-2" />}
                     </Button>
                   </a>
                 )) :  <p className="text-sm text-muted-foreground">Contact us for access.</p>}
