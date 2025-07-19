@@ -134,7 +134,7 @@ export function ServerDashboard() {
       description: (
         <>
           <p className="text-sm text-muted-foreground mb-4">
-              About FusionPBX Server: FusionPBX is a powerful, open-source multi-tenant PBX platform built on FreeSWITCH. It provides a robust and scalable solution for businesses of all sizes, offering a rich feature set for VoIP communications.
+              FusionPBX is a powerful, open-source multi-tenant PBX platform built on FreeSWITCH. It provides a robust and scalable solution for businesses of all sizes, offering a rich feature set for VoIP communications.
           </p>
           <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
           <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
