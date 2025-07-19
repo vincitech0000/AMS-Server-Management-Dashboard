@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview A flow for generating animatic presentations.
@@ -33,6 +34,31 @@ export type PresentationWithImages = {
     slides: SlideWithImage[];
 };
 
+const scriptPrompt = ai.definePrompt({
+    name: 'generatePresentationScriptPrompt',
+    input: { schema: PresentationInputSchema },
+    output: { schema: PresentationOutputSchema },
+    prompt: `You are a creative writer who specializes in creating compelling presentations.
+    Generate a short presentation script based on the topic: {{{topic}}}.
+    The presentation should have a title and at least 3 slides.
+    For each slide, provide the speaker's name, the text for the slide, and a detailed image prompt that visually represents the slide's content.
+    The image prompt should be suitable for an AI image generation model.
+    `,
+});
+
+const generatePresentationFlow = ai.defineFlow(
+    {
+        name: 'generatePresentationFlow',
+        inputSchema: PresentationInputSchema,
+        outputSchema: PresentationOutputSchema,
+    },
+    async (input) => {
+        const { output } = await scriptPrompt(input);
+        return output!;
+    }
+);
+
+
 export async function generatePresentation(input: PresentationInput): Promise<PresentationWithImages> {
     const presentationResult = await generatePresentationFlow(input);
 
@@ -61,28 +87,3 @@ export async function generatePresentation(input: PresentationInput): Promise<Pr
         slides: slidesWithImages,
     };
 }
-
-
-const scriptPrompt = ai.definePrompt({
-    name: 'generatePresentationScriptPrompt',
-    input: { schema: PresentationInputSchema },
-    output: { schema: PresentationOutputSchema },
-    prompt: `You are a creative writer who specializes in creating compelling presentations.
-    Generate a short presentation script based on the topic: {{{topic}}}.
-    The presentation should have a title and at least 3 slides.
-    For each slide, provide the speaker's name, the text for the slide, and a detailed image prompt that visually represents the slide's content.
-    The image prompt should be suitable for an AI image generation model.
-    `,
-});
-
-const generatePresentationFlow = ai.defineFlow(
-    {
-        name: 'generatePresentationFlow',
-        inputSchema: PresentationInputSchema,
-        outputSchema: PresentationOutputSchema,
-    },
-    async (input) => {
-        const { output } = await scriptPrompt(input);
-        return output!;
-    }
-);
