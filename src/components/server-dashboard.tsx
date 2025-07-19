@@ -140,6 +140,9 @@ const servers = [
     accessPoints: [{ name: 'Login', url: 'https://173.208.249.122/' }],
     description: (
       <>
+        <p className="text-sm text-muted-foreground mb-4">
+            About FusionPBX Server: FusionPBX is a powerful, open-source multi-tenant PBX platform built on FreeSWITCH. It provides a robust and scalable solution for businesses of all sizes, offering a rich feature set for VoIP communications.
+        </p>
         <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
         <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
           <li>Multi-tenant</li>
@@ -419,7 +422,7 @@ export function ServerDashboard() {
               </div>
             </CardHeader>
             <CardContent className="flex-grow p-4">
-                <p className="text-sm text-muted-foreground">Access all VICIBOX dialing servers from a dedicated page.</p>
+                <p className="text-sm text-muted-foreground">About Vicibox: VICIBOX is a comprehensive, open-source contact center suite. It offers a wide range of features for both inbound and outbound call handling, making it a powerful tool for call centers of all sizes.</p>
             </CardContent>
             <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
                 <Button asChild size="sm">
