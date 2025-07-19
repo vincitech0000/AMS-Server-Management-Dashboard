@@ -125,7 +125,7 @@ const webAppFeatures = (
                 <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
                     <li><span className="font-semibold">Frontend:</span> Next.js, React, Tailwind CSS</li>
                     <li><span className="font-semibold">Backend:</span> Next.js, Genkit (for AI)</li>
-                    <li><span className="font-semibold">Database:</span> None required (stateless architecture)</li>
+                    <li><span className="font-semibold">Database:</span> MYsql , Mango DB, Firebase</li>
                 </ul>
             </div>
             <div>
