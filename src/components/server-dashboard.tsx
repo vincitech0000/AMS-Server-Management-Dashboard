@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users, AppWindow } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users, AppWindow, Presentation } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -424,6 +424,29 @@ export function ServerDashboard() {
                 <Button asChild size="sm">
                     <Link href="/vicibox">
                         View All
+                        <ArrowUpRight className="w-4 h-4 ml-2" />
+                    </Link>
+                </Button>
+            </CardFooter>
+          </Card>
+          
+          <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
+            <CardHeader className="flex flex-row items-center gap-4 p-4">
+                <div className="p-3 rounded-full bg-primary/10 text-primary">
+                    <Presentation className="w-8 h-8" />
+                </div>
+                <div>
+                    <CardTitle className="text-lg">Animatic Presentations</CardTitle>
+                    <CardDescription>AI-Powered Slides</CardDescription>
+                </div>
+            </CardHeader>
+            <CardContent className="flex-grow p-4">
+                 <p className="text-sm text-muted-foreground">Generate engaging animatic presentations from a simple text prompt.</p>
+            </CardContent>
+            <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
+                <Button asChild size="sm">
+                    <Link href="/animatic-presentations">
+                        Create New
                         <ArrowUpRight className="w-4 h-4 ml-2" />
                     </Link>
                 </Button>
