@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'Markup Maestro',
-  description: 'An AI-powered HTML editor.',
+  title: 'AMS Server Management',
+  description: 'One-click access to all your servers.',
 };
 
 export default function RootLayout({
