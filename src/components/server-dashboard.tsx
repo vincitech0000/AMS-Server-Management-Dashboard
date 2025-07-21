@@ -420,28 +420,6 @@ export function ServerDashboard() {
       <header className="p-6 border-b bg-card">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <svg
-              width="48"
-              height="48"
-              viewBox="0 0 100 100"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-12 h-12"
-            >
-              <defs>
-                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(var(--primary))" />
-                  <stop offset="100%" stopColor="hsl(var(--accent))" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M50 10 a 40 40 0 0 1 0 80 a 40 40 0 0 1 0 -80 M 50 22 a 28 28 0 0 1 0 56 a 28 28 0 0 1 0 -56 M 50 34 a 16 16 0 0 1 0 32 a 16 16 0 0 1 0 -32"
-                fill="none"
-                stroke="url(#logoGradient)"
-                strokeWidth="8"
-                strokeLinecap="round"
-              />
-              <circle cx="50" cy="50" r="6" fill="url(#logoGradient)" />
-            </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
               <p className="text-xs md:text-sm text-muted-foreground">One-click access to all your servers.</p>
@@ -794,4 +772,3 @@ export function ServerDashboard() {
     
 
     
-
