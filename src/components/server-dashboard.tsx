@@ -1,10 +1,11 @@
 
+
 'use client';
 
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users, AppWindow } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users, AppWindow, Route } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -13,6 +14,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
 
@@ -56,9 +58,17 @@ const generateCaptcha = () => {
     return captcha;
 };
 
+const voipRoutes = [
+    { name: 'USA Press One', rate: '0.08', pulse: '6/6' },
+    { name: 'USA Outbound Clean', rate: '0.011', pulse: '6/6' },
+    { name: 'USA Outbound (TECH)', rate: '0.0135', pulse: '6/6' },
+    { name: 'USA CLI (ALL PASS)', rate: '0.26$', pulse: '60/60' },
+];
+
 
 export function ServerDashboard() {
   const [isOrderDialogOpen, setOrderDialogOpen] = useState(false);
+  const [isVoipDialogOpen, setVoipDialogOpen] = useState(false);
   const [selectedServer, setSelectedServer] = useState('');
   const [selectedFusionCapacity, setSelectedFusionCapacity] = useState('');
   const [selectedVosCapacity, setSelectedVosCapacity] = useState('');
@@ -485,6 +495,47 @@ export function ServerDashboard() {
                             <ArrowUpRight className="w-4 h-4 ml-2" />
                         </Button>
                     </DialogTrigger>
+                    <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
+                        <DialogTrigger asChild>
+                            <Button size="sm" variant="secondary">
+                                VoIP Routes
+                                <Route className="w-4 h-4 ml-2" />
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-md">
+                            <DialogHeader>
+                                <DialogTitle>VoIP Routes & Rates</DialogTitle>
+                                <DialogDescription>
+                                    Here are the current rates for our VoIP routes.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <Card>
+                                <CardContent className="p-0">
+                                    <Table>
+                                        <TableHeader>
+                                            <TableRow>
+                                                <TableHead>Route</TableHead>
+                                                <TableHead>Rate</TableHead>
+                                                <TableHead className="text-right">Pulse</TableHead>
+                                            </TableRow>
+                                        </TableHeader>
+                                        <TableBody>
+                                            {voipRoutes.map(route => (
+                                                <TableRow key={route.name}>
+                                                    <TableCell className="font-medium">{route.name}</TableCell>
+                                                    <TableCell>{route.rate}</TableCell>
+                                                    <TableCell className="text-right">{route.pulse}</TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </CardContent>
+                            </Card>
+                            <DialogFooter>
+                                <Button variant="outline" onClick={() => setVoipDialogOpen(false)}>Close</Button>
+                            </DialogFooter>
+                        </DialogContent>
+                    </Dialog>
                     <Separator />
                     <div className="w-full">
                         <p className="text-xs font-semibold text-muted-foreground mb-2">SOFTPHONE DOWNLOADS</p>
@@ -772,4 +823,5 @@ export function ServerDashboard() {
     
 
     
+
 

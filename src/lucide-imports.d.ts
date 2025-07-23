@@ -16,6 +16,7 @@ declare module 'lucide-react' {
     export const MessageSquare: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Phone: React.FC<React.SVGProps<SVGSVGElement>>;
     export const RefreshCw: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Route: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Server: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ShoppingCart: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Sparkles: React.FC<React.SVGProps<SVGSVGElement>>;
