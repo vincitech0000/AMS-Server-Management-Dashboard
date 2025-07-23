@@ -63,6 +63,12 @@ const voipRoutes = [
     { name: 'USA Outbound Clean', rate: '0.011', pulse: '6/6' },
     { name: 'USA Outbound (TECH)', rate: '0.0135', pulse: '6/6' },
     { name: 'USA CLI (ALL PASS)', rate: '0.26$', pulse: '60/60' },
+    { name: 'UK (OB) FIX/MOB', rate: '0.012 / 0.022', pulse: '1/1' },
+    { name: 'UK (IVR) FIX/MOB', rate: '0.015 / 0.032', pulse: '1/1' },
+    { name: 'AUSI (OB) FIX/MOB', rate: '0.011 / 0.026', pulse: '1/1' },
+    { name: 'AUSI (IVR) FIX/MOB', rate: '0.015 / 0.035', pulse: '1/1' },
+    { name: 'Canada IVR', rate: '0.015', pulse: '6/6' },
+    { name: 'Canada CLI (ALL Pass)', rate: '0.018', pulse: '60/60' },
 ];
 
 
@@ -823,5 +829,6 @@ export function ServerDashboard() {
     
 
     
+
 
 
