@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -570,7 +569,7 @@ export function ServerDashboard() {
                                     Whatsapp
                                 </Button>
                             </a>
-                            <a href="#" target="_blank" rel="noopener noreferrer">
+                            <a href="https://signal.me/#eu/PqnF0l4lduSifjrHV0JYAtLlhasADwOJg7WT_D1tubp-FhjdEi9CU7jh1G-3b4o3" target="_blank" rel="noopener noreferrer">
                                 <Button size="sm" variant="outline">
                                     <MessageCircle className="w-4 h-4 mr-2" />
                                     Signal
@@ -831,12 +830,3 @@ export function ServerDashboard() {
     </div>
   );
 }
-
-    
-
-    
-
-
-
-
-
