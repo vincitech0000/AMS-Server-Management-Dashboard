@@ -575,7 +575,7 @@ export function ServerDashboard() {
                                     Signal
                                 </Button>
                             </a>
-                             <a href="#" target="_blank" rel="noopener noreferrer">
+                             <a href="http://t.me/AMSserver" target="_blank" rel="noopener noreferrer">
                                 <Button size="sm" variant="outline">
                                     <MessageCircle className="w-4 h-4 mr-2" />
                                     Telegram
@@ -836,3 +836,5 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
