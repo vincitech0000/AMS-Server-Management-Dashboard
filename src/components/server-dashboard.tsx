@@ -570,6 +570,12 @@ export function ServerDashboard() {
                                     Whatsapp
                                 </Button>
                             </a>
+                            <a href="#" target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" variant="outline">
+                                    <MessageCircle className="w-4 h-4 mr-2" />
+                                    Signal
+                                </Button>
+                            </a>
                             <a href="https://teams.live.com/l/invite/FEA2XRY-PelOorENgc" target="_blank" rel="noopener noreferrer">
                                 <Button size="sm" variant="outline">
                                     <Users className="w-4 h-4 mr-2" />
@@ -829,6 +835,7 @@ export function ServerDashboard() {
     
 
     
+
 
 
 
