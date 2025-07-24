@@ -564,7 +564,7 @@ export function ServerDashboard() {
                     <div className="w-full">
                         <p className="text-xs font-semibold text-muted-foreground mb-2">GET SUPPORT</p>
                         <div className="flex flex-wrap gap-2">
-                            <a href="http://wa.me/19208156022?text=I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener noreferrer">
+                            <a href="https://wa.me/17633272191?text=I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener noreferrer">
                                 <Button size="sm" variant="outline">
                                     <MessageCircle className="w-4 h-4 mr-2" />
                                     Whatsapp
@@ -795,7 +795,7 @@ export function ServerDashboard() {
                         <div className="grid gap-4 py-4">
                             <div className="flex flex-col items-center gap-4 mt-4">
                                 <a 
-                                  href={`http://wa.me/19208156022?text=${getOrderDetails()}`} 
+                                  href={`https://wa.me/17633272191?text=${getOrderDetails()}`} 
                                   target="_blank" 
                                   rel="noopener noreferrer"
                                 >
@@ -829,6 +829,7 @@ export function ServerDashboard() {
     
 
     
+
 
 
 
