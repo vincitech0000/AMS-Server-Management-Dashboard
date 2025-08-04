@@ -314,87 +314,17 @@ export function ServerDashboard() {
         )
     },
     {
-      name: 'Search Engine Optimization (SEO)',
-      type: 'Digital Marketing',
-      icon: <TrendingUp className="w-8 h-8" />,
-      accessPoints: [],
-      description: (
-          <>
-              <p className="text-sm text-muted-foreground mb-4">
-                  We help your website rank higher on Google and other search engines with result-driven SEO strategies. Our SEO services include:
-              </p>
-              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mb-4">
-                  <li>Keyword research and analysis</li>
-                  <li>On-page and technical SEO</li>
-                  <li>Quality backlink building</li>
-                  <li>Content optimization for better rankings</li>
-              </ul>
-              <p className="text-sm text-muted-foreground">
-                  With SEO, your website becomes easier to find, resulting in more organic traffic and leads.
-              </p>
-          </>
-      ),
-    },
-    {
-        name: 'Google My Business SEO (GMB SEO)',
-        type: 'Digital Marketing',
+        name: 'Digital Media Marketing',
+        type: 'SEO, GMB, SMM, SEM',
         icon: <TrendingUp className="w-8 h-8" />,
         accessPoints: [],
         description: (
             <>
                 <p className="text-sm text-muted-foreground mb-4">
-                    Local visibility is crucial for businesses targeting a specific area. Our GMB SEO services focus on:
+                    Our expertise covers SEO, GMB SEO, SMM, and SEM. We create tailored plans to suit your business goals and deliver measurable growth.
                 </p>
-                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mb-4">
-                    <li>Optimizing your Google Business Profile</li>
-                    <li>Managing reviews and local citations</li>
-                    <li>Posting regular updates and offers</li>
-                    <li>Boosting your local search ranking</li>
-                </ul>
                 <p className="text-sm text-muted-foreground">
-                    With proper GMB optimization, you will appear in Google’s local map pack, attracting nearby customers.
-                </p>
-            </>
-        ),
-    },
-    {
-        name: 'Social Media Marketing (SMM)',
-        type: 'Digital Marketing',
-        icon: <TrendingUp className="w-8 h-8" />,
-        accessPoints: [],
-        description: (
-            <>
-                <p className="text-sm text-muted-foreground mb-4">
-                    We build a strong social presence for your brand. Our SMM services include:
-                </p>
-                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mb-4">
-                    <li>Social media strategy and content creation</li>
-                    <li>Running targeted campaigns on Facebook, Instagram, LinkedIn, and more</li>
-                    <li>Increasing engagement, followers, and brand awareness</li>
-                    <li>Monitoring analytics and improving results</li>
-                </ul>
-                <p className="text-sm text-muted-foreground">
-                    A strong social media presence builds trust and helps your audience connect with your brand.
-                </p>
-            </>
-        ),
-    },
-    {
-        name: 'Search Engine Marketing (SEM)',
-        type: 'Digital Marketing',
-        icon: <TrendingUp className="w-8 h-8" />,
-        accessPoints: [],
-        description: (
-            <>
-                <p className="text-sm text-muted-foreground mb-4">
-                    Our SEM services help you reach your target audience instantly through paid advertising. We manage:
-                </p>
-                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mb-4">
-                    <li>Google Ads</li>
-                    <li>Continuous monitoring and optimization</li>
-                </ul>
-                <p className="text-sm text-muted-foreground">
-                    With SEM, you get quick results, better visibility, and a high return on investment.
+                    Contact us today for a free consultation!
                 </p>
             </>
         ),
@@ -929,3 +859,4 @@ export function ServerDashboard() {
 
     
 
+    
