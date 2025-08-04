@@ -63,11 +63,11 @@ const whyChooseUs = {
 
 export function DigitalMediaMarketingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
-        <header className="p-6 border-b">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 via-rose-50 to-amber-50 text-foreground">
+        <header className="p-6 border-b bg-white/80 backdrop-blur-sm sticky top-0 z-10">
             <div className="container mx-auto flex items-center justify-between">
                 <div className="text-left">
-                    <h1 className="text-xl md:text-3xl font-bold">Digital Media Marketing</h1>
+                    <h1 className="text-xl md:text-3xl font-bold text-primary">Digital Media Marketing</h1>
                     <p className="text-xs md:text-sm text-muted-foreground">Our key services to grow your online presence.</p>
                 </div>
                 <Button asChild variant="outline">
@@ -82,12 +82,12 @@ export function DigitalMediaMarketingPage() {
         <main className="flex-grow p-4 md:p-8">
             <div className="container mx-auto">
                 <section className="mb-12">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Our Key Digital Marketing Services</h2>
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 text-gray-800">Our Key Digital Marketing Services</h2>
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         {services.map((service) => (
-                            <Card key={service.title}>
+                            <Card key={service.title} className="bg-white/60 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-shadow duration-300">
                                 <CardHeader>
-                                    <CardTitle>{service.title}</CardTitle>
+                                    <CardTitle className="text-primary">{service.title}</CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-muted-foreground mb-4">{service.description}</p>
@@ -102,15 +102,15 @@ export function DigitalMediaMarketingPage() {
                 </section>
 
                 <section className="mb-12">
-                    <Card className="bg-muted/30">
+                    <Card className="bg-white/60 backdrop-blur-sm border-accent/20 shadow-lg">
                         <CardHeader>
-                            <CardTitle className="text-center text-2xl md:text-3xl">{whyChooseUs.title}</CardTitle>
+                            <CardTitle className="text-center text-2xl md:text-3xl text-accent">{whyChooseUs.title}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                                 {whyChooseUs.points.map(point => (
-                                    <div key={point.title} className="text-center">
-                                        <h3 className="text-lg font-semibold mb-2">{point.title}</h3>
+                                    <div key={point.title} className="text-center p-4 rounded-lg hover:bg-accent/10 transition-colors">
+                                        <h3 className="text-lg font-semibold mb-2 text-gray-800">{point.title}</h3>
                                         <p className="text-muted-foreground">{point.description}</p>
                                     </div>
                                 ))}
@@ -119,8 +119,8 @@ export function DigitalMediaMarketingPage() {
                     </Card>
                 </section>
 
-                <section className="text-center">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-4">Start Growing Your Business Today!</h2>
+                <section className="text-center bg-white/60 backdrop-blur-sm p-8 rounded-xl shadow-lg border-primary/20">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary">Start Growing Your Business Today!</h2>
                     <p className="text-muted-foreground max-w-3xl mx-auto mb-6">
                         Take your business to the next level with our professional Digital Marketing Services. Whether you need SEO, GMB SEO, SMM, or SEM, we are here to help you attract more traffic, generate leads, and increase sales.
                     </p>
@@ -128,8 +128,8 @@ export function DigitalMediaMarketingPage() {
                         Contact us today to get a free consultation and discover how we can grow your online presence!
                     </p>
                     <a href="https://wa.me/17633272191?text=I%27m%20interested%20in%20your%20digital%20marketing%20services" target="_blank" rel="noopener noreferrer">
-                        <Button>
-                            <MessageCircle className="w-4 h-4 mr-2" />
+                        <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                            <MessageCircle className="w-5 h-5 mr-2" />
                             Contact Us on WhatsApp
                         </Button>
                     </a>
@@ -137,7 +137,7 @@ export function DigitalMediaMarketingPage() {
             </div>
         </main>
         
-        <footer className="p-6 text-sm text-center border-t text-muted-foreground">
+        <footer className="p-6 text-sm text-center border-t text-muted-foreground bg-white/80 backdrop-blur-sm">
             <p>&copy; {new Date().getFullYear()} Server Dashboard. All rights reserved.</p>
         </footer>
     </div>
