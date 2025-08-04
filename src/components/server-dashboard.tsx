@@ -317,8 +317,7 @@ export function ServerDashboard() {
       name: 'Digital Marketing Services',
       type: 'Grow your business',
       icon: <TrendingUp className="w-8 h-8" />,
-      isSpecial: true,
-      href: '/digital-marketing',
+      accessPoints: [],
       description: (
           <>
               <p className="text-sm text-muted-foreground mb-4">
