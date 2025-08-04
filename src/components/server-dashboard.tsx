@@ -322,7 +322,7 @@ export function ServerDashboard() {
       description: (
           <>
               <p className="text-sm text-muted-foreground mb-4">
-                  Boost your online presence and reach more customers with our expert digital marketing services.
+                  Boost your online presence and reach more customers with our expert digital marketing services. Our expertise covers SEO, GMB SEO, SMM, and SEM.
               </p>
               <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
                   <li>Search Engine Optimization (SEO)</li>
@@ -856,6 +856,8 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
 
     
 
