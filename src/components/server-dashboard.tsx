@@ -452,6 +452,24 @@ export function ServerDashboard() {
       <header className="p-6 border-b bg-card">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-primary"
+            >
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              <text x="10" y="7" fill="currentColor" fontSize="3" fontWeight="bold" fontFamily="monospace">AMS</text>
+            </svg>
             <div className="text-left">
               <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
               <p className="text-xs md:text-sm text-muted-foreground">One-click access to all your servers.</p>
@@ -853,5 +871,3 @@ export function ServerDashboard() {
     </div>
   );
 }
-
-    
