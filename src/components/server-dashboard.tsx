@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users, AppWindow, Route } from 'lucide-react';
+import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users, AppWindow, Route, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -313,6 +313,26 @@ export function ServerDashboard() {
             </>
         )
     },
+    {
+      name: 'Digital Marketing Services',
+      type: 'Grow your business',
+      icon: <TrendingUp className="w-8 h-8" />,
+      isSpecial: true,
+      href: '/digital-marketing',
+      description: (
+          <>
+              <p className="text-sm text-muted-foreground mb-4">
+                  Boost your online presence and reach more customers with our expert digital marketing services.
+              </p>
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <li>Search Engine Optimization (SEO)</li>
+                  <li>Social Media Marketing</li>
+                  <li>Content Marketing</li>
+                  <li>Pay-Per-Click (PPC) Advertising</li>
+              </ul>
+          </>
+      ),
+  },
   ];
 
   const resetForm = () => {
@@ -836,5 +856,7 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
 
     

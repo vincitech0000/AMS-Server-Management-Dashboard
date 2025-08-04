@@ -20,10 +20,13 @@ declare module 'lucide-react' {
     export const Server: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ShoppingCart: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Sparkles: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const TrendingUp: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Upload: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Wifi: React.FC<React.SVGProps<SVGSVGElement>>;
     export const XCircle: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Users: React.FC<React.SVGProps<SVGSVGElement>>;
 }
+
+    
 
     
