@@ -127,7 +127,7 @@ export function DigitalMediaMarketingPage() {
                     <p className="text-muted-foreground max-w-3xl mx-auto mb-8">
                         Contact us today to get a free consultation and discover how we can grow your online presence!
                     </p>
-                    <a href="https://wa.me/17633272191?text=I%27m%20interested%20in%20your%20digital%20marketing%20services" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/+916307828356?text=I%27m%20interested%20in%20your%20digital%20marketing%20services" target="_blank" rel="noopener noreferrer">
                         <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
                             <MessageCircle className="w-5 h-5 mr-2" />
                             Contact Us on WhatsApp
