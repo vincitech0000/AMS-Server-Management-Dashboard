@@ -69,6 +69,26 @@ const viciboxServers = [
     ],
     description: viciboxFeatures,
   },
+  {
+    name: 'VICIBOX51',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: 'https://box51.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://box51.amsserver.com/' },
+    ],
+    description: viciboxFeatures,
+  },
+  {
+    name: 'VICIBOX52',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: 'https://box52.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://box52.amsserver.com/' },
+    ],
+    description: viciboxFeatures,
+  },
 ];
 
 export function ViciboxDialerPage() {
