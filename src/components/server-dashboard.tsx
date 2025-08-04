@@ -317,7 +317,8 @@ export function ServerDashboard() {
         name: 'Digital Media Marketing',
         type: 'SEO, GMB, SMM, SEM',
         icon: <TrendingUp className="w-8 h-8" />,
-        accessPoints: [],
+        isSpecial: true,
+        href: '/digital-media-marketing',
         description: (
             <>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -476,7 +477,22 @@ export function ServerDashboard() {
                 {server.description}
               </CardContent>
               <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
-                {server.isSpecial ? (
+                {server.isSpecial && server.href === '/digital-media-marketing' ? (
+                  <>
+                    <Button asChild size="sm">
+                      <Link href={server.href!}>
+                        View All
+                        <ArrowUpRight className="w-4 h-4 ml-2" />
+                      </Link>
+                    </Button>
+                    <a href="https://wa.me/17633272191?text=I%27m%20interested%20in%20your%20digital%20marketing%20services" target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" variant="outline">
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        WhatsApp
+                      </Button>
+                    </a>
+                  </>
+                ) : server.isSpecial ? (
                      <Button asChild size="sm">
                         <Link href={server.href!}>
                             View All
@@ -852,11 +868,3 @@ export function ServerDashboard() {
     </div>
   );
 }
-
-    
-
-    
-
-    
-
-    
