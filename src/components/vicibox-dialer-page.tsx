@@ -89,6 +89,26 @@ const viciboxServers = [
     ],
     description: viciboxFeatures,
   },
+  {
+    name: 'VICI123',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: 'https://vici123.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://vici123.amsserver.com/' },
+    ],
+    description: viciboxFeatures,
+  },
+  {
+    name: 'VICI125',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: 'https://vici125.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://vici125.amsserver.com/' },
+    ],
+    description: viciboxFeatures,
+  },
 ];
 
 export function ViciboxDialerPage() {
