@@ -12,8 +12,13 @@ const viciboxFeatures = (
       <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
         <li>Predictive dialing</li>
         <li>Inbound/outbound calling</li>
-        <li>Call recording</li>
-        <li>Agent scripting</li>
+        <li>Call recording & scripting</li>
+        <li>Outbound Campaign</li>
+        <li>Inbound Campaign</li>
+        <li>Press One Campaign</li>
+        <li>Avatar Campaign</li>
+        <li>Call Menu Campaign</li>
+        <li>Broadcast Campaign</li>
       </ul>
     </>
   );
