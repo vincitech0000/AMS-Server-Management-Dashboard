@@ -166,10 +166,7 @@ export function ServerDashboard() {
       name: 'Bulk SMS Server',
       type: 'Bulk SMS',
       icon: <MessageSquare className="w-8 h-8" />,
-      accessPoints: [
-          { name: 'LOGIN', url: 'https://bulksms.amsserver.com/login' },
-          { name: 'Signup', url: 'https://bulksms.amsserver.com/register' },
-      ],
+      accessPoints: [],
       description: (
         <>
             <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
@@ -893,3 +890,6 @@ export function ServerDashboard() {
 
     
 
+
+
+    
