@@ -98,7 +98,7 @@ export function ServerDashboard() {
   const servers = [
     {
         name: 'VICIBOX Dialers',
-        type: '9 Servers',
+        type: '5 Servers',
         icon: <Phone className="w-8 h-8" />,
         isSpecial: true,
         href: '/vicibox',
