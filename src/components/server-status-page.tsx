@@ -12,10 +12,10 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import type { ServerStatus, ServerWithStatus } from '@/app/actions';
+import type { ServerStatus, ServerWithStatus, ServerInfo } from '@/app/actions';
 import { pingAllServers } from '@/app/actions';
 
-type ServerWithChecking = ServerWithStatus | { status: 'Checking'; name: string; ip: string; resolvedIp?: string };
+type ServerWithChecking = ServerWithStatus | (ServerInfo & { status: 'Checking'; resolvedIp?: string });
 
 const initialServers: ServerWithChecking[] = [
   { name: 'FusionPBX Server', ip: '173.208.249.122', status: 'Checking' },
