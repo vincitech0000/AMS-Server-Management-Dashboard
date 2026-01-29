@@ -55,12 +55,12 @@ const viciboxServers = [
     description: viciboxFeatures,
   },
   {
-    name: 'VICIBOX75',
+    name: 'VICIBOX131',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Firewall', url: 'https://box75.amsserver.com:446/valid8.php' },
-      { name: 'Login', url: 'https://box75.amsserver.com/' },
+      { name: 'Firewall', url: 'https://box131.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://box131.amsserver.com/' },
     ],
     description: viciboxFeatures,
   },
