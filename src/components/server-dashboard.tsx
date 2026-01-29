@@ -123,7 +123,7 @@ export function ServerDashboard() {
       type: 'VoIP Softswitch',
       icon: <Server className="w-8 h-8" />,
       accessPoints: [
-          { name: 'CDR Login', url: 'https://138.201.18.22:8443/login' },
+          { name: 'CDR Login', url: 'https://51.161.43.30:8443' },
       ],
       description: (
           <>
@@ -888,5 +888,7 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
 
     
