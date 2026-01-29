@@ -145,7 +145,7 @@ export function ServerDashboard() {
       name: 'FusionPBX Server',
       type: 'FusionPBX',
       icon: <Server className="w-8 h-8" />,
-      accessPoints: [{ name: 'Login', url: 'https://173.208.249.122/' }],
+      accessPoints: [],
       description: (
         <>
           <p className="text-sm text-muted-foreground mb-4">
@@ -892,3 +892,4 @@ export function ServerDashboard() {
     
 
     
+
