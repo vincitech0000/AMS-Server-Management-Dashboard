@@ -3,6 +3,7 @@ declare module 'lucide-react' {
     export const AlertTriangle: React.FC<React.SVGProps<SVGSVGElement>>;
     export const AppWindow: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ArrowLeft: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const ArrowRight: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ArrowUpRight: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Bot: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Check: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -34,7 +35,3 @@ declare module 'lucide-react' {
     export const X: React.FC<React.SVGProps<SVGSVGElement>>;
     export const XCircle: React.FC<React.SVGProps<SVGSVGElement>>;
 }
-
-    
-
-    
