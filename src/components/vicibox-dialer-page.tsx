@@ -25,6 +25,16 @@ const viciboxFeatures = (
 
 const viciboxServers = [
   {
+    name: 'VICIBOX123',
+    type: 'VICIBOX',
+    icon: <Phone className="w-8 h-8" />,
+    accessPoints: [
+      { name: 'Firewall', url: 'http://107.150.36.123:7887/valid8.php' },
+      { name: 'Login', url: 'http://107.150.36.123/vicidial/welcome.php' },
+    ],
+    description: viciboxFeatures,
+  },
+  {
     name: 'VICIBOX124',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
