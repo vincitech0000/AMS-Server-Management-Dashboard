@@ -29,8 +29,8 @@ const viciboxServers = [
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Firewall', url: 'http://107.150.36.123:7887/valid8.php' },
-      { name: 'Login', url: 'http://107.150.36.123/vicidial/welcome.php' },
+      { name: 'Firewall', url: 'https://box123.amsserver.com:446/valid8.php' },
+      { name: 'Login', url: 'https://box123.amsserver.com' },
     ],
     description: viciboxFeatures,
   },
