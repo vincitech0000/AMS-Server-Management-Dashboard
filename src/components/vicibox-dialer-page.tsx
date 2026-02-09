@@ -35,16 +35,6 @@ const viciboxServers = [
     description: viciboxFeatures,
   },
   {
-    name: 'VICIBOX123',
-    type: 'VICIBOX',
-    icon: <Phone className="w-8 h-8" />,
-    accessPoints: [
-      { name: 'Firewall', url: 'https://box123.amsserver.com:446/valid8.php' },
-      { name: 'Login', url: 'https://box123.amsserver.com/' },
-    ],
-    description: viciboxFeatures,
-  },
-  {
     name: 'VICIBOX126',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,

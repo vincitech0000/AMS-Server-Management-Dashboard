@@ -21,12 +21,9 @@ const initialServers: ServerWithChecking[] = [
   { name: 'FusionPBX Server', ip: '173.208.249.122', status: 'Checking' },
   { name: 'Bulk SMS Server (bulksms.amsserver.com)', ip: '142.54.188.154', status: 'Checking' },
   { name: 'VICIBOX124', ip: '107.150.36.124', status: 'Checking' },
-  { name: 'VICIBOX123', ip: 'box123.amsserver.com', status: 'Checking' },
   { name: 'VICIBOX126', ip: 'box126.amsserver.com', status: 'Checking' },
   { name: 'VICIBOX131', ip: 'box131.amsserver.com', status: 'Checking' },
   { name: 'VICIBOX134', ip: 'box134.amsserver.com', status: 'Checking' },
-  { name: 'VICIBOX51', ip: 'box51.amsserver.com', status: 'Checking' },
-  { name: 'VICIBOX52', ip: 'box52.amsserver.com', status: 'Checking' },
 ];
 
 export function ServerStatusPage() {
@@ -166,5 +163,6 @@ export function ServerStatusPage() {
 }
 
     
+
 
 
