@@ -549,47 +549,6 @@ export function ServerDashboard() {
                             <ArrowUpRight className="w-4 h-4 ml-2" />
                         </Button>
                     </DialogTrigger>
-                    <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
-                        <DialogTrigger asChild>
-                            <Button size="sm" variant="secondary">
-                                VoIP Routes
-                                <Route className="w-4 h-4 ml-2" />
-                            </Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-md">
-                            <DialogHeader>
-                                <DialogTitle>VoIP Routes & Rates</DialogTitle>
-                                <DialogDescription>
-                                    Here are the current rates for our VoIP routes.
-                                </DialogDescription>
-                            </DialogHeader>
-                            <Card>
-                                <CardContent className="p-0">
-                                    <Table>
-                                        <TableHeader>
-                                            <TableRow>
-                                                <TableHead>Route</TableHead>
-                                                <TableHead>Rate</TableHead>
-                                                <TableHead className="text-right">Pulse</TableHead>
-                                            </TableRow>
-                                        </TableHeader>
-                                        <TableBody>
-                                            {voipRoutes.map(route => (
-                                                <TableRow key={route.name}>
-                                                    <TableCell className="font-medium">{route.name}</TableCell>
-                                                    <TableCell>{route.rate}</TableCell>
-                                                    <TableCell className="text-right">{route.pulse}</TableCell>
-                                                </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </CardContent>
-                            </Card>
-                            <DialogFooter>
-                                <Button variant="outline" onClick={() => setVoipDialogOpen(false)}>Close</Button>
-                            </DialogFooter>
-                        </DialogContent>
-                    </Dialog>
                     <Separator />
                     <div className="w-full">
                         <p className="text-xs font-semibold text-muted-foreground mb-2">SOFTPHONE DOWNLOADS</p>
@@ -877,6 +836,65 @@ export function ServerDashboard() {
                 )}
             </DialogContent>
           </Dialog>
+
+          <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
+              <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
+                  <CardHeader className="flex flex-row items-center gap-4 p-4">
+                      <div className="p-3 rounded-full bg-accent/10 text-accent">
+                          <DollarSign className="w-8 h-8" />
+                      </div>
+                      <div>
+                          <CardTitle className="text-lg">VoIP Routes</CardTitle>
+                          <CardDescription>Offering VOIP Rates</CardDescription>
+                      </div>
+                  </CardHeader>
+                  <CardContent className="flex-grow p-4">
+                      <p className="text-sm text-muted-foreground">Check our competitive pricing for a variety of high-quality VoIP routes to find the best option for your business.</p>
+                  </CardContent>
+                  <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
+                      <DialogTrigger asChild>
+                          <Button size="sm">
+                              View Rates
+                              <ArrowUpRight className="w-4 h-4 ml-2" />
+                          </Button>
+                      </DialogTrigger>
+                  </CardFooter>
+              </Card>
+              <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                      <DialogTitle>VoIP Routes & Rates</DialogTitle>
+                      <DialogDescription>
+                          Here are the current rates for our VoIP routes.
+                      </DialogDescription>
+                  </DialogHeader>
+                  <Card>
+                      <CardContent className="p-0">
+                          <Table>
+                              <TableHeader>
+                                  <TableRow>
+                                      <TableHead>Route</TableHead>
+                                      <TableHead>Rate</TableHead>
+                                      <TableHead className="text-right">Pulse</TableHead>
+                                  </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                  {voipRoutes.map(route => (
+                                      <TableRow key={route.name}>
+                                          <TableCell className="font-medium">{route.name}</TableCell>
+                                          <TableCell>{route.rate}</TableCell>
+                                          <TableCell className="text-right">{route.pulse}</TableCell>
+                                      </TableRow>
+                                  ))}
+                              </TableBody>
+                          </Table>
+                      </CardContent>
+                  </Card>
+                  <DialogFooter>
+                      <Button variant="outline" onClick={() => setVoipDialogOpen(false)}>Close</Button>
+                  </DialogFooter>
+              </DialogContent>
+          </Dialog>
+
         </div>
       </main>
       <footer className="p-6 text-sm text-center border-t text-muted-foreground bg-card">
@@ -885,11 +903,3 @@ export function ServerDashboard() {
     </div>
   );
 }
-
-    
-
-    
-
-
-
-    
