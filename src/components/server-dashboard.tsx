@@ -239,7 +239,6 @@ export function ServerDashboard() {
           <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
               <li>1-800 series numbers (888, 877, etc.)</li>
               <li>Nationwide reach with a single number</li>
-              <li>All DIDs and TFNs will be routed to FusionPBX</li>
               <li>Multi domain login & access to Manage your DID/TFN</li>
           </ul>
           <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
@@ -267,7 +266,6 @@ export function ServerDashboard() {
           <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
               <li>Low-cost local numbers</li>
               <li>Wide coverage across the US</li>
-              <li>All DIDs and TFNs will be routed to FusionPBX</li>
               <li>Multi domain login & access to Manage your DID/TFN</li>
           </ul>
           <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
@@ -1012,6 +1010,7 @@ export function ServerDashboard() {
                             placeholder="Your comment here..."
                             value={newComment}
                             onChange={(e) => setNewComment(e.target.value)}
+                            rows={3}
                         />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -1055,5 +1054,3 @@ export function ServerDashboard() {
     </div>
   );
 }
-
-    
