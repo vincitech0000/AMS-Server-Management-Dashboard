@@ -175,6 +175,10 @@ export function ServerDashboard() {
                 <li>Robust API integration</li>
                 <li>Unlimited reseller panels</li>
                 <li>Popular payment gateway integration</li>
+                <li>Campaign Making</li>
+                <li>SMS gateway addon</li>
+                <li>SMS Plans</li>
+                <li>Brand with Sender ID</li>
             </ul>
         </>
       ),
