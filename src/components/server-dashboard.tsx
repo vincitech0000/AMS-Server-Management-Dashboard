@@ -95,7 +95,7 @@ export function ServerDashboard() {
   const servers = [
     {
         name: 'VICIBOX Dialers',
-        type: '5 Servers',
+        type: '1 Server',
         icon: <Phone className="w-8 h-8" />,
         isSpecial: true,
         href: '/vicibox',
@@ -230,7 +230,7 @@ export function ServerDashboard() {
               <li>1-800 series numbers (888, 877, etc.)</li>
               <li>Nationwide reach with a single number</li>
               <li>All DIDs and TFNs will be routed to FusionPBX</li>
-              <li>Separate domain login & access to control your DID/TFN</li>
+              <li>Multi domain login & access to Manage your DID/TFN</li>
           </ul>
           <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
           <div className="text-sm text-muted-foreground space-y-2">
@@ -262,7 +262,7 @@ export function ServerDashboard() {
               <li>Low-cost local numbers</li>
               <li>Wide coverage across the US</li>
               <li>All DIDs and TFNs will be routed to FusionPBX</li>
-              <li>Separate domain login & access to control your DID/TFN</li>
+              <li>Multi domain login & access to Manage your DID/TFN</li>
           </ul>
           <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
           <div className="text-sm text-muted-foreground space-y-2">
@@ -895,3 +895,5 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
