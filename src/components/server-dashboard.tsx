@@ -314,10 +314,27 @@ export function ServerDashboard() {
         description: (
             <>
                 <p className="text-sm text-muted-foreground mb-4">
-                    Our expertise covers SEO, GMB SEO, SMM, and SEM. We create tailored plans to suit your business goals and deliver measurable growth.
+                    Our expertise covers SEO, GMB, SMM, and SEM. We create tailored plans to suit your business goals and deliver measurable growth.
                 </p>
                 <p className="text-sm text-muted-foreground">
                     Contact us today for a free consultation!
+                </p>
+            </>
+        ),
+    },
+    {
+        name: 'Reseller Program',
+        type: 'Your Own VoIP Business',
+        icon: <Users className="w-8 h-8" />,
+        isSpecial: true,
+        href: '/reseller-program',
+        description: (
+            <>
+                <p className="text-sm text-muted-foreground mb-4">
+                    Launch your own branded VoIP service with our comprehensive reseller program. We provide the infrastructure and support you need to succeed.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                    Click to learn more about our white-label solution.
                 </p>
             </>
         ),
@@ -902,3 +919,4 @@ export function ServerDashboard() {
     
 
     
+
