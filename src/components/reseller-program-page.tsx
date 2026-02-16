@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Users, Zap, Shield, BarChart, LifeBuoy } from 'lucide-react';
+import { ArrowLeft, Users, Zap, Shield, BarChart, LifeBuoy, Server, Route, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -26,6 +26,26 @@ const programFeatures = [
         icon: <LifeBuoy className="w-8 h-8 text-primary" />,
         title: '24/7 Technical Support',
         description: 'Our expert support team is available around the clock to assist you and your customers with any technical issues.',
+    },
+    {
+        icon: <Users className="w-8 h-8 text-primary" />,
+        title: 'Customer Management Panel',
+        description: 'We provide a reseller panel for your customers to manage their users.',
+    },
+    {
+        icon: <Server className="w-8 h-8 text-primary" />,
+        title: 'Scalable Dialer Solutions',
+        description: 'We provide dialers (single or cluster server) for low or high use cases.',
+    },
+    {
+        icon: <Route className="w-8 h-8 text-primary" />,
+        title: 'Multi-Tenant DID with FusionPBX',
+        description: 'We provide DIDs with multi-tenant FusionPBX servers.',
+    },
+    {
+        icon: <MessageSquare className="w-8 h-8 text-primary" />,
+        title: 'Bulk SMS Services',
+        description: 'We provide Bulk SMS services, including dedicated Bulk SMS servers.',
     },
 ];
 
