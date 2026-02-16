@@ -166,12 +166,15 @@ export function ServerDashboard() {
       accessPoints: [],
       description: (
         <>
+            <p className="text-sm text-muted-foreground mb-4">
+                We provide a Bulk SMS Gateway Server on a monthly rental basis with full support.
+            </p>
             <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
             <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                <li>High-volume messaging</li>
-                <li>API integration</li>
-                <li>Message scheduling</li>
-                <li>Reporting & analytics</li>
+                <li>Multi-language support</li>
+                <li>Robust API integration</li>
+                <li>Unlimited reseller panels</li>
+                <li>Popular payment gateway integration</li>
             </ul>
         </>
       ),
