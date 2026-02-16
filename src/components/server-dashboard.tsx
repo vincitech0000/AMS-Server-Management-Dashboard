@@ -71,6 +71,8 @@ const voipRoutes = [
 export function ServerDashboard() {
   const [isOrderDialogOpen, setOrderDialogOpen] = useState(false);
   const [isVoipDialogOpen, setVoipDialogOpen] = useState(false);
+  const [isReadCommentDialogOpen, setReadCommentDialogOpen] = useState(false);
+  const [isPostCommentDialogOpen, setPostCommentDialogOpen] = useState(false);
   const [selectedServer, setSelectedServer] = useState('');
   const [selectedFusionCapacity, setSelectedFusionCapacity] = useState('');
   const [selectedVosCapacity, setSelectedVosCapacity] = useState('');
@@ -78,7 +80,7 @@ export function ServerDashboard() {
   const [selectedAstppCapacity, setSelectedAstppCapacity] = useState('');
   const [selectedMagnusCapacity, setSelectedMagnusCapacity] = useState('');
   const [requirements, setRequirements] = useState('');
-  const [comments, setComments] = useState('');
+  const [newComment, setNewComment] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -88,10 +90,10 @@ export function ServerDashboard() {
   const [captchaInput, setCaptchaInput] = useState('');
   
   useEffect(() => {
-    if (isOrderDialogOpen && orderStep === 'form') {
+    if ((isOrderDialogOpen && orderStep === 'form') || isPostCommentDialogOpen) {
       setCaptchaText(generateCaptcha());
     }
-  }, [isOrderDialogOpen, orderStep]);
+  }, [isOrderDialogOpen, orderStep, isPostCommentDialogOpen]);
 
   const servers = [
     {
@@ -276,7 +278,7 @@ export function ServerDashboard() {
                       <li>$125/number</li>
                       <li>2 Channels Included (Extra channel cost $50 each)</li>
                       <li>Unlimited Incoming Minutes</li>
-                      <li>In case of number blocked, replacement will cost $30 each.</li>
+                      <li>In case of a blocked number, a replacement number will cost $30 each.</li>
                   </ul>
               </div>
           </div>
@@ -347,7 +349,6 @@ export function ServerDashboard() {
     setSelectedAstppCapacity('');
     setSelectedMagnusCapacity('');
     setRequirements('');
-    setComments('');
     setOrderStep('form');
     setCaptchaInput('');
     setCaptchaText(generateCaptcha());
@@ -367,6 +368,18 @@ export function ServerDashboard() {
       resetForm();
     }
     setOrderDialogOpen(open);
+  }
+
+  const resetCommentForm = () => {
+      setNewComment('');
+      setCaptchaInput('');
+  }
+
+  const handlePostCommentDialogChange = (open: boolean) => {
+    if (!open) {
+        resetCommentForm();
+    }
+    setPostCommentDialogOpen(open);
   }
 
   const getOrderDetails = () => {
@@ -393,9 +406,6 @@ export function ServerDashboard() {
     }
     if (requirements) {
         details += `\n- Requirements: ${requirements}`;
-    }
-    if (comments) {
-        details += `\n- Comments: ${comments}`;
     }
     return encodeURIComponent(details);
   };
@@ -456,6 +466,40 @@ export function ServerDashboard() {
     });
     
     setOrderStep('payment');
+  };
+
+  const handleSubmitComment = async () => {
+    if (captchaInput.toLowerCase() !== captchaText.toLowerCase()) {
+        toast({
+            title: 'Invalid CAPTCHA',
+            description: 'Please try again.',
+            variant: 'destructive',
+        });
+        setCaptchaText(generateCaptcha());
+        setCaptchaInput('');
+        return;
+    }
+  
+    if (!newComment) {
+        toast({
+            title: 'Empty Comment',
+            description: 'Please write a comment before submitting.',
+            variant: 'destructive',
+        });
+        return;
+    }
+
+    setSubmitting(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setSubmitting(false);
+
+    toast({
+        title: 'Comment Submitted!',
+        description: 'Thank you for your feedback.',
+    });
+    
+    resetCommentForm();
+    setPostCommentDialogOpen(false);
   };
 
   return (
@@ -563,6 +607,15 @@ export function ServerDashboard() {
                             <ArrowUpRight className="w-4 h-4 ml-2" />
                         </Button>
                     </DialogTrigger>
+                     <div className="flex flex-wrap gap-2">
+                        <Button size="sm" variant="outline" onClick={() => setReadCommentDialogOpen(true)}>
+                            Read Comments
+                        </Button>
+                        <Button size="sm" variant="outline" onClick={() => setPostCommentDialogOpen(true)}>
+                            <MessageSquare className="w-4 h-4 mr-2" />
+                            Post Comment
+                        </Button>
+                    </div>
                     <Separator />
                     <div className="w-full">
                         <p className="text-xs font-semibold text-muted-foreground mb-2">SOFTPHONE DOWNLOADS</p>
@@ -783,18 +836,6 @@ export function ServerDashboard() {
                                     onChange={(e) => setRequirements(e.target.value)}
                                 />
                             </div>
-                            <div className="grid items-start grid-cols-4 gap-4">
-                                <Label htmlFor="comments" className="text-right pt-2">
-                                    Comments
-                                </Label>
-                                <Textarea
-                                    id="comments"
-                                    className="col-span-3"
-                                    placeholder="Any comments about our services?"
-                                    value={comments}
-                                    onChange={(e) => setComments(e.target.value)}
-                                />
-                            </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                  <Label htmlFor="captcha" className="text-right">
                                     Verify
@@ -923,19 +964,96 @@ export function ServerDashboard() {
 
         </div>
       </main>
+
+        <Dialog open={isReadCommentDialogOpen} onOpenChange={setReadCommentDialogOpen}>
+            <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                    <DialogTitle>Recent Comments</DialogTitle>
+                    <DialogDescription>
+                        Here's what people are saying about our services.
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="mt-4 space-y-4">
+                    <Card>
+                        <CardContent className="p-4">
+                            <p className="text-sm text-muted-foreground">"Great service! The server setup was quick and the support team is very responsive."</p>
+                            <p className="text-xs text-right font-semibold mt-2">- A Happy Customer</p>
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardContent className="p-4">
+                            <p className="text-sm text-muted-foreground">"The VoIP routes have excellent quality. Highly recommended."</p>
+                            <p className="text-xs text-right font-semibold mt-2">- John D.</p>
+                        </CardContent>
+                    </Card>
+                </div>
+                <DialogFooter>
+                    <Button variant="outline" onClick={() => setReadCommentDialogOpen(false)}>Close</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+
+        <Dialog open={isPostCommentDialogOpen} onOpenChange={handlePostCommentDialogChange}>
+            <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                    <DialogTitle>Post a Comment</DialogTitle>
+                    <DialogDescription>
+                        Share your feedback about our services.
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                    <div className="grid items-start grid-cols-4 gap-4">
+                        <Label htmlFor="new-comment" className="text-right pt-2">
+                            Comment
+                        </Label>
+                        <Textarea
+                            id="new-comment"
+                            className="col-span-3"
+                            placeholder="Your comment here..."
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                        />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="captcha" className="text-right">
+                            Verify
+                        </Label>
+                        <div className="col-span-3 flex items-center gap-2">
+                            <div className="px-4 py-2 rounded-md bg-muted text-lg font-bold tracking-widest select-none font-mono" style={{ textDecoration: 'line-through' }}>
+                                {captchaText}
+                            </div>
+                            <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())}>
+                                <RefreshCw className="w-4 h-4" />
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="captcha-input-comment" className="text-right">
+                            Enter Code
+                        </Label>
+                        <Input
+                            id="captcha-input-comment"
+                            className="col-span-3"
+                            placeholder="Enter the code above"
+                            value={captchaInput}
+                            onChange={(e) => setCaptchaInput(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <DialogFooter>
+                    <Button onClick={handleSubmitComment} disabled={isSubmitting}>
+                        {isSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                        Submit Comment
+                    </Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+
       <footer className="p-6 text-sm text-center border-t text-muted-foreground bg-card">
         <p>&copy; {new Date().getFullYear()} Server Dashboard. All rights reserved.</p>
       </footer>
     </div>
   );
 }
-
-    
-
-    
-
-    
-
-    
 
     
