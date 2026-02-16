@@ -8,16 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const programFeatures = [
     {
-        icon: <Zap className="w-8 h-8 text-primary" />,
-        title: 'White-Label Platform',
-        description: 'Offer our services under your own brand. We provide a fully customizable platform that you can present as your own.',
-    },
-    {
-        icon: <Shield className="w-8 h-8 text-primary" />,
-        title: 'Your Own Domain',
-        description: 'Operate under your own domain name for a professional and seamless customer experience.',
-    },
-    {
         icon: <BarChart className="w-8 h-8 text-primary" />,
         title: 'Control Your Pricing',
         description: 'You have complete freedom to set your own pricing and packages, giving you full control over your profit margins.',
