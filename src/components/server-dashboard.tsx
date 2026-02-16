@@ -272,15 +272,9 @@ export function ServerDashboard() {
               <div>
                   <p className="font-semibold">Low Risk DID:</p>
                   <ul className="list-disc list-inside pl-4">
-                      <li>$65/DID (for a single DID)</li>
-                      <li>$35/DID (for orders of 10+)</li>
-                  </ul>
-              </div>
-              <div>
-                  <p className="font-semibold">Low Risk TFN:</p>
-                  <ul className="list-disc list-inside pl-4">
-                      <li>$85/TFN (for a single TFN)</li>
-                      <li>$55/TFN (for orders of 10+)</li>
+                      <li>$125/number</li>
+                      <li>2 Channels Included (Extra channel cost $50 each)</li>
+                      <li>Unlimited Incoming Minutes</li>
                   </ul>
               </div>
           </div>
