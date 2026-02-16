@@ -272,7 +272,7 @@ export function ServerDashboard() {
                       <li>$125/number</li>
                       <li>2 Channels Included (Extra channel cost $50 each)</li>
                       <li>Unlimited Incoming Minutes</li>
-                      <li>In case of a blocked number, a replacement number will cost $30 each.</li>
+                      <li>In case of number blocked, replacement will cost $30 each.</li>
                   </ul>
               </div>
           </div>
