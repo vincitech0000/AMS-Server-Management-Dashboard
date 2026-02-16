@@ -35,7 +35,7 @@ const programFeatures = [
     {
         icon: <MessageSquare className="w-8 h-8 text-primary" />,
         title: 'Bulk SMS Services',
-        description: 'We provide Bulk SMS services, including dedicated Bulk SMS servers.',
+        description: 'We provide Bulk SMS services, and dedicated Bulk SMS servers.',
     },
 ];
 
