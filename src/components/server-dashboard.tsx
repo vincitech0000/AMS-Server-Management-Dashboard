@@ -58,16 +58,13 @@ const generateCaptcha = () => {
 };
 
 const voipRoutes = [
-    { name: 'USA Press One', rate: '0.08', pulse: '6/6' },
+    { name: 'USA Press1 with Dialer', rate: '0.095', pulse: '6/6' },
     { name: 'USA Outbound Clean', rate: '0.011', pulse: '6/6' },
-    { name: 'USA Outbound (TECH)', rate: '0.0135', pulse: '6/6' },
-    { name: 'USA CLI (ALL PASS)', rate: '0.26$', pulse: '60/60' },
-    { name: 'UK (OB) FIX/MOB', rate: '0.012 / 0.022', pulse: '1/1' },
-    { name: 'UK (IVR) FIX/MOB', rate: '0.015 / 0.032', pulse: '1/1' },
-    { name: 'AUSI (OB) FIX/MOB', rate: '0.011 / 0.026', pulse: '1/1' },
-    { name: 'AUSI (IVR) FIX/MOB', rate: '0.015 / 0.035', pulse: '1/1' },
-    { name: 'Canada IVR', rate: '0.015', pulse: '6/6' },
-    { name: 'Canada CLI (ALL Pass)', rate: '0.018', pulse: '60/60' },
+    { name: 'USA Outbound (TECH)', rate: '0.015', pulse: '6/6' },
+    { name: 'USA CLI (ALL PASS)', rate: '0.175$', pulse: '6/6' },
+    { name: 'Canada IVR', rate: '0.01', pulse: '6/6' },
+    { name: 'Canada CLI (ALL Pass)', rate: '0.025', pulse: '60/60' },
+    { name: 'Puerto Rico', rate: '0.02', pulse: '6/6' },
 ];
 
 
