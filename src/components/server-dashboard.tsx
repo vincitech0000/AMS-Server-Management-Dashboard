@@ -275,7 +275,7 @@ export function ServerDashboard() {
                       <li>$125/number</li>
                       <li>2 Channels Included (Extra channel cost $50 each)</li>
                       <li>Unlimited Incoming Minutes</li>
-                      <li>In case of number blocked, replacement will cost $30 each.</li>
+                      <li>In case of a blocked number, a replacement number will cost $30 each.</li>
                   </ul>
               </div>
           </div>
@@ -330,11 +330,8 @@ export function ServerDashboard() {
         href: '/reseller-program',
         description: (
             <>
-                <p className="text-sm text-muted-foreground mb-4">
-                    Launch your own branded VoIP service with our comprehensive reseller program. We provide the infrastructure and support you need to succeed.
-                </p>
                 <p className="text-sm text-muted-foreground">
-                    Click to learn more about our white-label solution.
+                    Launch your own VoIP service with our comprehensive reseller Panel on VOS3000 Server. We provide the support as well.
                 </p>
             </>
         ),
@@ -915,6 +912,8 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
 
     
 
