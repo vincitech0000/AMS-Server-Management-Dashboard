@@ -324,7 +324,7 @@ export function ServerDashboard() {
     },
     {
         name: 'Reseller Program',
-        type: 'Your Own VoIP Business',
+        type: 'Your Own VoIP/Dialer/DID/SMS Business',
         icon: <Users className="w-8 h-8" />,
         isSpecial: true,
         href: '/reseller-program',
@@ -920,3 +920,4 @@ export function ServerDashboard() {
 
     
 
+    
