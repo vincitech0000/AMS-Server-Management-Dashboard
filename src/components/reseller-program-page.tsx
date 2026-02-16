@@ -30,7 +30,7 @@ const programFeatures = [
     {
         icon: <Route className="w-8 h-8 text-primary" />,
         title: 'Multi-Tenant DID with FusionPBX',
-        description: 'We provide DIDs with multi-tenant FusionPBX servers.',
+        description: 'We provide DIDs for Call Forwarding and multi-tenant FusionPBX servers Fully Configured and working.',
     },
     {
         icon: <MessageSquare className="w-8 h-8 text-primary" />,
