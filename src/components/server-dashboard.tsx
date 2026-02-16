@@ -78,6 +78,7 @@ export function ServerDashboard() {
   const [selectedAstppCapacity, setSelectedAstppCapacity] = useState('');
   const [selectedMagnusCapacity, setSelectedMagnusCapacity] = useState('');
   const [requirements, setRequirements] = useState('');
+  const [comments, setComments] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -275,7 +276,7 @@ export function ServerDashboard() {
                       <li>$125/number</li>
                       <li>2 Channels Included (Extra channel cost $50 each)</li>
                       <li>Unlimited Incoming Minutes</li>
-                      <li>In case of a blocked number, a replacement number will cost $30 each.</li>
+                      <li>In case of number blocked, replacement will cost $30 each.</li>
                   </ul>
               </div>
           </div>
@@ -346,6 +347,7 @@ export function ServerDashboard() {
     setSelectedAstppCapacity('');
     setSelectedMagnusCapacity('');
     setRequirements('');
+    setComments('');
     setOrderStep('form');
     setCaptchaInput('');
     setCaptchaText(generateCaptcha());
@@ -391,6 +393,9 @@ export function ServerDashboard() {
     }
     if (requirements) {
         details += `\n- Requirements: ${requirements}`;
+    }
+    if (comments) {
+        details += `\n- Comments: ${comments}`;
     }
     return encodeURIComponent(details);
   };
@@ -778,6 +783,18 @@ export function ServerDashboard() {
                                     onChange={(e) => setRequirements(e.target.value)}
                                 />
                             </div>
+                            <div className="grid items-start grid-cols-4 gap-4">
+                                <Label htmlFor="comments" className="text-right pt-2">
+                                    Comments
+                                </Label>
+                                <Textarea
+                                    id="comments"
+                                    className="col-span-3"
+                                    placeholder="Any comments about our services?"
+                                    value={comments}
+                                    onChange={(e) => setComments(e.target.value)}
+                                />
+                            </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                  <Label htmlFor="captcha" className="text-right">
                                     Verify
@@ -912,6 +929,8 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
 
     
 
