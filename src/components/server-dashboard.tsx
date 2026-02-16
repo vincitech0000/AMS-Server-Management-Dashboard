@@ -237,13 +237,9 @@ export function ServerDashboard() {
               <div>
                   <p className="font-semibold">HIGH Risk DID:</p>
                   <ul className="list-disc list-inside pl-4">
-                      <li>$225/DID (Includes 10 Channels)</li>
-                  </ul>
-              </div>
-              <div>
-                  <p className="font-semibold">HIGH Risk TFN:</p>
-                  <ul className="list-disc list-inside pl-4">
-                      <li>$275/TFN (Includes 10 channels)</li>
+                      <li>$350/DID (Includes 4 Channels)</li>
+                      <li>In case of number blocked, replacement will cost $60 each.</li>
+                      <li>Cannot be used in Direct CLI (no replacement if blocked due to misuse).</li>
                   </ul>
               </div>
           </div>
@@ -895,5 +891,7 @@ export function ServerDashboard() {
     </div>
   );
 }
+
+    
 
     
