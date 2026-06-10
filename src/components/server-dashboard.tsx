@@ -196,6 +196,12 @@ export function ServerDashboard() {
           </Link>
           <div className="flex items-center gap-4">
               <Button asChild variant="ghost" size="sm" className="hidden md:flex rounded-full">
+                  <a href="https://88.99.103.106:8443" target="_blank" rel="noopener noreferrer">
+                    <Database className="w-4 h-4 mr-2" />
+                    CDR Login
+                  </a>
+              </Button>
+              <Button asChild variant="ghost" size="sm" className="hidden md:flex rounded-full">
                   <Link href="/server-status">
                     <Wifi className="w-4 h-4 mr-2" />
                     Network Status
@@ -223,10 +229,6 @@ export function ServerDashboard() {
         {/* Modern Hero Section */}
         <section className="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32 hero-gradient border-b">
             <div className="container mx-auto px-4 relative z-10 text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-8 animate-fade-in">
-                    <Star className="w-3.5 h-3.5 fill-primary" />
-                    <span>Trusted by 500+ Enterprise Clients</span>
-                </div>
                 <h1 className="text-5xl md:text-7xl font-extrabold mb-6 font-headline tracking-tight text-foreground leading-[1.1]">
                     Powering Your <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">VoIP Infrastructure</span>
