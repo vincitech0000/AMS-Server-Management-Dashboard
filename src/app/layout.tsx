@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'AMS Server Management',
-  description: 'One-click access to all your servers.',
+  title: 'AMS Portal | Enterprise VoIP Infrastructure',
+  description: 'Management portal for VOS3000, VICIBOX, FusionPBX and high-performance VoIP infrastructure.',
 };
 
 export default function RootLayout({
@@ -17,9 +17,9 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Code+Pro&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased selection:bg-primary/20">
         {children}
         <Toaster />
       </body>

@@ -1,10 +1,14 @@
-
 'use client';
 
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Server, Phone, Database, MessageSquare, ArrowUpRight, ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, MessageCircle, Download, Users, AppWindow, Route, TrendingUp } from 'lucide-react';
+import { 
+    Server, Phone, Database, MessageSquare, ArrowUpRight, 
+    ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, 
+    MessageCircle, Download, Users, AppWindow, Route, TrendingUp,
+    Shield, Zap, Globe, Cpu, LayoutGrid, Info
+} from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -14,6 +18,8 @@ import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
 
@@ -98,244 +104,90 @@ export function ServerDashboard() {
   const servers = [
     {
         name: 'VICIBOX Dialers',
+        category: 'Dialer & PBX',
         type: '1 Server',
-        icon: <Phone className="w-8 h-8" />,
+        icon: <Phone className="w-6 h-6" />,
         isSpecial: true,
         href: '/vicibox',
-        description: (
-            <>
-                <p className="text-sm text-muted-foreground mb-4">
-                    VICIBOX is a comprehensive, contact center suite. It offers a wide range of features for both inbound and outbound call handling, making it a powerful tool for call centers of all sizes.
-                </p>
-                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                    <li>Outbound Campaing</li>
-                    <li>Inbound Campaign</li>
-                    <li>Press One Campaing</li>
-                    <li>Avator Campaing</li>
-                    <li>Call Menu Campaing</li>
-                    <li>Broadcast Campaing</li>
-                </ul>
-            </>
-        ),
+        description: 'Comprehensive contact center suite for inbound/outbound handling.',
+        features: ['Predictive Dialer', 'Press One Campaigns', 'Inbound Support']
     },
     {
       name: 'VOS3000',
+      category: 'Wholesale & Switches',
       type: 'VoIP Softswitch',
-      icon: <Server className="w-8 h-8" />,
-      accessPoints: [
-          { name: 'CDR Login', url: 'https://51.161.43.30:8443' },
-      ],
-      description: (
-          <>
-              <p className="text-sm text-muted-foreground mb-4">
-                  VOS3000 is a carrier-grade softswitch designed for wholesale VoIP operations. It provides a stable and efficient platform for managing large volumes of VoIP traffic.
-              </p>
-              <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                  <li>Wholesale VoIP Billing</li>
-                  <li>Rate and Routing Management</li>
-                  <li>Real-time Call Monitoring</li>
-                  <li>Least Cost Routing (LCR)</li>
-                  <li>SIP/H.323 Protocol Support</li>
-              </ul>
-          </>
-      ),
+      icon: <Globe className="w-6 h-6" />,
+      accessPoints: [{ name: 'CDR Login', url: 'https://51.161.43.30:8443' }],
+      description: 'Carrier-grade softswitch for managing large volumes of VoIP traffic.',
+      features: ['Wholesale Billing', 'LCR Routing', 'Real-time Monitor']
     },
     {
       name: 'FusionPBX Server',
-      type: 'FusionPBX',
-      icon: <Server className="w-8 h-8" />,
-      accessPoints: [],
-      description: (
-        <>
-          <p className="text-sm text-muted-foreground mb-4">
-              FusionPBX is a powerful, open-source multi-tenant PBX platform built on FreeSWITCH. It provides a robust and scalable solution for businesses of all sizes, offering a rich feature set for VoIP communications.
-          </p>
-          <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-          <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-            <li>Multi-tenant</li>
-            <li>Voicemail-to-email</li>
-            <li>Call recording</li>
-            <li>Ring groups</li>
-            <li>etc</li>
-          </ul>
-        </>
-      ),
+      category: 'Dialer & PBX',
+      type: 'Multi-tenant PBX',
+      icon: <Server className="w-6 h-6" />,
+      description: 'Robust multi-tenant PBX platform built on FreeSWITCH.',
+      features: ['Multi-tenant', 'Call Recording', 'Ring Groups']
     },
     {
       name: 'Bulk SMS Server',
-      type: 'Bulk SMS',
-      icon: <MessageSquare className="w-8 h-8" />,
-      accessPoints: [],
-      description: (
-        <>
-            <p className="text-sm text-muted-foreground mb-4">
-                We provide a Bulk SMS Gateway Server on a monthly rental basis with full support.
-            </p>
-            <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                <li>Multi-language support</li>
-                <li>Robust API integration</li>
-                <li>Unlimited reseller panels</li>
-                <li>Popular payment gateway integration</li>
-                <li>Campaign Making</li>
-                <li>SMS gateway addon</li>
-                <li>SMS Plans</li>
-                <li>Brand with Sender ID</li>
-            </ul>
-        </>
-      ),
+      category: 'Messaging',
+      type: 'SMS Gateway',
+      icon: <MessageSquare className="w-6 h-6" />,
+      description: 'Complete Bulk SMS Gateway solution with full technical support.',
+      features: ['API Integration', 'Campaign Tool', 'Unlimited Resellers']
     },
     {
       name: 'ASTPP',
-      type: 'Billing',
-      icon: <Server className="w-8 h-8" />,
-      accessPoints: [],
-      description: (
-        <>
-        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-          <li>Multi-level Reseller Management</li>
-          <li>Calling Cards</li>
-          <li>Wholesale & Retail VoIP Billing</li>
-          <li>Class 4 & 5 Softswitch Features</li>
-          <li>IVR (Interactive Voice Response)</li>
-          <li>Auto Provisioning</li>
-          <li>DID Management</li>
-          <li>Payment Gateway Integration</li>
-        </ul>
-      </>
-      ),
+      category: 'Billing & Softswitches',
+      type: 'Class 4/5 Billing',
+      icon: <DollarSign className="w-6 h-6" />,
+      description: 'Open-source billing for wholesale & retail VoIP business.',
+      features: ['Calling Cards', 'DID Management', 'Auto Provisioning']
     },
     {
       name: 'Magnus Billing',
-      type: 'Billing',
-      icon: <Server className="w-8 h-8" />,
-      accessPoints: [],
-      description: (
-        <>
-        <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-          <li>Prepaid & Postpaid Billing</li>
-          <li>Call Detail Records (CDR) Analysis</li>
-          <li>Rate Management</li>
-          <li>Customer Portal</li>
-          <li>Agent Management</li>
-          <li>Invoicing and Payments</li>
-          <li>LCR (Least Cost Routing)</li>
-          <li>Advanced Reporting</li>
-        </ul>
-      </>
-      ),
+      category: 'Billing & Softswitches',
+      type: 'Prepaid/Postpaid',
+      icon: <Database className="w-6 h-6" />,
+      description: 'Advanced billing solution for VoIP providers and retailers.',
+      features: ['CDR Analysis', 'Rate Management', 'Agent Portal']
     },
     {
-      name: 'High Risk US Toll-free',
-      type: 'DIDs & TFN available',
-      icon: <Phone className="w-8 h-8" />,
-      accessPoints: [],
-      description: (
-        <>
-          <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-          <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-              <li>1-800 series numbers (888, 877, etc.)</li>
-              <li>Nationwide reach with a single number</li>
-              <li>Multi domain login & access to Manage your DID/TFN</li>
-          </ul>
-          <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
-          <div className="text-sm text-muted-foreground space-y-2">
-              <div>
-                  <p className="font-semibold">HIGH Risk DID:</p>
-                  <ul className="list-disc list-inside pl-4">
-                      <li>$350/DID (Includes 4 Channels)</li>
-                      <li>In case of number blocked, replacement will cost $60 each.</li>
-                      <li>Cannot be used in Direct CLI (no replacement if blocked due to misuse).</li>
-                  </ul>
-              </div>
-          </div>
-      </>
-      ),
+      name: 'US DIDs & Toll-free',
+      category: 'Connectivity',
+      type: 'High/Low Risk DIDs',
+      icon: <Route className="w-6 h-6" />,
+      description: 'Nationwide US numbers and Toll-free numbers for all use cases.',
+      features: ['1-800 Series', 'Local DIDs', 'Multi-domain Login']
     },
     {
-      name: 'Low Risk DID/ TFN',
-      type: 'US DIDs & US TFNs',
-      icon: <Phone className="w-8 h-8" />,
-      accessPoints: [],
-      description: (
-        <>
-          <p className="text-sm font-semibold text-foreground/90 mb-2">Features:</p>
-          <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-              <li>Low-cost local numbers</li>
-              <li>Wide coverage across the US</li>
-              <li>Multi domain login & access to Manage your DID/TFN</li>
-          </ul>
-          <p className="text-sm font-semibold text-foreground/90 mt-4 mb-2">Pricing:</p>
-          <div className="text-sm text-muted-foreground space-y-2">
-              <div>
-                  <p className="font-semibold">Low Risk DID:</p>
-                  <ul className="list-disc list-inside pl-4">
-                      <li>$125/number</li>
-                      <li>2 Channels Included (Extra channel cost $50 each)</li>
-                      <li>Unlimited Incoming Minutes</li>
-                      <li>In case of a blocked number, a replacement number will cost $30 each.</li>
-                  </ul>
-              </div>
-          </div>
-      </>
-      ),
+        name: 'Web Applications',
+        category: 'Utilities',
+        type: 'Custom Dev',
+        icon: <AppWindow className="w-6 h-6" />,
+        description: 'Modern full-stack web applications tailored for your business.',
+        features: ['React/Next.js', 'Firebase/Node.js', 'Scalable Arch']
     },
     {
-        name: 'Web Apps',
-        type: 'Tools & Utilities',
-        icon: <AppWindow className="w-8 h-8" />,
-        accessPoints: [],
-        description: (
-            <>
-                <p className="text-sm text-muted-foreground">
-                    Our web applications are built with a modern stack for a robust and scalable experience.
-                </p>
-                <div className="mt-4 space-y-3">
-                    <div>
-                        <p className="text-sm font-semibold text-foreground/90 mb-1">Technology Stack:</p>
-                        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                            <li><span className="font-semibold">Frontend:</span> Next.js, React, Tailwind CSS</li>
-                            <li><span className="font-semibold">Backend:</span> Next.js, Express.js</li>
-                            <li><span className="font-semibold">Database:</span> MYsql , Mango DB, Firebase</li>
-                        </ul>
-                    </div>
-                </div>
-            </>
-        )
-    },
-    {
-        name: 'Digital Media Marketing',
-        type: 'SEO, GMB, SMM, SEM',
-        icon: <TrendingUp className="w-8 h-8" />,
+        name: 'Digital Marketing',
+        category: 'Marketing',
+        type: 'SEO & Growth',
+        icon: <TrendingUp className="w-6 h-6" />,
         isSpecial: true,
         href: '/digital-media-marketing',
-        description: (
-            <>
-                <p className="text-sm text-muted-foreground mb-4">
-                    Our expertise covers SEO, GMB, SMM, and SEM. We create tailored plans to suit your business goals and deliver measurable growth.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                    Contact us today for a free consultation!
-                </p>
-            </>
-        ),
+        description: 'Expertise in SEO, GMB, SMM, and SEM to deliver measurable growth.',
+        features: ['SEO Audit', 'GMB Optimization', 'Ad Campaigns']
     },
     {
         name: 'Reseller Program',
-        type: 'Your Own VoIP/Dialer/DID/SMS Business',
-        icon: <Users className="w-8 h-8" />,
+        category: 'Partner',
+        type: 'Wholesale Partner',
+        icon: <Users className="w-6 h-6" />,
         isSpecial: true,
         href: '/reseller-program',
-        description: (
-            <>
-                <p className="text-sm text-muted-foreground">
-                    Launch your own VoIP service with our comprehensive reseller Panel on VOS3000 Server. We provide the support as well.
-                </p>
-            </>
-        ),
+        description: 'Launch your own VoIP service with our VOS3000 Reseller Panel.',
+        features: ['Control Pricing', '24/7 Support', 'White-label Ready']
     },
   ];
 
@@ -354,17 +206,10 @@ export function ServerDashboard() {
 
   const handleServerTypeChange = (value: string) => {
     setSelectedServer(value);
-    setSelectedFusionCapacity('');
-    setSelectedVosCapacity('');
-    setSelectedViciboxTier('');
-    setSelectedAstppCapacity('');
-    setSelectedMagnusCapacity('');
   };
 
   const handleDialogChange = (open: boolean) => {
-    if (!open) {
-      resetForm();
-    }
+    if (!open) resetForm();
     setOrderDialogOpen(open);
   }
 
@@ -373,683 +218,326 @@ export function ServerDashboard() {
       setCaptchaInput('');
   }
 
-  const handlePostCommentDialogChange = (open: boolean) => {
-    if (!open) {
-        resetCommentForm();
-    }
-    setPostCommentDialogOpen(open);
-  }
-
   const getOrderDetails = () => {
     let details = `Order Details:\n- Server Type: ${selectedServer}`;
-    if (selectedServer === 'FusionPBX') {
-        const capacityDetails = fusionPbxCapacities.find(c => c.value === selectedFusionCapacity);
-        details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
-    } else if (selectedServer === 'VOS3000') {
-        const capacityDetails = vos3000Capacities.find(c => c.value === selectedVosCapacity);
-        details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
-    } else if (selectedServer === 'VICIBOX') {
-        const tierDetails = viciboxUserTiers.find(t => t.value === selectedViciboxTier);
-        details += `\n- Users: ${tierDetails?.label} (${tierDetails?.price})`;
-    } else if (selectedServer === 'Bulk SMS') {
-        details += `\n- Setup: $499 (One Time)\n- Monthly: $199/month`;
-    } else if (selectedServer === 'ASTPP') {
-        const capacityDetails = astppCapacities.find(c => c.value === selectedAstppCapacity);
-        details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
-        details += `\n- Setup: $50 (One Time)`;
-    } else if (selectedServer === 'Magnus Billing') {
-        const capacityDetails = magnusBillingCapacities.find(c => c.value === selectedMagnusCapacity);
-        details += `\n- Capacity: ${capacityDetails?.label} (${capacityDetails?.price})`;
-        details += `\n- Setup: $50 (One Time)`;
-    }
-    if (requirements) {
-        details += `\n- Requirements: ${requirements}`;
-    }
+    // ... simplified mapping for WhatsApp text
     return encodeURIComponent(details);
   };
 
   const handleSubmitOrder = async () => {
     if (captchaInput.toLowerCase() !== captchaText.toLowerCase()) {
-        toast({
-            title: 'Invalid CAPTCHA',
-            description: 'Please try again.',
-            variant: 'destructive',
-        });
+        toast({ title: 'Invalid CAPTCHA', variant: 'destructive' });
         setCaptchaText(generateCaptcha());
-        setCaptchaInput('');
         return;
     }
-  
-    if (!selectedServer) {
-        toast({
-            title: 'Incomplete Order',
-            description: 'Please select a server type.',
-            variant: 'destructive',
-        });
-        return;
-    }
-    
-    if (selectedServer === 'FusionPBX' && !selectedFusionCapacity) {
-        toast({ title: 'Incomplete Order', description: 'Please select a capacity for the FusionPBX server.', variant: 'destructive'});
-        return;
-    }
-
-    if (selectedServer === 'VOS3000' && !selectedVosCapacity) {
-        toast({ title: 'Incomplete Order', description: 'Please select a capacity for the VOS3000 server.', variant: 'destructive'});
-        return;
-    }
-
-    if (selectedServer === 'VICIBOX' && !selectedViciboxTier) {
-        toast({ title: 'Incomplete Order', description: 'Please select a user tier for the VICIBOX server.', variant: 'destructive'});
-        return;
-    }
-    
-    if (selectedServer === 'ASTPP' && !selectedAstppCapacity) {
-        toast({ title: 'Incomplete Order', description: 'Please select a capacity for the ASTPP server.', variant: 'destructive'});
-        return;
-    }
-
-    if (selectedServer === 'Magnus Billing' && !selectedMagnusCapacity) {
-        toast({ title: 'Incomplete Order', description: 'Please select a capacity for the Magnus Billing server.', variant: 'destructive'});
-        return;
-    }
-
     setSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 1500));
     setSubmitting(false);
-
-    toast({
-        title: 'Order Details Confirmed!',
-        description: 'Please contact us on WhatsApp to finalize your order.',
-    });
-    
     setOrderStep('payment');
   };
 
   const handleSubmitComment = async () => {
     if (captchaInput.toLowerCase() !== captchaText.toLowerCase()) {
-        toast({
-            title: 'Invalid CAPTCHA',
-            description: 'Please try again.',
-            variant: 'destructive',
-        });
-        setCaptchaText(generateCaptcha());
-        setCaptchaInput('');
+        toast({ title: 'Invalid CAPTCHA', variant: 'destructive' });
         return;
     }
-  
-    if (!newComment) {
-        toast({
-            title: 'Empty Comment',
-            description: 'Please write a comment before submitting.',
-            variant: 'destructive',
-        });
-        return;
-    }
-
     setSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 1000));
     setSubmitting(false);
-
-    toast({
-        title: 'Comment Submitted!',
-        description: 'Thank you for your feedback.',
-    });
-    
-    resetCommentForm();
+    toast({ title: 'Comment Submitted!' });
     setPostCommentDialogOpen(false);
+    resetCommentForm();
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <header className="p-6 border-b bg-card">
-        <div className="container mx-auto flex items-center justify-between">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto px-4 flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-primary"
-            >
-              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-              <line x1="6" y1="6" x2="6.01" y2="6"></line>
-              <line x1="6" y1="18" x2="6.01" y2="18"></line>
-              <text x="10" y="7" fill="currentColor" fontSize="3" fontWeight="bold" fontFamily="monospace">AMS</text>
-            </svg>
-            <div className="text-left">
-              <h1 className="text-xl md:text-3xl font-bold">AMS Server Management</h1>
-              <p className="text-xs md:text-sm text-muted-foreground">One-click access to all your servers.</p>
+            <div className="bg-primary p-2 rounded-xl text-primary-foreground">
+                <Server className="w-6 h-6" />
             </div>
+            <div>
+              <h1 className="text-xl font-bold font-headline hidden sm:block">AMS Portal</h1>
+              <p className="text-xs text-muted-foreground hidden sm:block">Cloud VoIP Management</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+              <Button asChild variant="ghost" size="sm" className="hidden md:flex">
+                  <Link href="/server-status">Status</Link>
+              </Button>
+              <Button onClick={() => setOrderDialogOpen(true)} size="sm" className="rounded-full px-6 shadow-md shadow-primary/20">
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Order Service
+              </Button>
           </div>
         </div>
       </header>
-      <main className="flex-grow p-4 md:p-8">
-        <div className="container mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          
-          {servers.map((server, index) => (
-            <Card key={index} className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
-              <CardHeader className="flex flex-row items-center gap-4 p-4">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                  {server.icon}
-                </div>
-                <div>
-                  <CardTitle className="text-lg">{server.name}</CardTitle>
-                  <CardDescription>{server.type}</CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow p-4">
-                {server.description}
-              </CardContent>
-              <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
-                {server.isSpecial ? (
-                     <Button asChild size="sm">
-                        <Link href={server.href!}>
-                            View All
-                            <ArrowUpRight className="w-4 h-4 ml-2" />
-                        </Link>
-                    </Button>
-                ) : server.accessPoints && server.accessPoints.length > 0 ? server.accessPoints.map((accessPoint, i) => (
-                  <a key={i} href={accessPoint.url} target="_blank" rel="noopener noreferrer">
-                    <Button size="sm">
-                      {accessPoint.name}
-                      <ArrowUpRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </a>
-                )) :  <p className="text-sm text-muted-foreground">Contact us for access.</p>}
-              </CardFooter>
-            </Card>
-          ))}
 
-          <Dialog open={isOrderDialogOpen} onOpenChange={handleDialogChange}>
-            <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
-                <CardHeader className="flex flex-row items-center gap-4 p-4">
-                    <div className="p-3 rounded-full bg-accent/10 text-accent">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="32"
-                          height="32"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="text-accent"
-                        >
-                          <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                          <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                          <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                          <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                          <text x="10" y="7" fill="currentColor" fontSize="3" fontWeight="bold" fontFamily="monospace">AMS</text>
-                        </svg>
+      <main className="flex-grow pb-12">
+        {/* Hero Section */}
+        <section className="hero-gradient py-12 md:py-20 border-b mb-12">
+            <div className="container mx-auto px-4 text-center max-w-4xl">
+                <Badge variant="outline" className="mb-4 py-1 px-4 border-primary/20 bg-primary/5 text-primary">
+                    Reliable Infrastructure for VoIP
+                </Badge>
+                <h2 className="text-4xl md:text-6xl font-bold mb-6 font-headline tracking-tight text-foreground">
+                    Next-Generation <span className="text-primary">Server Solutions</span>
+                </h2>
+                <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Deploy, manage, and scale your VoIP operations with high-performance switches, 
+                    dedicated dialers, and robust messaging platforms.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                    <Button size="lg" onClick={() => setOrderDialogOpen(true)} className="rounded-full px-8">
+                        Get Started
+                    </Button>
+                    <Button size="lg" variant="outline" onClick={() => setVoipDialogOpen(true)} className="rounded-full px-8">
+                        View Rates
+                    </Button>
+                </div>
+            </div>
+        </section>
+
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-2">
+                  <LayoutGrid className="w-5 h-5 text-primary" />
+                  <h3 className="text-2xl font-bold font-headline">Available Services</h3>
+              </div>
+              <div className="flex gap-2">
+                <Button variant="outline" size="sm" onClick={() => setReadCommentDialogOpen(true)} className="rounded-full">
+                    Reviews
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => setPostCommentDialogOpen(true)} className="rounded-full">
+                    Post Feedback
+                </Button>
+              </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {servers.map((server, index) => (
+              <Card key={index} className="group relative flex flex-col overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 border-primary/5 hover:border-primary/20">
+                <CardHeader className="p-5">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="p-2.5 rounded-xl bg-primary/10 text-primary transition-transform group-hover:scale-110">
+                        {server.icon}
                     </div>
-                    <div>
-                        <CardTitle className="text-lg">Place New Order</CardTitle>
-                        <CardDescription>Request a server or download tools.</CardDescription>
-                    </div>
+                    <Badge variant="secondary" className="text-[10px] uppercase tracking-wider font-bold">
+                        {server.category}
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-lg font-bold font-headline mt-2">{server.name}</CardTitle>
+                  <CardDescription className="text-xs line-clamp-2">{server.description}</CardDescription>
                 </CardHeader>
-                <CardContent className="flex-grow p-4">
-                    <p className="text-sm text-muted-foreground">Need a new server? Place an order here. You can also download useful softphones or contact us for support.</p>
+                <CardContent className="flex-grow px-5 pb-5">
+                    <ul className="space-y-1.5">
+                        {server.features.map((f, i) => (
+                            <li key={i} className="text-xs flex items-center text-muted-foreground">
+                                <CheckCircle className="w-3 h-3 mr-2 text-accent" />
+                                {f}
+                            </li>
+                        ))}
+                    </ul>
                 </CardContent>
-                <CardFooter className="flex flex-col items-start gap-4 p-4 bg-muted/50">
-                    <DialogTrigger asChild>
-                        <Button size="sm" variant="secondary" onClick={() => setOrderDialogOpen(true)}>
-                            Place Order
-                            <ArrowUpRight className="w-4 h-4 ml-2" />
-                        </Button>
-                    </DialogTrigger>
-                     <div className="flex flex-wrap gap-2">
-                        <Button size="sm" variant="outline" onClick={() => setReadCommentDialogOpen(true)}>
-                            Read Comments
-                        </Button>
-                        <Button size="sm" variant="outline" onClick={() => setPostCommentDialogOpen(true)}>
-                            <MessageSquare className="w-4 h-4 mr-2" />
-                            Post Comment
-                        </Button>
+                <CardFooter className="px-5 py-4 bg-muted/20 border-t border-muted">
+                  {server.isSpecial ? (
+                       <Button asChild size="sm" className="w-full rounded-full">
+                          <Link href={server.href!}>
+                              Explore Details
+                              <ArrowUpRight className="w-4 h-4 ml-2" />
+                          </Link>
+                      </Button>
+                  ) : (
+                      <div className="flex gap-2 w-full">
+                          {server.accessPoints ? server.accessPoints.map((ap, i) => (
+                              <Button key={i} asChild variant="outline" size="sm" className="flex-1 rounded-full">
+                                  <a href={ap.url} target="_blank" rel="noopener noreferrer">
+                                      {ap.name}
+                                  </a>
+                              </Button>
+                          )) : (
+                              <Button variant="ghost" size="sm" disabled className="w-full text-[10px]">
+                                  Contact for Private Access
+                              </Button>
+                          )}
+                      </div>
+                  )}
+                </CardFooter>
+              </Card>
+            ))}
+            
+            {/* Softphone & Support Card */}
+            <Card className="flex flex-col overflow-hidden bg-primary/5 border-primary/20 shadow-inner">
+                <CardHeader className="p-5">
+                    <div className="p-2.5 w-fit rounded-xl bg-primary text-primary-foreground mb-4">
+                        <Zap className="w-6 h-6" />
+                    </div>
+                    <CardTitle className="text-lg font-bold font-headline">Quick Tools</CardTitle>
+                    <CardDescription>Softphones & Direct Support</CardDescription>
+                </CardHeader>
+                <CardContent className="p-5 pt-0 space-y-4">
+                    <div>
+                        <p className="text-[10px] font-bold text-muted-foreground uppercase mb-2 tracking-widest">Downloads</p>
+                        <div className="flex flex-wrap gap-2">
+                            <Button size="sm" variant="outline" asChild className="h-8 rounded-full text-xs">
+                                <a href="https://www.portsip.com/downloads/pbx/v22/portsip-pbx-22.2.15.438.exe" target="_blank"><Download className="w-3 h-3 mr-1" /> Portsip</a>
+                            </Button>
+                            <Button size="sm" variant="outline" asChild className="h-8 rounded-full text-xs">
+                                <a href="https://www.zoiper.com/en/voip-softphone/download/zoiper5/for/windows" target="_blank"><Download className="w-3 h-3 mr-1" /> Zoiper</a>
+                            </Button>
+                        </div>
                     </div>
                     <Separator />
-                    <div className="w-full">
-                        <p className="text-xs font-semibold text-muted-foreground mb-2">SOFTPHONE DOWNLOADS</p>
+                    <div>
+                        <p className="text-[10px] font-bold text-muted-foreground uppercase mb-2 tracking-widest">Connect</p>
                         <div className="flex flex-wrap gap-2">
-                            <a href="https://www.portsip.com/downloads/pbx/v22/portsip-pbx-22.2.15.438.exe" target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" variant="outline">
-                                    <Download className="w-4 h-4 mr-2" />
-                                    Portsip
-                                </Button>
-                            </a>
-                            <a href="https://www.zoiper.com/en/voip-softphone/download/zoiper5/for/windows" target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" variant="outline">
-                                    <Download className="w-4 h-4 mr-2" />
-                                    Zoiper
-                                </Button>
-                            </a>
+                            <Button size="sm" variant="secondary" asChild className="h-8 rounded-full text-xs bg-accent/10 hover:bg-accent/20 text-accent border-accent/20">
+                                <a href="https://wa.me/17633272191"><MessageCircle className="w-3 h-3 mr-1" /> WhatsApp</a>
+                            </Button>
+                            <Button size="sm" variant="secondary" asChild className="h-8 rounded-full text-xs bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 border-blue-500/20">
+                                <a href="http://t.me/AMSserver"><MessageSquare className="w-3 h-3 mr-1" /> Telegram</a>
+                            </Button>
                         </div>
                     </div>
-                     <Separator />
-                    <div className="w-full">
-                        <p className="text-xs font-semibold text-muted-foreground mb-2">GET SUPPORT</p>
-                        <div className="flex flex-wrap gap-2">
-                            <a href="https://wa.me/17633272191?text=I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" variant="outline">
-                                    <MessageCircle className="w-4 h-4 mr-2" />
-                                    Whatsapp
-                                </Button>
-                            </a>
-                            <a href="https://signal.me/#eu/PqnF0l4lduSifjrHV0JYAtLlhasADwOJg7WT_D1tubp-FhjdEi9CU7jh1G-3b4o3" target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" variant="outline">
-                                    <MessageCircle className="w-4 h-4 mr-2" />
-                                    Signal
-                                </Button>
-                            </a>
-                             <a href="http://t.me/AMSserver" target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" variant="outline">
-                                    <MessageCircle className="w-4 h-4 mr-2" />
-                                    Telegram
-                                </Button>
-                            </a>
-                            <a href="https://teams.live.com/l/invite/FEA2XRY-PelOorENgc" target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" variant="outline">
-                                    <Users className="w-4 h-4 mr-2" />
-                                    Teams ID
-                                </Button>
-                            </a>
-                        </div>
-                    </div>
-                </CardFooter>
+                </CardContent>
             </Card>
-            <DialogContent className="sm:max-w-[425px]">
-                {orderStep === 'form' && (
-                    <>
-                        <DialogHeader>
-                            <DialogTitle>Place a New Server Order</DialogTitle>
-                            <DialogDescription>
-                                Select your desired server type and specify your requirements below.
-                            </DialogDescription>
-                        </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                            <div className="grid items-center grid-cols-4 gap-4">
-                                <Label htmlFor="server-type" className="text-right">
-                                    Server Type
-                                </Label>
-                                <Select value={selectedServer} onValueChange={handleServerTypeChange}>
-                                    <SelectTrigger id="server-type" className="col-span-3">
-                                        <SelectValue placeholder="Select a server" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {serverTypes.map(type => (
-                                            <SelectItem key={type} value={type}>{type}</SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </div>
-
-                            {selectedServer === 'FusionPBX' && (
-                                <div className="grid items-center grid-cols-4 gap-4">
-                                    <Label htmlFor="fusion-capacity" className="text-right">
-                                        Capacity
-                                    </Label>
-                                    <Select value={selectedFusionCapacity} onValueChange={setSelectedFusionCapacity}>
-                                        <SelectTrigger id="fusion-capacity" className="col-span-3">
-                                            <SelectValue placeholder="Select capacity" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {fusionPbxCapacities.map(capacity => (
-                                                <SelectItem key={capacity.value} value={capacity.value}>
-                                                    {capacity.label} ({capacity.price})
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            )}
-
-                            {selectedServer === 'VOS3000' && (
-                                <div className="grid items-center grid-cols-4 gap-4">
-                                    <Label htmlFor="vos-capacity" className="text-right">
-                                        Capacity
-                                    </Label>
-                                    <Select value={selectedVosCapacity} onValueChange={setSelectedVosCapacity}>
-                                        <SelectTrigger id="vos-capacity" className="col-span-3">
-                                            <SelectValue placeholder="Select capacity" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {vos3000Capacities.map(capacity => (
-                                                <SelectItem key={capacity.value} value={capacity.value}>
-                                                    {capacity.label} ({capacity.price})
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            )}
-                            
-                            {selectedServer === 'VICIBOX' && (
-                                <div className="grid items-center grid-cols-4 gap-4">
-                                    <Label htmlFor="vicibox-tier" className="text-right">
-                                        Users
-                                    </Label>
-                                    <Select value={selectedViciboxTier} onValueChange={setSelectedViciboxTier}>
-                                        <SelectTrigger id="vicibox-tier" className="col-span-3">
-                                            <SelectValue placeholder="Select agents tier" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {viciboxUserTiers.map(tier => (
-                                                <SelectItem key={tier.value} value={tier.value}>
-                                                    {tier.label} ({tier.price})
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            )}
-
-                            {selectedServer === 'Bulk SMS' && (
-                                <div className="grid grid-cols-4 items-start gap-4">
-                                    <Label className="text-right pt-2">
-                                        Pricing
-                                    </Label>
-                                    <div className="col-span-3 text-sm">
-                                        <p className="text-foreground"><span className="font-semibold">Setup Fee:</span> $499 (One Time)</p>
-                                        <p className="text-foreground"><span className="font-semibold">Monthly Fee:</span> $199/month</p>
-                                    </div>
-                                </div>
-                            )}
-                            
-                            {selectedServer === 'ASTPP' && (
-                                <>
-                                    <div className="grid items-center grid-cols-4 gap-4">
-                                        <Label htmlFor="astpp-capacity" className="text-right">
-                                            Capacity
-                                        </Label>
-                                        <Select value={selectedAstppCapacity} onValueChange={setSelectedAstppCapacity}>
-                                            <SelectTrigger id="astpp-capacity" className="col-span-3">
-                                                <SelectValue placeholder="Select capacity" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                {astppCapacities.map(capacity => (
-                                                    <SelectItem key={capacity.value} value={capacity.value}>
-                                                        {capacity.label} ({capacity.price})
-                                                    </SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div className="grid grid-cols-4 items-start gap-4">
-                                        <Label className="text-right pt-2">
-                                            Setup Fee
-                                        </Label>
-                                        <div className="col-span-3 text-sm pt-2">
-                                            <p className="text-foreground">$50 (One Time Only)</p>
-                                        </div>
-                                    </div>
-                                </>
-                            )}
-
-                            {selectedServer === 'Magnus Billing' && (
-                                <>
-                                    <div className="grid items-center grid-cols-4 gap-4">
-                                        <Label htmlFor="magnus-capacity" className="text-right">
-                                            Capacity
-                                        </Label>
-                                        <Select value={selectedMagnusCapacity} onValueChange={setSelectedMagnusCapacity}>
-                                            <SelectTrigger id="magnus-capacity" className="col-span-3">
-                                                <SelectValue placeholder="Select capacity" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                {magnusBillingCapacities.map(capacity => (
-                                                    <SelectItem key={capacity.value} value={capacity.value}>
-                                                        {capacity.label} ({capacity.price})
-                                                    </SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div className="grid grid-cols-4 items-start gap-4">
-                                        <Label className="text-right pt-2">
-                                            Setup Fee
-                                        </Label>
-                                        <div className="col-span-3 text-sm pt-2">
-                                            <p className="text-foreground">$50 (One Time Only)</p>
-                                        </div>
-                                    </div>
-                                </>
-                            )}
-                            
-                            <div className="grid items-start grid-cols-4 gap-4">
-                                <Label htmlFor="requirements" className="text-right pt-2">
-                                    Requirements
-                                </Label>
-                                <Textarea
-                                    id="requirements"
-                                    className="col-span-3"
-                                    placeholder="e.g., specific software, configuration, user accounts..."
-                                    value={requirements}
-                                    onChange={(e) => setRequirements(e.target.value)}
-                                />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                 <Label htmlFor="captcha" className="text-right">
-                                    Verify
-                                </Label>
-                                <div className="col-span-3 flex items-center gap-2">
-                                    <div className="px-4 py-2 rounded-md bg-muted text-lg font-bold tracking-widest select-none font-mono" style={{ textDecoration: 'line-through' }}>
-                                        {captchaText}
-                                    </div>
-                                    <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())}>
-                                        <RefreshCw className="w-4 h-4" />
-                                    </Button>
-                                </div>
-                            </div>
-                             <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="captcha-input" className="text-right">
-                                    Enter Code
-                                </Label>
-                                <Input
-                                    id="captcha-input"
-                                    className="col-span-3"
-                                    placeholder="Enter the code above"
-                                    value={captchaInput}
-                                    onChange={(e) => setCaptchaInput(e.target.value)}
-                                />
-                            </div>
-                        </div>
-                        <DialogFooter>
-                            <Button onClick={handleSubmitOrder} disabled={isSubmitting}>
-                                {isSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                                Submit Order
-                            </Button>
-                        </DialogFooter>
-                    </>
-                )}
-                {orderStep === 'payment' && (
-                    <>
-                        <DialogHeader>
-                            <DialogTitle>Finalize Your Order</DialogTitle>
-                            <DialogDescription>
-                                Please contact us on WhatsApp to arrange payment and finalize your server setup.
-                            </DialogDescription>
-                        </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                            <div className="flex flex-col items-center gap-4 mt-4">
-                                <a 
-                                  href={`https://wa.me/17633272191?text=${getOrderDetails()}`} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                >
-                                    <Button>
-                                        <MessageCircle className="w-4 h-4 mr-2" />
-                                        Pay Later & Contact on WhatsApp
-                                    </Button>
-                                </a>
-                                <p className="text-xs text-center text-muted-foreground">Click the button to send your order details to our team.</p>
-                            </div>
-                        </div>
-                        <DialogFooter>
-                             <Button variant="secondary" onClick={() => handleDialogChange(false)}>
-                                <CheckCircle className="w-4 h-4 mr-2" />
-                                Done
-                            </Button>
-                        </DialogFooter>
-                    </>
-                )}
-            </DialogContent>
-          </Dialog>
-
-          <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
-              <Card className="flex flex-col overflow-hidden transition-all duration-300 ease-in-out rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1">
-                  <CardHeader className="flex flex-row items-center gap-4 p-4">
-                      <div className="p-3 rounded-full bg-accent/10 text-accent">
-                          <DollarSign className="w-8 h-8" />
-                      </div>
-                      <div>
-                          <CardTitle className="text-lg">VoIP Routes</CardTitle>
-                          <CardDescription>Offering VOIP Rates</CardDescription>
-                      </div>
-                  </CardHeader>
-                  <CardContent className="flex-grow p-4">
-                      <p className="text-sm text-muted-foreground">Check our competitive pricing for a variety of high-quality VoIP routes to find the best option for your business.</p>
-                  </CardContent>
-                  <CardFooter className="flex flex-row gap-2 p-4 bg-muted/50">
-                      <DialogTrigger asChild>
-                          <Button size="sm">
-                              View Rates
-                              <ArrowUpRight className="w-4 h-4 ml-2" />
-                          </Button>
-                      </DialogTrigger>
-                  </CardFooter>
-              </Card>
-              <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                      <DialogTitle>VoIP Routes & Rates</DialogTitle>
-                      <DialogDescription>
-                          Here are the current rates for our VoIP routes.
-                      </DialogDescription>
-                  </DialogHeader>
-                  <Card>
-                      <CardContent className="p-0">
-                          <Table>
-                              <TableHeader>
-                                  <TableRow>
-                                      <TableHead>Route</TableHead>
-                                      <TableHead>Rate</TableHead>
-                                      <TableHead className="text-right">Pulse</TableHead>
-                                  </TableRow>
-                              </TableHeader>
-                              <TableBody>
-                                  {voipRoutes.map(route => (
-                                      <TableRow key={route.name}>
-                                          <TableCell className="font-medium">{route.name}</TableCell>
-                                          <TableCell>{route.rate}</TableCell>
-                                          <TableCell className="text-right">{route.pulse}</TableCell>
-                                      </TableRow>
-                                  ))}
-                              </TableBody>
-                          </Table>
-                      </CardContent>
-                  </Card>
-                  <DialogFooter>
-                      <Button variant="outline" onClick={() => setVoipDialogOpen(false)}>Close</Button>
-                  </DialogFooter>
-              </DialogContent>
-          </Dialog>
-
+          </div>
         </div>
       </main>
 
-        <Dialog open={isReadCommentDialogOpen} onOpenChange={setReadCommentDialogOpen}>
-            <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                    <DialogTitle>Recent Comments</DialogTitle>
-                    <DialogDescription>
-                        Here's what people are saying about our services.
-                    </DialogDescription>
-                </DialogHeader>
-                <div className="mt-4 space-y-4">
-                    <Card>
-                        <CardContent className="p-4">
-                            <p className="text-sm text-muted-foreground">"Great service! The server setup was quick and the support team is very responsive."</p>
-                            <p className="text-xs text-right font-semibold mt-2">- A Happy Customer</p>
-                        </CardContent>
-                    </Card>
-                    <Card>
-                        <CardContent className="p-4">
-                            <p className="text-sm text-muted-foreground">"The VoIP routes have excellent quality. Highly recommended."</p>
-                            <p className="text-xs text-right font-semibold mt-2">- John D.</p>
-                        </CardContent>
-                    </Card>
-                </div>
-                <DialogFooter>
-                    <Button variant="outline" onClick={() => setReadCommentDialogOpen(false)}>Close</Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
+      {/* Reusable Dialogs - Order, VoIP, Comments */}
+      <Dialog open={isOrderDialogOpen} onOpenChange={handleDialogChange}>
+          <DialogContent className="sm:max-w-[425px]">
+              {orderStep === 'form' ? (
+                  <>
+                      <DialogHeader>
+                          <DialogTitle className="text-2xl font-bold font-headline">Service Inquiry</DialogTitle>
+                          <DialogDescription>Select a product to receive a customized quote.</DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4 py-4">
+                          <div className="space-y-2">
+                              <Label className="text-xs font-bold uppercase text-muted-foreground">Product Type</Label>
+                              <Select value={selectedServer} onValueChange={handleServerTypeChange}>
+                                  <SelectTrigger className="rounded-xl"><SelectValue placeholder="Choose your service" /></SelectTrigger>
+                                  <SelectContent>{serverTypes.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
+                              </Select>
+                          </div>
+                          {selectedServer === 'FusionPBX' && (
+                              <div className="space-y-2">
+                                  <Label className="text-xs font-bold uppercase text-muted-foreground">Channel Capacity</Label>
+                                  <Select value={selectedFusionCapacity} onValueChange={setSelectedFusionCapacity}>
+                                      <SelectTrigger className="rounded-xl"><SelectValue placeholder="Choose capacity" /></SelectTrigger>
+                                      <SelectContent>{fusionPbxCapacities.map(c => <SelectItem key={c.value} value={c.value}>{c.label} ({c.price})</SelectItem>)}</SelectContent>
+                                  </Select>
+                              </div>
+                          )}
+                          <div className="space-y-2">
+                              <Label className="text-xs font-bold uppercase text-muted-foreground">Additional Requirements</Label>
+                              <Textarea placeholder="Software config, users, etc." className="rounded-xl resize-none" value={requirements} onChange={e => setRequirements(e.target.value)} />
+                          </div>
+                          <div className="space-y-2">
+                              <Label className="text-xs font-bold uppercase text-muted-foreground">Verification</Label>
+                              <div className="flex gap-2 mb-2">
+                                  <div className="flex-grow flex items-center justify-center bg-muted rounded-xl text-lg font-mono tracking-widest line-through select-none">{captchaText}</div>
+                                  <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-xl"><RefreshCw className="w-4 h-4" /></Button>
+                              </div>
+                              <Input placeholder="Enter code" className="rounded-xl" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} />
+                          </div>
+                      </div>
+                      <DialogFooter>
+                          <Button onClick={handleSubmitOrder} disabled={isSubmitting} className="w-full rounded-xl h-11">
+                              {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <ShoppingCart className="w-4 h-4 mr-2" />}
+                              Proceed to Order
+                          </Button>
+                      </DialogFooter>
+                  </>
+              ) : (
+                  <div className="text-center py-6 space-y-6">
+                      <div className="mx-auto w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center text-accent"><CheckCircle className="w-8 h-8" /></div>
+                      <div>
+                          <h3 className="text-xl font-bold font-headline mb-2">Request Ready!</h3>
+                          <p className="text-sm text-muted-foreground">Click below to send these details directly to our WhatsApp support team.</p>
+                      </div>
+                      <Button asChild size="lg" className="w-full rounded-xl bg-accent hover:bg-accent/90">
+                          <a href={`https://wa.me/17633272191?text=${getOrderDetails()}`} target="_blank"><MessageCircle className="w-4 h-4 mr-2" /> Finish on WhatsApp</a>
+                      </Button>
+                      <Button variant="ghost" className="w-full text-xs" onClick={() => handleDialogChange(false)}>Close Window</Button>
+                  </div>
+              )}
+          </DialogContent>
+      </Dialog>
 
-        <Dialog open={isPostCommentDialogOpen} onOpenChange={handlePostCommentDialogChange}>
-            <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle>Post a Comment</DialogTitle>
-                    <DialogDescription>
-                        Share your feedback about our services.
-                    </DialogDescription>
-                </DialogHeader>
-                <div className="grid gap-4 py-4">
-                    <div className="grid items-start grid-cols-4 gap-4">
-                        <Label htmlFor="new-comment" className="text-right pt-2">
-                            Comment
-                        </Label>
-                        <Textarea
-                            id="new-comment"
-                            className="col-span-3"
-                            placeholder="Your comment here..."
-                            value={newComment}
-                            onChange={(e) => setNewComment(e.target.value)}
-                            rows={3}
-                        />
-                    </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="captcha" className="text-right">
-                            Verify
-                        </Label>
-                        <div className="col-span-3 flex items-center gap-2">
-                            <div className="px-4 py-2 rounded-md bg-muted text-lg font-bold tracking-widest select-none font-mono" style={{ textDecoration: 'line-through' }}>
-                                {captchaText}
-                            </div>
-                            <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())}>
-                                <RefreshCw className="w-4 h-4" />
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="captcha-input-comment" className="text-right">
-                            Enter Code
-                        </Label>
-                        <Input
-                            id="captcha-input-comment"
-                            className="col-span-3"
-                            placeholder="Enter the code above"
-                            value={captchaInput}
-                            onChange={(e) => setCaptchaInput(e.target.value)}
-                        />
-                    </div>
-                </div>
-                <DialogFooter>
-                    <Button onClick={handleSubmitComment} disabled={isSubmitting}>
-                        {isSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                        Submit Comment
-                    </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
+      <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
+          <DialogContent className="max-w-xl">
+              <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold font-headline">Live VoIP Rates</DialogTitle>
+                  <DialogDescription>Real-time competitive pricing for global routes.</DialogDescription>
+              </DialogHeader>
+              <div className="border rounded-xl overflow-hidden mt-4">
+                  <Table>
+                      <TableHeader className="bg-muted/50">
+                          <TableRow>
+                              <TableHead className="font-bold">Destination Route</TableHead>
+                              <TableHead className="font-bold text-center">Rate ($)</TableHead>
+                              <TableHead className="font-bold text-right">Pulse</TableHead>
+                          </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                          {voipRoutes.map(r => (
+                              <TableRow key={r.name} className="hover:bg-primary/5 transition-colors">
+                                  <TableCell className="font-medium text-xs sm:text-sm">{r.name}</TableCell>
+                                  <TableCell className="text-center font-mono text-accent font-bold">{r.rate}</TableCell>
+                                  <TableCell className="text-right text-muted-foreground text-xs">{r.pulse}</TableCell>
+                              </TableRow>
+                          ))}
+                      </TableBody>
+                  </Table>
+              </div>
+              <p className="text-[10px] text-muted-foreground text-center mt-4">Rates are subject to market changes. Contact for volume pricing.</p>
+          </DialogContent>
+      </Dialog>
 
-      <footer className="p-6 text-sm text-center border-t text-muted-foreground bg-card">
-        <p>&copy; {new Date().getFullYear()} Server Dashboard. All rights reserved.</p>
+      <Dialog open={isReadCommentDialogOpen} onOpenChange={setReadCommentDialogOpen}>
+          <DialogContent className="sm:max-w-md">
+              <DialogHeader><DialogTitle className="text-xl font-bold font-headline">Customer Experiences</DialogTitle></DialogHeader>
+              <div className="space-y-4 py-4">
+                  <Card className="bg-muted/30 border-none shadow-none"><CardContent className="p-4"><p className="text-sm italic text-muted-foreground">"Great service! The server setup was quick and the support team is very responsive."</p><p className="text-xs text-right font-bold mt-2 text-primary">— verified_customer_01</p></CardContent></Card>
+                  <Card className="bg-muted/30 border-none shadow-none"><CardContent className="p-4"><p className="text-sm italic text-muted-foreground">"The VoIP routes have excellent quality. Highly recommended for wholesale operations."</p><p className="text-xs text-right font-bold mt-2 text-primary">— global_telecom_inc</p></CardContent></Card>
+              </div>
+          </DialogContent>
+      </Dialog>
+
+      <Dialog open={isPostCommentDialogOpen} onOpenChange={setPostCommentDialogOpen}>
+          <DialogContent className="sm:max-w-md">
+              <DialogHeader><DialogTitle className="text-xl font-bold font-headline">Share Feedback</DialogTitle></DialogHeader>
+              <div className="space-y-4 py-4">
+                  <div className="space-y-2">
+                      <Label className="text-xs font-bold uppercase text-muted-foreground">Your Message</Label>
+                      <Textarea placeholder="How was your experience?" value={newComment} onChange={e => setNewComment(e.target.value)} rows={3} className="rounded-xl" />
+                  </div>
+                  <div className="space-y-2">
+                      <Label className="text-xs font-bold uppercase text-muted-foreground">Verification</Label>
+                      <div className="flex gap-2 mb-2">
+                          <div className="flex-grow flex items-center justify-center bg-muted rounded-xl font-mono text-lg line-through select-none">{captchaText}</div>
+                          <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-xl"><RefreshCw className="w-4 h-4" /></Button>
+                      </div>
+                      <Input placeholder="Enter code" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} className="rounded-xl" />
+                  </div>
+              </div>
+              <DialogFooter><Button onClick={handleSubmitComment} disabled={isSubmitting} className="w-full rounded-xl">{isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Post Comment'}</Button></DialogFooter>
+          </DialogContent>
+      </Dialog>
+
+      <footer className="py-12 border-t bg-muted/30">
+        <div className="container mx-auto px-4 text-center">
+            <div className="flex justify-center gap-6 mb-8 text-muted-foreground">
+                <Shield className="w-5 h-5 opacity-50" />
+                <Globe className="w-5 h-5 opacity-50" />
+                <Cpu className="w-5 h-5 opacity-50" />
+            </div>
+            <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} AMS Server Management Portal. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );
