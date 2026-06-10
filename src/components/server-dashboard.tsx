@@ -83,7 +83,7 @@ export function ServerDashboard() {
         icon: <Phone className="w-6 h-6" />,
         isSpecial: true,
         href: '/vicibox',
-        description: 'Predictive dialer suite for large outbound campaigns.',
+        description: 'Advanced predictive dialing suite for high-volume campaigns.',
         features: ['Predictive Dialer', 'Press One', 'Inbound Support']
     },
     {
@@ -92,7 +92,7 @@ export function ServerDashboard() {
       type: 'Softswitch',
       icon: <Globe className="w-6 h-6" />,
       accessPoints: [{ name: 'CDR Login', url: 'https://51.161.43.30:8443' }],
-      description: 'Carrier-grade softswitch for wholesale VoIP traffic management.',
+      description: 'Carrier-grade routing and billing for wholesale traffic.',
       features: ['Wholesale Billing', 'LCR Routing', 'Real-time Monitor']
     },
     {
@@ -100,7 +100,7 @@ export function ServerDashboard() {
       category: 'Dialer & PBX',
       type: 'Multi-tenant',
       icon: <Server className="w-6 h-6" />,
-      description: 'High-performance multi-tenant PBX based on FreeSWITCH.',
+      description: 'Multi-tenant PBX infrastructure based on FreeSWITCH.',
       features: ['Multi-tenant', 'Call Recording', 'Ring Groups']
     },
     {
@@ -108,7 +108,7 @@ export function ServerDashboard() {
       category: 'Messaging',
       type: 'SMS Gateway',
       icon: <MessageSquare className="w-6 h-6" />,
-      description: 'Robust SMS gateway with API and multi-language support.',
+      description: 'Messaging gateway with robust API and reseller tools.',
       features: ['Unlimited Resellers', 'Campaign Tool', 'API Integration']
     },
     {
@@ -116,7 +116,7 @@ export function ServerDashboard() {
       category: 'Billing',
       type: 'Class 4/5',
       icon: <DollarSign className="w-6 h-6" />,
-      description: 'Open-source VoIP billing and management solution.',
+      description: 'Open-source smart VoIP billing and management platform.',
       features: ['Calling Cards', 'DID Management', 'Auto Provisioning']
     },
     {
@@ -124,7 +124,7 @@ export function ServerDashboard() {
       category: 'Billing',
       type: 'Management',
       icon: <Database className="w-6 h-6" />,
-      description: 'Comprehensive billing solution for VoIP retail operations.',
+      description: 'Full-featured billing solution for retail VoIP operations.',
       features: ['CDR Analysis', 'Rate Management', 'Agent Portal']
     },
     {
@@ -134,7 +134,7 @@ export function ServerDashboard() {
         icon: <TrendingUp className="w-6 h-6" />,
         isSpecial: true,
         href: '/digital-media-marketing',
-        description: 'Strategic growth through SEO, SMM, and Google Ads.',
+        description: 'Strategic online growth via SEO, SMM, and Google Ads.',
         features: ['SEO Audit', 'GMB SEO', 'SMM Campaigns']
     },
     {
@@ -144,7 +144,7 @@ export function ServerDashboard() {
         icon: <Users className="w-6 h-6" />,
         isSpecial: true,
         href: '/reseller-program',
-        description: 'Start your VoIP service with our comprehensive reseller Panel on VOS3000 Server.',
+        description: 'Start your own white-label VoIP service with our panel.',
         features: ['Pricing Control', '24/7 Support', 'Dedicated Panels']
     },
   ];
@@ -186,153 +186,163 @@ export function ServerDashboard() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto px-4 flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="bg-primary p-2 rounded-xl text-primary-foreground shadow-lg shadow-primary/20 transition-transform group-hover:scale-110">
+            <div className="bg-primary p-2.5 rounded-2xl text-primary-foreground shadow-lg shadow-primary/20 transition-all group-hover:rotate-6 group-hover:scale-105">
                 <Server className="w-6 h-6" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold font-headline leading-none">AMS Portal</span>
-              <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Cloud Infrastructure</span>
+              <span className="text-xl font-black font-headline tracking-tight leading-none">AMS Portal</span>
+              <span className="text-[9px] text-muted-foreground uppercase tracking-widest font-bold mt-1">Enterprise Infrastructure</span>
             </div>
           </Link>
-          <div className="flex items-center gap-4">
-              <Button asChild variant="secondary" size="sm" className="hidden md:flex rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+          <div className="flex items-center gap-3">
+              <Button asChild variant="secondary" size="sm" className="hidden md:flex rounded-xl bg-primary/10 text-primary hover:bg-primary/20 border border-primary/10 font-bold transition-all hover:-translate-y-0.5">
                   <a href="https://88.99.103.106:8443" target="_blank" rel="noopener noreferrer">
                     <Database className="w-4 h-4 mr-2" />
                     Retail CDR Login
                   </a>
               </Button>
-              <Button asChild variant="ghost" size="sm" className="hidden md:flex rounded-full">
+              <Button asChild variant="ghost" size="sm" className="hidden lg:flex rounded-xl font-bold hover:bg-muted">
                   <Link href="/server-status">
-                    <Wifi className="w-4 h-4 mr-2" />
+                    <Wifi className="w-4 h-4 mr-2 text-accent" />
                     Network Status
                   </Link>
               </Button>
-              <Button onClick={() => setOrderDialogOpen(true)} size="sm" className="rounded-full px-6 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all">
+              <Button onClick={() => setOrderDialogOpen(true)} size="sm" className="rounded-xl px-6 font-bold shadow-xl shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5 transition-all shimmer">
                 <ShoppingCart className="w-4 h-4 mr-2" />
-                Get Started
+                Provision
               </Button>
           </div>
         </div>
       </header>
 
       {/* Floating Action Buttons */}
-      <div className="fixed bottom-6 right-6 z-[60] flex flex-col gap-3">
-          <a href="http://t.me/AMSserver" target="_blank" rel="noopener noreferrer" className="bg-[#0088cc] text-white p-3 rounded-full shadow-xl hover:scale-110 transition-transform">
+      <div className="fixed bottom-8 right-8 z-[60] flex flex-col gap-4">
+          <a href="http://t.me/AMSserver" target="_blank" rel="noopener noreferrer" className="bg-[#0088cc] text-white p-4 rounded-2xl shadow-2xl hover:scale-110 hover:-translate-y-1 transition-all">
               <MessageSquare className="w-6 h-6" />
           </a>
-          <a href="https://wa.me/17633272191" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white p-3 rounded-full shadow-xl hover:scale-110 transition-transform">
+          <a href="https://wa.me/17633272191" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white p-4 rounded-2xl shadow-2xl hover:scale-110 hover:-translate-y-1 transition-all">
               <MessageCircle className="w-6 h-6" />
           </a>
       </div>
 
       <main className="flex-grow">
         {/* Modern Hero Section */}
-        <section className="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32 hero-gradient border-b">
+        <section className="relative overflow-hidden pt-20 pb-28 md:pt-32 md:pb-40 hero-gradient border-b">
             <div className="container mx-auto px-4 relative z-10 text-center">
-                <h1 className="text-5xl md:text-7xl font-extrabold mb-6 font-headline tracking-tight text-foreground leading-[1.1]">
-                    Powering Your <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">VoIP Infrastructure</span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-bold mb-8 animate-in fade-in slide-in-from-bottom-2 duration-700">
+                    <Shield className="w-3.5 h-3.5" />
+                    ISO 27001 Certified Infrastructure
+                </div>
+                <h1 className="text-5xl md:text-8xl font-black mb-8 font-headline tracking-tighter text-foreground leading-[0.9] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                    Deploy Your <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-accent">Next-Gen VoIP</span>
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
-                    Deploy carrier-grade softswitches, automated dialers, and 
-                    messaging gateways in minutes on our high-performance cloud.
+                <p className="text-lg md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed font-medium opacity-80 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                    Professional hosting for VOS3000, VICIBOX, and FusionPBX. 
+                    Scalable, secure, and ready for high-concurrency traffic.
                 </p>
-                <div className="flex flex-wrap justify-center gap-5">
-                    <Button size="lg" onClick={() => setOrderDialogOpen(true)} className="rounded-full px-10 h-14 text-lg font-bold">
-                        Provision Server
+                <div className="flex flex-wrap justify-center gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+                    <Button size="lg" onClick={() => setOrderDialogOpen(true)} className="rounded-2xl px-12 h-16 text-lg font-black shadow-2xl shadow-primary/30 hover:scale-105 transition-all">
+                        Get Started
                     </Button>
-                    <Button size="lg" variant="outline" onClick={() => setVoipDialogOpen(true)} className="rounded-full px-10 h-14 text-lg font-bold bg-background/50 backdrop-blur-sm">
-                        View VoIP Rates
+                    <Button size="lg" variant="outline" onClick={() => setVoipDialogOpen(true)} className="rounded-2xl px-12 h-16 text-lg font-black bg-background/50 backdrop-blur-sm border-2 hover:bg-background/80 transition-all">
+                        Wholesale Rates
                     </Button>
                 </div>
             </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -z-10" />
-            <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-background to-transparent" />
+            {/* Background decorative elements */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
         </section>
 
-        <div className="container mx-auto px-4 -mt-12 mb-20 relative z-20">
-          {/* Quick Stats / Feedback Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-            <Card className="glass-card rounded-2xl p-4 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                    <div className="bg-accent/10 p-3 rounded-xl text-accent">
-                        <Star className="w-6 h-6 fill-accent" />
+        <div className="container mx-auto px-4 -mt-16 mb-24 relative z-20">
+          {/* Quick Feedback Bar */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            <Card className="glass-card rounded-3xl p-6 flex items-center justify-between group">
+                <div className="flex items-center gap-5">
+                    <div className="bg-accent/10 p-4 rounded-2xl text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300">
+                        <Star className="w-7 h-7 fill-current" />
                     </div>
                     <div>
-                        <h4 className="font-bold">Customer Reviews</h4>
-                        <p className="text-xs text-muted-foreground">What our partners say about us</p>
+                        <h4 className="font-black text-lg">Partner Reviews</h4>
+                        <p className="text-sm text-muted-foreground font-medium">Read global feedback</p>
                     </div>
                 </div>
-                <div className="flex gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setReadCommentDialogOpen(true)} className="rounded-full font-bold">Read</Button>
-                    <Button variant="default" size="sm" onClick={() => setPostCommentDialogOpen(true)} className="rounded-full font-bold">Post Feedback</Button>
+                <div className="flex gap-3">
+                    <Button variant="outline" size="sm" onClick={() => setReadCommentDialogOpen(true)} className="rounded-xl font-black px-5 border-2">Read</Button>
+                    <Button variant="default" size="sm" onClick={() => setPostCommentDialogOpen(true)} className="rounded-xl font-black px-5 shadow-lg shadow-primary/20">Post</Button>
                 </div>
             </Card>
-            <Card className="glass-card rounded-2xl p-4 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                    <div className="bg-primary/10 p-3 rounded-xl text-primary">
-                        <Headphones className="w-6 h-6" />
+            <Card className="glass-card rounded-3xl p-6 flex items-center justify-between group">
+                <div className="flex items-center gap-5">
+                    <div className="bg-primary/10 p-4 rounded-2xl text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                        <Headphones className="w-7 h-7" />
                     </div>
                     <div>
-                        <h4 className="font-bold">Expert Support</h4>
-                        <p className="text-xs text-muted-foreground">Need help with configuration?</p>
+                        <h4 className="font-black text-lg">NOC Support</h4>
+                        <p className="text-sm text-muted-foreground font-medium">Expert assistance 24/7</p>
                     </div>
                 </div>
-                <Button variant="secondary" size="sm" asChild className="rounded-full font-bold">
-                    <a href="https://wa.me/17633272191">Live Chat</a>
+                <Button variant="secondary" size="sm" asChild className="rounded-xl font-black px-6 bg-muted hover:bg-primary/10 hover:text-primary border-2 border-transparent transition-all">
+                    <a href="https://wa.me/17633272191">Live NOC</a>
                 </Button>
             </Card>
           </div>
 
-          <div className="flex items-center gap-3 mb-8">
-              <LayoutGrid className="w-6 h-6 text-primary" />
-              <h3 className="text-3xl font-bold font-headline">Enterprise Services</h3>
+          <div className="flex items-center justify-between mb-10">
+              <div className="flex items-center gap-4">
+                  <div className="bg-primary p-2 rounded-xl text-primary-foreground">
+                    <LayoutGrid className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-3xl font-black font-headline tracking-tighter uppercase italic">Services</h3>
+              </div>
+              <Separator className="flex-grow mx-8 bg-muted-foreground/10" />
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {servers.map((server, index) => (
-              <Card key={index} className="group relative flex flex-col overflow-hidden transition-all duration-500 hover:shadow-2xl border-primary/10 hover:border-primary/30 rounded-2xl">
-                <CardHeader className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="p-3 rounded-2xl bg-primary/10 text-primary transition-all group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 shadow-inner">
+              <Card key={index} className="group relative flex flex-col overflow-hidden transition-all duration-500 hover:shadow-3xl border-muted hover:border-primary/20 rounded-3xl bg-card/50 backdrop-blur-sm card-glow">
+                <CardHeader className="p-8">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="p-4 rounded-2xl bg-muted text-primary transition-all group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 shadow-sm">
                         {server.icon}
                     </div>
-                    <Badge variant="outline" className="text-[9px] uppercase tracking-tighter font-black bg-muted/50 border-primary/20 text-primary">
+                    <Badge variant="outline" className="text-[10px] uppercase tracking-widest font-black bg-muted/50 border-primary/20 text-primary px-3 py-1">
                         {server.category}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold font-headline mb-2">{server.name}</CardTitle>
-                  <CardDescription className="text-xs font-medium leading-relaxed">{server.description}</CardDescription>
+                  <CardTitle className="text-2xl font-black font-headline mb-3 tracking-tight">{server.name}</CardTitle>
+                  <CardDescription className="text-sm font-semibold text-muted-foreground/80 leading-relaxed">{server.description}</CardDescription>
                 </CardHeader>
-                <CardContent className="flex-grow px-6 pb-6 pt-0">
-                    <div className="space-y-2 mb-6">
+                <CardContent className="flex-grow px-8 pb-8 pt-0">
+                    <div className="space-y-3 mb-8">
                         {server.features.map((f, i) => (
-                            <div key={i} className="flex items-center text-xs font-medium text-muted-foreground">
-                                <CheckCircle className="w-3.5 h-3.5 mr-2 text-accent" />
+                            <div key={i} className="flex items-center text-xs font-bold text-foreground/70">
+                                <CheckCircle className="w-4 h-4 mr-3 text-accent" />
                                 {f}
                             </div>
                         ))}
                     </div>
                 </CardContent>
-                <CardFooter className="px-6 py-5 bg-muted/30 border-t border-muted">
+                <CardFooter className="px-8 py-6 bg-muted/20 border-t border-muted">
                   {server.isSpecial ? (
-                       <Button asChild className="w-full rounded-xl h-10 font-bold shadow-md hover:shadow-lg transition-all">
+                       <Button asChild className="w-full rounded-2xl h-12 font-black shadow-xl hover:shadow-2xl transition-all group-hover:-translate-y-1">
                           <Link href={server.href!}>
-                              Explore Details
+                              View Details
                               <ArrowUpRight className="w-4 h-4 ml-2" />
                           </Link>
                       </Button>
                   ) : (
-                      <div className="flex gap-2 w-full">
+                      <div className="flex gap-3 w-full">
                           {server.accessPoints ? server.accessPoints.map((ap, i) => (
-                              <Button key={i} asChild variant="outline" size="sm" className="flex-1 rounded-xl font-bold bg-background">
+                              <Button key={i} asChild variant="outline" size="sm" className="flex-1 rounded-2xl font-black h-11 border-2 bg-background hover:bg-primary/5 transition-all">
                                   <a href={ap.url} target="_blank" rel="noopener noreferrer">
                                       {ap.name}
                                   </a>
                               </Button>
                           )) : (
-                              <Button variant="ghost" size="sm" disabled className="w-full text-[10px] font-bold">
-                                  Request Credentials
+                              <Button variant="ghost" size="sm" disabled className="w-full text-[11px] font-black uppercase opacity-40">
+                                  Credentials Pending
                               </Button>
                           )}
                       </div>
@@ -341,41 +351,42 @@ export function ServerDashboard() {
               </Card>
             ))}
             
-            <Card className="flex flex-col overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 shadow-inner rounded-2xl">
-                <CardHeader className="p-6">
-                    <div className="p-3 w-fit rounded-2xl bg-primary text-primary-foreground mb-4 shadow-lg shadow-primary/20">
-                        <Zap className="w-6 h-6" />
+            <Card className="flex flex-col overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-primary/10 shadow-inner rounded-3xl">
+                <CardHeader className="p-8">
+                    <div className="p-4 w-fit rounded-2xl bg-primary text-primary-foreground mb-6 shadow-xl shadow-primary/20">
+                        <Zap className="w-7 h-7" />
                     </div>
-                    <CardTitle className="text-xl font-bold font-headline">Operator Tools</CardTitle>
-                    <CardDescription className="text-xs">Quick downloads and support</CardDescription>
+                    <CardTitle className="text-2xl font-black font-headline tracking-tight">Utility Hub</CardTitle>
+                    <CardDescription className="text-sm font-semibold">Resources for operators</CardDescription>
                 </CardHeader>
-                <CardContent className="p-6 pt-0 space-y-6">
+                <CardContent className="p-8 pt-0 space-y-8">
                     <div>
-                        <p className="text-[10px] font-bold text-muted-foreground uppercase mb-3 tracking-widest">Softphone Clients</p>
-                        <div className="grid grid-cols-2 gap-2">
-                            <Button size="sm" variant="outline" asChild className="h-9 rounded-xl text-xs bg-background/50">
-                                <a href="https://www.portsip.com/downloads/pbx/v22/portsip-pbx-22.2.15.438.exe"><Download className="w-3 h-3 mr-1.5" /> Portsip</a>
+                        <p className="text-[10px] font-black text-muted-foreground uppercase mb-4 tracking-widest flex items-center">
+                            <Download className="w-3 h-3 mr-2" />
+                            Softphone Downloads
+                        </p>
+                        <div className="grid grid-cols-2 gap-3">
+                            <Button size="sm" variant="outline" asChild className="h-11 rounded-2xl text-[11px] font-black bg-background/50 border-2">
+                                <a href="https://www.portsip.com/downloads/pbx/v22/portsip-pbx-22.2.15.438.exe">PortSIP</a>
                             </Button>
-                            <Button size="sm" variant="outline" asChild className="h-9 rounded-xl text-xs bg-background/50">
-                                <a href="https://www.zoiper.com/en/voip-softphone/download/zoiper5/for/windows"><Download className="w-3 h-3 mr-1.5" /> Zoiper</a>
+                            <Button size="sm" variant="outline" asChild className="h-11 rounded-2xl text-[11px] font-black bg-background/50 border-2">
+                                <a href="https://www.zoiper.com/en/voip-softphone/download/zoiper5/for/windows">Zoiper</a>
                             </Button>
                         </div>
                     </div>
                     <Separator className="bg-primary/10" />
-                    <div>
-                        <p className="text-[10px] font-bold text-muted-foreground uppercase mb-3 tracking-widest">Infrastructure Support</p>
-                        <div className="flex flex-col gap-2">
-                            <Button variant="secondary" asChild className="h-10 rounded-xl text-xs font-bold bg-accent/10 hover:bg-accent/20 text-accent border border-accent/20">
-                                <a href="https://wa.me/17633272191" className="flex items-center justify-center w-full">
-                                    <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Support
-                                </a>
-                            </Button>
-                            <Button variant="secondary" asChild className="h-10 rounded-xl text-xs font-bold bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 border border-blue-500/20">
-                                <a href="http://t.me/AMSserver" className="flex items-center justify-center w-full">
-                                    <MessageSquare className="w-4 h-4 mr-2" /> Telegram Group
-                                </a>
-                            </Button>
-                        </div>
+                    <div className="space-y-3">
+                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Connect with Us</p>
+                        <Button variant="secondary" asChild className="h-12 rounded-2xl text-xs font-black bg-accent/10 hover:bg-accent/20 text-accent border-2 border-accent/20 transition-all">
+                            <a href="https://wa.me/17633272191" className="flex items-center justify-center w-full">
+                                <MessageCircle className="w-4 h-4 mr-3" /> WhatsApp
+                            </a>
+                        </Button>
+                        <Button variant="secondary" asChild className="h-12 rounded-2xl text-xs font-black bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 border-2 border-blue-500/20 transition-all">
+                            <a href="http://t.me/AMSserver" className="flex items-center justify-center w-full">
+                                <MessageSquare className="w-4 h-4 mr-3" /> Telegram
+                            </a>
+                        </Button>
                     </div>
                 </CardContent>
             </Card>
@@ -385,146 +396,145 @@ export function ServerDashboard() {
 
       {/* Dialogs */}
       <Dialog open={isOrderDialogOpen} onOpenChange={(open) => { if (!open) resetForm(); setOrderDialogOpen(open); }}>
-          <DialogContent className="sm:max-w-[450px] rounded-3xl p-0 overflow-hidden">
+          <DialogContent className="sm:max-w-[480px] rounded-[2.5rem] p-0 overflow-hidden border-none shadow-3xl">
               {orderStep === 'form' ? (
-                  <div className="p-6">
-                      <DialogHeader className="mb-6">
-                          <DialogTitle className="text-3xl font-bold font-headline">Provision Service</DialogTitle>
-                          <DialogDescription className="font-medium">Configure your deployment parameters.</DialogDescription>
+                  <div className="p-10">
+                      <DialogHeader className="mb-8">
+                          <DialogTitle className="text-4xl font-black font-headline tracking-tighter uppercase italic text-primary">Deploy</DialogTitle>
+                          <DialogDescription className="font-bold text-muted-foreground">Select your infrastructure specifications.</DialogDescription>
                       </DialogHeader>
-                      <div className="space-y-5 py-2">
-                          <div className="space-y-2">
-                              <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Select Product</Label>
+                      <div className="space-y-6">
+                          <div className="space-y-3">
+                              <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Service Module</Label>
                               <Select value={selectedServer} onValueChange={setSelectedServer}>
-                                  <SelectTrigger className="rounded-xl h-12 bg-muted/30 border-none"><SelectValue placeholder="Choose a service" /></SelectTrigger>
-                                  <SelectContent className="rounded-xl">{serverTypes.map(t => <SelectItem key={t} value={t} className="rounded-lg">{t}</SelectItem>)}</SelectContent>
+                                  <SelectTrigger className="rounded-2xl h-14 bg-muted/40 border-2 border-transparent focus:border-primary/20"><SelectValue placeholder="Choose a service" /></SelectTrigger>
+                                  <SelectContent className="rounded-2xl">{serverTypes.map(t => <SelectItem key={t} value={t} className="rounded-xl font-bold">{t}</SelectItem>)}</SelectContent>
                               </Select>
                           </div>
                           {selectedServer === 'FusionPBX' && (
-                              <div className="space-y-2 animate-in slide-in-from-top-2 duration-300">
-                                  <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Capacity Tier</Label>
+                              <div className="space-y-3 animate-in slide-in-from-top-4 duration-500">
+                                  <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Concurrency Tier</Label>
                                   <Select value={selectedFusionCapacity} onValueChange={setSelectedFusionCapacity}>
-                                      <SelectTrigger className="rounded-xl h-12 bg-muted/30 border-none"><SelectValue placeholder="Choose capacity" /></SelectTrigger>
-                                      <SelectContent className="rounded-xl">{fusionPbxCapacities.map(c => <SelectItem key={c.value} value={c.value} className="rounded-lg">{c.label} ({c.price})</SelectItem>)}</SelectContent>
+                                      <SelectTrigger className="rounded-2xl h-14 bg-muted/40 border-2 border-transparent focus:border-primary/20"><SelectValue placeholder="Select capacity" /></SelectTrigger>
+                                      <SelectContent className="rounded-2xl">{fusionPbxCapacities.map(c => <SelectItem key={c.value} value={c.value} className="rounded-xl font-bold">{c.label} — {c.price}</SelectItem>)}</SelectContent>
                                   </Select>
                               </div>
                           )}
-                          <div className="space-y-2">
-                              <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Technical Requirements</Label>
-                              <Textarea placeholder="Describe users, specific codecs, or required integrations..." className="rounded-xl bg-muted/30 border-none resize-none min-h-[100px]" value={requirements} onChange={e => setRequirements(e.target.value)} />
+                          <div className="space-y-3">
+                              <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Notes & Logic</Label>
+                              <Textarea placeholder="Additional configuration details..." className="rounded-2xl bg-muted/40 border-2 border-transparent focus:border-primary/20 resize-none min-h-[120px] font-medium" value={requirements} onChange={e => setRequirements(e.target.value)} />
                           </div>
-                          <div className="space-y-2">
-                              <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Anti-Bot Verification</Label>
-                              <div className="flex gap-2">
-                                  <div className="flex-grow flex items-center justify-center bg-primary/5 border border-primary/10 rounded-xl h-12 font-mono text-xl tracking-[0.5em] font-bold text-primary italic select-none line-through opacity-80">{captchaText}</div>
-                                  <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-xl h-12 w-12 border-none bg-muted/30"><RefreshCw className="w-5 h-5" /></Button>
+                          <div className="space-y-3">
+                              <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">System Validation</Label>
+                              <div className="flex gap-3">
+                                  <div className="flex-grow flex items-center justify-center bg-primary/10 border-2 border-primary/5 rounded-2xl h-14 font-code text-2xl tracking-[0.5em] font-black text-primary italic select-none line-through">{captchaText}</div>
+                                  <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-2xl h-14 w-14 border-2 bg-muted/40"><RefreshCw className="w-6 h-6" /></Button>
                               </div>
-                              <Input placeholder="Enter verification code" className="rounded-xl h-12 bg-muted/30 border-none" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} />
+                              <Input placeholder="Enter code" className="rounded-2xl h-14 bg-muted/40 border-2 border-transparent focus:border-primary/20 font-black text-center text-lg" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} />
                           </div>
                       </div>
-                      <DialogFooter className="mt-8">
-                          <Button onClick={handleSubmitOrder} disabled={isSubmitting} className="w-full rounded-2xl h-14 text-lg font-bold shadow-xl shadow-primary/20">
-                              {isSubmitting ? <Loader2 className="w-5 h-5 mr-2 animate-spin" /> : <ShoppingCart className="w-5 h-5 mr-2" />}
-                              Deploy Service
+                      <DialogFooter className="mt-10">
+                          <Button onClick={handleSubmitOrder} disabled={isSubmitting} className="w-full rounded-[1.5rem] h-16 text-xl font-black shadow-2xl shadow-primary/30 transition-all hover:scale-[1.02]">
+                              {isSubmitting ? <Loader2 className="w-6 h-6 mr-3 animate-spin" /> : <Zap className="w-6 h-6 mr-3" />}
+                              Confirm Provisioning
                           </Button>
                       </DialogFooter>
                   </div>
               ) : (
-                  <div className="text-center p-10 space-y-8 bg-gradient-to-b from-primary/5 to-background">
-                      <div className="mx-auto w-24 h-24 bg-accent/20 rounded-full flex items-center justify-center text-accent animate-bounce"><CheckCircle className="w-12 h-12" /></div>
+                  <div className="text-center p-12 space-y-10 bg-gradient-to-b from-primary/5 to-background">
+                      <div className="mx-auto w-28 h-28 bg-accent/20 rounded-full flex items-center justify-center text-accent animate-pulse shadow-inner"><CheckCircle className="w-14 h-14" /></div>
                       <div>
-                          <h3 className="text-3xl font-bold font-headline mb-3 text-foreground">Request Verified</h3>
-                          <p className="text-muted-foreground font-medium">Redirecting to our NOC for final configuration and billing.</p>
+                          <h3 className="text-4xl font-black font-headline mb-4 tracking-tighter">Verified</h3>
+                          <p className="text-muted-foreground font-bold px-4">Your infrastructure request is logged. Redirecting to billing...</p>
                       </div>
-                      <Button asChild size="lg" className="w-full rounded-2xl h-16 bg-accent hover:bg-accent/90 text-xl font-black shadow-xl shadow-accent/20">
+                      <Button asChild size="lg" className="w-full rounded-[1.5rem] h-20 bg-accent hover:bg-accent/90 text-2xl font-black shadow-2xl shadow-accent/30 transition-all hover:scale-105">
                           <a href={`https://wa.me/17633272191?text=${getOrderDetails()}`} target="_blank" className="flex items-center justify-center">
-                            <MessageCircle className="w-6 h-6 mr-3" /> Connect to WhatsApp
+                            <MessageCircle className="w-7 h-7 mr-4" /> Finalize on WhatsApp
                           </a>
                       </Button>
-                      <Button variant="ghost" className="w-full text-xs font-bold uppercase tracking-widest opacity-50" onClick={() => setOrderDialogOpen(false)}>Close Interface</Button>
+                      <Button variant="ghost" className="w-full text-[11px] font-black uppercase tracking-widest opacity-40 hover:opacity-100" onClick={() => setOrderDialogOpen(false)}>Return to Portal</Button>
                   </div>
               )}
           </DialogContent>
       </Dialog>
 
       <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
-          <DialogContent className="max-w-xl rounded-3xl p-6 overflow-y-auto max-h-[90vh]">
+          <DialogContent className="max-w-2xl rounded-[2.5rem] p-10 overflow-y-auto max-h-[90vh] border-none shadow-3xl">
               <DialogHeader>
-                  <DialogTitle className="text-3xl font-bold font-headline">Wholesale Rate Deck</DialogTitle>
-                  <DialogDescription className="font-medium">Global termination rates with 1:1 pulse accuracy.</DialogDescription>
+                  <DialogTitle className="text-4xl font-black font-headline tracking-tighter uppercase italic text-primary">Rate Deck</DialogTitle>
+                  <DialogDescription className="font-bold">Real-time termination costs for global routes.</DialogDescription>
               </DialogHeader>
               
-              {/* Calculator Section */}
-              <Card className="mt-6 bg-primary/5 border-primary/20 shadow-none rounded-2xl">
-                  <CardHeader className="p-4 pb-2">
-                      <CardTitle className="text-sm font-bold flex items-center gap-2">
-                          <Calculator className="w-4 h-4 text-primary" />
-                          Quick Cost Estimator
+              <Card className="mt-8 bg-primary/5 border-2 border-primary/10 shadow-none rounded-3xl overflow-hidden">
+                  <CardHeader className="p-6 pb-2">
+                      <CardTitle className="text-base font-black flex items-center gap-3">
+                          <Calculator className="w-5 h-5 text-primary" />
+                          Cost Projection
                       </CardTitle>
                   </CardHeader>
-                  <CardContent className="p-4 pt-0 space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-1.5">
-                              <Label className="text-[10px] uppercase font-bold text-muted-foreground">Select Route</Label>
+                  <CardContent className="p-6 pt-0 space-y-6">
+                      <div className="grid grid-cols-2 gap-6">
+                          <div className="space-y-2">
+                              <Label className="text-[10px] uppercase font-black text-muted-foreground tracking-widest">Destination</Label>
                               <Select value={calcRoute} onValueChange={setCalcRoute}>
-                                  <SelectTrigger className="h-9 rounded-xl bg-background border-primary/10"><SelectValue /></SelectTrigger>
-                                  <SelectContent>{voipRoutes.map(r => <SelectItem key={r.name} value={r.name}>{r.name}</SelectItem>)}</SelectContent>
+                                  <SelectTrigger className="h-12 rounded-2xl bg-background border-2 border-primary/10 font-bold"><SelectValue /></SelectTrigger>
+                                  <SelectContent className="rounded-2xl">{voipRoutes.map(r => <SelectItem key={r.name} value={r.name} className="rounded-xl font-bold">{r.name}</SelectItem>)}</SelectContent>
                               </Select>
                           </div>
-                          <div className="space-y-1.5">
-                              <Label className="text-[10px] uppercase font-bold text-muted-foreground">Est. Minutes</Label>
-                              <Input type="number" value={calcMins} onChange={e => setCalcMins(e.target.value)} className="h-9 rounded-xl bg-background border-primary/10" />
+                          <div className="space-y-2">
+                              <Label className="text-[10px] uppercase font-black text-muted-foreground tracking-widest">Monthly Mins</Label>
+                              <Input type="number" value={calcMins} onChange={e => setCalcMins(e.target.value)} className="h-12 rounded-2xl bg-background border-2 border-primary/10 font-bold text-center" />
                           </div>
                       </div>
-                      <div className="bg-primary/10 rounded-xl p-3 flex justify-between items-center border border-primary/5">
-                          <span className="text-xs font-bold">Estimated Monthly Cost:</span>
-                          <span className="text-lg font-black text-primary">${estimatedCost}</span>
+                      <div className="bg-primary p-5 rounded-2xl flex justify-between items-center shadow-xl shadow-primary/20">
+                          <span className="text-sm font-black text-primary-foreground uppercase">Estimated Total:</span>
+                          <span className="text-3xl font-black text-primary-foreground">${estimatedCost}</span>
                       </div>
                   </CardContent>
               </Card>
 
-              <div className="border border-primary/10 rounded-2xl overflow-hidden mt-6 bg-muted/10 shadow-inner">
+              <div className="border-2 border-muted rounded-3xl overflow-hidden mt-8 bg-card/30">
                   <Table>
-                      <TableHeader className="bg-primary/5">
-                          <TableRow className="hover:bg-transparent">
-                              <TableHead className="font-bold text-primary uppercase text-[10px] tracking-widest">Route</TableHead>
-                              <TableHead className="font-bold text-primary uppercase text-[10px] tracking-widest text-center">Rate ($)</TableHead>
-                              <TableHead className="font-bold text-primary uppercase text-[10px] tracking-widest text-right">Pulse</TableHead>
+                      <TableHeader className="bg-muted">
+                          <TableRow className="hover:bg-transparent border-none">
+                              <TableHead className="font-black text-primary uppercase text-[11px] tracking-widest px-6 h-14">Destination</TableHead>
+                              <TableHead className="font-black text-primary uppercase text-[11px] tracking-widest text-center h-14">Rate ($)</TableHead>
+                              <TableHead className="font-black text-primary uppercase text-[11px] tracking-widest text-right px-6 h-14">Pulse</TableHead>
                           </TableRow>
                       </TableHeader>
                       <TableBody>
                           {voipRoutes.map(r => (
-                              <TableRow key={r.name} className="hover:bg-primary/5 border-primary/5 transition-colors">
-                                  <TableCell className="font-bold text-xs">{r.name}</TableCell>
-                                  <TableCell className="text-center font-mono text-accent font-black text-sm">{r.rate.toFixed(3)}</TableCell>
-                                  <TableCell className="text-right text-muted-foreground text-[10px] font-bold">{r.pulse}</TableCell>
+                              <TableRow key={r.name} className="hover:bg-primary/5 border-muted transition-colors">
+                                  <TableCell className="font-black text-sm px-6">{r.name}</TableCell>
+                                  <TableCell className="text-center font-code text-accent font-black text-lg">{r.rate.toFixed(3)}</TableCell>
+                                  <TableCell className="text-right text-muted-foreground text-xs font-black px-6">{r.pulse}</TableCell>
                               </TableRow>
                           ))}
                       </TableBody>
                   </Table>
               </div>
-              <div className="flex items-center justify-center gap-2 mt-6 p-4 rounded-xl bg-amber-500/5 text-amber-600">
-                <Info className="w-4 h-4" />
-                <p className="text-[10px] font-bold uppercase tracking-widest">Rates subject to daily market adjustments</p>
+              <div className="flex items-center justify-center gap-3 mt-8 p-5 rounded-2xl bg-amber-500/5 text-amber-600 border-2 border-amber-500/10">
+                <Info className="w-5 h-5 flex-shrink-0" />
+                <p className="text-[11px] font-black uppercase tracking-widest leading-relaxed">Global rates fluctuate based on carrier load and LCR dynamics.</p>
               </div>
           </DialogContent>
       </Dialog>
 
       <Dialog open={isReadCommentDialogOpen} onOpenChange={setReadCommentDialogOpen}>
-          <DialogContent className="sm:max-w-md rounded-3xl p-6">
-              <DialogHeader className="mb-6"><DialogTitle className="text-2xl font-bold font-headline">Partner Testimonials</DialogTitle></DialogHeader>
-              <div className="space-y-4">
+          <DialogContent className="sm:max-w-lg rounded-[2.5rem] p-10 border-none shadow-3xl">
+              <DialogHeader className="mb-8"><DialogTitle className="text-4xl font-black font-headline tracking-tighter uppercase italic text-primary">Testimonials</DialogTitle></DialogHeader>
+              <div className="space-y-6">
                   {[
-                      { text: "Seamless transition from local servers to AMS cloud. Uptime has been 100% since deployment.", user: "cloud_ops_lead" },
-                      { text: "The FusionPBX cluster handles our 400 concurrent calls with zero jitter. Impressive support.", user: "voip_manager_eu" },
-                      { text: "Best VOS3000 hosting I've used. The billing system is accurate and latency is extremely low.", user: "wholesale_carrier_inc" }
+                      { text: "Migration was flawless. Latency dropped by 40% immediately upon moving our VOS3000 instances.", user: "carrier_pro_intl" },
+                      { text: "The FusionPBX clustering capability here is unmatched. Zero downtime during our 500-channel peak.", user: "voip_ops_head" },
+                      { text: "Accurate billing and top-tier security. Our clients notice the difference in audio quality.", user: "retail_networks" }
                   ].map((review, i) => (
-                    <Card key={i} className="bg-muted/30 border-none shadow-none rounded-2xl">
-                        <CardContent className="p-5">
-                            <p className="text-sm italic font-medium text-foreground/80 leading-relaxed">"{review.text}"</p>
-                            <div className="flex items-center justify-end gap-2 mt-4">
-                                <Badge variant="secondary" className="bg-accent/10 text-accent border-none text-[9px] font-black tracking-widest uppercase">Verified Deployment</Badge>
-                                <span className="text-[10px] font-bold text-primary">— @{review.user}</span>
+                    <Card key={i} className="bg-muted/40 border-none shadow-none rounded-[1.5rem] group hover:bg-primary/5 transition-all">
+                        <CardContent className="p-8">
+                            <p className="text-base italic font-bold text-foreground/80 leading-relaxed">"{review.text}"</p>
+                            <div className="flex items-center justify-between mt-6">
+                                <Badge variant="secondary" className="bg-primary/10 text-primary border-none text-[9px] font-black tracking-widest uppercase px-3">Verified User</Badge>
+                                <span className="text-xs font-black text-primary/60">— @{review.user}</span>
                             </div>
                         </CardContent>
                     </Card>
@@ -534,64 +544,65 @@ export function ServerDashboard() {
       </Dialog>
 
       <Dialog open={isPostCommentDialogOpen} onOpenChange={setPostCommentDialogOpen}>
-          <DialogContent className="sm:max-w-md rounded-3xl p-6">
-              <DialogHeader className="mb-6"><DialogTitle className="text-2xl font-bold font-headline">Share Experience</DialogTitle></DialogHeader>
-              <div className="space-y-6">
-                  <div className="space-y-2">
-                      <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Your Feedback</Label>
-                      <Textarea placeholder="How would you rate our infrastructure performance?" value={newComment} onChange={e => setNewComment(e.target.value)} rows={4} className="rounded-2xl bg-muted/30 border-none resize-none" />
+          <DialogContent className="sm:max-w-md rounded-[2.5rem] p-10 border-none shadow-3xl">
+              <DialogHeader className="mb-8"><DialogTitle className="text-3xl font-black font-headline tracking-tighter uppercase italic text-primary">Feedback</DialogTitle></DialogHeader>
+              <div className="space-y-8">
+                  <div className="space-y-3">
+                      <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Performance Review</Label>
+                      <Textarea placeholder="How is our network performing for your use case?" value={newComment} onChange={e => setNewComment(e.target.value)} rows={5} className="rounded-2xl bg-muted/40 border-2 border-transparent focus:border-primary/20 resize-none font-bold" />
                   </div>
-                  <div className="space-y-2">
-                      <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Human Verification</Label>
-                      <div className="flex gap-2">
-                          <div className="flex-grow flex items-center justify-center bg-primary/5 rounded-xl font-mono text-xl font-bold text-primary/60 line-through select-none h-12">{captchaText}</div>
-                          <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-xl h-12 w-12 border-none bg-muted/30"><RefreshCw className="w-5 h-5" /></Button>
+                  <div className="space-y-3">
+                      <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">Verification</Label>
+                      <div className="flex gap-3">
+                          <div className="flex-grow flex items-center justify-center bg-primary/10 rounded-2xl font-code text-2xl font-black text-primary/60 line-through h-14">{captchaText}</div>
+                          <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-2xl h-14 w-14 border-2 bg-muted/40"><RefreshCw className="w-6 h-6" /></Button>
                       </div>
-                      <Input placeholder="Verification code" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} className="rounded-xl h-12 bg-muted/30 border-none" />
+                      <Input placeholder="Enter code" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} className="rounded-2xl h-14 bg-muted/40 border-2 border-transparent focus:border-primary/20 text-center font-black text-lg" />
                   </div>
               </div>
-              <DialogFooter className="mt-8">
+              <DialogFooter className="mt-10">
                 <Button onClick={async () => {
                     if (captchaInput.toLowerCase() !== captchaText.toLowerCase()) { toast({ title: 'Invalid CAPTCHA', variant: 'destructive' }); return; }
                     setSubmitting(true); await new Promise(r => setTimeout(r, 1000)); setSubmitting(false);
-                    toast({ title: 'Feedback Recorded', description: 'Thank you for helping us improve our cloud services.' });
+                    toast({ title: 'Feedback Recorded', description: 'Your insight helps us maintain infrastructure excellence.' });
                     setPostCommentDialogOpen(false); setNewComment(''); setCaptchaInput('');
-                }} disabled={isSubmitting} className="w-full rounded-2xl h-12 font-bold shadow-lg shadow-primary/20">
-                    {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Broadcast Feedback'}
+                }} disabled={isSubmitting} className="w-full rounded-[1.5rem] h-16 font-black shadow-2xl shadow-primary/30 text-lg transition-all hover:scale-[1.02]">
+                    {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Submit Experience'}
                 </Button>
               </DialogFooter>
           </DialogContent>
       </Dialog>
 
       {/* Footer */}
-      <footer className="py-20 border-t bg-muted/20">
+      <footer className="py-32 border-t bg-muted/30">
         <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center">
-                <div className="flex justify-center gap-10 mb-10 text-muted-foreground/40">
-                    <div className="flex flex-col items-center gap-2">
-                        <Shield className="w-8 h-8" />
-                        <span className="text-[9px] font-bold uppercase tracking-widest">SECURE DATA</span>
+                <div className="flex flex-wrap justify-center gap-12 md:gap-24 mb-16 text-muted-foreground/30">
+                    <div className="flex flex-col items-center gap-4 group">
+                        <Shield className="w-10 h-10 group-hover:text-primary transition-colors" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em]">Encrypted</span>
                     </div>
-                    <div className="flex flex-col items-center gap-2">
-                        <Globe className="w-8 h-8" />
-                        <span className="text-[9px] font-bold uppercase tracking-widest">GLOBAL POP</span>
+                    <div className="flex flex-col items-center gap-4 group">
+                        <Globe className="w-10 h-10 group-hover:text-primary transition-colors" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em]">Multi-Region</span>
                     </div>
-                    <div className="flex flex-col items-center gap-2">
-                        <Cpu className="w-8 h-8" />
-                        <span className="text-[9px] font-bold uppercase tracking-widest">FAST COMPUTE</span>
+                    <div className="flex flex-col items-center gap-4 group">
+                        <Cpu className="w-10 h-10 group-hover:text-primary transition-colors" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em]">HPC Ready</span>
                     </div>
                 </div>
-                <Separator className="max-w-xs mx-auto mb-8 opacity-20" />
-                <p className="text-sm font-medium text-muted-foreground max-w-md mx-auto leading-relaxed">
-                    AMS Portal provides high-availability infrastructure for modern telecommunication carriers and service providers worldwide.
+                <Separator className="max-w-md mx-auto mb-12 opacity-10" />
+                <p className="text-base font-bold text-muted-foreground max-w-xl mx-auto leading-relaxed mb-12">
+                    AMS Portal: High-availability telecommunications infrastructure for 
+                    next-generation carriers and enterprise dialer environments.
                 </p>
-                <div className="flex gap-6 mt-8">
-                    <Link href="/server-status" className="text-xs font-bold text-primary hover:underline">System Status</Link>
-                    <span className="text-muted-foreground/30">|</span>
-                    <a href="https://wa.me/17633272191" className="text-xs font-bold text-primary hover:underline">Legal & Privacy</a>
+                <div className="flex flex-wrap justify-center gap-8">
+                    <Link href="/server-status" className="text-xs font-black text-primary hover:text-accent transition-colors uppercase tracking-widest">System Health</Link>
+                    <a href="https://wa.me/17633272191" className="text-xs font-black text-primary hover:text-accent transition-colors uppercase tracking-widest">Infrastructure SLA</a>
+                    <a href="https://wa.me/17633272191" className="text-xs font-black text-primary hover:text-accent transition-colors uppercase tracking-widest">Compliance</a>
                 </div>
-                <p className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.2em] mt-12 opacity-40">
-                    &copy; {new Date().getFullYear()} AMS Server Management Portal. All rights reserved.
+                <p className="text-[10px] text-muted-foreground/40 font-black uppercase tracking-[0.4em] mt-20">
+                    &copy; {new Date().getFullYear()} AMS Server Management Group. Global Operations.
                 </p>
             </div>
         </div>
