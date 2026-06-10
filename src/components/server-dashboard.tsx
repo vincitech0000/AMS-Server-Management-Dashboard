@@ -144,7 +144,7 @@ export function ServerDashboard() {
         icon: <Users className="w-6 h-6" />,
         isSpecial: true,
         href: '/reseller-program',
-        description: 'Start your VoIP business with our VOS3000 Reseller Panels.',
+        description: 'Start your VoIP service with our comprehensive reseller Panel on VOS3000 Server.',
         features: ['Pricing Control', '24/7 Support', 'Dedicated Panels']
     },
   ];
@@ -195,10 +195,10 @@ export function ServerDashboard() {
             </div>
           </Link>
           <div className="flex items-center gap-4">
-              <Button asChild variant="ghost" size="sm" className="hidden md:flex rounded-full">
+              <Button asChild variant="ghost" size="sm" className="hidden md:flex rounded-full hover:bg-primary/10 transition-colors">
                   <a href="https://88.99.103.106:8443" target="_blank" rel="noopener noreferrer">
                     <Database className="w-4 h-4 mr-2" />
-                    CDR Login
+                    Retail CDR Login
                   </a>
               </Button>
               <Button asChild variant="ghost" size="sm" className="hidden md:flex rounded-full">
