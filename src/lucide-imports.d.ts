@@ -7,6 +7,7 @@ declare module 'lucide-react' {
     export const ArrowUpRight: React.FC<React.SVGProps<SVGSVGElement>>;
     export const BarChart: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Bot: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Calculator: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Check: React.FC<React.SVGProps<SVGSVGElement>>;
     export const CheckCircle: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ChevronDown: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -19,6 +20,9 @@ declare module 'lucide-react' {
     export const Database: React.FC<React.SVGProps<SVGSVGElement>>;
     export const DollarSign: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Download: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Headphones: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Info: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const LayoutGrid: React.FC<React.SVGProps<SVGSVGElement>>;
     export const LifeBuoy: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Loader2: React.FC<React.SVGProps<SVGSVGElement>>;
     export const MessageCircle: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -31,6 +35,8 @@ declare module 'lucide-react' {
     export const Shield: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ShoppingCart: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Sparkles: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Star: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Timer: React.FC<React.SVGProps<SVGSVGElement>>;
     export const TrendingUp: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Upload: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Users: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -38,4 +44,6 @@ declare module 'lucide-react' {
     export const X: React.FC<React.SVGProps<SVGSVGElement>>;
     export const XCircle: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Zap: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Globe: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Cpu: React.FC<React.SVGProps<SVGSVGElement>>;
 }

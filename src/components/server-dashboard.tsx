@@ -8,7 +8,7 @@ import {
     ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, 
     MessageCircle, Download, Users, AppWindow, Route, TrendingUp,
     Shield, Zap, Globe, Cpu, LayoutGrid, Info, Star, Headphones,
-    Wifi, Calculator, MessageSquareText
+    Wifi, Calculator
 } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
