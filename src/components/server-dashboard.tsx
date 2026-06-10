@@ -91,7 +91,7 @@ export function ServerDashboard() {
       category: 'Switches',
       type: 'Softswitch',
       icon: <Globe className="w-6 h-6" />,
-      accessPoints: [{ name: 'CDR Login', url: 'https://51.161.43.30:8443' }],
+      accessPoints: [{ name: 'CDR Login', url: 'http://88.99.103.106:4886' }],
       description: 'Carrier-grade routing and billing for wholesale traffic.',
       features: ['Wholesale Billing', 'LCR Routing', 'Real-time Monitor']
     },
