@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { 
@@ -8,7 +8,7 @@ import {
     ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, 
     MessageCircle, Download, Users, AppWindow, Route, TrendingUp,
     Shield, Zap, Globe, Cpu, LayoutGrid, Info, Star, Headphones,
-    Wifi
+    Wifi, Calculator, MessageSquareText
 } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
@@ -31,13 +31,13 @@ const fusionPbxCapacities = [
 ];
 
 const voipRoutes = [
-    { name: 'USA Press1 with Dialer', rate: '0.095', pulse: '6/6' },
-    { name: 'USA Outbound Clean', rate: '0.011', pulse: '6/6' },
-    { name: 'USA Outbound (TECH)', rate: '0.015', pulse: '6/6' },
-    { name: 'USA CLI (ALL PASS)', rate: '0.175$', pulse: '6/6' },
-    { name: 'Canada IVR', rate: '0.01', pulse: '6/6' },
-    { name: 'Canada CLI (ALL Pass)', rate: '0.025', pulse: '60/60' },
-    { name: 'Puerto Rico', rate: '0.02', pulse: '6/6' },
+    { name: 'USA Press1 with Dialer', rate: 0.095, pulse: '6/6' },
+    { name: 'USA Outbound Clean', rate: 0.011, pulse: '6/6' },
+    { name: 'USA Outbound (TECH)', rate: 0.015, pulse: '6/6' },
+    { name: 'USA CLI (ALL PASS)', rate: 0.175, pulse: '6/6' },
+    { name: 'Canada IVR', rate: 0.01, pulse: '6/6' },
+    { name: 'Canada CLI (ALL Pass)', rate: 0.025, pulse: '60/60' },
+    { name: 'Puerto Rico', rate: 0.02, pulse: '6/6' },
 ];
 
 const generateCaptcha = () => {
@@ -65,6 +65,10 @@ export function ServerDashboard() {
   const [captchaText, setCaptchaText] = useState('');
   const [captchaInput, setCaptchaInput] = useState('');
   
+  // Calculator state
+  const [calcRoute, setCalcRoute] = useState(voipRoutes[0].name);
+  const [calcMins, setCalcMins] = useState('1000');
+
   useEffect(() => {
     if ((isOrderDialogOpen && orderStep === 'form') || isPostCommentDialogOpen) {
       setCaptchaText(generateCaptcha());
@@ -170,9 +174,15 @@ export function ServerDashboard() {
     return encodeURIComponent(`Service Inquiry:\nServer: ${selectedServer}\nRequirements: ${requirements}`);
   };
 
+  const estimatedCost = useMemo(() => {
+    const route = voipRoutes.find(r => r.name === calcRoute);
+    const mins = parseFloat(calcMins) || 0;
+    return route ? (route.rate * mins).toFixed(2) : '0.00';
+  }, [calcRoute, calcMins]);
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      {/* Enhanced Header */}
+      {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto px-4 flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
@@ -199,6 +209,16 @@ export function ServerDashboard() {
         </div>
       </header>
 
+      {/* Floating Action Buttons */}
+      <div className="fixed bottom-6 right-6 z-[60] flex flex-col gap-3">
+          <a href="http://t.me/AMSserver" target="_blank" rel="noopener noreferrer" className="bg-[#0088cc] text-white p-3 rounded-full shadow-xl hover:scale-110 transition-transform">
+              <MessageSquare className="w-6 h-6" />
+          </a>
+          <a href="https://wa.me/17633272191" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white p-3 rounded-full shadow-xl hover:scale-110 transition-transform">
+              <MessageCircle className="w-6 h-6" />
+          </a>
+      </div>
+
       <main className="flex-grow">
         {/* Modern Hero Section */}
         <section className="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32 hero-gradient border-b">
@@ -224,7 +244,6 @@ export function ServerDashboard() {
                     </Button>
                 </div>
             </div>
-            {/* Decorative elements */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -z-10" />
             <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-background to-transparent" />
         </section>
@@ -320,7 +339,6 @@ export function ServerDashboard() {
               </Card>
             ))}
             
-            {/* Quick Access Card */}
             <Card className="flex flex-col overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 shadow-inner rounded-2xl">
                 <CardHeader className="p-6">
                     <div className="p-3 w-fit rounded-2xl bg-primary text-primary-foreground mb-4 shadow-lg shadow-primary/20">
@@ -428,11 +446,41 @@ export function ServerDashboard() {
       </Dialog>
 
       <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
-          <DialogContent className="max-w-xl rounded-3xl p-6">
+          <DialogContent className="max-w-xl rounded-3xl p-6 overflow-y-auto max-h-[90vh]">
               <DialogHeader>
                   <DialogTitle className="text-3xl font-bold font-headline">Wholesale Rate Deck</DialogTitle>
                   <DialogDescription className="font-medium">Global termination rates with 1:1 pulse accuracy.</DialogDescription>
               </DialogHeader>
+              
+              {/* Calculator Section */}
+              <Card className="mt-6 bg-primary/5 border-primary/20 shadow-none rounded-2xl">
+                  <CardHeader className="p-4 pb-2">
+                      <CardTitle className="text-sm font-bold flex items-center gap-2">
+                          <Calculator className="w-4 h-4 text-primary" />
+                          Quick Cost Estimator
+                      </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 pt-0 space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1.5">
+                              <Label className="text-[10px] uppercase font-bold text-muted-foreground">Select Route</Label>
+                              <Select value={calcRoute} onValueChange={setCalcRoute}>
+                                  <SelectTrigger className="h-9 rounded-xl bg-background border-primary/10"><SelectValue /></SelectTrigger>
+                                  <SelectContent>{voipRoutes.map(r => <SelectItem key={r.name} value={r.name}>{r.name}</SelectItem>)}</SelectContent>
+                              </Select>
+                          </div>
+                          <div className="space-y-1.5">
+                              <Label className="text-[10px] uppercase font-bold text-muted-foreground">Est. Minutes</Label>
+                              <Input type="number" value={calcMins} onChange={e => setCalcMins(e.target.value)} className="h-9 rounded-xl bg-background border-primary/10" />
+                          </div>
+                      </div>
+                      <div className="bg-primary/10 rounded-xl p-3 flex justify-between items-center border border-primary/5">
+                          <span className="text-xs font-bold">Estimated Monthly Cost:</span>
+                          <span className="text-lg font-black text-primary">${estimatedCost}</span>
+                      </div>
+                  </CardContent>
+              </Card>
+
               <div className="border border-primary/10 rounded-2xl overflow-hidden mt-6 bg-muted/10 shadow-inner">
                   <Table>
                       <TableHeader className="bg-primary/5">
@@ -446,7 +494,7 @@ export function ServerDashboard() {
                           {voipRoutes.map(r => (
                               <TableRow key={r.name} className="hover:bg-primary/5 border-primary/5 transition-colors">
                                   <TableCell className="font-bold text-xs">{r.name}</TableCell>
-                                  <TableCell className="text-center font-mono text-accent font-black text-sm">{r.rate}</TableCell>
+                                  <TableCell className="text-center font-mono text-accent font-black text-sm">{r.rate.toFixed(3)}</TableCell>
                                   <TableCell className="text-right text-muted-foreground text-[10px] font-bold">{r.pulse}</TableCell>
                               </TableRow>
                           ))}
@@ -513,7 +561,7 @@ export function ServerDashboard() {
           </DialogContent>
       </Dialog>
 
-      {/* Enhanced Footer */}
+      {/* Footer */}
       <footer className="py-20 border-t bg-muted/20">
         <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center">

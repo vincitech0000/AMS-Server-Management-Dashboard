@@ -1,9 +1,8 @@
-
 'use client';
 
 import { useState, useTransition, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle, Loader2, RefreshCw, Server, Wifi, XCircle, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Loader2, RefreshCw, Server, Wifi, XCircle, AlertTriangle, Timer } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,7 +14,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import type { ServerStatus, ServerWithStatus, ServerInfo } from '@/app/actions';
 import { pingAllServers } from '@/app/actions';
 
-type ServerWithChecking = ServerWithStatus | (ServerInfo & { status: 'Checking'; resolvedIp?: string });
+type ServerWithChecking = ServerWithStatus | (ServerInfo & { status: 'Checking'; resolvedIp?: string; latency?: number });
 
 const initialServers: ServerWithChecking[] = [
   { name: 'FusionPBX Server', ip: '173.208.249.122', status: 'Checking' },
@@ -33,7 +32,6 @@ export function ServerStatusPage() {
   const { toast } = useToast();
   
   const handleRefreshAll = () => {
-    // Prevent multiple refreshes from running at the same time
     if (isPending) return;
 
     startTransition(async () => {
@@ -47,15 +45,12 @@ export function ServerStatusPage() {
   };
 
   useEffect(() => {
-    // Perform an initial check when the component mounts
     handleRefreshAll();
     
-    // Set up an interval to refresh every 30 seconds
     const intervalId = setInterval(() => {
       handleRefreshAll();
-    }, 30000); // 30000ms = 30 seconds
+    }, 30000);
 
-    // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -104,47 +99,59 @@ export function ServerStatusPage() {
         </header>
         <main className="flex-grow p-4 md:p-8">
           <div className="container mx-auto">
-              <Card>
-                  <CardHeader className="flex flex-row items-center justify-between">
-                      <CardTitle className="flex items-center gap-2">
-                          <Wifi />
-                          Live Server Status
+              <Card className="rounded-2xl border-primary/10 shadow-xl overflow-hidden">
+                  <CardHeader className="flex flex-row items-center justify-between border-b bg-muted/20">
+                      <CardTitle className="flex items-center gap-2 text-2xl">
+                          <Wifi className="text-primary" />
+                          Live Infrastructure Monitoring
                       </CardTitle>
                       <Tooltip>
                           <TooltipTrigger asChild>
-                              <Button variant="ghost" size="icon" onClick={handleManualRefresh} disabled={isPending}>
+                              <Button variant="outline" size="icon" onClick={handleManualRefresh} disabled={isPending} className="rounded-xl">
                                   {isPending ? <Loader2 className="w-5 h-5 animate-spin" /> : <RefreshCw className="w-5 h-5" />}
                                   <span className="sr-only">Refresh Status</span>
                               </Button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Refresh All</p>
+                            <p>Manual Refresh</p>
                           </TooltipContent>
                       </Tooltip>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="p-0">
                       <Table>
-                          <TableHeader>
+                          <TableHeader className="bg-muted/30">
                               <TableRow>
-                                  <TableHead className="w-[100px]">Icon</TableHead>
+                                  <TableHead className="w-[80px] pl-6">ID</TableHead>
                                   <TableHead>Server Name</TableHead>
-                                  <TableHead>Domain / IP</TableHead>
+                                  <TableHead>Host/IP</TableHead>
                                   <TableHead>Resolved IP</TableHead>
-                                  <TableHead className="text-right">Status</TableHead>
+                                  <TableHead>Latency</TableHead>
+                                  <TableHead className="text-right pr-6">Status</TableHead>
                               </TableRow>
                           </TableHeader>
                           <TableBody>
                               {servers.map((server, index) => (
-                                  <TableRow key={index}>
-                                      <TableCell className="text-primary">
-                                          <Server className="w-6 h-6" />
+                                  <TableRow key={index} className="hover:bg-primary/5 transition-colors">
+                                      <TableCell className="pl-6 text-muted-foreground font-bold">#{index + 1}</TableCell>
+                                      <TableCell className="font-bold flex items-center gap-2">
+                                          <Server className="w-4 h-4 text-primary/50" />
+                                          {server.name}
                                       </TableCell>
-                                      <TableCell className="font-medium">{server.name}</TableCell>
-                                      <TableCell>{server.ip}</TableCell>
-                                      <TableCell>
+                                      <TableCell className="font-mono text-xs">{server.ip}</TableCell>
+                                      <TableCell className="font-mono text-xs">
                                         {server.status === 'Checking' && !server.resolvedIp ? '...' : server.resolvedIp}
                                       </TableCell>
-                                      <TableCell className="text-right">
+                                      <TableCell>
+                                          {server.latency !== undefined ? (
+                                              <div className="flex items-center gap-1.5 text-xs font-bold text-accent">
+                                                  <Timer className="w-3 h-3" />
+                                                  {server.latency}ms
+                                              </div>
+                                          ) : (
+                                              <span className="text-muted-foreground/30">—</span>
+                                          )}
+                                      </TableCell>
+                                      <TableCell className="text-right pr-6">
                                           {getStatusComponent(server.status)}
                                       </TableCell>
                                   </TableRow>
@@ -156,16 +163,9 @@ export function ServerStatusPage() {
           </div>
         </main>
         <footer className="p-6 text-sm text-center border-t text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Server Dashboard. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} AMS Server Management Portal. All rights reserved.</p>
         </footer>
       </div>
     </TooltipProvider>
   );
 }
-
-    
-
-
-
-
-

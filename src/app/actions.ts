@@ -1,4 +1,3 @@
-
 'use server';
 
 import { generateHtml } from '@/ai/flows/generate-html-from-prompt';
@@ -25,17 +24,19 @@ export async function generateHtmlAction(prompt: string) {
 
 export type ServerStatus = 'Online' | 'Offline' | 'Error';
 export type ServerInfo = { name: string; ip: string; };
-export type ServerWithStatus = ServerInfo & { status: ServerStatus; resolvedIp?: string };
+export type ServerWithStatus = ServerInfo & { status: ServerStatus; resolvedIp?: string; latency?: number };
 
 
 async function checkServer(server: ServerInfo): Promise<ServerWithStatus> {
+    const start = Date.now();
     try {
         const { address } = await dns.lookup(server.ip);
-        // We'll consider a successful DNS lookup as 'Online' for this check.
+        const latency = Date.now() - start;
         return {
             ...server,
             resolvedIp: address,
             status: 'Online',
+            latency,
         };
     } catch (error: any) {
         let status: ServerStatus = 'Offline';
@@ -46,6 +47,7 @@ async function checkServer(server: ServerInfo): Promise<ServerWithStatus> {
             ...server,
             resolvedIp: 'N/A',
             status: status,
+            latency: undefined,
         };
     }
 }
