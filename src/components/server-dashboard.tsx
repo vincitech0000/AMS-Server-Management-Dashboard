@@ -205,6 +205,12 @@ export function ServerDashboard() {
             </div>
           </Link>
           <div className="flex items-center gap-3">
+              <Button asChild variant="ghost" size="sm" className="hidden lg:flex rounded-full text-xs font-bold hover:bg-primary/10 hover:text-primary transition-all">
+                  <a href="http://88.99.103.106:4886" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                    <Database className="w-4 h-4" />
+                    CDR Portal
+                  </a>
+              </Button>
               <Button asChild variant="ghost" size="sm" className="hidden sm:flex rounded-full text-xs font-bold hover:bg-primary/10 hover:text-primary transition-all">
                   <Link href="/server-status" className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
