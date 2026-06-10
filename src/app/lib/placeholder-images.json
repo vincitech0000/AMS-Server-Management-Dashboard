@@ -27,5 +27,12 @@
     "width": 240,
     "height": 480,
     "hint": "vicibox logo"
+  },
+  "vos3000Logo": {
+    "src": "https://www.vos3000.com/images/services/vos-black.png",
+    "alt": "VOS3000 Logo",
+    "width": 300,
+    "height": 100,
+    "hint": "vos3000 logo"
   }
 }

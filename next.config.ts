@@ -35,6 +35,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.vos3000.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   serverExternalPackages: [
