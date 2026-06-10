@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -83,6 +84,7 @@ export function ServerDashboard() {
         category: 'Dialer & PBX',
         type: 'Call Center',
         icon: <Phone className="w-6 h-6" />,
+        logo: placeholderImages.viciboxLogo,
         isSpecial: true,
         href: '/vicibox',
         description: 'Advanced predictive dialing suite for high-volume campaigns.',

@@ -1,3 +1,4 @@
+
 {
   "fusionpbxLogo": {
     "src": "https://picsum.photos/seed/fusion-logo/200/200",
@@ -19,5 +20,12 @@
     "width": 200,
     "height": 200,
     "hint": "magnusbilling logo"
+  },
+  "viciboxLogo": {
+    "src": "https://picsum.photos/seed/vici-logo/200/200",
+    "alt": "VICIBOX Logo",
+    "width": 200,
+    "height": 200,
+    "hint": "vicidial logo"
   }
 }
