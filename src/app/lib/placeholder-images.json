@@ -1,7 +1,6 @@
-
 {
   "fusionpbxLogo": {
-    "src": "https://picsum.photos/seed/fusion-logo/200/200",
+    "src": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/fusionpbx.png",
     "alt": "FusionPBX Logo",
     "width": 200,
     "height": 200,
