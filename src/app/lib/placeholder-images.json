@@ -21,10 +21,10 @@
     "hint": "magnusbilling logo"
   },
   "viciboxLogo": {
-    "src": "https://picsum.photos/seed/vici-logo/200/200",
+    "src": "https://docs.vicibox.com/en/latest/_images/Vicibox_pixel_green_whitebg_20180921.png",
     "alt": "VICIBOX Logo",
     "width": 200,
-    "height": 200,
-    "hint": "vicidial logo"
+    "height": 66,
+    "hint": "vicibox logo"
   }
 }

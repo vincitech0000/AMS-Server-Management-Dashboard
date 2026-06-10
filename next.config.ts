@@ -22,6 +22,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'docs.vicibox.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   serverExternalPackages: [
