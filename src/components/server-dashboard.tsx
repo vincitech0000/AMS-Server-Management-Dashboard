@@ -276,7 +276,7 @@ export function ServerDashboard() {
                     <Badge className="bg-accent/10 text-accent font-black text-[10px]">ACTIVE</Badge>
                 </div>
                 <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-muted-foreground mb-1">Total Instances</h4>
-                <div className="text-4xl font-black font-headline">820<span className="text-accent">+</span></div>
+                <div className="text-4xl font-black font-headline">20<span className="text-accent">+</span></div>
             </div>
             <div className="stats-card group">
                 <div className="flex justify-between items-start mb-6">
