@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  serverExternalPackages: [
+    'genkit',
+    '@genkit-ai/core',
+    '@genkit-ai/google-genai',
+    '@genkit-ai/next',
+  ],
 };
 
 export default nextConfig;
