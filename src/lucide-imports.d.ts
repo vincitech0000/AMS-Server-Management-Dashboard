@@ -1,5 +1,6 @@
 
 declare module 'lucide-react' {
+    export const Activity: React.FC<React.SVGProps<SVGSVGElement>>;
     export const AlertTriangle: React.FC<React.SVGProps<SVGSVGElement>>;
     export const AppWindow: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ArrowLeft: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -15,11 +16,14 @@ declare module 'lucide-react' {
     export const ChevronRight: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ChevronUp: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Circle: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Clock: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Code: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Copy: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Cpu: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Database: React.FC<React.SVGProps<SVGSVGElement>>;
     export const DollarSign: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Download: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Globe: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Headphones: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Info: React.FC<React.SVGProps<SVGSVGElement>>;
     export const LayoutGrid: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -44,6 +48,4 @@ declare module 'lucide-react' {
     export const X: React.FC<React.SVGProps<SVGSVGElement>>;
     export const XCircle: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Zap: React.FC<React.SVGProps<SVGSVGElement>>;
-    export const Globe: React.FC<React.SVGProps<SVGSVGElement>>;
-    export const Cpu: React.FC<React.SVGProps<SVGSVGElement>>;
 }
