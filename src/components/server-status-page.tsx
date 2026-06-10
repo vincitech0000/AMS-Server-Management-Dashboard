@@ -22,8 +22,6 @@ const initialServers: ServerWithChecking[] = [
   { name: 'VICIBOX123', ip: 'box123.amsserver.com', status: 'Checking' },
   { name: 'VICIBOX124', ip: '107.150.36.124', status: 'Checking' },
   { name: 'VICIBOX126', ip: 'box126.amsserver.com', status: 'Checking' },
-  { name: 'VICIBOX131', ip: 'box131.amsserver.com', status: 'Checking' },
-  { name: 'VICIBOX134', ip: 'box134.amsserver.com', status: 'Checking' },
 ];
 
 export function ServerStatusPage() {

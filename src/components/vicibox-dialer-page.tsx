@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
@@ -51,26 +50,6 @@ const viciboxServers = [
     accessPoints: [
       { name: 'Firewall', url: 'https://box126.amsserver.com:446/valid8.php' },
       { name: 'Login', url: 'https://box126.amsserver.com/' },
-    ],
-    description: viciboxFeatures,
-  },
-  {
-    name: 'VICIBOX131',
-    type: 'VICIBOX',
-    icon: <Phone className="w-8 h-8" />,
-    accessPoints: [
-      { name: 'Firewall', url: 'https://box131.amsserver.com:446/valid8.php' },
-      { name: 'Login', url: 'https://box131.amsserver.com/' },
-    ],
-    description: viciboxFeatures,
-  },
-  {
-    name: 'VICIBOX134',
-    type: 'VICIBOX',
-    icon: <Phone className="w-8 h-8" />,
-    accessPoints: [
-      { name: 'Firewall', url: 'https://box134.amsserver.com:446/valid8.php' },
-      { name: 'Login', url: 'https://box134.amsserver.com/' },
     ],
     description: viciboxFeatures,
   },
