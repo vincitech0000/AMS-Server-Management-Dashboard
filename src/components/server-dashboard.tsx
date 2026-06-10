@@ -195,7 +195,7 @@ export function ServerDashboard() {
             </div>
           </Link>
           <div className="flex items-center gap-4">
-              <Button asChild variant="ghost" size="sm" className="hidden md:flex rounded-full hover:bg-primary/10 transition-colors">
+              <Button asChild variant="secondary" size="sm" className="hidden md:flex rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
                   <a href="https://88.99.103.106:8443" target="_blank" rel="noopener noreferrer">
                     <Database className="w-4 h-4 mr-2" />
                     Retail CDR Login
