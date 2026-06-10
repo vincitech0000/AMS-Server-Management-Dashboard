@@ -1,0 +1,23 @@
+{
+  "fusionpbxLogo": {
+    "src": "https://picsum.photos/seed/fusion-logo/200/200",
+    "alt": "FusionPBX Logo",
+    "width": 200,
+    "height": 200,
+    "hint": "fusionpbx logo"
+  },
+  "astppLogo": {
+    "src": "https://picsum.photos/seed/astpp-logo/200/200",
+    "alt": "ASTPP Logo",
+    "width": 200,
+    "height": 200,
+    "hint": "astpp logo"
+  },
+  "magnusLogo": {
+    "src": "https://picsum.photos/seed/magnus-logo/200/200",
+    "alt": "Magnus Billing Logo",
+    "width": 200,
+    "height": 200,
+    "hint": "magnusbilling logo"
+  }
+}

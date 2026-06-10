@@ -11,6 +11,7 @@ import {
     Wifi, Calculator, Activity, Clock
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -21,6 +22,7 @@ import { Separator } from '@/components/ui/separator';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import placeholderImages from '@/app/lib/placeholder-images.json';
 
 const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
 
@@ -100,6 +102,7 @@ export function ServerDashboard() {
       category: 'Dialer & PBX',
       type: 'Multi-tenant',
       icon: <Server className="w-6 h-6" />,
+      logo: placeholderImages.fusionpbxLogo,
       description: 'Multi-tenant PBX infrastructure based on FreeSWITCH.',
       features: ['Multi-tenant', 'Call Recording', 'Ring Groups']
     },
@@ -116,6 +119,7 @@ export function ServerDashboard() {
       category: 'Billing',
       type: 'Class 4/5',
       icon: <DollarSign className="w-6 h-6" />,
+      logo: placeholderImages.astppLogo,
       description: 'Open-source smart VoIP billing and management platform.',
       features: ['Calling Cards', 'DID Management', 'Auto Provisioning']
     },
@@ -124,6 +128,7 @@ export function ServerDashboard() {
       category: 'Billing',
       type: 'Management',
       icon: <Database className="w-6 h-6" />,
+      logo: placeholderImages.magnusLogo,
       description: 'Full-featured billing solution for retail VoIP operations.',
       features: ['CDR Analysis', 'Rate Management', 'Agent Portal']
     },
@@ -348,9 +353,22 @@ export function ServerDashboard() {
               <Card key={index} className="group relative flex flex-col overflow-hidden transition-all duration-500 hover:shadow-2xl border-muted/50 hover:border-primary/30 rounded-[2rem] bg-card/60 backdrop-blur-xl animate-in fade-in slide-in-from-bottom-10" style={{ animationDelay: `${index * 100}ms` }}>
                 <CardHeader className="p-8">
                   <div className="flex items-start justify-between mb-6">
-                    <div className="p-4 rounded-2xl bg-muted/50 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 shadow-sm">
-                        {server.icon}
-                    </div>
+                    {server.logo ? (
+                      <div className="relative w-14 h-14 rounded-2xl overflow-hidden shadow-sm group-hover:scale-110 transition-transform duration-500">
+                        <Image 
+                          src={server.logo.src} 
+                          alt={server.logo.alt} 
+                          width={server.logo.width} 
+                          height={server.logo.height}
+                          className="object-cover"
+                          data-ai-hint={server.logo.hint}
+                        />
+                      </div>
+                    ) : (
+                      <div className="p-4 rounded-2xl bg-muted/50 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 shadow-sm">
+                          {server.icon}
+                      </div>
+                    )}
                     <Badge variant="outline" className="text-[9px] uppercase tracking-[0.15em] font-black bg-primary/5 border-primary/20 text-primary px-3 py-1 rounded-full">
                         {server.category}
                     </Badge>
