@@ -1,3 +1,4 @@
+
 {
   "fusionpbxLogo": {
     "src": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/fusionpbx.png",
@@ -21,10 +22,10 @@
     "hint": "magnusbilling logo"
   },
   "viciboxLogo": {
-    "src": "https://docs.vicibox.com/en/latest/_images/Vicibox_pixel_green_whitebg_20180921.png",
+    "src": "https://play-lh.googleusercontent.com/Ck801QBPW7YKwOjBgyReW0x6jwVSBxdY8liaE_8mELdBhIUahUp_mgfdqFcaswF3stE=w240-h480-rw",
     "alt": "VICIBOX Logo",
-    "width": 200,
-    "height": 66,
+    "width": 240,
+    "height": 480,
     "hint": "vicibox logo"
   }
 }
