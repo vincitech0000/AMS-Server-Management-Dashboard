@@ -4,48 +4,34 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 191 91% 36.8%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 1.25rem;
-  }
-
-  .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
+
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
+
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
+
     --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
+
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
+
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
+
     --accent: 191 91% 36.8%;
     --accent-foreground: 210 40% 98%;
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
+
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
+    --radius: 1.25rem;
   }
 }
 
@@ -62,13 +48,13 @@
 }
 
 .glass-card {
-  @apply bg-white/60 backdrop-blur-2xl border border-white/40 shadow-2xl;
+  @apply bg-card/60 backdrop-blur-2xl border border-white/10 shadow-2xl;
 }
 
 .hero-gradient {
   background: radial-gradient(circle at top left, hsla(var(--primary), 0.15), transparent 40%),
               radial-gradient(circle at bottom right, hsla(var(--accent), 0.12), transparent 40%),
-              linear-gradient(to bottom right, #f8fafc, #f1f5f9);
+              linear-gradient(to bottom right, #020617, #0f172a);
 }
 
 .shimmer {
@@ -86,7 +72,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.1) 50%,
     transparent 100%
   );
   animation: shimmer-anim 3s infinite;
@@ -102,5 +88,5 @@
 }
 
 .stats-card {
-  @apply relative overflow-hidden bg-white/40 border border-white/20 backdrop-blur-xl rounded-[2rem] p-6 shadow-xl transition-all hover:scale-105;
+  @apply relative overflow-hidden bg-card/40 border border-white/5 backdrop-blur-xl rounded-[2rem] p-6 shadow-xl transition-all hover:scale-105;
 }

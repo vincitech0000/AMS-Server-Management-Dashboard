@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -421,7 +420,7 @@ export function ServerDashboard() {
 
       {/* Dialogs */}
       <Dialog open={isOrderDialogOpen} onOpenChange={(open) => { if (!open) resetForm(); setOrderDialogOpen(open); }}>
-          <DialogContent className="sm:max-w-[500px] rounded-[2.5rem] p-0 overflow-hidden border-none shadow-3xl bg-white/95 backdrop-blur-3xl">
+          <DialogContent className="sm:max-w-[500px] rounded-[2.5rem] p-0 overflow-hidden border-none shadow-3xl bg-card/95 backdrop-blur-3xl">
               {orderStep === 'form' ? (
                   <div className="p-8 md:p-10">
                       <DialogHeader className="mb-8">
@@ -480,7 +479,7 @@ export function ServerDashboard() {
       </Dialog>
 
       <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
-          <DialogContent className="max-w-3xl rounded-[2.5rem] p-10 overflow-y-auto max-h-[90vh] border-none shadow-3xl bg-white/95 backdrop-blur-3xl">
+          <DialogContent className="max-w-3xl rounded-[2.5rem] p-10 overflow-y-auto max-h-[90vh] border-none shadow-3xl bg-card/95 backdrop-blur-3xl">
               <DialogHeader>
                   <DialogTitle className="text-4xl font-black font-headline tracking-tighter uppercase italic text-primary">Global Rates</DialogTitle>
                   <DialogDescription className="font-bold text-muted-foreground mt-1">Wholesale termination deck.</DialogDescription>
@@ -538,7 +537,7 @@ export function ServerDashboard() {
       </Dialog>
 
       <Dialog open={isReadCommentDialogOpen} onOpenChange={setReadCommentDialogOpen}>
-          <DialogContent className="sm:max-w-xl rounded-[2.5rem] p-10 border-none shadow-3xl bg-white/95 backdrop-blur-3xl overflow-y-auto max-h-[80vh]">
+          <DialogContent className="sm:max-w-xl rounded-[2.5rem] p-10 border-none shadow-3xl bg-card/95 backdrop-blur-3xl overflow-y-auto max-h-[80vh]">
               <DialogHeader className="mb-8"><DialogTitle className="text-4xl font-black font-headline tracking-tighter uppercase italic text-primary">Reviews</DialogTitle></DialogHeader>
               <div className="space-y-6">
                   {[
@@ -561,7 +560,7 @@ export function ServerDashboard() {
       </Dialog>
 
       <Dialog open={isPostCommentDialogOpen} onOpenChange={setPostCommentDialogOpen}>
-          <DialogContent className="sm:max-w-lg rounded-[2.5rem] p-10 border-none shadow-3xl bg-white/95 backdrop-blur-3xl">
+          <DialogContent className="sm:max-w-lg rounded-[2.5rem] p-10 border-none shadow-3xl bg-card/95 backdrop-blur-3xl">
               <DialogHeader className="mb-8"><DialogTitle className="text-3xl font-black font-headline tracking-tighter uppercase italic text-primary">Insight</DialogTitle></DialogHeader>
               <div className="space-y-6">
                   <div className="space-y-3">
