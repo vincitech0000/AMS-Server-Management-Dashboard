@@ -72,19 +72,29 @@
 }
 
 .shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.3) 50%,
     transparent 100%
   );
-  background-size: 200% 100%;
-  animation: shimmer 3s infinite;
+  animation: shimmer-anim 3s infinite;
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+@keyframes shimmer-anim {
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 .card-glow:hover {
