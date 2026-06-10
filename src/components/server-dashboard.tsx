@@ -208,7 +208,7 @@ export function ServerDashboard() {
               <Button asChild variant="ghost" size="sm" className="hidden lg:flex rounded-full text-xs font-bold hover:bg-primary/10 hover:text-primary transition-all">
                   <a href="http://88.99.103.106:4886" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                     <Database className="w-4 h-4" />
-                    CDR Portal
+                    Retail CDR
                   </a>
               </Button>
               <Button asChild variant="ghost" size="sm" className="hidden sm:flex rounded-full text-xs font-bold hover:bg-primary/10 hover:text-primary transition-all">
@@ -277,7 +277,7 @@ export function ServerDashboard() {
                 <div className="text-2xl font-black font-headline tracking-tight">40+</div>
             </div>
             <div className="stats-card">
-                <Clock className="w-4 h-4 text-blue-400 mb-3" />
+                <Activity className="w-4 h-4 text-blue-400 mb-3" />
                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-1">NOC Latency</div>
                 <div className="text-2xl font-black font-headline tracking-tight">~8ms</div>
             </div>
@@ -327,7 +327,7 @@ export function ServerDashboard() {
                     </Badge>
                   </div>
                   <CardTitle className="text-xl font-black font-headline tracking-tight group-hover:text-primary transition-colors">{server.name}</CardTitle>
-                  <CardDescription className="text-xs font-medium text-muted-foreground/70 mt-1">{server.description}</CardDescription>
+                  <CardTitle className="text-xs font-medium text-muted-foreground/70 mt-1">{server.description}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow px-6 pb-6 space-y-2">
                     {server.features.map((f, i) => (
