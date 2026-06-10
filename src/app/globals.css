@@ -69,3 +69,19 @@
   background: radial-gradient(circle at top left, hsla(var(--primary), 0.15), transparent),
               radial-gradient(circle at bottom right, hsla(var(--accent), 0.1), transparent);
 }
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
