@@ -194,8 +194,8 @@ export function ServerDashboard() {
                 <Terminal className="w-5 h-5" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-black font-headline tracking-tighter leading-none">AMS Infrastructure Group</span>
-              <span className="text-[9px] text-primary/60 uppercase tracking-[0.3em] font-bold mt-1">Global Carrier Solutions</span>
+              <span className="text-lg font-black font-headline tracking-tighter leading-none">AMS Portal</span>
+              <span className="text-[9px] text-primary/60 uppercase tracking-[0.3em] font-bold mt-1">Global CLOUD</span>
             </div>
           </Link>
           <div className="flex items-center gap-3">
@@ -480,10 +480,10 @@ export function ServerDashboard() {
                 <Cpu className="w-6 h-6" />
             </div>
             <p className="text-xs font-bold text-muted-foreground max-w-lg mx-auto leading-relaxed opacity-40 uppercase tracking-widest">
-                AMS Infrastructure Group • Global Carrier Backbone
+                AMS Portal • Global CLOUD Infrastructure
             </p>
             <p className="text-[9px] text-muted-foreground/20 font-black uppercase tracking-[0.5em] mt-6">
-                &copy; {new Date().getFullYear()} AMS INFRASTRUCTURE GROUP. ALL RIGHTS RESERVED.
+                &copy; {new Date().getFullYear()} AMS PORTAL. ALL RIGHTS RESERVED.
             </p>
         </div>
       </footer>
