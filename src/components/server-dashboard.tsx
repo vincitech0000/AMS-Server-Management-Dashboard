@@ -190,8 +190,13 @@ export function ServerDashboard() {
       <header className="sticky top-0 z-[100] w-full border-b bg-background/60 backdrop-blur-2xl">
         <div className="container mx-auto px-4 flex h-16 items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-primary/20 p-2 rounded-lg text-primary border border-primary/30 group-hover:rotate-6 transition-all">
-                <Terminal className="w-5 h-5" />
+            <div className="relative bg-black/5 p-2 rounded-lg text-primary border border-black/10 group-hover:scale-110 transition-all overflow-hidden flex items-center justify-center">
+                <Server className="w-6 h-6" />
+                <div className="absolute bottom-1 left-0 right-0 flex justify-center gap-1">
+                    <div className="w-1 h-1 rounded-full bg-red-500 animate-pulse shadow-[0_0_5px_rgba(239,68,68,0.8)]" />
+                    <div className="w-1 h-1 rounded-full bg-green-500 animate-pulse [animation-delay:0.2s] shadow-[0_0_5px_rgba(34,197,94,0.8)]" />
+                    <div className="w-1 h-1 rounded-full bg-blue-500 animate-pulse [animation-delay:0.4s] shadow-[0_0_5px_rgba(59,130,246,0.8)]" />
+                </div>
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-black font-headline tracking-tighter leading-none">AMS Portal</span>
