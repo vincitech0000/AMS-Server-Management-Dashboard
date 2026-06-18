@@ -33,12 +33,13 @@ const fusionPbxCapacities = [
 ];
 
 const voipRoutes = [
+    { name: 'USA CLI', rate: 0.175, pulse: '6/6' },
+    { name: 'USA CLI (ALL PASS)', rate: 0.23, pulse: '6/6' },
+    { name: 'Canada IVR (Press 1 - Local Correct)', rate: 0.01, pulse: '6/6' },
+    { name: 'Canada IVR (Unlimited Available)', rate: 0.00, pulse: 'Flat Fee' },
+    { name: 'USA IVR (Press 1 - Local Random)', rate: 0.06, pulse: '6/6' },
+    { name: 'USA IVR (Unlimited Available)', rate: 0.00, pulse: 'Flat Fee' },
     { name: 'USA Press1 with Dialer', rate: 0.095, pulse: '6/6' },
-    { name: 'USA Outbound Clean', rate: 0.011, pulse: '6/6' },
-    { name: 'USA Outbound (TECH)', rate: 0.015, pulse: '6/6' },
-    { name: 'USA CLI (ALL PASS)', rate: 0.175, pulse: '6/6' },
-    { name: 'Canada IVR', rate: 0.01, pulse: '6/6' },
-    { name: 'Canada CLI (ALL Pass)', rate: 0.025, pulse: '60/60' },
     { name: 'Puerto Rico', rate: 0.02, pulse: '6/6' },
 ];
 
@@ -499,7 +500,7 @@ export function ServerDashboard() {
       </Dialog>
 
       <Dialog open={isPostCommentDialogOpen} onOpenChange={setPostCommentDialogOpen}>
-          <DialogContent className="sm:max-w-md rounded-2xl p-8 border border-white/10 bg-[#030711]/90 backdrop-blur-3xl">
+          <DialogContent className="sm:max-md rounded-2xl p-8 border border-white/10 bg-[#030711]/90 backdrop-blur-3xl">
               <DialogHeader><DialogTitle className="text-2xl font-black font-headline tracking-tight uppercase">Submit Insight</DialogTitle></DialogHeader>
               <div className="space-y-4 mt-6">
                   <div className="space-y-2">
