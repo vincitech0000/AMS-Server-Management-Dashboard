@@ -39,8 +39,7 @@ const voipRoutes = [
     { name: 'Canada IVR (Unlimited Available)', rate: 0.00, pulse: 'Flat Fee' },
     { name: 'USA IVR (Press 1 - Local Random)', rate: 0.06, pulse: '6/6' },
     { name: 'USA IVR (Unlimited Available)', rate: 0.00, pulse: 'Flat Fee' },
-    { name: 'USA Press1 with Dialer', rate: 0.095, pulse: '6/6' },
-    { name: 'Puerto Rico', rate: 0.02, pulse: '6/6' },
+    { name: 'Puerto Rico', rate: 0.03, pulse: '6/6' },
 ];
 
 const generateCaptcha = () => {
