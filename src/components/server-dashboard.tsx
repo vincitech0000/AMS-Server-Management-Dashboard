@@ -35,10 +35,8 @@ const fusionPbxCapacities = [
 const voipRoutes = [
     { name: 'USA CLI', rate: 0.175, pulse: '6/6' },
     { name: 'USA CLI (ALL PASS)', rate: 0.23, pulse: '6/6' },
-    { name: 'Canada IVR (Press 1 - Local Correct)', rate: 0.01, pulse: '6/6' },
-    { name: 'Canada IVR (Unlimited Available)', rate: 0.00, pulse: 'Flat Fee' },
-    { name: 'USA IVR (Press 1 - Local Random)', rate: 0.06, pulse: '6/6' },
-    { name: 'USA IVR (Unlimited Available)', rate: 0.00, pulse: 'Flat Fee' },
+    { name: 'Canada IVR (Unlimited Available)', rate: 0, pulse: 'Flat Fee' },
+    { name: 'USA IVR (Unlimited Available)', rate: 0, pulse: 'Flat Fee' },
     { name: 'Puerto Rico', rate: 0.03, pulse: '6/6' },
 ];
 
@@ -418,7 +416,7 @@ export function ServerDashboard() {
           <DialogContent className="max-w-2xl rounded-2xl p-8 border border-black/10 bg-white overflow-y-auto max-h-[90vh]">
               <DialogHeader>
                   <DialogTitle className="text-2xl font-black font-headline tracking-tight uppercase text-black">Global Rate Desk</DialogTitle>
-                  <DialogDescription className="font-medium text-gray-500">Tier-1 carrier termination rates.</DialogDescription>
+                  <DialogDescription className="font-medium text-gray-500">Dialer With VOIP is free including support</DialogDescription>
               </DialogHeader>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
