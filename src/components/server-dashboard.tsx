@@ -5,10 +5,10 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '@/components/ui/button';
 import { 
     Server, Phone, Database, MessageSquare, ArrowUpRight, 
-    ShoppingCart, Loader2, DollarSign, CheckCircle, RefreshCw, 
-    MessageCircle, Download, Users, AppWindow, Route, TrendingUp,
-    Shield, Zap, Globe, Cpu, LayoutGrid, Info, Star, Headphones,
-    Wifi, Calculator, Activity, Clock, Terminal, ChevronRight, ArrowRight
+    Loader2, DollarSign, CheckCircle, RefreshCw, 
+    MessageCircle, Download, Users, TrendingUp,
+    Shield, Zap, Globe, Cpu, LayoutGrid, Activity, 
+    ChevronRight, ArrowRight
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
