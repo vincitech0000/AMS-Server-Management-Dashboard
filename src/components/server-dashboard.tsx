@@ -55,12 +55,9 @@ const generateCaptcha = () => {
 export function ServerDashboard() {
   const [isOrderDialogOpen, setOrderDialogOpen] = useState(false);
   const [isVoipDialogOpen, setVoipDialogOpen] = useState(false);
-  const [isReadCommentDialogOpen, setReadCommentDialogOpen] = useState(false);
-  const [isPostCommentDialogOpen, setPostCommentDialogOpen] = useState(false);
   const [selectedServer, setSelectedServer] = useState('');
   const [selectedFusionCapacity, setSelectedFusionCapacity] = useState('');
   const [requirements, setRequirements] = useState('');
-  const [newComment, setNewComment] = useState('');
   const [isSubmitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -73,10 +70,10 @@ export function ServerDashboard() {
   const [calcMins, setCalcMins] = useState('1000');
 
   useEffect(() => {
-    if ((isOrderDialogOpen && orderStep === 'form') || isPostCommentDialogOpen) {
+    if ((isOrderDialogOpen && orderStep === 'form')) {
       setCaptchaText(generateCaptcha());
     }
-  }, [isOrderDialogOpen, orderStep, isPostCommentDialogOpen]);
+  }, [isOrderDialogOpen, orderStep]);
 
   const servers = [
     {
@@ -185,7 +182,8 @@ export function ServerDashboard() {
   const estimatedCost = useMemo(() => {
     const route = voipRoutes.find(r => r.name === calcRoute);
     const mins = parseFloat(calcMins) || 0;
-    return route ? (route.rate * mins).toFixed(2) : '0.00';
+    if (route && route.rate === 0) return 'Contact us for Pricing';
+    return route ? `$${(route.rate * mins).toFixed(2)}` : '$0.00';
   }, [calcRoute, calcMins]);
 
   return (
@@ -440,7 +438,7 @@ export function ServerDashboard() {
               
               <div className="bg-primary/5 border border-primary/20 p-5 rounded-xl flex justify-between items-center mt-4">
                   <span className="text-[10px] font-black uppercase tracking-widest text-primary/80">Estimated Monthly Expenditure:</span>
-                  <span className="text-2xl font-black text-primary tracking-tight">${estimatedCost}</span>
+                  <span className="text-2xl font-black text-primary tracking-tight">{estimatedCost}</span>
               </div>
 
               <div className="border border-gray-100 rounded-xl overflow-hidden mt-6">
@@ -456,7 +454,9 @@ export function ServerDashboard() {
                           {voipRoutes.map(r => (
                               <TableRow key={r.name} className="border-gray-100 hover:bg-gray-50 transition-colors">
                                   <TableCell className="font-bold text-xs text-black">{r.name}</TableCell>
-                                  <TableCell className="text-center font-code text-primary font-bold">{r.rate.toFixed(3)}</TableCell>
+                                  <TableCell className="text-center font-code text-primary font-bold">
+                                      {r.rate === 0 ? 'Contact us for Pricing' : r.rate.toFixed(3)}
+                                  </TableCell>
                                   <TableCell className="text-right text-[10px] font-bold text-gray-400 pr-6">{r.pulse}</TableCell>
                               </TableRow>
                           ))}
