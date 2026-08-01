@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -8,7 +9,7 @@ import {
     Loader2, DollarSign, CheckCircle, RefreshCw, 
     MessageCircle, Download, Users, TrendingUp,
     Shield, Zap, Globe, Cpu, LayoutGrid, Activity, 
-    ChevronRight, ArrowRight
+    ChevronRight, ArrowRight, ShoppingCart
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -102,6 +103,16 @@ export function ServerDashboard() {
       logo: placeholderImages.fusionpbxLogo,
       description: 'Industrial FreeSWITCH-based multi-tenant PBX.',
       features: ['Multi-tenant', 'Call Recording', 'DID Manager']
+    },
+    {
+      name: 'Pharma Portal',
+      category: 'MedTech',
+      type: 'Global Supply',
+      icon: <ShoppingCart className="w-6 h-6" />,
+      isSpecial: true,
+      href: '/pharma',
+      description: 'Discreet pharmaceutical distribution hub via USDT.',
+      features: ['Secure Order', 'USDT Payment', 'Global Shipping']
     },
     {
       name: 'Bulk SMS',
