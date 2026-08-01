@@ -111,7 +111,7 @@ export function ServerDashboard() {
       isSpecial: true,
       href: '/pharma',
       description: 'Discreet pharmaceutical distribution hub via USDT.',
-      features: ['Secure Order', 'USDT Payment', 'US 2 US USPS Shipping']
+      features: ['Secure Order', 'USDT Payment', 'USA to USA Shipping']
     },
     {
       name: 'Bulk SMS',
