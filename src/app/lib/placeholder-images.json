@@ -35,94 +35,94 @@
     "hint": "vos3000 logo"
   },
   "medCitra": {
-    "src": "https://picsum.photos/seed/citra/400/300",
-    "alt": "Citra 100mg",
+    "src": "https://picsum.photos/seed/citra101/400/300",
+    "alt": "Citra 100mg Pills",
     "width": 400,
     "height": 300,
-    "hint": "medicine pill"
+    "hint": "medicine pills"
   },
   "medAspadol": {
-    "src": "https://picsum.photos/seed/aspadol/400/300",
-    "alt": "Aspadol 100mg",
-    "width": 400,
-    "height": 300,
-    "hint": "pill package"
-  },
-  "medMitidol": {
-    "src": "https://picsum.photos/seed/mitidol/400/300",
-    "alt": "Mitidol 100mg",
-    "width": 400,
-    "height": 300,
-    "hint": "medical pills"
-  },
-  "medSoma": {
-    "src": "https://picsum.photos/seed/soma/400/300",
-    "alt": "Soma 350mg",
-    "width": 400,
-    "height": 300,
-    "hint": "pharmacy pills"
-  },
-  "medZolpidem": {
-    "src": "https://picsum.photos/seed/zolpidem/400/300",
-    "alt": "Zolpidem 100mg",
-    "width": 400,
-    "height": 300,
-    "hint": "tablet strip"
-  },
-  "medBelbien": {
-    "src": "https://picsum.photos/seed/belbien/400/300",
-    "alt": "Belbien 100mg",
-    "width": 400,
-    "height": 300,
-    "hint": "medicine capsules"
-  },
-  "medKaslol": {
-    "src": "https://picsum.photos/seed/kaslol/400/300",
-    "alt": "Kaslol 100mg",
-    "width": 400,
-    "height": 300,
-    "hint": "pill bottle"
-  },
-  "medXanx": {
-    "src": "https://picsum.photos/seed/xanx/400/300",
-    "alt": "Xanx 1mg",
+    "src": "https://picsum.photos/seed/aspadol202/400/300",
+    "alt": "Aspadol 100mg Tablets",
     "width": 400,
     "height": 300,
     "hint": "medical tablet"
   },
-  "medAtivan": {
-    "src": "https://picsum.photos/seed/ativan/400/300",
-    "alt": "Ativan",
-    "width": 400,
-    "height": 300,
-    "hint": "healthcare pills"
-  },
-  "medClono": {
-    "src": "https://picsum.photos/seed/clono/400/300",
-    "alt": "Clono",
+  "medMitidol": {
+    "src": "https://picsum.photos/seed/mitidol303/400/300",
+    "alt": "Mitidol 100mg Capsules",
     "width": 400,
     "height": 300,
     "hint": "pharma capsules"
   },
-  "medValium": {
-    "src": "https://picsum.photos/seed/valium/400/300",
-    "alt": "Valium",
+  "medSoma": {
+    "src": "https://picsum.photos/seed/soma404/400/300",
+    "alt": "Soma 350mg Pills",
     "width": 400,
     "height": 300,
-    "hint": "yellow pills"
+    "hint": "pill package"
+  },
+  "medZolpidem": {
+    "src": "https://picsum.photos/seed/zolpidem505/400/300",
+    "alt": "Zolpidem 100mg Tablets",
+    "width": 400,
+    "height": 300,
+    "hint": "sleeping pills"
+  },
+  "medBelbien": {
+    "src": "https://picsum.photos/seed/belbien606/400/300",
+    "alt": "Belbien 100mg Medication",
+    "width": 400,
+    "height": 300,
+    "hint": "medicine tablets"
+  },
+  "medKaslol": {
+    "src": "https://picsum.photos/seed/kaslol707/400/300",
+    "alt": "Kaslol 100mg Strips",
+    "width": 400,
+    "height": 300,
+    "hint": "pill strip"
+  },
+  "medXanx": {
+    "src": "https://picsum.photos/seed/xanx808/400/300",
+    "alt": "Xanx 1mg Tablets",
+    "width": 400,
+    "height": 300,
+    "hint": "prescription pills"
+  },
+  "medAtivan": {
+    "src": "https://picsum.photos/seed/ativan909/400/300",
+    "alt": "Ativan Medication",
+    "width": 400,
+    "height": 300,
+    "hint": "medical capsule"
+  },
+  "medClono": {
+    "src": "https://picsum.photos/seed/clono1010/400/300",
+    "alt": "Clono Pills",
+    "width": 400,
+    "height": 300,
+    "hint": "healthcare pills"
+  },
+  "medValium": {
+    "src": "https://picsum.photos/seed/valium1111/400/300",
+    "alt": "Valium Tablets",
+    "width": 400,
+    "height": 300,
+    "hint": "yellow tablets"
   },
   "medHydro": {
-    "src": "https://picsum.photos/seed/hydro/400/300",
-    "alt": "Hydro/oxy/addrall",
+    "src": "https://picsum.photos/seed/hydro1212/400/300",
+    "alt": "Hydro/oxy/addrall Medication",
     "width": 400,
     "height": 300,
     "hint": "white pills"
   },
   "medFiorocet": {
-    "src": "https://picsum.photos/seed/fiorocet/400/300",
-    "alt": "Fiorocet",
+    "src": "https://picsum.photos/seed/fiorocet1313/400/300",
+    "alt": "Fiorocet Pills",
     "width": 400,
     "height": 300,
-    "hint": "medicine tablets"
+    "hint": "capsule pills"
   }
 }

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, MessageCircle, ShoppingCart, ShieldCheck, Truck, Package, Search } from 'lucide-react';
+import { ArrowLeft, ShoppingCart, ShieldCheck, Truck, Package, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
