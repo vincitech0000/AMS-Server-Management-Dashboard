@@ -108,7 +108,7 @@ export function PharmaPage() {
                           onClick={() => handleOrder(product.name, variant.quantity, variant.price)}
                         >
                           <ShoppingCart className="w-3 h-3" />
-                          Place Order
+                          Add to Cart
                         </Button>
                       </div>
                     ))}
