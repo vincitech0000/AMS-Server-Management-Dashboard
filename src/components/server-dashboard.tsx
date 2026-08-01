@@ -1,27 +1,26 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { 
-    Server, Phone, Database, MessageSquare, ArrowUpRight, 
+    Server, Phone, Database, MessageSquare, 
     Loader2, DollarSign, CheckCircle, RefreshCw, 
-    MessageCircle, Download, Users, TrendingUp,
+    MessageCircle, Users, TrendingUp,
     Shield, Zap, Globe, Cpu, LayoutGrid, Activity, 
     ChevronRight, ArrowRight, ShoppingCart
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
 import placeholderImages from '@/app/lib/placeholder-images.json';
 
 const serverTypes = ['FusionPBX', 'VOS3000', 'VICIBOX', 'Bulk SMS', 'ASTPP', 'Magnus Billing', 'Other'];
@@ -62,7 +61,6 @@ export function ServerDashboard() {
   const [captchaText, setCaptchaText] = useState('');
   const [captchaInput, setCaptchaInput] = useState('');
   
-  // Calculator state
   const [calcRoute, setCalcRoute] = useState(voipRoutes[0].name);
   const [calcMins, setCalcMins] = useState('1000');
 

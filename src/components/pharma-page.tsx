@@ -14,8 +14,7 @@ import {
   Plus, 
   Minus,
   ShoppingBag,
-  MapPin,
-  Check
+  MapPin
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -165,7 +164,7 @@ export function PharmaPage() {
       `*Name:* ${values.fullName}`,
       `*Address:* ${values.address}${values.apartment ? `, ${values.apartment}` : ''}`,
       `*Location:* ${values.city}, ${values.state} ${values.zipCode}`,
-      `*Region:* USA Domestic (USA to USA Shipping)`
+      `*Region:* USA to USA Shipping`
     ];
 
     const message = encodeURIComponent(
@@ -377,8 +376,8 @@ export function PharmaPage() {
                 </div>
                 <div className="space-y-4 text-center">
                   <div className="mx-auto w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-2 -rotate-3 hover:rotate-0 transition-transform"><Truck className="w-8 h-8" /></div>
-                  <h4 className="font-black uppercase tracking-widest text-xs">USA Domestic Node</h4>
-                  <p className="text-[10px] text-muted-foreground font-medium uppercase leading-relaxed">Local USA to USA fulfillment network ensuring discreet delivery within 48-72 hours.</p>
+                  <h4 className="font-black uppercase tracking-widest text-xs">USA to USA node</h4>
+                  <p className="text-[10px] text-muted-foreground font-medium uppercase leading-relaxed">Local USA fulfillment network ensuring discreet delivery within 48-72 hours.</p>
                 </div>
                 <div className="space-y-4 text-center">
                   <div className="mx-auto w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600 mb-2 rotate-3 hover:rotate-0 transition-transform"><Package className="w-8 h-8" /></div>
