@@ -1,4 +1,3 @@
-
 {
   "fusionpbxLogo": {
     "src": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/fusionpbx.png",
@@ -34,5 +33,96 @@
     "width": 300,
     "height": 100,
     "hint": "vos3000 logo"
+  },
+  "medCitra": {
+    "src": "https://picsum.photos/seed/citra/400/300",
+    "alt": "Citra 100mg",
+    "width": 400,
+    "height": 300,
+    "hint": "medicine pill"
+  },
+  "medAspadol": {
+    "src": "https://picsum.photos/seed/aspadol/400/300",
+    "alt": "Aspadol 100mg",
+    "width": 400,
+    "height": 300,
+    "hint": "pill package"
+  },
+  "medMitidol": {
+    "src": "https://picsum.photos/seed/mitidol/400/300",
+    "alt": "Mitidol 100mg",
+    "width": 400,
+    "height": 300,
+    "hint": "medical pills"
+  },
+  "medSoma": {
+    "src": "https://picsum.photos/seed/soma/400/300",
+    "alt": "Soma 350mg",
+    "width": 400,
+    "height": 300,
+    "hint": "pharmacy pills"
+  },
+  "medZolpidem": {
+    "src": "https://picsum.photos/seed/zolpidem/400/300",
+    "alt": "Zolpidem 100mg",
+    "width": 400,
+    "height": 300,
+    "hint": "tablet strip"
+  },
+  "medBelbien": {
+    "src": "https://picsum.photos/seed/belbien/400/300",
+    "alt": "Belbien 100mg",
+    "width": 400,
+    "height": 300,
+    "hint": "medicine capsules"
+  },
+  "medKaslol": {
+    "src": "https://picsum.photos/seed/kaslol/400/300",
+    "alt": "Kaslol 100mg",
+    "width": 400,
+    "height": 300,
+    "hint": "pill bottle"
+  },
+  "medXanx": {
+    "src": "https://picsum.photos/seed/xanx/400/300",
+    "alt": "Xanx 1mg",
+    "width": 400,
+    "height": 300,
+    "hint": "medical tablet"
+  },
+  "medAtivan": {
+    "src": "https://picsum.photos/seed/ativan/400/300",
+    "alt": "Ativan",
+    "width": 400,
+    "height": 300,
+    "hint": "healthcare pills"
+  },
+  "medClono": {
+    "src": "https://picsum.photos/seed/clono/400/300",
+    "alt": "Clono",
+    "width": 400,
+    "height": 300,
+    "hint": "pharma capsules"
+  },
+  "medValium": {
+    "src": "https://picsum.photos/seed/valium/400/300",
+    "alt": "Valium",
+    "width": 400,
+    "height": 300,
+    "hint": "yellow pills"
+  },
+  "medHydro": {
+    "src": "https://picsum.photos/seed/hydro/400/300",
+    "alt": "Hydro/oxy/addrall",
+    "width": 400,
+    "height": 300,
+    "hint": "white pills"
+  },
+  "medFiorocet": {
+    "src": "https://picsum.photos/seed/fiorocet/400/300",
+    "alt": "Fiorocet",
+    "width": 400,
+    "height": 300,
+    "hint": "medicine tablets"
   }
 }

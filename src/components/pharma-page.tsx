@@ -2,27 +2,29 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, MessageCircle, ShoppingCart, ShieldCheck, Truck, Package, Activity, Search } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowLeft, MessageCircle, ShoppingCart, ShieldCheck, Truck, Package, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import placeholderImages from '@/app/lib/placeholder-images.json';
 
 const products = [
-  { name: 'Citra 100mg', variants: [{ quantity: '180 pills', price: '150 USDT' }] },
-  { name: 'Aspadol 100mg', variants: [{ quantity: '180 pills', price: '135 USDT' }] },
-  { name: 'Mitidol 100mg', variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '175 USDT' }] },
-  { name: 'Soma 350mg', variants: [{ quantity: '180 pills', price: '135 USDT' }] },
-  { name: 'Zolpidem 100mg', variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '240 USDT' }] },
-  { name: 'Belbien 100mg', variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '260 USDT' }] },
-  { name: 'Kaslol 100mg', variants: [{ quantity: '90 pills', price: '175 USDT' }, { quantity: '180 pills', price: '225 USDT' }] },
-  { name: 'Xanx 1mg', variants: [{ quantity: '90 pills', price: '140 USDT' }, { quantity: '180 pills', price: '190 USDT' }] },
-  { name: 'Ativan', variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '210 USDT' }] },
-  { name: 'Clono', variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '210 USDT' }] },
-  { name: 'Valium', variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '210 USDT' }] },
-  { name: 'Hydro/oxy/addrall', variants: [{ quantity: '90 pills', price: '110 USDT' }, { quantity: '180 pills', price: '175 USDT' }] },
-  { name: 'Fiorocet', variants: [{ quantity: '180 pills', price: '225 USDT' }] },
+  { name: 'Citra 100mg', image: placeholderImages.medCitra, variants: [{ quantity: '180 pills', price: '150 USDT' }] },
+  { name: 'Aspadol 100mg', image: placeholderImages.medAspadol, variants: [{ quantity: '180 pills', price: '135 USDT' }] },
+  { name: 'Mitidol 100mg', image: placeholderImages.medMitidol, variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '175 USDT' }] },
+  { name: 'Soma 350mg', image: placeholderImages.medSoma, variants: [{ quantity: '180 pills', price: '135 USDT' }] },
+  { name: 'Zolpidem 100mg', image: placeholderImages.medZolpidem, variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '240 USDT' }] },
+  { name: 'Belbien 100mg', image: placeholderImages.medBelbien, variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '260 USDT' }] },
+  { name: 'Kaslol 100mg', image: placeholderImages.medKaslol, variants: [{ quantity: '90 pills', price: '175 USDT' }, { quantity: '180 pills', price: '225 USDT' }] },
+  { name: 'Xanx 1mg', image: placeholderImages.medXanx, variants: [{ quantity: '90 pills', price: '140 USDT' }, { quantity: '180 pills', price: '190 USDT' }] },
+  { name: 'Ativan', image: placeholderImages.medAtivan, variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '210 USDT' }] },
+  { name: 'Clono', image: placeholderImages.medClono, variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '210 USDT' }] },
+  { name: 'Valium', image: placeholderImages.medValium, variants: [{ quantity: '90 pills', price: '150 USDT' }, { quantity: '180 pills', price: '210 USDT' }] },
+  { name: 'Hydro/oxy/addrall', image: placeholderImages.medHydro, variants: [{ quantity: '90 pills', price: '110 USDT' }, { quantity: '180 pills', price: '175 USDT' }] },
+  { name: 'Fiorocet', image: placeholderImages.medFiorocet, variants: [{ quantity: '180 pills', price: '225 USDT' }] },
 ];
 
 export function PharmaPage() {
@@ -66,7 +68,7 @@ export function PharmaPage() {
       </header>
 
       <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8">
           <section className="text-center space-y-4">
             <h2 className="text-3xl md:text-5xl font-black font-headline tracking-tighter">Reliable Pharmaceutical <br /><span className="text-primary">Global Distribution.</span></h2>
             <p className="text-muted-foreground max-w-xl mx-auto font-medium">
@@ -85,19 +87,26 @@ export function PharmaPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
-              <Card key={product.name} className="border-black/5 hover:border-primary/20 transition-all duration-300 rounded-2xl overflow-hidden group">
-                <CardHeader className="p-5 pb-0">
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="p-2 rounded-xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg>
-                    </div>
-                    <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest opacity-60">Verified</Badge>
+              <Card key={product.name} className="border-black/5 hover:border-primary/20 transition-all duration-300 rounded-2xl overflow-hidden group flex flex-col">
+                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                  <Image 
+                    src={product.image.src}
+                    alt={product.image.alt}
+                    width={product.image.width}
+                    height={product.image.height}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                    data-ai-hint={product.image.hint}
+                  />
+                  <div className="absolute top-3 right-3">
+                    <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm text-[8px] font-black uppercase tracking-widest border-none">Verified</Badge>
                   </div>
+                </div>
+                <CardHeader className="p-5 pb-0">
                   <CardTitle className="text-lg font-black font-headline tracking-tight">{product.name}</CardTitle>
                 </CardHeader>
-                <CardContent className="p-5 space-y-3">
+                <CardContent className="p-5 space-y-3 flex-grow">
                   <div className="space-y-2">
                     {product.variants.map((variant, idx) => (
                       <div key={idx} className="flex items-center justify-between p-2 rounded-lg bg-black/5">
