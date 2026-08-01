@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -60,7 +59,7 @@ export function PharmaPage() {
              </div>
              <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
                 <Truck className="w-4 h-4 text-blue-500" />
-                Global Shipping
+                US 2 US USPS shipping
              </div>
           </div>
         </div>
@@ -72,7 +71,7 @@ export function PharmaPage() {
             <h2 className="text-3xl md:text-5xl font-black font-headline tracking-tighter">Reliable Pharmaceutical <br /><span className="text-primary">Global Distribution.</span></h2>
             <p className="text-muted-foreground max-w-xl mx-auto font-medium">
               Wholesale and retail medication supply with secure USDT payments. 
-              Verified quality and guaranteed discreet worldwide delivery.
+              Verified quality and guaranteed discreet domestic delivery via USPS.
             </p>
           </section>
 
@@ -132,8 +131,8 @@ export function PharmaPage() {
                 </div>
                 <div className="space-y-2 text-center">
                   <div className="mx-auto w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 mb-4"><Truck className="w-6 h-6" /></div>
-                  <h4 className="font-bold">Discreet Shipping</h4>
-                  <p className="text-xs text-muted-foreground">Neutral packaging with no external identifiers.</p>
+                  <h4 className="font-bold">USPS Shipping</h4>
+                  <p className="text-xs text-muted-foreground">Fast domestic US 2 US USPS delivery services.</p>
                 </div>
                 <div className="space-y-2 text-center">
                   <div className="mx-auto w-12 h-12 bg-orange-50 rounded-full flex items-center justify-center text-orange-600 mb-4"><Package className="w-6 h-6" /></div>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -112,7 +111,7 @@ export function ServerDashboard() {
       isSpecial: true,
       href: '/pharma',
       description: 'Discreet pharmaceutical distribution hub via USDT.',
-      features: ['Secure Order', 'USDT Payment', 'Global Shipping']
+      features: ['Secure Order', 'USDT Payment', 'US 2 US USPS Shipping']
     },
     {
       name: 'Bulk SMS',
