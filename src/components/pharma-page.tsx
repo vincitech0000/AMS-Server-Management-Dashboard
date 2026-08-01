@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ShoppingCart, ShieldCheck, Truck, Package, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
@@ -95,24 +95,25 @@ export function PharmaPage() {
                   <CardTitle className="text-lg font-black font-headline tracking-tight">{product.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-5 space-y-3 flex-grow">
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {product.variants.map((variant, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-2 rounded-lg bg-black/5">
-                        <span className="text-xs font-bold text-muted-foreground">{variant.quantity}</span>
-                        <span className="text-sm font-black text-primary">{variant.price}</span>
+                      <div key={idx} className="flex flex-col gap-2 p-3 rounded-xl bg-black/5 hover:bg-black/[0.08] transition-colors border border-transparent hover:border-primary/10">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-wider">{variant.quantity}</span>
+                          <span className="text-sm font-black text-primary">{variant.price}</span>
+                        </div>
+                        <Button 
+                          size="sm" 
+                          className="w-full h-8 rounded-lg font-bold text-[10px] uppercase tracking-widest gap-2 bg-primary text-primary-foreground hover:scale-[1.02] transition-transform"
+                          onClick={() => handleOrder(product.name, variant.quantity, variant.price)}
+                        >
+                          <ShoppingCart className="w-3 h-3" />
+                          Place Order
+                        </Button>
                       </div>
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="p-5 pt-0">
-                  <Button 
-                    className="w-full rounded-xl h-11 font-bold gap-2 bg-primary text-primary-foreground hover:scale-[1.02] active:scale-95 transition-all"
-                    onClick={() => handleOrder(product.name, product.variants[0].quantity, product.variants[0].price)}
-                  >
-                    <ShoppingCart className="w-4 h-4" />
-                    Place Order
-                  </Button>
-                </CardFooter>
               </Card>
             ))}
           </div>
