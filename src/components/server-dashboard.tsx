@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -134,6 +133,7 @@ export function ServerDashboard() {
       type: 'Retail',
       icon: <Database className="w-6 h-6" />,
       logo: placeholderImages.magnusLogo,
+      accessPoints: [{ name: 'Login', url: 'http://192.187.123.195/mbilling/' }],
       description: 'Comprehensive management solution for retail VoIP.',
       features: ['CDR Analysis', 'Rate Deck', 'Agent Panel']
     },
