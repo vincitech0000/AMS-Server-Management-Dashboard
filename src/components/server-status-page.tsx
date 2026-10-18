@@ -17,8 +17,8 @@ import { pingAllServers } from '@/app/actions';
 type ServerWithChecking = ServerWithStatus | (ServerInfo & { status: 'Checking'; resolvedIp?: string; latency?: number });
 
 const initialServers: ServerWithChecking[] = [
-  { name: 'VICIBOX196', ip: 'box123.amsserver.com', status: 'Checking' },
-  { name: 'VICIBOX197', ip: '107.150.36.124', status: 'Checking' },
+  { name: 'VICIBOX196', ip: 'box196.amsserver.com', status: 'Checking' },
+  { name: 'VICIBOX197', ip: 'box197.amsserver.com', status: 'Checking' },
 ];
 
 export function ServerStatusPage() {
