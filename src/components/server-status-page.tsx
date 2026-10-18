@@ -21,6 +21,7 @@ const initialServers: ServerWithChecking[] = [
   { name: 'VICIBOX197', ip: 'box197.amsserver.com', status: 'Checking' },
   { name: 'VOS3000', ip: '173.208.201.150', status: 'Checking' },
   { name: 'MAGNUS BILLING', ip: '192.187.123.195', status: 'Checking' },
+  { name: 'Cluster Server', ip: '192.187.123.194', status: 'Checking' },
 ];
 
 export function ServerStatusPage() {
@@ -34,7 +35,7 @@ export function ServerStatusPage() {
     startTransition(async () => {
       setServers(currentServers => currentServers.map(s => ({ ...s, status: 'Checking', resolvedIp: s.resolvedIp || '...' })));
       
-      const serversToPing = servers.map(({name, ip}) => ({name, ip}));
+      const serversToPing = initialServers.map(({name, ip}) => ({name, ip}));
       const results = await pingAllServers(serversToPing);
 
       setServers(results);
