@@ -87,7 +87,7 @@ export function ServerDashboard() {
       type: 'Wholesale',
       icon: <Globe className="w-6 h-6" />,
       logo: placeholderImages.vos3000Logo,
-      accessPoints: [{ name: 'Retail CDR', url: 'https://88.99.103.106:8443' }],
+      accessPoints: [{ name: 'CDR LOGIN', url: 'http://173.208.201.150:7948' }],
       description: 'Carrier-grade routing switch for enterprise wholesale.',
       features: ['LCR Engine', 'Wholesale Billing', 'SIP Control']
     },
@@ -213,9 +213,9 @@ export function ServerDashboard() {
           </Link>
           <div className="flex items-center gap-3">
               <Button asChild variant="ghost" size="sm" className="hidden lg:flex rounded-full text-xs font-bold hover:bg-primary/10 hover:text-primary transition-all">
-                  <a href="https://88.99.103.106:8443" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <a href="http://173.208.201.150:7948" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                     <Database className="w-4 h-4" />
-                    Retail CDR
+                    CDR LOGIN
                   </a>
               </Button>
               <Button asChild variant="ghost" size="sm" className="hidden sm:flex rounded-full text-xs font-bold hover:bg-primary/10 hover:text-primary transition-all">
