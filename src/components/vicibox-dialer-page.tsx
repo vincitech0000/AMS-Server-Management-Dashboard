@@ -24,7 +24,7 @@ const viciboxFeatures = (
 
 const viciboxServers = [
   {
-    name: 'VICIBOX123',
+    name: 'VICIBOX196',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
@@ -34,22 +34,12 @@ const viciboxServers = [
     description: viciboxFeatures,
   },
   {
-    name: 'VICIBOX124',
+    name: 'VICIBOX197',
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
       { name: 'Firewall', url: 'http://107.150.36.124:7887/valid8.php' },
       { name: 'Login', url: 'http://107.150.36.124/vicidial/welcome.php' },
-    ],
-    description: viciboxFeatures,
-  },
-  {
-    name: 'VICIBOX126',
-    type: 'VICIBOX',
-    icon: <Phone className="w-8 h-8" />,
-    accessPoints: [
-      { name: 'Firewall', url: 'https://box126.amsserver.com:446/valid8.php' },
-      { name: 'Login', url: 'https://box126.amsserver.com/' },
     ],
     description: viciboxFeatures,
   },
