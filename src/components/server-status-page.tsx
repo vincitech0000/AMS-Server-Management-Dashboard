@@ -19,6 +19,8 @@ type ServerWithChecking = ServerWithStatus | (ServerInfo & { status: 'Checking';
 const initialServers: ServerWithChecking[] = [
   { name: 'VICIBOX196', ip: 'box196.amsserver.com', status: 'Checking' },
   { name: 'VICIBOX197', ip: 'box197.amsserver.com', status: 'Checking' },
+  { name: 'VOS3000', ip: '173.208.201.150', status: 'Checking' },
+  { name: 'MAGNUS BILLING', ip: '192.187.123.195', status: 'Checking' },
 ];
 
 export function ServerStatusPage() {
