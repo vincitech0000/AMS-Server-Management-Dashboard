@@ -30,7 +30,21 @@ export type ServerWithStatus = ServerInfo & { status: ServerStatus; resolvedIp?:
 async function checkServer(server: ServerInfo): Promise<ServerWithStatus> {
     const start = Date.now();
     try {
-        const { address } = await dns.lookup(server.ip);
+        // Sanitize host string to extract just the hostname/IP for DNS lookup
+        let hostname = server.ip;
+        if (hostname.includes('://')) {
+            try {
+                hostname = new URL(hostname).hostname;
+            } catch {
+                // fallback if URL constructor fails
+                hostname = hostname.split('://')[1].split('/')[0].split(':')[0];
+            }
+        } else {
+            // Remove port and path manually if it's just a string like host:port/path
+            hostname = hostname.split('/')[0].split(':')[0];
+        }
+
+        const { address } = await dns.lookup(hostname);
         const latency = Date.now() - start;
         return {
             ...server,
@@ -40,7 +54,7 @@ async function checkServer(server: ServerInfo): Promise<ServerWithStatus> {
         };
     } catch (error: any) {
         let status: ServerStatus = 'Offline';
-        if (error.code !== 'ENOTFOUND') {
+        if (error.code !== 'ENOTFOUND' && error.code !== 'EAI_AGAIN') {
            status = 'Error';
         }
         return {
