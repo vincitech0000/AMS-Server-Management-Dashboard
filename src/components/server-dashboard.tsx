@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -8,7 +9,7 @@ import {
     Loader2, DollarSign, CheckCircle, RefreshCw, 
     MessageCircle, Users, TrendingUp,
     Shield, Zap, Globe, Cpu, LayoutGrid, Activity, 
-    ChevronRight, ArrowRight, ShoppingCart
+    ChevronRight, ArrowRight, ShoppingCart, Network
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -192,40 +193,40 @@ export function ServerDashboard() {
   }, [calcRoute, calcMins]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground selection:bg-primary/30">
-      <div className="fixed inset-0 bg-grid z-0 opacity-20 pointer-events-none"></div>
+    <div className="flex flex-col min-h-screen bg-background text-foreground selection:bg-primary/30 relative">
+      <div className="fixed inset-0 bg-grid z-0 opacity-40 pointer-events-none"></div>
       
-      <header className="sticky top-0 z-[100] w-full border-b bg-background/60 backdrop-blur-2xl">
-        <div className="container mx-auto px-4 flex h-16 items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative bg-black/5 p-2 rounded-lg text-primary border border-black/10 group-hover:scale-110 transition-all overflow-hidden flex items-center justify-center">
-                <Server className="w-6 h-6" />
-                <div className="absolute bottom-1 left-0 right-0 flex justify-center gap-1">
-                    <div className="w-1 h-1 rounded-full bg-red-500 animate-pulse shadow-[0_0_5px_rgba(239,68,68,0.8)]" />
-                    <div className="w-1 h-1 rounded-full bg-green-500 animate-pulse [animation-delay:0.2s] shadow-[0_0_5px_rgba(34,197,94,0.8)]" />
-                    <div className="w-1 h-1 rounded-full bg-blue-500 animate-pulse [animation-delay:0.4s] shadow-[0_0_5px_rgba(59,130,246,0.8)]" />
+      <header className="sticky top-0 z-[100] w-full border-b bg-background/70 backdrop-blur-3xl">
+        <div className="container mx-auto px-4 flex h-20 items-center justify-between gap-4">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative bg-primary/10 p-2.5 rounded-2xl text-primary border border-primary/20 group-hover:scale-110 transition-all overflow-hidden flex items-center justify-center">
+                <Network className="w-7 h-7" />
+                <div className="absolute bottom-1 left-0 right-0 flex justify-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse [animation-delay:0.2s] shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse [animation-delay:0.4s] shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
                 </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-black font-headline tracking-tighter leading-none">AMS Portal</span>
-              <span className="text-[9px] text-primary/60 uppercase tracking-[0.3em] font-bold mt-1">Global CLOUD</span>
+              <span className="text-xl font-black font-headline tracking-tighter leading-none">AMS CLOUD</span>
+              <span className="text-[10px] text-primary/70 uppercase tracking-[0.4em] font-bold mt-1.5">Infrastructure</span>
             </div>
           </Link>
-          <div className="flex items-center gap-3">
-              <Button asChild variant="ghost" size="sm" className="hidden lg:flex rounded-full text-xs font-bold hover:bg-primary/10 hover:text-primary transition-all">
+          <div className="flex items-center gap-4">
+              <Button asChild variant="ghost" size="sm" className="hidden lg:flex rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-primary/10 hover:text-primary transition-all px-6">
                   <a href="http://173.208.201.150:7948" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                     <Database className="w-4 h-4" />
-                    CDR LOGIN
+                    Wholesale CDR
                   </a>
               </Button>
-              <Button asChild variant="ghost" size="sm" className="hidden sm:flex rounded-full text-xs font-bold hover:bg-primary/10 hover:text-primary transition-all">
+              <Button asChild variant="ghost" size="sm" className="hidden sm:flex rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-primary/10 hover:text-primary transition-all px-6">
                   <Link href="/server-status" className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                    Live Status
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+                    NOC Monitor
                   </Link>
               </Button>
-              <Separator orientation="vertical" className="h-6 hidden sm:block bg-black/10" />
-              <Button onClick={() => setOrderDialogOpen(true)} size="sm" className="rounded-full px-6 font-bold shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all bg-primary text-primary-foreground shimmer">
+              <Separator orientation="vertical" className="h-8 hidden sm:block bg-black/10 mx-2" />
+              <Button onClick={() => setOrderDialogOpen(true)} className="rounded-full px-8 h-11 text-xs font-black uppercase tracking-widest shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all bg-primary text-primary-foreground shimmer">
                 <Zap className="w-4 h-4 mr-2" />
                 Provision
               </Button>
@@ -233,81 +234,106 @@ export function ServerDashboard() {
         </div>
       </header>
 
-      <div className="fixed bottom-6 right-6 z-[60] flex flex-col gap-3">
-          <a href="http://t.me/AMSserver" target="_blank" rel="noopener noreferrer" className="bg-[#0088cc]/90 backdrop-blur-md text-white p-3 rounded-full shadow-2xl hover:scale-110 transition-all border border-white/20">
-              <MessageSquare className="w-5 h-5" />
+      <div className="fixed bottom-8 right-8 z-[60] flex flex-col gap-4">
+          <a href="http://t.me/AMSserver" target="_blank" rel="noopener noreferrer" className="bg-[#0088cc] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all border-4 border-white/50 backdrop-blur-xl">
+              <MessageSquare className="w-6 h-6" />
           </a>
-          <a href="https://wa.me/17633272191" target="_blank" rel="noopener noreferrer" className="bg-[#25D366]/90 backdrop-blur-md text-white p-3 rounded-full shadow-2xl hover:scale-110 transition-all border border-white/20">
-              <MessageCircle className="w-5 h-5" />
+          <a href="https://wa.me/17633272191" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all border-4 border-white/50 backdrop-blur-xl">
+              <MessageCircle className="w-6 h-6" />
           </a>
       </div>
 
       <main className="flex-grow relative z-10">
-        <section className="relative overflow-hidden pt-12 pb-20 md:pt-24 md:pb-32">
-            <div className="container mx-auto px-4 text-center">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest mb-6">
-                    <Shield className="w-3 h-3" />
-                    Enterprise Tier-4 Infrastructure
+        <section className="relative overflow-hidden pt-20 pb-32 md:pt-32 md:pb-48">
+            <div className="absolute inset-0 z-0">
+              <Image 
+                src={placeholderImages.heroCluster.src}
+                alt={placeholderImages.heroCluster.alt}
+                fill
+                className="object-cover opacity-[0.08] mix-blend-overlay grayscale"
+                priority
+                data-ai-hint={placeholderImages.heroCluster.hint}
+              />
+              <div className="absolute inset-0 hero-overlay"></div>
+            </div>
+            
+            <div className="container mx-auto px-4 text-center relative z-10">
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <Shield className="w-3.5 h-3.5" />
+                    Tier-4 Enterprise Nodes
                 </div>
-                <h1 className="text-4xl md:text-7xl font-black mb-6 font-headline tracking-tighter text-foreground leading-tight">
-                    Powering Global <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-600">VoIP Communication.</span>
+                <h1 className="text-5xl md:text-8xl font-black mb-8 font-headline tracking-tighter text-foreground leading-[0.9] animate-in fade-in slide-in-from-bottom-6 duration-1000">
+                    Next-Gen <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500">Infrastructure.</span>
                 </h1>
-                <p className="text-sm md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed font-medium opacity-80">
-                    Industry-leading solutions for VOS3000, VICIBOX, and FusionPBX. 
-                    Unmatched performance with 99.999% uptime and zero-latency global routing.
+                <p className="text-sm md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed font-semibold opacity-90 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+                    Mission-critical solutions for high-performance VoIP operations. 
+                    Unmatched scalability for VOS3000, VICIBOX, and FusionPBX clusters.
                 </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                    <Button size="lg" onClick={() => setOrderDialogOpen(true)} className="rounded-full px-8 h-12 text-sm font-bold shadow-2xl shadow-primary/20 hover:translate-y-[-2px] transition-all bg-primary text-primary-foreground">
+                <div className="flex flex-wrap justify-center gap-6 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-300">
+                    <Button size="lg" onClick={() => setOrderDialogOpen(true)} className="rounded-full px-12 h-14 text-xs font-black uppercase tracking-widest shadow-[0_20px_50px_-12px_rgba(var(--primary),0.3)] hover:translate-y-[-4px] transition-all bg-primary text-primary-foreground shimmer">
                         Get Started
                     </Button>
-                    <Button size="lg" variant="outline" onClick={() => setVoipDialogOpen(true)} className="rounded-full px-8 h-12 text-sm font-bold bg-white/5 backdrop-blur-xl border-black/10 hover:bg-black/5 transition-all">
-                        Global Rate Desk
+                    <Button size="lg" variant="outline" onClick={() => setVoipDialogOpen(true)} className="rounded-full px-12 h-14 text-xs font-black uppercase tracking-widest bg-white/5 backdrop-blur-3xl border-black/10 hover:bg-black/5 hover:border-primary/40 transition-all">
+                        Rate Desk
                     </Button>
                 </div>
             </div>
         </section>
 
-        <div className="container mx-auto px-4 -mt-10 mb-20">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-            <div className="stats-card">
-                <Activity className="w-4 h-4 text-primary mb-3" />
-                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-1">Carrier Uptime</div>
-                <div className="text-2xl font-black font-headline tracking-tight">99.999%</div>
+        <div className="container mx-auto px-4 -mt-24 mb-32 relative z-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+            <div className="stats-card group">
+                <Activity className="w-5 h-5 text-primary mb-4 group-hover:scale-110 transition-transform" />
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/50 mb-2">Carrier Uptime</div>
+                <div className="text-3xl font-black font-headline tracking-tighter">99.999%</div>
+                <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <Shield className="w-12 h-12" />
+                </div>
             </div>
-            <div className="stats-card">
-                <Server className="w-4 h-4 text-primary mb-3" />
-                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-1">Global Nodes</div>
-                <div className="text-2xl font-black font-headline tracking-tight">40+</div>
+            <div className="stats-card group">
+                <Server className="w-5 h-5 text-primary mb-4 group-hover:scale-110 transition-transform" />
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/50 mb-2">Edge Nodes</div>
+                <div className="text-3xl font-black font-headline tracking-tighter">40+ Global</div>
+                <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <Globe className="w-12 h-12" />
+                </div>
             </div>
-            <div className="stats-card">
-                <Activity className="w-4 h-4 text-primary mb-3" />
-                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-1">NOC Latency</div>
-                <div className="text-2xl font-black font-headline tracking-tight">~8ms</div>
+            <div className="stats-card group">
+                <Activity className="w-5 h-5 text-primary mb-4 group-hover:scale-110 transition-transform" />
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/50 mb-2">NOC Latency</div>
+                <div className="text-3xl font-black font-headline tracking-tighter">~8ms Peak</div>
+                <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <Cpu className="w-12 h-12" />
+                </div>
             </div>
-            <div className="stats-card">
-                <Zap className="w-4 h-4 text-primary mb-3" />
-                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-1">Provisioning</div>
-                <div className="text-2xl font-black font-headline tracking-tight">Instant</div>
+            <div className="stats-card group">
+                <Zap className="w-5 h-5 text-primary mb-4 group-hover:scale-110 transition-transform" />
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/50 mb-2">Activation</div>
+                <div className="text-3xl font-black font-headline tracking-tighter">Instant</div>
+                <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <Zap className="w-12 h-12" />
+                </div>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
-              <div className="flex items-center gap-3">
-                  <div className="bg-primary/20 p-2 rounded-lg text-primary">
-                    <LayoutGrid className="w-5 h-5" />
+          <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
+              <div className="flex items-center gap-4">
+                  <div className="bg-primary/10 p-3 rounded-2xl text-primary border border-primary/20">
+                    <LayoutGrid className="w-6 h-6" />
                   </div>
-                  <h3 className="text-2xl font-black font-headline tracking-tight uppercase">Our Solutions Portfolio</h3>
+                  <h3 className="text-3xl font-black font-headline tracking-tighter uppercase">Enterprise Portfolio</h3>
               </div>
+              <div className="h-[2px] flex-grow bg-gradient-to-r from-primary/20 to-transparent ml-8 hidden md:block"></div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {servers.map((server, index) => (
-              <Card key={index} className="group glass-card border-black/5 hover:border-primary/40 transition-all duration-500 rounded-2xl flex flex-col overflow-hidden">
-                <CardHeader className="p-6">
-                  <div className="flex items-start justify-between mb-4">
+              <Card key={index} className="group glass-card card-hover rounded-[2rem] flex flex-col overflow-hidden">
+                <CardHeader className="p-8">
+                  <div className="flex items-start justify-between mb-6">
                     {server.logo ? (
-                      <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white/5 p-2 transition-transform duration-500 group-hover:scale-110">
+                      <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-white/40 p-2.5 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-inner">
                         <Image 
                           src={server.logo.src} 
                           alt={server.logo.alt} 
@@ -318,44 +344,44 @@ export function ServerDashboard() {
                         />
                       </div>
                     ) : (
-                      <div className="p-3 rounded-xl bg-primary/10 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground">
+                      <div className="p-4 rounded-2xl bg-primary/10 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground shadow-sm">
                           {server.icon}
                       </div>
                     )}
-                    <Badge variant="outline" className="text-[8px] font-black uppercase tracking-widest border-black/10 text-muted-foreground">
+                    <Badge variant="outline" className="text-[9px] font-black uppercase tracking-[0.2em] border-primary/20 text-primary bg-primary/5 px-3 py-1">
                         {server.category}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl font-black font-headline tracking-tight group-hover:text-primary transition-colors">{server.name}</CardTitle>
-                  <CardTitle className="text-xs font-medium text-muted-foreground/70 mt-1">{server.description}</CardTitle>
+                  <CardTitle className="text-2xl font-black font-headline tracking-tighter group-hover:text-primary transition-colors leading-none">{server.name}</CardTitle>
+                  <CardTitle className="text-xs font-semibold text-muted-foreground/80 mt-3 leading-relaxed">{server.description}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow px-6 pb-6 space-y-2">
+                <CardContent className="flex-grow px-8 pb-8 space-y-2.5">
                     {server.features.map((f, i) => (
-                        <div key={i} className="flex items-center text-[10px] font-bold text-foreground/60">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary/40 mr-2" />
+                        <div key={i} className="flex items-center text-[10px] font-bold text-foreground/70">
+                            <div className="w-2 h-2 rounded-full bg-primary/30 mr-3 border border-primary/20" />
                             {f}
                         </div>
                     ))}
                 </CardContent>
-                <CardFooter className="px-6 py-4 bg-black/[0.02] border-t border-black/5">
+                <CardFooter className="px-8 py-6 bg-black/[0.03] border-t border-black/5">
                   {server.isSpecial ? (
-                       <Button asChild variant="outline" className="w-full rounded-xl h-10 text-xs font-bold border-black/10 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all group-hover:translate-y-[-2px]">
+                       <Button asChild variant="outline" className="w-full rounded-2xl h-12 text-[10px] font-black uppercase tracking-widest border-primary/20 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all hover:scale-[1.02] shadow-sm">
                           <Link href={server.href!}>
-                              View Solution
-                              <ChevronRight className="w-3 h-3 ml-2" />
+                              Deploy Solution
+                              <ArrowRight className="w-4 h-4 ml-2" />
                           </Link>
                       </Button>
                   ) : (
-                      <div className="flex gap-2 w-full">
+                      <div className="flex gap-3 w-full">
                           {server.accessPoints ? server.accessPoints.map((ap, i) => (
-                              <Button key={i} asChild variant="outline" className="flex-1 rounded-xl text-[10px] font-bold h-10 border-black/10 hover:bg-primary hover:text-primary-foreground transition-all">
+                              <Button key={i} asChild variant="outline" className="flex-1 rounded-2xl text-[10px] font-black uppercase tracking-tighter h-12 border-primary/10 hover:bg-primary hover:text-primary-foreground transition-all shadow-sm">
                                   <a href={ap.url} target="_blank" rel="noopener noreferrer">
                                       {ap.name}
                                   </a>
                               </Button>
                           )) : (
                               <Button variant="ghost" size="sm" disabled className="w-full text-[9px] font-black uppercase tracking-widest opacity-20">
-                                  Request Demo
+                                  Enterprise Only
                               </Button>
                           )}
                       </div>
@@ -365,59 +391,99 @@ export function ServerDashboard() {
             ))}
           </div>
         </div>
+
+        <section className="container mx-auto px-4 py-24 mb-24 relative overflow-hidden rounded-[4rem] bg-white border border-primary/10 shadow-2xl">
+           <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] pointer-events-none">
+              <Network className="w-full h-full -rotate-12 translate-x-1/4" />
+           </div>
+           <div className="max-w-4xl mx-auto text-center relative z-10 space-y-12">
+              <div className="space-y-6">
+                <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter uppercase leading-none">
+                  Global Scaling <br /><span className="text-primary">Starts Here.</span>
+                </h2>
+                <p className="text-lg text-muted-foreground font-semibold max-w-2xl mx-auto">
+                  Our clusters are engineered for high-concurrency VoIP operations. 
+                  Experience the power of Tier-4 infrastructure today.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                 <div className="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-primary/30 transition-all group">
+                    <Shield className="w-10 h-10 text-primary mb-6 group-hover:scale-110 transition-transform" />
+                    <h4 className="font-black uppercase tracking-widest text-xs mb-3">DDoS Protection</h4>
+                    <p className="text-[11px] text-muted-foreground font-semibold leading-relaxed">Enterprise-grade filtering with real-time threat mitigation.</p>
+                 </div>
+                 <div className="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-primary/30 transition-all group">
+                    <Globe className="w-10 h-10 text-primary mb-6 group-hover:scale-110 transition-transform" />
+                    <h4 className="font-black uppercase tracking-widest text-xs mb-3">Anycast DNS</h4>
+                    <p className="text-[11px] text-muted-foreground font-semibold leading-relaxed">Proprietary routing network ensuring lowest global latency.</p>
+                 </div>
+                 <div className="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-primary/30 transition-all group">
+                    <Cpu className="w-10 h-10 text-primary mb-6 group-hover:scale-110 transition-transform" />
+                    <h4 className="font-black uppercase tracking-widest text-xs mb-3">NVMe Storage</h4>
+                    <p className="text-[11px] text-muted-foreground font-semibold leading-relaxed">High-performance drive arrays for ultra-fast CDR processing.</p>
+                 </div>
+              </div>
+              <Button size="lg" onClick={() => setOrderDialogOpen(true)} className="rounded-full px-16 h-16 text-xs font-black uppercase tracking-widest shadow-2xl shadow-primary/30 bg-primary text-primary-foreground shimmer">
+                  Join the Network
+              </Button>
+           </div>
+        </section>
       </main>
 
       <Dialog open={isOrderDialogOpen} onOpenChange={(open) => { if (!open) resetForm(); setOrderDialogOpen(open); }}>
-          <DialogContent className="sm:max-w-[450px] rounded-2xl p-0 overflow-hidden border border-black/10 bg-white">
+          <DialogContent className="sm:max-w-[500px] rounded-[2.5rem] p-0 overflow-hidden border-none bg-white shadow-2xl shadow-black/20">
               {orderStep === 'form' ? (
-                  <div className="p-8">
-                      <DialogHeader className="mb-6">
-                          <DialogTitle className="text-2xl font-black font-headline tracking-tight">Infrastructure Provisioning</DialogTitle>
-                          <DialogDescription className="font-medium text-muted-foreground">Select your target system for deployment.</DialogDescription>
+                  <div className="p-10">
+                      <DialogHeader className="mb-10 text-center">
+                          <div className="mx-auto bg-primary/10 p-4 rounded-3xl text-primary mb-6 w-fit border border-primary/20">
+                              <Zap className="w-8 h-8" />
+                          </div>
+                          <DialogTitle className="text-3xl font-black font-headline tracking-tighter uppercase">Infrastructure Node</DialogTitle>
+                          <DialogDescription className="font-black text-[10px] text-muted-foreground uppercase tracking-widest">Select deployment specifications</DialogDescription>
                       </DialogHeader>
-                      <div className="space-y-5">
-                          <div className="space-y-2">
-                              <Label className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-widest">Target Module</Label>
+                      <div className="space-y-6">
+                          <div className="space-y-3">
+                              <Label className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-[0.2em] ml-2">System Module</Label>
                               <Select value={selectedServer} onValueChange={setSelectedServer}>
-                                  <SelectTrigger className="rounded-xl h-12 bg-black/5 border-black/10 font-bold"><SelectValue placeholder="Select Module" /></SelectTrigger>
-                                  <SelectContent className="rounded-xl border-black/10 bg-white shadow-2xl">{serverTypes.map(t => <SelectItem key={t} value={t} className="rounded-lg font-bold">{t}</SelectItem>)}</SelectContent>
+                                  <SelectTrigger className="rounded-2xl h-14 bg-slate-50 border-slate-100 font-bold px-6 focus:ring-primary focus:border-primary"><SelectValue placeholder="Select Module" /></SelectTrigger>
+                                  <SelectContent className="rounded-2xl border-slate-100 bg-white shadow-2xl p-2">{serverTypes.map(t => <SelectItem key={t} value={t} className="rounded-xl font-bold p-3 focus:bg-primary/5">{t}</SelectItem>)}</SelectContent>
                               </Select>
                           </div>
                           {selectedServer === 'FusionPBX' && (
-                              <div className="space-y-2 animate-in slide-in-from-top-4 duration-300">
-                                  <Label className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-widest">Call Capacity</Label>
+                              <div className="space-y-3 animate-in fade-in slide-in-from-top-4 duration-500">
+                                  <Label className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-[0.2em] ml-2">Call Capacity</Label>
                                   <Select value={selectedFusionCapacity} onValueChange={setSelectedFusionCapacity}>
-                                      <SelectTrigger className="rounded-xl h-12 bg-black/5 border-black/10 font-bold"><SelectValue placeholder="Channels" /></SelectTrigger>
-                                      <SelectContent className="rounded-xl border-black/10 bg-white shadow-2xl">{fusionPbxCapacities.map(c => <SelectItem key={c.value} value={c.value} className="rounded-lg font-bold">{c.label} — {c.price}</SelectItem>)}</SelectContent>
+                                      <SelectTrigger className="rounded-2xl h-14 bg-slate-50 border-slate-100 font-bold px-6 focus:ring-primary focus:border-primary"><SelectValue placeholder="Channels" /></SelectTrigger>
+                                      <SelectContent className="rounded-2xl border-slate-100 bg-white shadow-2xl p-2">{fusionPbxCapacities.map(c => <SelectItem key={c.value} value={c.value} className="rounded-xl font-bold p-3 focus:bg-primary/5">{c.label} — {c.price}</SelectItem>)}</SelectContent>
                                   </Select>
                               </div>
                           )}
-                          <div className="space-y-2">
-                              <Label className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-widest">Security Check</Label>
-                              <div className="flex gap-2">
-                                  <div className="flex-grow flex items-center justify-center bg-primary/10 border border-primary/20 rounded-xl h-12 font-code text-xl font-black text-primary tracking-[0.3em] italic select-none line-through">{captchaText}</div>
-                                  <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-xl h-12 w-12 bg-black/5 border-black/10"><RefreshCw className="w-4 h-4" /></Button>
+                          <div className="space-y-3">
+                              <Label className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-[0.2em] ml-2">Identity Verification</Label>
+                              <div className="flex gap-3">
+                                  <div className="flex-grow flex items-center justify-center bg-primary/5 border border-primary/20 rounded-2xl h-14 font-code text-2xl font-black text-primary tracking-[0.4em] italic select-none line-through shadow-inner">{captchaText}</div>
+                                  <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-2xl h-14 w-14 bg-slate-50 border-slate-100 hover:bg-primary/5 transition-colors"><RefreshCw className="w-5 h-5 text-primary" /></Button>
                               </div>
-                              <Input placeholder="Enter Captcha" className="rounded-xl h-12 bg-black/5 border-black/10 font-black text-center text-lg" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} />
+                              <Input placeholder="Enter Captcha" className="rounded-2xl h-14 bg-slate-50 border-slate-100 font-black text-center text-xl tracking-[0.2em] focus:ring-primary focus:border-primary" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} />
                           </div>
                       </div>
-                      <DialogFooter className="mt-8">
-                          <Button onClick={handleSubmitOrder} disabled={isSubmitting} className="w-full rounded-xl h-12 text-sm font-bold shadow-xl shadow-primary/20 transition-all bg-primary text-primary-foreground">
-                              {isSubmitting ? <Loader2 className="w-5 h-5 mr-2 animate-spin" /> : <Zap className="w-4 h-4 mr-2" />}
-                              Initiate Deployment
+                      <DialogFooter className="mt-10">
+                          <Button onClick={handleSubmitOrder} disabled={isSubmitting} className="w-full rounded-[1.5rem] h-16 text-xs font-black uppercase tracking-widest shadow-2xl shadow-primary/20 transition-all bg-primary text-primary-foreground hover:scale-[1.02] active:scale-95 shimmer">
+                              {isSubmitting ? <Loader2 className="w-6 h-6 mr-2 animate-spin" /> : <Zap className="w-5 h-5 mr-2" />}
+                              Deploy to Cloud
                           </Button>
                       </DialogFooter>
                   </div>
               ) : (
-                  <div className="text-center p-10 space-y-6">
-                      <div className="mx-auto w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 border border-green-500/20"><CheckCircle className="w-8 h-8" /></div>
-                      <div>
-                          <h3 className="text-xl font-black font-headline tracking-tight">Provisioning Reserved</h3>
-                          <p className="text-sm text-muted-foreground mt-2 font-medium">Your request has been prioritized. Contact our NOC to finalize.</p>
+                  <div className="text-center p-14 space-y-8">
+                      <div className="mx-auto w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 border border-green-500/20 shadow-lg shadow-green-500/10 animate-in zoom-in duration-500"><CheckCircle className="w-10 h-10" /></div>
+                      <div className="space-y-4">
+                          <h3 className="text-3xl font-black font-headline tracking-tighter uppercase leading-none">Slot Reserved</h3>
+                          <p className="text-sm text-muted-foreground font-semibold leading-relaxed">Infrastructure block allocated. Connect with a systems engineer to finalize the handshake.</p>
                       </div>
-                      <Button asChild className="w-full rounded-xl h-14 bg-[#25D366] hover:bg-[#25D366]/90 text-white font-bold shadow-xl shadow-green-500/20">
+                      <Button asChild className="w-full rounded-[1.5rem] h-16 bg-[#25D366] hover:bg-[#25D366]/90 text-white font-black uppercase tracking-widest shadow-2xl shadow-green-500/20 hover:scale-[1.02] active:scale-95 transition-all">
                           <a href={`https://wa.me/17633272191?text=${getOrderDetails()}`} target="_blank" className="flex items-center justify-center">
-                            <MessageCircle className="w-5 h-5 mr-2" /> Chat with Engineer
+                            <MessageCircle className="w-6 h-6 mr-3" /> Secure Handshake
                           </a>
                       </Button>
                   </div>
@@ -426,78 +492,81 @@ export function ServerDashboard() {
       </Dialog>
 
       <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
-          <DialogContent className="max-w-2xl rounded-2xl p-8 border border-black/10 bg-white overflow-y-auto max-h-[90vh]">
-              <DialogHeader>
-                  <DialogTitle className="text-2xl font-black font-headline tracking-tight uppercase text-black">Global Rate Desk</DialogTitle>
-                  <DialogDescription className="font-medium text-gray-500">Dialer With VOIP is free including support</DialogDescription>
+          <DialogContent className="max-w-3xl rounded-[3rem] p-10 border-none bg-white shadow-2xl overflow-y-auto max-h-[90vh]">
+              <DialogHeader className="mb-8">
+                  <DialogTitle className="text-3xl font-black font-headline tracking-tighter uppercase text-black">Wholesale Rate Desk</DialogTitle>
+                  <DialogDescription className="font-black text-[10px] text-gray-400 uppercase tracking-widest mt-2">Enterprise-grade termination routes</DialogDescription>
               </DialogHeader>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                  <div className="p-4 rounded-xl bg-gray-50 border border-gray-200">
-                      <Label className="text-[10px] uppercase font-black text-gray-400 tracking-widest ml-1">Select Route</Label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                  <div className="p-6 rounded-3xl bg-gray-50 border border-gray-100">
+                      <Label className="text-[10px] uppercase font-black text-gray-400 tracking-[0.2em] ml-2">Select Route</Label>
                       <Select value={calcRoute} onValueChange={setCalcRoute}>
-                          <SelectTrigger className="h-10 mt-1 rounded-lg bg-white border-gray-200 font-bold text-black"><SelectValue /></SelectTrigger>
-                          <SelectContent className="rounded-lg border-gray-200 bg-white">{voipRoutes.map(r => <SelectItem key={r.name} value={r.name} className="rounded-lg font-bold">{r.name}</SelectItem>)}</SelectContent>
+                          <SelectTrigger className="h-14 mt-3 rounded-2xl bg-white border-gray-100 font-bold text-black px-6 focus:ring-primary"><SelectValue /></SelectTrigger>
+                          <SelectContent className="rounded-2xl border-gray-100 bg-white p-2">{voipRoutes.map(r => <SelectItem key={r.name} value={r.name} className="rounded-xl font-bold p-3 focus:bg-primary/5">{r.name}</SelectItem>)}</SelectContent>
                       </Select>
                   </div>
-                  <div className="p-4 rounded-xl bg-gray-50 border border-gray-200">
-                      <Label className="text-[10px] uppercase font-black text-gray-400 tracking-widest ml-1">Monthly Volume (Mins)</Label>
-                      <Input type="number" value={calcMins} onChange={e => setCalcMins(e.target.value)} className="h-10 mt-1 rounded-lg bg-white border-gray-200 font-bold text-center text-black" />
+                  <div className="p-6 rounded-3xl bg-gray-50 border border-gray-100">
+                      <Label className="text-[10px] uppercase font-black text-gray-400 tracking-[0.2em] ml-2">Monthly Traffic (Mins)</Label>
+                      <Input type="number" value={calcMins} onChange={e => setCalcMins(e.target.value)} className="h-14 mt-3 rounded-2xl bg-white border-gray-100 font-black text-center text-xl text-black focus:ring-primary" />
                   </div>
               </div>
               
-              <div className="bg-primary/5 border border-primary/20 p-5 rounded-xl flex justify-between items-center mt-4">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-primary/80">Estimated Monthly Expenditure:</span>
-                  <span className="text-2xl font-black text-primary tracking-tight">{estimatedCost}</span>
+              <div className="bg-primary/5 border border-primary/20 p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center mt-6 gap-4">
+                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary/80">Projected Monthly Expenditure</span>
+                  <span className="text-4xl font-black text-primary tracking-tighter">{estimatedCost}</span>
               </div>
 
-              <div className="border border-gray-100 rounded-xl overflow-hidden mt-6">
+              <div className="border border-gray-100 rounded-3xl overflow-hidden mt-8 shadow-sm">
                   <Table>
                       <TableHeader className="bg-gray-50">
                           <TableRow className="border-gray-100 hover:bg-transparent">
-                              <TableHead className="font-bold text-[10px] uppercase tracking-widest text-gray-500 h-10">Route Destination</TableHead>
-                              <TableHead className="font-bold text-[10px] uppercase tracking-widest text-gray-500 text-center h-10">Rate (USD)</TableHead>
-                              <TableHead className="font-bold text-[10px] uppercase tracking-widest text-gray-500 text-right h-10 pr-6">Pulse</TableHead>
+                              <TableHead className="font-black text-[10px] uppercase tracking-widest text-gray-400 h-14 pl-8">Destination</TableHead>
+                              <TableHead className="font-black text-[10px] uppercase tracking-widest text-gray-400 text-center h-14">Rate (USD)</TableHead>
+                              <TableHead className="font-black text-[10px] uppercase tracking-widest text-gray-400 text-right h-14 pr-8">Pulse</TableHead>
                           </TableRow>
                       </TableHeader>
                       <TableBody>
                           {voipRoutes.map(r => (
                               <TableRow key={r.name} className="border-gray-100 hover:bg-gray-50 transition-colors">
-                                  <TableCell className="font-bold text-xs text-black">{r.name}</TableCell>
-                                  <TableCell className="text-center font-code text-primary font-bold">
-                                      {r.rate === 0 ? 'Contact us for Pricing' : r.rate.toFixed(3)}
+                                  <TableCell className="font-black text-sm text-black pl-8 py-5">{r.name}</TableCell>
+                                  <TableCell className="text-center font-code text-primary font-black text-sm">
+                                      {r.rate === 0 ? 'Enterprise Inquiry' : r.rate.toFixed(4)}
                                   </TableCell>
-                                  <TableCell className="text-right text-[10px] font-bold text-gray-400 pr-6">{r.pulse}</TableCell>
+                                  <TableCell className="text-right text-[10px] font-black text-gray-400 pr-8">{r.pulse}</TableCell>
                               </TableRow>
                           ))}
                       </TableBody>
                   </Table>
               </div>
               
-              <div className="mt-8">
-                  <Button asChild className="w-full rounded-xl h-12 bg-primary text-primary-foreground font-bold shadow-lg shadow-primary/20">
+              <div className="mt-12">
+                  <Button asChild className="w-full rounded-[1.5rem] h-16 bg-primary text-primary-foreground font-black uppercase tracking-widest shadow-2xl shadow-primary/30 hover:scale-[1.02] active:scale-95 transition-all shimmer">
                       <a href="https://wa.me/17633272191?text=I%20would%20like%20to%20inquire%20about%20the%20Global%20Rate%20Desk%20termination%20services." target="_blank">
-                          Request Dedicated Wholesale Account
-                          <ArrowRight className="w-4 h-4 ml-2" />
+                          Request Account Access
+                          <ArrowRight className="w-5 h-5 ml-3" />
                       </a>
                   </Button>
               </div>
           </DialogContent>
       </Dialog>
 
-      <footer className="py-12 border-t border-black/5 bg-black/[0.01]">
-        <div className="container mx-auto px-4 text-center">
-            <div className="flex justify-center gap-8 mb-8 opacity-20">
-                <Shield className="w-6 h-6" />
-                <Globe className="w-6 h-6" />
-                <Cpu className="w-6 h-6" />
+      <footer className="py-24 border-t border-black/5 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+            <div className="flex justify-center gap-12 mb-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
+                <Shield className="w-8 h-8" />
+                <Globe className="w-8 h-8" />
+                <Cpu className="w-8 h-8" />
             </div>
-            <p className="text-xs font-bold text-muted-foreground max-w-lg mx-auto leading-relaxed opacity-40 uppercase tracking-widest">
-                AMS Portal • Global CLOUD Infrastructure
-            </p>
-            <p className="text-[9px] text-muted-foreground/20 font-black uppercase tracking-[0.5em] mt-6">
-                &copy; {new Date().getFullYear()} AMS PORTAL. ALL RIGHTS RESERVED.
-            </p>
+            <div className="space-y-4">
+              <p className="text-[11px] font-black text-muted-foreground/60 max-w-lg mx-auto leading-relaxed uppercase tracking-[0.4em]">
+                  AMS CLOUD • Enterprise Network Solutions
+              </p>
+              <p className="text-[10px] text-muted-foreground/30 font-black uppercase tracking-[0.8em] mt-8">
+                  &copy; {new Date().getFullYear()} AMS PORTAL. MISSION CRITICAL.
+              </p>
+            </div>
         </div>
       </footer>
     </div>

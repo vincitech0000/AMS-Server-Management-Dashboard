@@ -1,10 +1,11 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Main Theme: Indigo & Slate */
+    /* Main Theme: Deep Enterprise Indigo & Slate */
     --background: 210 40% 98%;
     --foreground: 222.2 47.4% 11.2%;
 
@@ -32,7 +33,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 243 75% 59%;
-    --radius: 0.75rem;
+    --radius: 1rem;
   }
 }
 
@@ -43,8 +44,8 @@
   body {
     @apply bg-background text-foreground font-body antialiased;
     background-image: 
-      radial-gradient(circle at 0% 0%, hsla(var(--primary), 0.03), transparent 30%),
-      radial-gradient(circle at 100% 0%, hsla(var(--accent), 0.03), transparent 30%),
+      radial-gradient(circle at 0% 0%, hsla(var(--primary), 0.05), transparent 40%),
+      radial-gradient(circle at 100% 0%, hsla(var(--accent), 0.05), transparent 40%),
       linear-gradient(to bottom, #f8fafc, #f1f5f9);
     background-attachment: fixed;
   }
@@ -54,21 +55,20 @@
 }
 
 .bg-grid {
-  background-size: 50px 50px;
+  background-size: 60px 60px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
 
 .glass-card {
-  @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)];
-  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  @apply bg-white/70 backdrop-blur-2xl border border-white/30 shadow-[0_8px_32px_-4px_rgba(0,0,0,0.06)];
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
 }
 
-.hero-gradient {
-  background: radial-gradient(circle at top left, hsla(var(--primary), 0.05), transparent 50%),
-              radial-gradient(circle at bottom right, hsla(var(--accent), 0.03), transparent 50%),
-              linear-gradient(to bottom right, #ffffff, #f1f5f9);
+.hero-overlay {
+  background: radial-gradient(circle at top left, hsla(var(--primary), 0.1), transparent 60%),
+              radial-gradient(circle at bottom right, hsla(var(--accent), 0.1), transparent 60%);
 }
 
 .shimmer {
@@ -86,10 +86,10 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.5) 50%,
     transparent 100%
   );
-  animation: shimmer-anim 3s infinite linear;
+  animation: shimmer-anim 4s infinite linear;
 }
 
 @keyframes shimmer-anim {
@@ -97,12 +97,12 @@
   100% { left: 200%; }
 }
 
-.card-glow:hover {
-  box-shadow: 0 0 30px -5px hsla(var(--primary), 0.15);
+.card-hover {
+  @apply transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/40 hover:-translate-y-1;
 }
 
 .stats-card {
-  @apply relative overflow-hidden bg-white border border-slate-200 rounded-2xl p-6 shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg;
+  @apply relative overflow-hidden bg-white/80 backdrop-blur-lg border border-slate-200 rounded-3xl p-6 shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-xl;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -115,10 +115,10 @@
 
 @keyframes float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
+  50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
 
 .float-animation {
-  animation: float 5s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
 }

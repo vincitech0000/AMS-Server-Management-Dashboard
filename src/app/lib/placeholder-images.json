@@ -1,3 +1,4 @@
+
 {
   "fusionpbxLogo": {
     "src": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/fusionpbx.png",
@@ -33,6 +34,13 @@
     "width": 300,
     "height": 100,
     "hint": "vos3000 logo"
+  },
+  "heroCluster": {
+    "src": "https://picsum.photos/seed/server99/1920/1080",
+    "alt": "Server Cluster Background",
+    "width": 1920,
+    "height": 1080,
+    "hint": "server cluster"
   },
   "medCitra": {
     "src": "https://picsum.photos/seed/citra101/400/300",
