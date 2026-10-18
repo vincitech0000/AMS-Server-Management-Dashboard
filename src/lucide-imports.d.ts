@@ -33,12 +33,14 @@ declare module 'lucide-react' {
     export const MessageCircle: React.FC<React.SVGProps<SVGSVGElement>>;
     export const MessageSquare: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Minus: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Network: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Package: React.FC<React.SVGProps<SVGSVGElement>>;
     export const PanelLeft: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Phone: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Plus: React.FC<React.SVGProps<SVGSVGElement>>;
     export const RefreshCw: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Route: React.FC<React.SVGProps<SVGSVGElement>>;
+    export const Search: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Server: React.FC<React.SVGProps<SVGSVGElement>>;
     export const Shield: React.FC<React.SVGProps<SVGSVGElement>>;
     export const ShieldCheck: React.FC<React.SVGProps<SVGSVGElement>>;
