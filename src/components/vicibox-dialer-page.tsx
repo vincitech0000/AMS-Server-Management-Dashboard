@@ -28,7 +28,7 @@ const viciboxServers = [
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Firewall', url: 'https://192.168.123.196:446/valid8.php' },
+      { name: 'Firewall', url: 'https://192.187.123.196:446/valid8.php' },
       { name: 'Login', url: 'https://box196.amsserver.com/' },
     ],
     description: viciboxFeatures,
@@ -38,7 +38,7 @@ const viciboxServers = [
     type: 'VICIBOX',
     icon: <Phone className="w-8 h-8" />,
     accessPoints: [
-      { name: 'Firewall', url: 'https://192.168.123.197:446/valid8.php' },
+      { name: 'Firewall', url: 'https://192.187.123.197:446/valid8.php' },
       { name: 'Login', url: 'https://box197.amsserver.com/' },
     ],
     description: viciboxFeatures,
