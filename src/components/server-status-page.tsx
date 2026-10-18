@@ -22,6 +22,7 @@ const initialServers: ServerWithChecking[] = [
   { name: 'VOS3000', ip: '173.208.201.150', status: 'Checking' },
   { name: 'MAGNUS BILLING', ip: '192.187.123.195', status: 'Checking' },
   { name: 'Cluster Server', ip: '192.187.123.194', status: 'Checking' },
+  { name: 'RGglobal', ip: '162.35.180.222', status: 'Checking' },
 ];
 
 export function ServerStatusPage() {
