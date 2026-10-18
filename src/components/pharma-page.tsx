@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -186,48 +185,48 @@ export function PharmaPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 text-foreground">
-      <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-950/80 backdrop-blur-md">
         <div className="container mx-auto px-4 flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
-            <Button asChild variant="ghost" size="icon" className="rounded-full">
+            <Button asChild variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/10">
               <Link href="/">
                 <ArrowLeft className="w-5 h-5" />
               </Link>
             </Button>
             <div className="flex flex-col">
               <h1 className="text-xl font-black font-headline tracking-tight text-primary uppercase">Pharma Medication</h1>
-              <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground">E-Commerce Supply Portal</p>
+              <p className="text-[10px] uppercase tracking-widest font-bold text-slate-500">E-Commerce Supply Portal</p>
             </div>
           </div>
           
           <div className="flex items-center gap-4">
             <div className="hidden lg:flex items-center gap-6 mr-4">
-               <div className="flex items-center gap-2 text-[10px] font-black uppercase text-muted-foreground tracking-tighter">
+               <div className="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 tracking-tighter">
                   <ShieldCheck className="w-4 h-4 text-green-500" />
                   Verified Supply
                </div>
-               <div className="flex items-center gap-2 text-[10px] font-black uppercase text-muted-foreground tracking-tighter">
-                  <Truck className="w-4 h-4 text-blue-500" />
+               <div className="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 tracking-tighter">
+                  <Truck className="w-4 h-4 text-blue-400" />
                   USA to USA Shipping
                </div>
             </div>
 
             <Sheet open={isCartOpen} onOpenChange={setCartOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" className="relative rounded-full border-black/10 gap-2 h-10 px-4">
+                <Button variant="outline" className="relative rounded-full border-white/10 text-white gap-2 h-10 px-4 hover:bg-white/5">
                   <ShoppingBag className="w-4 h-4" />
                   <span className="hidden sm:inline font-bold text-xs uppercase tracking-widest">Basket</span>
                   {cartCount > 0 && (
-                    <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-[10px] bg-primary text-primary-foreground border-2 border-white">
+                    <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-[10px] bg-primary text-primary-foreground border-2 border-slate-950">
                       {cartCount}
                     </Badge>
                   )}
                 </Button>
               </SheetTrigger>
-              <SheetContent className="w-full sm:max-w-md flex flex-col p-0">
-                <SheetHeader className="p-6 border-b">
-                  <SheetTitle className="flex items-center gap-2 font-black uppercase tracking-widest">
+              <SheetContent className="w-full sm:max-w-md flex flex-col p-0 border-white/10 bg-slate-900">
+                <SheetHeader className="p-6 border-b border-white/10">
+                  <SheetTitle className="flex items-center gap-2 font-black uppercase tracking-widest text-white">
                     <ShoppingCart className="w-5 h-5 text-primary" />
                     Shopping Basket
                   </SheetTitle>
@@ -237,33 +236,33 @@ export function PharmaPage() {
                   <div className="p-6 space-y-6">
                     {cart.length === 0 ? (
                       <div className="text-center py-20 space-y-4">
-                        <div className="bg-slate-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
-                          <ShoppingBag className="w-8 h-8 text-slate-300" />
+                        <div className="bg-slate-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                          <ShoppingBag className="w-8 h-8 text-slate-600" />
                         </div>
-                        <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Basket is empty</p>
-                        <Button variant="link" onClick={() => setCartOpen(false)}>Start Shopping</Button>
+                        <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Basket is empty</p>
+                        <Button variant="link" onClick={() => setCartOpen(false)} className="text-primary">Start Shopping</Button>
                       </div>
                     ) : (
                       cart.map((item) => (
                         <div key={item.id} className="flex gap-4 group">
                           <div className="flex-grow space-y-1">
-                            <h4 className="font-black text-sm uppercase tracking-tight">{item.productName}</h4>
-                            <p className="text-[10px] font-bold text-muted-foreground uppercase">{item.variantQuantity}</p>
+                            <h4 className="font-black text-sm uppercase tracking-tight text-white">{item.productName}</h4>
+                            <p className="text-[10px] font-bold text-slate-500 uppercase">{item.variantQuantity}</p>
                             <div className="flex items-center gap-3 mt-2">
-                              <div className="flex items-center border rounded-lg bg-slate-50">
+                              <div className="flex items-center border border-white/10 rounded-lg bg-slate-800">
                                 <Button 
                                   variant="ghost" 
                                   size="icon" 
-                                  className="h-7 w-7 rounded-none"
+                                  className="h-7 w-7 rounded-none text-white hover:bg-white/10"
                                   onClick={() => updateCartCount(item.id, -1)}
                                 >
                                   <Minus className="w-3 h-3" />
                                 </Button>
-                                <span className="w-8 text-center text-xs font-bold">{item.count}</span>
+                                <span className="w-8 text-center text-xs font-bold text-white">{item.count}</span>
                                 <Button 
                                   variant="ghost" 
                                   size="icon" 
-                                  className="h-7 w-7 rounded-none"
+                                  className="h-7 w-7 rounded-none text-white hover:bg-white/10"
                                   onClick={() => updateCartCount(item.id, 1)}
                                 >
                                   <Plus className="w-3 h-3" />
@@ -272,7 +271,7 @@ export function PharmaPage() {
                               <Button 
                                 variant="ghost" 
                                 size="icon" 
-                                className="h-7 w-7 text-red-500 hover:text-red-600 hover:bg-red-50"
+                                className="h-7 w-7 text-red-400 hover:text-red-300 hover:bg-red-400/10"
                                 onClick={() => removeFromCart(item.id)}
                               >
                                 <Trash2 className="w-3 h-3" />
@@ -281,7 +280,7 @@ export function PharmaPage() {
                           </div>
                           <div className="text-right">
                             <p className="font-black text-sm text-primary">{item.priceValue * item.count} USDT</p>
-                            <p className="text-[9px] text-muted-foreground uppercase">{item.price}</p>
+                            <p className="text-[9px] text-slate-500 uppercase">{item.price}</p>
                           </div>
                         </div>
                       ))
@@ -290,9 +289,9 @@ export function PharmaPage() {
                 </ScrollArea>
 
                 {cart.length > 0 && (
-                  <SheetFooter className="p-6 border-t bg-slate-50/50 block space-y-4">
+                  <SheetFooter className="p-6 border-t border-white/10 bg-slate-950 block space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-xs font-black uppercase tracking-widest text-muted-foreground">Subtotal</span>
+                      <span className="text-xs font-black uppercase tracking-widest text-slate-500">Subtotal</span>
                       <span className="text-2xl font-black text-primary tracking-tighter">{cartTotal} USDT</span>
                     </div>
                     <Button 
@@ -301,7 +300,7 @@ export function PharmaPage() {
                     >
                       Checkout via WhatsApp
                     </Button>
-                    <p className="text-[9px] text-center text-muted-foreground font-medium">Shipping details will be requested in the next step.</p>
+                    <p className="text-[9px] text-center text-slate-500 font-medium">Shipping details will be requested in the next step.</p>
                   </SheetFooter>
                 )}
               </SheetContent>
@@ -313,20 +312,20 @@ export function PharmaPage() {
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto space-y-8">
           <section className="text-center space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black font-headline tracking-tighter uppercase leading-tight">
+            <h2 className="text-3xl md:text-5xl font-black font-headline tracking-tighter uppercase leading-tight text-white">
               Premium Medical <br /><span className="text-primary">Supply Distribution.</span>
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto font-medium text-sm">
+            <p className="text-slate-400 max-w-xl mx-auto font-medium text-sm">
               Reliable pharmaceutical logistics across North America. USA to USA domestic node 
               guaranteed. Bulk and retail fulfillment via secure USDT payment.
             </p>
           </section>
 
           <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
             <Input 
               placeholder="Search products..." 
-              className="pl-12 h-14 rounded-2xl border-black/10 shadow-sm bg-white font-bold"
+              className="pl-12 h-14 rounded-2xl border-white/10 shadow-sm bg-slate-900 text-white font-bold placeholder:text-slate-600 focus:ring-primary"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -334,24 +333,24 @@ export function PharmaPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
-              <Card key={product.name} className="border-black/5 hover:border-primary/20 transition-all duration-300 rounded-2xl overflow-hidden group flex flex-col bg-white shadow-sm hover:shadow-xl">
+              <Card key={product.name} className="border-white/5 hover:border-primary/40 transition-all duration-300 rounded-2xl overflow-hidden group flex flex-col bg-slate-900 shadow-sm hover:shadow-xl">
                 <CardHeader className="p-6 pb-2">
                   <div className="flex justify-between items-start mb-2">
-                    <Badge variant="secondary" className="bg-primary/5 text-primary text-[8px] font-black uppercase tracking-widest border-none px-2 py-1">Stock Verified</Badge>
+                    <Badge variant="secondary" className="bg-primary/10 text-primary text-[8px] font-black uppercase tracking-widest border-none px-2 py-1">Stock Verified</Badge>
                   </div>
-                  <CardTitle className="text-lg font-black font-headline tracking-tight uppercase leading-tight">{product.name}</CardTitle>
+                  <CardTitle className="text-lg font-black font-headline tracking-tight uppercase leading-tight text-white">{product.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6 space-y-4 flex-grow">
                   <div className="space-y-4">
                     {product.variants.map((variant) => (
-                      <div key={variant.id} className="flex flex-col gap-2 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary/20 transition-colors group/item">
+                      <div key={variant.id} className="flex flex-col gap-2 p-4 rounded-2xl bg-slate-800 border border-slate-700 hover:border-primary/40 transition-colors group/item">
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-wider">{variant.quantity}</span>
+                          <span className="text-[10px] font-black uppercase text-slate-500 tracking-wider">{variant.quantity}</span>
                           <span className="text-sm font-black text-primary tracking-tight">{variant.price}</span>
                         </div>
                         <Button 
                           size="sm" 
-                          className="w-full h-10 rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 bg-white border border-black/5 text-black hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95"
+                          className="w-full h-10 rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 bg-slate-900 border border-white/5 text-white hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95"
                           onClick={() => addToCart(product, variant)}
                         >
                           <ShoppingCart className="w-3 h-3" />
@@ -365,24 +364,24 @@ export function PharmaPage() {
             ))}
           </div>
 
-          <Separator className="bg-black/5" />
+          <Separator className="bg-white/5" />
 
-          <section className="bg-white rounded-[2rem] p-10 border border-black/5 shadow-2xl shadow-primary/5">
+          <section className="bg-slate-900 rounded-[2rem] p-10 border border-white/5 shadow-2xl shadow-primary/5">
              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div className="space-y-4 text-center">
-                  <div className="mx-auto w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 mb-2 rotate-3 hover:rotate-0 transition-transform"><ShieldCheck className="w-8 h-8" /></div>
-                  <h4 className="font-black uppercase tracking-widest text-xs">Pharma Verified</h4>
-                  <p className="text-[10px] text-muted-foreground font-medium uppercase leading-relaxed">Certified grade products sourced directly from licensed manufacturing facilities.</p>
+                  <div className="mx-auto w-16 h-16 bg-green-400/10 rounded-2xl flex items-center justify-center text-green-400 mb-2 rotate-3 hover:rotate-0 transition-transform"><ShieldCheck className="w-8 h-8" /></div>
+                  <h4 className="font-black uppercase tracking-widest text-xs text-white">Pharma Verified</h4>
+                  <p className="text-[10px] text-slate-500 font-medium uppercase leading-relaxed">Certified grade products sourced directly from licensed manufacturing facilities.</p>
                 </div>
                 <div className="space-y-4 text-center">
-                  <div className="mx-auto w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-2 -rotate-3 hover:rotate-0 transition-transform"><Truck className="w-8 h-8" /></div>
-                  <h4 className="font-black uppercase tracking-widest text-xs">USA to USA node</h4>
-                  <p className="text-[10px] text-muted-foreground font-medium uppercase leading-relaxed">Local USA fulfillment network ensuring discreet delivery within 48-72 hours.</p>
+                  <div className="mx-auto w-16 h-16 bg-blue-400/10 rounded-2xl flex items-center justify-center text-blue-400 mb-2 -rotate-3 hover:rotate-0 transition-transform"><Truck className="w-8 h-8" /></div>
+                  <h4 className="font-black uppercase tracking-widest text-xs text-white">USA to USA node</h4>
+                  <p className="text-[10px] text-slate-500 font-medium uppercase leading-relaxed">Local USA fulfillment network ensuring discreet delivery within 48-72 hours.</p>
                 </div>
                 <div className="space-y-4 text-center">
-                  <div className="mx-auto w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600 mb-2 rotate-3 hover:rotate-0 transition-transform"><Package className="w-8 h-8" /></div>
-                  <h4 className="font-black uppercase tracking-widest text-xs">USDT Checkout</h4>
-                  <p className="text-[10px] text-muted-foreground font-medium uppercase leading-relaxed">Encrypted cryptocurrency payment processing for maximum privacy and efficiency.</p>
+                  <div className="mx-auto w-16 h-16 bg-amber-400/10 rounded-2xl flex items-center justify-center text-amber-400 mb-2 rotate-3 hover:rotate-0 transition-transform"><Package className="w-8 h-8" /></div>
+                  <h4 className="font-black uppercase tracking-widest text-xs text-white">USDT Checkout</h4>
+                  <p className="text-[10px] text-slate-500 font-medium uppercase leading-relaxed">Encrypted cryptocurrency payment processing for maximum privacy and efficiency.</p>
                 </div>
              </div>
           </section>
@@ -390,13 +389,13 @@ export function PharmaPage() {
       </main>
 
       <Dialog open={isShippingDialogOpen} onOpenChange={setShippingDialogOpen}>
-        <DialogContent className="sm:max-w-[500px] rounded-2xl overflow-hidden p-0 border-none bg-white">
-          <DialogHeader className="p-8 pb-4 bg-slate-50 border-b">
-            <DialogTitle className="flex items-center gap-3 font-black uppercase tracking-tight text-2xl">
+        <DialogContent className="sm:max-w-[500px] rounded-2xl overflow-hidden p-0 border border-white/10 bg-slate-900 shadow-2xl">
+          <DialogHeader className="p-8 pb-4 bg-slate-950 border-b border-white/10">
+            <DialogTitle className="flex items-center gap-3 font-black uppercase tracking-tight text-2xl text-white">
               <MapPin className="w-6 h-6 text-primary" />
               Shipping Details
             </DialogTitle>
-            <DialogDescription className="font-medium text-muted-foreground uppercase text-[10px] tracking-widest">
+            <DialogDescription className="font-medium text-slate-500 uppercase text-[10px] tracking-widest">
               Please provide your USA domestic shipping address.
             </DialogDescription>
           </DialogHeader>
@@ -409,11 +408,11 @@ export function PharmaPage() {
                   name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/70">Full Name</FormLabel>
+                      <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400">Full Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe" className="rounded-xl h-12 bg-slate-50 border-slate-200 font-bold" {...field} />
+                        <Input placeholder="John Doe" className="rounded-xl h-12 bg-slate-800 border-slate-700 text-white font-bold placeholder:text-slate-600 focus:ring-primary" {...field} />
                       </FormControl>
-                      <FormMessage className="text-[9px] font-bold uppercase" />
+                      <FormMessage className="text-[9px] font-bold uppercase text-red-400" />
                     </FormItem>
                   )}
                 />
@@ -424,11 +423,11 @@ export function PharmaPage() {
                     name="address"
                     render={({ field }) => (
                       <FormItem className="md:col-span-2">
-                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/70">Street Address</FormLabel>
+                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400">Street Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="123 Main St" className="rounded-xl h-12 bg-slate-50 border-slate-200 font-bold" {...field} />
+                          <Input placeholder="123 Main St" className="rounded-xl h-12 bg-slate-800 border-slate-700 text-white font-bold placeholder:text-slate-600 focus:ring-primary" {...field} />
                         </FormControl>
-                        <FormMessage className="text-[9px] font-bold uppercase" />
+                        <FormMessage className="text-[9px] font-bold uppercase text-red-400" />
                       </FormItem>
                     )}
                   />
@@ -437,11 +436,11 @@ export function PharmaPage() {
                     name="apartment"
                     render={({ field }) => (
                       <FormItem className="md:col-span-2">
-                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/70">Apartment, suite, etc. (Optional)</FormLabel>
+                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400">Apartment, suite, etc. (Optional)</FormLabel>
                         <FormControl>
-                          <Input placeholder="Apt 4B" className="rounded-xl h-12 bg-slate-50 border-slate-200 font-bold" {...field} />
+                          <Input placeholder="Apt 4B" className="rounded-xl h-12 bg-slate-800 border-slate-700 text-white font-bold placeholder:text-slate-600 focus:ring-primary" {...field} />
                         </FormControl>
-                        <FormMessage className="text-[9px] font-bold uppercase" />
+                        <FormMessage className="text-[9px] font-bold uppercase text-red-400" />
                       </FormItem>
                     )}
                   />
@@ -450,11 +449,11 @@ export function PharmaPage() {
                     name="city"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/70">City</FormLabel>
+                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400">City</FormLabel>
                         <FormControl>
-                          <Input placeholder="New York" className="rounded-xl h-12 bg-slate-50 border-slate-200 font-bold" {...field} />
+                          <Input placeholder="New York" className="rounded-xl h-12 bg-slate-800 border-slate-700 text-white font-bold placeholder:text-slate-600 focus:ring-primary" {...field} />
                         </FormControl>
-                        <FormMessage className="text-[9px] font-bold uppercase" />
+                        <FormMessage className="text-[9px] font-bold uppercase text-red-400" />
                       </FormItem>
                     )}
                   />
@@ -464,11 +463,11 @@ export function PharmaPage() {
                       name="state"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/70">State</FormLabel>
+                          <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400">State</FormLabel>
                           <FormControl>
-                            <Input placeholder="NY" className="rounded-xl h-12 bg-slate-50 border-slate-200 font-bold uppercase" {...field} />
+                            <Input placeholder="NY" className="rounded-xl h-12 bg-slate-800 border-slate-700 text-white font-bold uppercase placeholder:text-slate-600 focus:ring-primary" {...field} />
                           </FormControl>
-                          <FormMessage className="text-[9px] font-bold uppercase" />
+                          <FormMessage className="text-[9px] font-bold uppercase text-red-400" />
                         </FormItem>
                       )}
                     />
@@ -477,11 +476,11 @@ export function PharmaPage() {
                       name="zipCode"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/70">ZIP Code</FormLabel>
+                          <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400">ZIP Code</FormLabel>
                           <FormControl>
-                            <Input placeholder="10001" className="rounded-xl h-12 bg-slate-50 border-slate-200 font-bold" {...field} />
+                            <Input placeholder="10001" className="rounded-xl h-12 bg-slate-800 border-slate-700 text-white font-bold placeholder:text-slate-600 focus:ring-primary" {...field} />
                           </FormControl>
-                          <FormMessage className="text-[9px] font-bold uppercase" />
+                          <FormMessage className="text-[9px] font-bold uppercase text-red-400" />
                         </FormItem>
                       )}
                     />
@@ -502,9 +501,9 @@ export function PharmaPage() {
         </DialogContent>
       </Dialog>
 
-      <footer className="py-16 border-t border-black/5 bg-white">
+      <footer className="py-16 border-t border-white/5 bg-slate-950">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-[10px] text-muted-foreground/50 font-black uppercase tracking-[0.5em]">
+          <p className="text-[10px] text-slate-600 font-black uppercase tracking-[0.5em]">
             &copy; {new Date().getFullYear()} AMS MED COMMERCE. DOMESTIC DISTRIBUTION.
           </p>
         </div>

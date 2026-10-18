@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -193,8 +192,8 @@ export function ServerDashboard() {
   }, [calcRoute, calcMins]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground selection:bg-primary/30 relative">
-      <div className="fixed inset-0 bg-grid z-0 opacity-40 pointer-events-none"></div>
+    <div className="flex flex-col min-h-screen bg-background text-foreground selection:bg-primary/30 relative overflow-x-hidden">
+      <div className="fixed inset-0 bg-grid z-0 opacity-20 pointer-events-none"></div>
       
       <header className="sticky top-0 z-[100] w-full border-b bg-background/70 backdrop-blur-3xl">
         <div className="container mx-auto px-4 flex h-20 items-center justify-between gap-4">
@@ -208,24 +207,24 @@ export function ServerDashboard() {
                 </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-black font-headline tracking-tighter leading-none">AMS CLOUD</span>
+              <span className="text-xl font-black font-headline tracking-tighter leading-none text-white">AMS CLOUD</span>
               <span className="text-[10px] text-primary/70 uppercase tracking-[0.4em] font-bold mt-1.5">Infrastructure</span>
             </div>
           </Link>
           <div className="flex items-center gap-4">
-              <Button asChild variant="ghost" size="sm" className="hidden lg:flex rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-primary/10 hover:text-primary transition-all px-6">
+              <Button asChild variant="ghost" size="sm" className="hidden lg:flex rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-white/10 hover:text-white transition-all px-6">
                   <a href="http://173.208.201.150:7948" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                     <Database className="w-4 h-4" />
                     Wholesale CDR
                   </a>
               </Button>
-              <Button asChild variant="ghost" size="sm" className="hidden sm:flex rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-primary/10 hover:text-primary transition-all px-6">
+              <Button asChild variant="ghost" size="sm" className="hidden sm:flex rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-white/10 hover:text-white transition-all px-6">
                   <Link href="/server-status" className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
                     NOC Monitor
                   </Link>
               </Button>
-              <Separator orientation="vertical" className="h-8 hidden sm:block bg-black/10 mx-2" />
+              <Separator orientation="vertical" className="h-8 hidden sm:block bg-white/10 mx-2" />
               <Button onClick={() => setOrderDialogOpen(true)} className="rounded-full px-8 h-11 text-xs font-black uppercase tracking-widest shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all bg-primary text-primary-foreground shimmer">
                 <Zap className="w-4 h-4 mr-2" />
                 Provision
@@ -235,10 +234,10 @@ export function ServerDashboard() {
       </header>
 
       <div className="fixed bottom-8 right-8 z-[60] flex flex-col gap-4">
-          <a href="http://t.me/AMSserver" target="_blank" rel="noopener noreferrer" className="bg-[#0088cc] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all border-4 border-white/50 backdrop-blur-xl">
+          <a href="http://t.me/AMSserver" target="_blank" rel="noopener noreferrer" className="bg-[#0088cc] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all border-4 border-slate-900/50 backdrop-blur-xl">
               <MessageSquare className="w-6 h-6" />
           </a>
-          <a href="https://wa.me/17633272191" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all border-4 border-white/50 backdrop-blur-xl">
+          <a href="https://wa.me/17633272191" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all border-4 border-slate-900/50 backdrop-blur-xl">
               <MessageCircle className="w-6 h-6" />
           </a>
       </div>
@@ -250,7 +249,7 @@ export function ServerDashboard() {
                 src={placeholderImages.heroCluster.src}
                 alt={placeholderImages.heroCluster.alt}
                 fill
-                className="object-cover opacity-[0.08] mix-blend-overlay grayscale"
+                className="object-cover opacity-[0.15] mix-blend-overlay grayscale"
                 priority
                 data-ai-hint={placeholderImages.heroCluster.hint}
               />
@@ -258,15 +257,15 @@ export function ServerDashboard() {
             </div>
             
             <div className="container mx-auto px-4 text-center relative z-10">
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/20 border border-primary/40 text-primary-foreground text-[10px] font-black uppercase tracking-[0.2em] mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
                     <Shield className="w-3.5 h-3.5" />
                     Tier-4 Enterprise Nodes
                 </div>
-                <h1 className="text-5xl md:text-8xl font-black mb-8 font-headline tracking-tighter text-foreground leading-[0.9] animate-in fade-in slide-in-from-bottom-6 duration-1000">
+                <h1 className="text-5xl md:text-8xl font-black mb-8 font-headline tracking-tighter text-white leading-[0.9] animate-in fade-in slide-in-from-bottom-6 duration-1000">
                     Next-Gen <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500">Infrastructure.</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-cyan-400">Infrastructure.</span>
                 </h1>
-                <p className="text-sm md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed font-semibold opacity-90 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+                <p className="text-sm md:text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed font-semibold opacity-90 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
                     Mission-critical solutions for high-performance VoIP operations. 
                     Unmatched scalability for VOS3000, VICIBOX, and FusionPBX clusters.
                 </p>
@@ -274,7 +273,7 @@ export function ServerDashboard() {
                     <Button size="lg" onClick={() => setOrderDialogOpen(true)} className="rounded-full px-12 h-14 text-xs font-black uppercase tracking-widest shadow-[0_20px_50px_-12px_rgba(var(--primary),0.3)] hover:translate-y-[-4px] transition-all bg-primary text-primary-foreground shimmer">
                         Get Started
                     </Button>
-                    <Button size="lg" variant="outline" onClick={() => setVoipDialogOpen(true)} className="rounded-full px-12 h-14 text-xs font-black uppercase tracking-widest bg-white/5 backdrop-blur-3xl border-black/10 hover:bg-black/5 hover:border-primary/40 transition-all">
+                    <Button size="lg" variant="outline" onClick={() => setVoipDialogOpen(true)} className="rounded-full px-12 h-14 text-xs font-black uppercase tracking-widest bg-white/5 backdrop-blur-3xl border-white/10 hover:bg-white/10 hover:border-primary/40 text-white transition-all">
                         Rate Desk
                     </Button>
                 </div>
@@ -285,32 +284,32 @@ export function ServerDashboard() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
             <div className="stats-card group">
                 <Activity className="w-5 h-5 text-primary mb-4 group-hover:scale-110 transition-transform" />
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/50 mb-2">Carrier Uptime</div>
-                <div className="text-3xl font-black font-headline tracking-tighter">99.999%</div>
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-2">Carrier Uptime</div>
+                <div className="text-3xl font-black font-headline tracking-tighter text-white">99.999%</div>
                 <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
                     <Shield className="w-12 h-12" />
                 </div>
             </div>
             <div className="stats-card group">
                 <Server className="w-5 h-5 text-primary mb-4 group-hover:scale-110 transition-transform" />
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/50 mb-2">Edge Nodes</div>
-                <div className="text-3xl font-black font-headline tracking-tighter">40+ Global</div>
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-2">Edge Nodes</div>
+                <div className="text-3xl font-black font-headline tracking-tighter text-white">40+ Global</div>
                 <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
                     <Globe className="w-12 h-12" />
                 </div>
             </div>
             <div className="stats-card group">
                 <Activity className="w-5 h-5 text-primary mb-4 group-hover:scale-110 transition-transform" />
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/50 mb-2">NOC Latency</div>
-                <div className="text-3xl font-black font-headline tracking-tighter">~8ms Peak</div>
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-2">NOC Latency</div>
+                <div className="text-3xl font-black font-headline tracking-tighter text-white">~8ms Peak</div>
                 <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
                     <Cpu className="w-12 h-12" />
                 </div>
             </div>
             <div className="stats-card group">
                 <Zap className="w-5 h-5 text-primary mb-4 group-hover:scale-110 transition-transform" />
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/50 mb-2">Activation</div>
-                <div className="text-3xl font-black font-headline tracking-tighter">Instant</div>
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-2">Activation</div>
+                <div className="text-3xl font-black font-headline tracking-tighter text-white">Instant</div>
                 <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
                     <Zap className="w-12 h-12" />
                 </div>
@@ -319,53 +318,53 @@ export function ServerDashboard() {
 
           <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
               <div className="flex items-center gap-4">
-                  <div className="bg-primary/10 p-3 rounded-2xl text-primary border border-primary/20">
+                  <div className="bg-primary/20 p-3 rounded-2xl text-primary border border-primary/40">
                     <LayoutGrid className="w-6 h-6" />
                   </div>
-                  <h3 className="text-3xl font-black font-headline tracking-tighter uppercase">Enterprise Portfolio</h3>
+                  <h3 className="text-3xl font-black font-headline tracking-tighter uppercase text-white">Enterprise Portfolio</h3>
               </div>
               <div className="h-[2px] flex-grow bg-gradient-to-r from-primary/20 to-transparent ml-8 hidden md:block"></div>
           </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {servers.map((server, index) => (
-              <Card key={index} className="group glass-card card-hover rounded-[2rem] flex flex-col overflow-hidden">
+              <Card key={index} className="group glass-card card-hover rounded-[2rem] flex flex-col overflow-hidden border-slate-800">
                 <CardHeader className="p-8">
                   <div className="flex items-start justify-between mb-6">
                     {server.logo ? (
-                      <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-white/40 p-2.5 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-inner">
+                      <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-white/10 p-2.5 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-inner">
                         <Image 
                           src={server.logo.src} 
                           alt={server.logo.alt} 
                           width={server.logo.width} 
                           height={server.logo.height}
-                          className="object-contain w-full h-full"
+                          className="object-contain w-full h-full invert opacity-80"
                           data-ai-hint={server.logo.hint}
                         />
                       </div>
                     ) : (
-                      <div className="p-4 rounded-2xl bg-primary/10 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground shadow-sm">
+                      <div className="p-4 rounded-2xl bg-primary/20 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground shadow-sm">
                           {server.icon}
                       </div>
                     )}
-                    <Badge variant="outline" className="text-[9px] font-black uppercase tracking-[0.2em] border-primary/20 text-primary bg-primary/5 px-3 py-1">
+                    <Badge variant="outline" className="text-[9px] font-black uppercase tracking-[0.2em] border-primary/40 text-primary bg-primary/10 px-3 py-1">
                         {server.category}
                     </Badge>
                   </div>
-                  <CardTitle className="text-2xl font-black font-headline tracking-tighter group-hover:text-primary transition-colors leading-none">{server.name}</CardTitle>
-                  <CardTitle className="text-xs font-semibold text-muted-foreground/80 mt-3 leading-relaxed">{server.description}</CardTitle>
+                  <CardTitle className="text-2xl font-black font-headline tracking-tighter text-white group-hover:text-primary transition-colors leading-none">{server.name}</CardTitle>
+                  <CardTitle className="text-xs font-semibold text-slate-400 mt-3 leading-relaxed">{server.description}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow px-8 pb-8 space-y-2.5">
                     {server.features.map((f, i) => (
-                        <div key={i} className="flex items-center text-[10px] font-bold text-foreground/70">
-                            <div className="w-2 h-2 rounded-full bg-primary/30 mr-3 border border-primary/20" />
+                        <div key={i} className="flex items-center text-[10px] font-bold text-slate-300">
+                            <div className="w-2 h-2 rounded-full bg-primary/40 mr-3 border border-primary/30" />
                             {f}
                         </div>
                     ))}
                 </CardContent>
-                <CardFooter className="px-8 py-6 bg-black/[0.03] border-t border-black/5">
+                <CardFooter className="px-8 py-6 bg-white/[0.02] border-t border-white/5">
                   {server.isSpecial ? (
-                       <Button asChild variant="outline" className="w-full rounded-2xl h-12 text-[10px] font-black uppercase tracking-widest border-primary/20 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all hover:scale-[1.02] shadow-sm">
+                       <Button asChild variant="outline" className="w-full rounded-2xl h-12 text-[10px] font-black uppercase tracking-widest border-primary/40 bg-transparent text-white hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all hover:scale-[1.02] shadow-sm">
                           <Link href={server.href!}>
                               Deploy Solution
                               <ArrowRight className="w-4 h-4 ml-2" />
@@ -374,7 +373,7 @@ export function ServerDashboard() {
                   ) : (
                       <div className="flex gap-3 w-full">
                           {server.accessPoints ? server.accessPoints.map((ap, i) => (
-                              <Button key={i} asChild variant="outline" className="flex-1 rounded-2xl text-[10px] font-black uppercase tracking-tighter h-12 border-primary/10 hover:bg-primary hover:text-primary-foreground transition-all shadow-sm">
+                              <Button key={i} asChild variant="outline" className="flex-1 rounded-2xl text-[10px] font-black uppercase tracking-tighter h-12 border-white/10 bg-transparent text-slate-300 hover:bg-primary hover:text-white transition-all shadow-sm">
                                   <a href={ap.url} target="_blank" rel="noopener noreferrer">
                                       {ap.name}
                                   </a>
@@ -392,35 +391,35 @@ export function ServerDashboard() {
           </div>
         </div>
 
-        <section className="container mx-auto px-4 py-24 mb-24 relative overflow-hidden rounded-[4rem] bg-white border border-primary/10 shadow-2xl">
-           <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] pointer-events-none">
+        <section className="container mx-auto px-4 py-24 mb-24 relative overflow-hidden rounded-[4rem] bg-slate-900/50 border border-primary/20 shadow-2xl">
+           <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] pointer-events-none text-white">
               <Network className="w-full h-full -rotate-12 translate-x-1/4" />
            </div>
            <div className="max-w-4xl mx-auto text-center relative z-10 space-y-12">
               <div className="space-y-6">
-                <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter uppercase leading-none">
+                <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter uppercase leading-none text-white">
                   Global Scaling <br /><span className="text-primary">Starts Here.</span>
                 </h2>
-                <p className="text-lg text-muted-foreground font-semibold max-w-2xl mx-auto">
+                <p className="text-lg text-slate-400 font-semibold max-w-2xl mx-auto">
                   Our clusters are engineered for high-concurrency VoIP operations. 
                   Experience the power of Tier-4 infrastructure today.
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                 <div className="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-primary/30 transition-all group">
+                 <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-primary/40 transition-all group">
                     <Shield className="w-10 h-10 text-primary mb-6 group-hover:scale-110 transition-transform" />
-                    <h4 className="font-black uppercase tracking-widest text-xs mb-3">DDoS Protection</h4>
-                    <p className="text-[11px] text-muted-foreground font-semibold leading-relaxed">Enterprise-grade filtering with real-time threat mitigation.</p>
+                    <h4 className="font-black uppercase tracking-widest text-xs mb-3 text-white">DDoS Protection</h4>
+                    <p className="text-[11px] text-slate-400 font-semibold leading-relaxed">Enterprise-grade filtering with real-time threat mitigation.</p>
                  </div>
-                 <div className="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-primary/30 transition-all group">
+                 <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-primary/40 transition-all group">
                     <Globe className="w-10 h-10 text-primary mb-6 group-hover:scale-110 transition-transform" />
-                    <h4 className="font-black uppercase tracking-widest text-xs mb-3">Anycast DNS</h4>
-                    <p className="text-[11px] text-muted-foreground font-semibold leading-relaxed">Proprietary routing network ensuring lowest global latency.</p>
+                    <h4 className="font-black uppercase tracking-widest text-xs mb-3 text-white">Anycast DNS</h4>
+                    <p className="text-[11px] text-slate-400 font-semibold leading-relaxed">Proprietary routing network ensuring lowest global latency.</p>
                  </div>
-                 <div className="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-primary/30 transition-all group">
+                 <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-primary/40 transition-all group">
                     <Cpu className="w-10 h-10 text-primary mb-6 group-hover:scale-110 transition-transform" />
-                    <h4 className="font-black uppercase tracking-widest text-xs mb-3">NVMe Storage</h4>
-                    <p className="text-[11px] text-muted-foreground font-semibold leading-relaxed">High-performance drive arrays for ultra-fast CDR processing.</p>
+                    <h4 className="font-black uppercase tracking-widest text-xs mb-3 text-white">NVMe Storage</h4>
+                    <p className="text-[11px] text-slate-400 font-semibold leading-relaxed">High-performance drive arrays for ultra-fast CDR processing.</p>
                  </div>
               </div>
               <Button size="lg" onClick={() => setOrderDialogOpen(true)} className="rounded-full px-16 h-16 text-xs font-black uppercase tracking-widest shadow-2xl shadow-primary/30 bg-primary text-primary-foreground shimmer">
@@ -431,40 +430,40 @@ export function ServerDashboard() {
       </main>
 
       <Dialog open={isOrderDialogOpen} onOpenChange={(open) => { if (!open) resetForm(); setOrderDialogOpen(open); }}>
-          <DialogContent className="sm:max-w-[500px] rounded-[2.5rem] p-0 overflow-hidden border-none bg-white shadow-2xl shadow-black/20">
+          <DialogContent className="sm:max-w-[500px] rounded-[2.5rem] p-0 overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
               {orderStep === 'form' ? (
                   <div className="p-10">
                       <DialogHeader className="mb-10 text-center">
-                          <div className="mx-auto bg-primary/10 p-4 rounded-3xl text-primary mb-6 w-fit border border-primary/20">
+                          <div className="mx-auto bg-primary/20 p-4 rounded-3xl text-primary mb-6 w-fit border border-primary/40">
                               <Zap className="w-8 h-8" />
                           </div>
-                          <DialogTitle className="text-3xl font-black font-headline tracking-tighter uppercase">Infrastructure Node</DialogTitle>
-                          <DialogDescription className="font-black text-[10px] text-muted-foreground uppercase tracking-widest">Select deployment specifications</DialogDescription>
+                          <DialogTitle className="text-3xl font-black font-headline tracking-tighter uppercase text-white">Infrastructure Node</DialogTitle>
+                          <DialogDescription className="font-black text-[10px] text-slate-500 uppercase tracking-widest">Select deployment specifications</DialogDescription>
                       </DialogHeader>
                       <div className="space-y-6">
                           <div className="space-y-3">
-                              <Label className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-[0.2em] ml-2">System Module</Label>
+                              <Label className="text-[10px] font-black uppercase text-slate-500 tracking-[0.2em] ml-2">System Module</Label>
                               <Select value={selectedServer} onValueChange={setSelectedServer}>
-                                  <SelectTrigger className="rounded-2xl h-14 bg-slate-50 border-slate-100 font-bold px-6 focus:ring-primary focus:border-primary"><SelectValue placeholder="Select Module" /></SelectTrigger>
-                                  <SelectContent className="rounded-2xl border-slate-100 bg-white shadow-2xl p-2">{serverTypes.map(t => <SelectItem key={t} value={t} className="rounded-xl font-bold p-3 focus:bg-primary/5">{t}</SelectItem>)}</SelectContent>
+                                  <SelectTrigger className="rounded-2xl h-14 bg-slate-800 border-slate-700 font-bold px-6 focus:ring-primary text-white"><SelectValue placeholder="Select Module" /></SelectTrigger>
+                                  <SelectContent className="rounded-2xl border-slate-700 bg-slate-800 text-white shadow-2xl p-2">{serverTypes.map(t => <SelectItem key={t} value={t} className="rounded-xl font-bold p-3 focus:bg-primary/20">{t}</SelectItem>)}</SelectContent>
                               </Select>
                           </div>
                           {selectedServer === 'FusionPBX' && (
                               <div className="space-y-3 animate-in fade-in slide-in-from-top-4 duration-500">
-                                  <Label className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-[0.2em] ml-2">Call Capacity</Label>
+                                  <Label className="text-[10px] font-black uppercase text-slate-500 tracking-[0.2em] ml-2">Call Capacity</Label>
                                   <Select value={selectedFusionCapacity} onValueChange={setSelectedFusionCapacity}>
-                                      <SelectTrigger className="rounded-2xl h-14 bg-slate-50 border-slate-100 font-bold px-6 focus:ring-primary focus:border-primary"><SelectValue placeholder="Channels" /></SelectTrigger>
-                                      <SelectContent className="rounded-2xl border-slate-100 bg-white shadow-2xl p-2">{fusionPbxCapacities.map(c => <SelectItem key={c.value} value={c.value} className="rounded-xl font-bold p-3 focus:bg-primary/5">{c.label} — {c.price}</SelectItem>)}</SelectContent>
+                                      <SelectTrigger className="rounded-2xl h-14 bg-slate-800 border-slate-700 font-bold px-6 focus:ring-primary text-white"><SelectValue placeholder="Channels" /></SelectTrigger>
+                                      <SelectContent className="rounded-2xl border-slate-700 bg-slate-800 text-white shadow-2xl p-2">{fusionPbxCapacities.map(c => <SelectItem key={c.value} value={c.value} className="rounded-xl font-bold p-3 focus:bg-primary/20">{c.label} — {c.price}</SelectItem>)}</SelectContent>
                                   </Select>
                               </div>
                           )}
                           <div className="space-y-3">
-                              <Label className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-[0.2em] ml-2">Identity Verification</Label>
+                              <Label className="text-[10px] font-black uppercase text-slate-500 tracking-[0.2em] ml-2">Identity Verification</Label>
                               <div className="flex gap-3">
-                                  <div className="flex-grow flex items-center justify-center bg-primary/5 border border-primary/20 rounded-2xl h-14 font-code text-2xl font-black text-primary tracking-[0.4em] italic select-none line-through shadow-inner">{captchaText}</div>
-                                  <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-2xl h-14 w-14 bg-slate-50 border-slate-100 hover:bg-primary/5 transition-colors"><RefreshCw className="w-5 h-5 text-primary" /></Button>
+                                  <div className="flex-grow flex items-center justify-center bg-primary/10 border border-primary/30 rounded-2xl h-14 font-code text-2xl font-black text-primary tracking-[0.4em] italic select-none line-through shadow-inner">{captchaText}</div>
+                                  <Button variant="outline" size="icon" onClick={() => setCaptchaText(generateCaptcha())} className="rounded-2xl h-14 w-14 bg-slate-800 border-slate-700 hover:bg-primary/20 transition-colors"><RefreshCw className="w-5 h-5 text-primary" /></Button>
                               </div>
-                              <Input placeholder="Enter Captcha" className="rounded-2xl h-14 bg-slate-50 border-slate-100 font-black text-center text-xl tracking-[0.2em] focus:ring-primary focus:border-primary" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} />
+                              <Input placeholder="Enter Captcha" className="rounded-2xl h-14 bg-slate-800 border-slate-700 font-black text-center text-xl tracking-[0.2em] focus:ring-primary text-white" value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} />
                           </div>
                       </div>
                       <DialogFooter className="mt-10">
@@ -478,8 +477,8 @@ export function ServerDashboard() {
                   <div className="text-center p-14 space-y-8">
                       <div className="mx-auto w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 border border-green-500/20 shadow-lg shadow-green-500/10 animate-in zoom-in duration-500"><CheckCircle className="w-10 h-10" /></div>
                       <div className="space-y-4">
-                          <h3 className="text-3xl font-black font-headline tracking-tighter uppercase leading-none">Slot Reserved</h3>
-                          <p className="text-sm text-muted-foreground font-semibold leading-relaxed">Infrastructure block allocated. Connect with a systems engineer to finalize the handshake.</p>
+                          <h3 className="text-3xl font-black font-headline tracking-tighter uppercase leading-none text-white">Slot Reserved</h3>
+                          <p className="text-sm text-slate-400 font-semibold leading-relaxed">Infrastructure block allocated. Connect with a systems engineer to finalize the handshake.</p>
                       </div>
                       <Button asChild className="w-full rounded-[1.5rem] h-16 bg-[#25D366] hover:bg-[#25D366]/90 text-white font-black uppercase tracking-widest shadow-2xl shadow-green-500/20 hover:scale-[1.02] active:scale-95 transition-all">
                           <a href={`https://wa.me/17633272191?text=${getOrderDetails()}`} target="_blank" className="flex items-center justify-center">
@@ -492,48 +491,48 @@ export function ServerDashboard() {
       </Dialog>
 
       <Dialog open={isVoipDialogOpen} onOpenChange={setVoipDialogOpen}>
-          <DialogContent className="max-w-3xl rounded-[3rem] p-10 border-none bg-white shadow-2xl overflow-y-auto max-h-[90vh]">
+          <DialogContent className="max-w-3xl rounded-[3rem] p-10 border border-white/10 bg-slate-900 shadow-2xl overflow-y-auto max-h-[90vh]">
               <DialogHeader className="mb-8">
-                  <DialogTitle className="text-3xl font-black font-headline tracking-tighter uppercase text-black">Wholesale Rate Desk</DialogTitle>
-                  <DialogDescription className="font-black text-[10px] text-gray-400 uppercase tracking-widest mt-2">Enterprise-grade termination routes</DialogDescription>
+                  <DialogTitle className="text-3xl font-black font-headline tracking-tighter uppercase text-white">Wholesale Rate Desk</DialogTitle>
+                  <DialogDescription className="font-black text-[10px] text-slate-500 uppercase tracking-widest mt-2">Enterprise-grade termination routes</DialogDescription>
               </DialogHeader>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                  <div className="p-6 rounded-3xl bg-gray-50 border border-gray-100">
-                      <Label className="text-[10px] uppercase font-black text-gray-400 tracking-[0.2em] ml-2">Select Route</Label>
+                  <div className="p-6 rounded-3xl bg-slate-800 border border-slate-700">
+                      <Label className="text-[10px] uppercase font-black text-slate-500 tracking-[0.2em] ml-2">Select Route</Label>
                       <Select value={calcRoute} onValueChange={setCalcRoute}>
-                          <SelectTrigger className="h-14 mt-3 rounded-2xl bg-white border-gray-100 font-bold text-black px-6 focus:ring-primary"><SelectValue /></SelectTrigger>
-                          <SelectContent className="rounded-2xl border-gray-100 bg-white p-2">{voipRoutes.map(r => <SelectItem key={r.name} value={r.name} className="rounded-xl font-bold p-3 focus:bg-primary/5">{r.name}</SelectItem>)}</SelectContent>
+                          <SelectTrigger className="h-14 mt-3 rounded-2xl bg-slate-900 border-slate-700 font-bold text-white px-6 focus:ring-primary"><SelectValue /></SelectTrigger>
+                          <SelectContent className="rounded-2xl border-slate-700 bg-slate-800 text-white p-2">{voipRoutes.map(r => <SelectItem key={r.name} value={r.name} className="rounded-xl font-bold p-3 focus:bg-primary/20">{r.name}</SelectItem>)}</SelectContent>
                       </Select>
                   </div>
-                  <div className="p-6 rounded-3xl bg-gray-50 border border-gray-100">
-                      <Label className="text-[10px] uppercase font-black text-gray-400 tracking-[0.2em] ml-2">Monthly Traffic (Mins)</Label>
-                      <Input type="number" value={calcMins} onChange={e => setCalcMins(e.target.value)} className="h-14 mt-3 rounded-2xl bg-white border-gray-100 font-black text-center text-xl text-black focus:ring-primary" />
+                  <div className="p-6 rounded-3xl bg-slate-800 border border-slate-700">
+                      <Label className="text-[10px] uppercase font-black text-slate-500 tracking-[0.2em] ml-2">Monthly Traffic (Mins)</Label>
+                      <Input type="number" value={calcMins} onChange={e => setCalcMins(e.target.value)} className="h-14 mt-3 rounded-2xl bg-slate-900 border-slate-700 font-black text-center text-xl text-white focus:ring-primary" />
                   </div>
               </div>
               
-              <div className="bg-primary/5 border border-primary/20 p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center mt-6 gap-4">
+              <div className="bg-primary/10 border border-primary/30 p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center mt-6 gap-4">
                   <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary/80">Projected Monthly Expenditure</span>
                   <span className="text-4xl font-black text-primary tracking-tighter">{estimatedCost}</span>
               </div>
 
-              <div className="border border-gray-100 rounded-3xl overflow-hidden mt-8 shadow-sm">
+              <div className="border border-slate-700 rounded-3xl overflow-hidden mt-8 shadow-sm">
                   <Table>
-                      <TableHeader className="bg-gray-50">
-                          <TableRow className="border-gray-100 hover:bg-transparent">
-                              <TableHead className="font-black text-[10px] uppercase tracking-widest text-gray-400 h-14 pl-8">Destination</TableHead>
-                              <TableHead className="font-black text-[10px] uppercase tracking-widest text-gray-400 text-center h-14">Rate (USD)</TableHead>
-                              <TableHead className="font-black text-[10px] uppercase tracking-widest text-gray-400 text-right h-14 pr-8">Pulse</TableHead>
+                      <TableHeader className="bg-slate-800">
+                          <TableRow className="border-slate-700 hover:bg-transparent">
+                              <TableHead className="font-black text-[10px] uppercase tracking-widest text-slate-500 h-14 pl-8">Destination</TableHead>
+                              <TableHead className="font-black text-[10px] uppercase tracking-widest text-slate-500 text-center h-14">Rate (USD)</TableHead>
+                              <TableHead className="font-black text-[10px] uppercase tracking-widest text-slate-500 text-right h-14 pr-8">Pulse</TableHead>
                           </TableRow>
                       </TableHeader>
                       <TableBody>
                           {voipRoutes.map(r => (
-                              <TableRow key={r.name} className="border-gray-100 hover:bg-gray-50 transition-colors">
-                                  <TableCell className="font-black text-sm text-black pl-8 py-5">{r.name}</TableCell>
+                              <TableRow key={r.name} className="border-slate-700 hover:bg-slate-800 transition-colors">
+                                  <TableCell className="font-black text-sm text-white pl-8 py-5">{r.name}</TableCell>
                                   <TableCell className="text-center font-code text-primary font-black text-sm">
                                       {r.rate === 0 ? 'Enterprise Inquiry' : r.rate.toFixed(4)}
                                   </TableCell>
-                                  <TableCell className="text-right text-[10px] font-black text-gray-400 pr-8">{r.pulse}</TableCell>
+                                  <TableCell className="text-right text-[10px] font-black text-slate-500 pr-8">{r.pulse}</TableCell>
                               </TableRow>
                           ))}
                       </TableBody>
@@ -551,19 +550,19 @@ export function ServerDashboard() {
           </DialogContent>
       </Dialog>
 
-      <footer className="py-24 border-t border-black/5 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none"></div>
+      <footer className="py-24 border-t border-white/5 bg-slate-950 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-5 pointer-events-none"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
-            <div className="flex justify-center gap-12 mb-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
-                <Shield className="w-8 h-8" />
-                <Globe className="w-8 h-8" />
-                <Cpu className="w-8 h-8" />
+            <div className="flex justify-center gap-12 mb-12 opacity-20 grayscale hover:grayscale-0 transition-all duration-500">
+                <Shield className="w-8 h-8 text-white" />
+                <Globe className="w-8 h-8 text-white" />
+                <Cpu className="w-8 h-8 text-white" />
             </div>
             <div className="space-y-4">
-              <p className="text-[11px] font-black text-muted-foreground/60 max-w-lg mx-auto leading-relaxed uppercase tracking-[0.4em]">
+              <p className="text-[11px] font-black text-slate-500 max-w-lg mx-auto leading-relaxed uppercase tracking-[0.4em]">
                   AMS CLOUD • Enterprise Network Solutions
               </p>
-              <p className="text-[10px] text-muted-foreground/30 font-black uppercase tracking-[0.8em] mt-8">
+              <p className="text-[10px] text-slate-700 font-black uppercase tracking-[0.8em] mt-8">
                   &copy; {new Date().getFullYear()} AMS PORTAL. MISSION CRITICAL.
               </p>
             </div>
