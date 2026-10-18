@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -113,7 +112,7 @@ export function ResellerProgramPage() {
                     <p className="text-muted-foreground max-w-3xl mx-auto mb-8">
                         Contact us today to learn more about our reseller program and take the first step towards launching your own successful VoIP business.
                     </p>
-                    <a href="https://wa.me/+916307828356?text=I%27m%20interested%20in%20your%20reseller%20program" target="_blank" rel="noopener noreferrer">
+                    <a href="https://api.whatsapp.com/send/?phone=17633272191&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
                         <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
                             <Users className="w-5 h-5 mr-2" />
                             Contact Us to Get Started
