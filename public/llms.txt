@@ -1,0 +1,23 @@
+# AMS Portal - Enterprise VoIP Infrastructure
+
+Mission-critical solutions for high-performance VoIP operations. Management hub for VOS3000, VICIBOX, and FusionPBX clusters.
+
+## Core Services
+- VICIBOX Predictive Dialing
+- VOS3000 Carrier Switch Management
+- FusionPBX Multi-tenant Solutions
+- Global Pharma Supply Distribution (USDT)
+- Digital Media Marketing & GMB SEO
+- White-label Reseller Program
+
+## Contacts
+- Telegram: https://t.me/AMSserver
+- WhatsApp: https://wa.me/17633272191
+
+## Pages
+- Dashboard: /
+- Vicibox: /vicibox
+- Pharma: /pharma
+- Marketing: /digital-media-marketing
+- Reseller: /reseller-program
+- Status: /server-status
