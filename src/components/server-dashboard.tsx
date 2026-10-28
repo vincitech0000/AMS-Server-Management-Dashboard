@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -197,18 +198,18 @@ export function ServerDashboard() {
       
       <header className="sticky top-0 z-[100] w-full border-b bg-background/70 backdrop-blur-3xl">
         <div className="container mx-auto px-4 flex h-20 items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative bg-primary/10 p-2.5 rounded-2xl text-primary border border-primary/20 group-hover:scale-110 transition-all overflow-hidden flex items-center justify-center">
-                <Network className="w-7 h-7" />
-                <div className="absolute bottom-1 left-0 right-0 flex justify-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse [animation-delay:0.2s] shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse [animation-delay:0.4s] shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+          <Link href="/" className="flex items-center gap-4 group">
+            <div className="relative bg-[#0a0f1d] p-3 rounded-[1.2rem] text-primary border border-white/5 group-hover:scale-105 transition-all flex items-center justify-center w-14 h-14 shadow-2xl">
+                <Network className="w-8 h-8 text-indigo-400" />
+                <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#ff4d4d]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#40ff00]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0099ff]" />
                 </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-black font-headline tracking-tighter leading-none text-white">AMS CLOUD</span>
-              <span className="text-[10px] text-primary/70 uppercase tracking-[0.4em] font-bold mt-1.5">Infrastructure</span>
+              <span className="text-2xl font-black font-headline tracking-tighter leading-none text-white uppercase">AMS CLOUD</span>
+              <span className="text-[10px] text-indigo-400/80 uppercase tracking-[0.6em] font-black mt-1.5">INFRASTRUCTURE</span>
             </div>
           </Link>
           <div className="flex items-center gap-4">

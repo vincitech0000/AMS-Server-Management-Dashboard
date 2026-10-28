@@ -1,23 +1,20 @@
-# AMS Portal - Enterprise VoIP Infrastructure
 
-Mission-critical solutions for high-performance VoIP operations. Management hub for VOS3000, VICIBOX, and FusionPBX clusters.
+# AMS Portal AI Readiness
 
-## Core Services
-- VICIBOX Predictive Dialing
-- VOS3000 Carrier Switch Management
-- FusionPBX Multi-tenant Solutions
-- Global Pharma Supply Distribution (USDT)
-- Digital Media Marketing & GMB SEO
-- White-label Reseller Program
+AMS Portal is an enterprise infrastructure management platform specialized in high-concurrency VoIP operations and global med-tech supply.
 
-## Contacts
+## Key Services
+- **VoIP Infrastructure**: Management of VOS3000, VICIBOX, and FusionPBX clusters.
+- **Global Pharma Supply**: Secure pharmaceutical distribution hub via USDT.
+- **Digital Marketing**: SEO, GMB optimization, and Search Engine Marketing.
+- **Reseller Program**: White-label VoIP business solutions.
+
+## Technical Details
+- **NOC Monitoring**: Real-time status tracking of global server nodes.
+- **Rate Desk**: Wholesale VoIP termination route pricing.
+- **Architecture**: Tier-4 enterprise nodes with DDoS protection and NVMe storage.
+
+## Contact
 - Telegram: https://t.me/AMSserver
 - WhatsApp: https://wa.me/17633272191
-
-## Pages
-- Dashboard: /
-- Vicibox: /vicibox
-- Pharma: /pharma
-- Marketing: /digital-media-marketing
-- Reseller: /reseller-program
-- Status: /server-status
+- Location: USA Domestic Nodes

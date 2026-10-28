@@ -1,3 +1,4 @@
+
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
@@ -28,12 +29,21 @@ export const metadata: Metadata = {
     siteName: 'AMS Portal',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'AMS Portal Infrastructure Management',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AMS Portal | Enterprise VoIP Infrastructure',
     description: 'Mission-critical solutions for high-performance VoIP operations.',
     creator: '@amsserver',
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
